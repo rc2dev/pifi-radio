@@ -32,9 +32,9 @@
 	<h4 class="title text-center lead">Escolha uma rádio</h4>
 	
 	<% $streams.each do |key, value| %>
-        <h4 class="radio-name"><a href="/play?url=<%= URI.escape(value) %>"><%= key %></a></h4>
+		<a href="/play?url=<%= URI.escape(value) %>"><div class="radio-name"><h4><%= key %></h4></div></a>
 	<% end %>
-	<h4 class="radio-name"><a href="/radios/custom" class="text-muted">Inserir endereço</a></h4>
+	<a href="/radios/custom" class="text-muted"><div class="radio-name"><h4>Inserir endereço</h4></div></a>
 	
 	
     <p class="button-end text-center"><a href="/player"><button type="button" class="btn btn-primary btn-lg">Controles</button></a></p>
