@@ -3,11 +3,6 @@ require 'ruby-mpd'
 load 'streams.rb'
 load 'util.rb'
 
-# TODO:
-# get /, redicret 302 mesmo?
-# load util mesmo?
-# Tratar erros mpd (connection refused0
-# servidor em produção
 
 configure do
 	set :bind, '0.0.0.0'
@@ -48,6 +43,8 @@ def send_cmd(params, mpd)
     redirect "/player"
 end
 
+
+
 mpd = MPD.new '127.0.0.1', 6600
 mpd.connect
 
@@ -63,6 +60,11 @@ end
 
 get '/radios' do
     show_radios(false)
+end
+
+get '/radios/u' do
+    load 'streams.rb'
+    "<a href=\"/radios\">streams.rb recarregado.</a>"
 end
 
 get '/player' do

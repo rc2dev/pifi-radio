@@ -2,4 +2,5 @@
 *.lock
 *.log
 *.pid
+thin.yml
 streams.rb
