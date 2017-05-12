@@ -2,3 +2,4 @@
 *.lock
 *.log
 *.pid
+streams.rb
