@@ -2,12 +2,15 @@
 .player {
     margin-right: auto;
     margin-left: auto;
-    max-width: 220px;
+    max-width: 300px;
     padding-top: 12%;
 }
 
 .controls {
     padding-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 220px;
 }
 
 .volume {
