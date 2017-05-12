@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pi - Rádios</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <!-- My modifications -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<div class="container-fluid">
+    <div class="radios pagination-centered align-self-center">
+	<% if auto %><h4 class="text-center">Que silêncio...</h4><% end %>
+	<h4 class="title text-center">Escolha uma rádio</h4>
+	
+	<% $streams.each do |key, value| %>
+        <h4 class="radio-name"><a href="/play?url=<%= URI.escape(value) %>"><%= key %></a></h4>
+	<% end %>
+	
+    <p class="button-end text-center"><a href="/radios/custom"><button type="button" class="btn btn-primary">Inserir endereço</button></a><a href="/player"><button type="button" class="btn btn-danger">Voltar</button></a></h4>
+	</div></div>
+	
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

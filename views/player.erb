@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pi - Rádios</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <!-- My modifications -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="player pagination-centered align-self-center">
+	<h5 class="text-center"><%= status %></h5>
+	<h2 class="text-center"><%= name %></h2>
+	
+	<div class="text-center controls" role="toolbar">
+    <a href="/player/play">
+        <button type="button" class="btn btn-primary btn-lg">
+		<span class="glyphicon glyphicon-play"></span></button></a>
+    <a href="/player/stop">
+        <button type="button" class="btn btn-danger btn-lg">
+		<span class="glyphicon glyphicon-stop"></span></button></a>
+    <a href="/player/vlow">
+        <button type="button" class="btn btn-default btn-lg">
+		<span class="glyphicon glyphicon-volume-down"></span></button></a>
+    <a href="/player/vup">
+	    <button type="button" class="btn btn-default btn-lg">
+		<span class="glyphicon glyphicon-volume-up"></span></button></a>
+    </div>
+
+    
+	<p class="volume text-right">Volume: <%= mpd.volume %>%</p>
+    <p class="button-end text-center"><a href="/radios"><button type="button" class="btn btn-primary btn-lg">Escolher outra rádio</button></a></h4>
+	</div></div>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

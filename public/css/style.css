@@ -1,0 +1,51 @@
+/* player.erb */
+.player {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 220px;
+    padding-top: 12%;
+}
+
+.controls {
+    padding-top: 50px;
+}
+
+.volume {
+    padding-top: 10px;
+}
+
+.button-end {
+    padding-top: 80px;
+}
+
+
+
+/* radios.erb */
+.radios {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 350px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.title {
+    padding-bottom: 20px;
+}
+
+.radio-name {
+    padding-top: 40px;
+}
+
+.radios .button-end button {
+    margin-right: 20px;
+}
+
+/* custom.erb */
+.custom {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 400px;
+    padding-top: 20%;
+}
+
