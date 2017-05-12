@@ -40,9 +40,6 @@
     padding-top: 40px;
 }
 
-.radios .button-end button {
-    margin-right: 20px;
-}
 
 /* custom.erb */
 .custom {
@@ -52,3 +49,6 @@
     padding-top: 20%;
 }
 
+#button-radios {
+    margin-right: 20px;
+}
