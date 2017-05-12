@@ -86,5 +86,6 @@ end
 
 #Testando
 error do
-  'Sorry there was a nasty error - ' + env['sinatra.error'].message
+  '<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
+          env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
 end
