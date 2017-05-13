@@ -51,32 +51,27 @@ $( document ).ready(function() {
     });
     
     // Play random
-    // Espera se não está tocando
     $( "#btn-random" ).click(function( event ) {
         $.get( "/cmd/first_random", function( data ) {  
-            $.get( "/play-random" );
-            //div = $( ".player" ).clone();
-            // Pede para esperar se estava parado.
-            //if( data == "true" ) {
-            //    $( "player").hide();
-                //$( ".player" ).html('<h3 class="text-center">Aguarde...</h3> \
-                  //                  <h3  class="text-center">Conectando-se ao AirPort...</h3>')
-                //setTimeout(function() {
-                    //$( ".player").replaceWith(div);
-                //}, 2500); 
-            //    update();
-            //} else {
-            //    $( ".player" ).html('<h3 class="text-center">Próxima</h3>')
-            //    setTimeout(function() {
-            //        $( ".player").replaceWith(div);
-            //    }, 2000); 
-                update();                
-            //}
-          });
-       event.preventDefault();
+            $.get( "/play-random", function( data ) {
+                update();
+            });
+            if( data == "true" ) {
+                $( "#alert-text" ).html("Contactando o armazenamento...");
+            } else {
+                $( "#alert-text" ).html("Próxima música...");    
+            }
+            $( "#player").hide();
+            $( "#alert" ).show();
+            setTimeout(function() {
+                $( "#alert" ).hide();
+                $( "#player" ).show();
+                }, 2500);            
+        });
+        event.preventDefault();
     });
     
-    
+    // Insert URL
     $("#insert").click(function( event ) {
         var url = prompt("Insira a URL");
         if(url != "")

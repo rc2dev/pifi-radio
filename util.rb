@@ -26,6 +26,6 @@ def get_volume(mpd)
 end
 
 def first_random?(mpd)
-    already = mpd.playing? && mpd.current_song.file.include?("://")
-    ! already
+    not_first = mpd.playing? && ! mpd.current_song.file.include?("://")
+    ! not_first
 end

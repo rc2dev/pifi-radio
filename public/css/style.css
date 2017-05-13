@@ -6,11 +6,23 @@
     padding-top: 12%;
 }
 
+#alert {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 230px;
+    padding-top: 45%;
+    display: none;
+}
+
 #controls {
     padding-top: 50px;
     margin-right: auto;
     margin-left: auto;
     max-width: 220px;
+}
+
+.btn-controls {
+    color: #337ab7;
 }
 
 #vol {
@@ -34,10 +46,6 @@
 .radio-name {
     padding-top: 20px;
 	padding-bottom: 20px;
-}
-
-#div-insert {
-    display: none;
 }
 
 .url-form {
