@@ -35,6 +35,7 @@ end
 
 def play(params, mpd)
     url = params[:url]
+    url.strip!
     mpd.clear
     mpd.add url
     mpd.play
