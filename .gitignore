@@ -1,4 +1,5 @@
 *.swp
+*.kate-swp
 *.lock
 *.log
 *.pid

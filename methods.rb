@@ -1,10 +1,10 @@
 # Update DB and save it to dbpl playlist
 def update_db(mpd)
     mpd.update
-    pl = mpd.playlists.find {|p| p.name == "dbpl" }
+    pl = mpd.playlists.find { |p| p.name == "dbpl" }
     if pl.nil?
         mpd.save "dbpl"
-        pl = mpd.playlists.find {|p| p.name == "dbpl" } 
+        pl = mpd.playlists.find { |p| p.name == "dbpl" } 
     end
     pl.clear
     for song in mpd.songs
