@@ -34,23 +34,22 @@
 	
 	<div class="text-center controls" role="toolbar">
     <a href="/player/play">
-        <button type="button" class="btn btn-primary btn-lg">
+        <button type="button" class="btn btn-custom btn-lg">
 		<span class="glyphicon glyphicon-play"></span></button></a>
-    <a href="/player/stop">
-        <button type="button" class="btn btn-danger btn-lg">
+	<a href="/player/stop">
+        <button type="button" class="btn btn-custom btn-lg">
 		<span class="glyphicon glyphicon-stop"></span></button></a>
     <a href="/player/vlow">
-        <button type="button" class="btn btn-default btn-lg">
+        <button type="button" class="btn btn-custom btn-lg">
 		<span class="glyphicon glyphicon-volume-down"></span></button></a>
     <a href="/player/vup">
-	    <button type="button" class="btn btn-default btn-lg">
+	    <button type="button" class="btn btn-custom btn-lg">
 		<span class="glyphicon glyphicon-volume-up"></span></button></a>
     <p class="volume text-right">Volume: <%= mpd.volume %>%</p>
     </div>
 
-    
-    <p class="button-end text-center"><a href="/radios"><button type="button" class="btn btn-primary btn-lg">Escolher outra rádio</button></a></h4>
-	</div></div>
+    <p class="button-end text-center"><a href="/random"><button type="button" class="btn btn-warning btn-lg" id="button-left"><span class="glyphicon glyphicon-music"></span> Música</button></a>
+    <a href="/radios"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list"></span> Rádios</button></a></p>
     
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

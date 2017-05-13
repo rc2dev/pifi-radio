@@ -1,7 +1,12 @@
-#load 'streams.rb'
-
-def get_name(path)
-   $streams.key(path) || path
+def get_name(mpd)
+    song = mpd.current_song
+    if song.nil?
+        "Nada"
+    elsif ! song.file.include?("://")
+        "Música"
+    else
+        $streams.key(song.file) || song.file
+    end
 end
 
 def get_status(mpd)
@@ -14,4 +19,8 @@ def get_status(mpd)
     else
         return ""
     end
+end
+
+def is_local(path)
+    ! path.include?("://")
 end

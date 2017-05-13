@@ -2,7 +2,7 @@
 .player {
     margin-right: auto;
     margin-left: auto;
-    max-width: 300px;
+    max-width: 350px;
     padding-top: 12%;
 }
 
@@ -11,6 +11,17 @@
     margin-right: auto;
     margin-left: auto;
     max-width: 220px;
+}
+
+.btn-custom {
+    background-color: black;
+    color: white;
+    transition-property: background, opacity;
+    transition-duration: 0.5s;
+} .btn-custom:hover, btn-custom:active, btn-custom:focus {
+    cursor: pointer;
+    opacity: 0.5;
+    color: white;
 }
 
 .volume {
@@ -50,6 +61,7 @@
     padding-top: 20%;
 }
 
-#button-radios {
+/* Comum */
+#button-left {
     margin-right: 20px;
 }
