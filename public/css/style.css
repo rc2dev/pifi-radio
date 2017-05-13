@@ -1,41 +1,25 @@
 /* player.erb */
-.player {
+#player {
     margin-right: auto;
     margin-left: auto;
-    max-width: 350px;
+    max-width: 300px;
     padding-top: 12%;
 }
 
-.controls {
+#controls {
     padding-top: 50px;
     margin-right: auto;
     margin-left: auto;
     max-width: 220px;
 }
 
-.btn-custom {
-    background-color: black;
-    color: white;
-    transition-property: background, opacity;
-    transition-duration: 0.5s;
-} .btn-custom:hover, btn-custom:active, btn-custom:focus {
-    cursor: pointer;
-    opacity: 0.5;
-    color: white;
-}
-
-.volume {
+#vol {
     padding-top: 10px;
 }
 
-.button-end {
-    padding-top: 80px;
-}
-
-
 
 /* radios.erb */
-.radios {
+#radios {
     margin-right: auto;
     margin-left: auto;
     max-width: 350px;
@@ -52,16 +36,28 @@
 	padding-bottom: 20px;
 }
 
-
-/* custom.erb */
-.custom {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 400px;
-    padding-top: 20%;
+#div-insert {
+    display: none;
 }
 
-/* Comum */
-#button-left {
-    margin-right: 20px;
+.url-form {
+    margin-top: 20px;
+	margin-bottom: 20px;  
+}
+
+/* Common */
+.button-end {
+    padding-top: 80px;
+    padding-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 220px;
+}
+
+.btn-left {
+    float: left;
+}
+
+.btn-right {
+    float: right;
 }

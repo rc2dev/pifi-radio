@@ -1,23 +1,30 @@
 <div class="container-fluid">
-<div class="player pagination-centered align-self-center">
-<h5 class="text-center"><%= status %></h5>
-<h2 class="text-center"><%= name %></h2>
+<div class="pagination-centered align-self-center" id="player">
+<h5 class="text-center" id="status"><%= status %></h5>
+<h2 class="text-center" id="name"><%= name %></h2>
 
-<div class="text-center controls" role="toolbar">
-<a href="/player/play">
-    <button type="button" class="btn btn-custom btn-lg">
+<div class="text-center" id="controls" role="toolbar">
+<a href="#">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="play">
     <span class="glyphicon glyphicon-play"></span></button></a>
-<a href="/player/stop">
-    <button type="button" class="btn btn-custom btn-lg">
+<a href="#">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="stop">
     <span class="glyphicon glyphicon-stop"></span></button></a>
-<a href="/player/vlow">
-    <button type="button" class="btn btn-custom btn-lg">
+<a href="#">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="vdown">
     <span class="glyphicon glyphicon-volume-down"></span></button></a>
-<a href="/player/vup">
-    <button type="button" class="btn btn-custom btn-lg">
+<a href="#">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="vup">
     <span class="glyphicon glyphicon-volume-up"></span></button></a>
-<p class="volume text-right">Volume: <%= mpd.volume %>%</p>
+<p class="text-right" id="vol"><%= volume %></p>
 </div>
 
-<p class="button-end text-center"><a href="/random"><button type="button" class="btn btn-warning btn-lg" id="button-left"><span class="glyphicon glyphicon-music"></span> Música</button></a>
-<a href="/radios"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list"></span> Rádios</button></a></p>
+<p class="button-end text-center">
+<a href="#">
+    <button type="button" class="btn btn-warning btn-lg btn-left" id="btn-random"><span class="glyphicon glyphicon-music"></span></button></a>
+<a href="/radios">
+    <button type="button" class="btn btn-primary btn-lg btn-right"><span class="glyphicon glyphicon-list"></span> Rádios</button></a>
+</p>
+
+</div>
+</div>

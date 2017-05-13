@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'ruby-mpd'
-load 'routes.rb'
 load 'methods.rb'
 load 'streams.rb'
 load 'util.rb'
@@ -8,7 +7,7 @@ load 'util.rb'
 # Configuration
 configure do
 	set :bind, '0.0.0.0'
-    set :environment, 'production'
+#    set :environment, 'production'
 end
 
 # Connect to MPD
@@ -39,22 +38,22 @@ get '/player' do
     show_player(mpd)
 end
 
-get '/player/:cmd' do
+get '/cmd/:cmd' do
     send_cmd(params, mpd)
 end
     
-get '/play' do
-    play(params, mpd)
+get '/play-url' do
+    play_url(params, mpd)
 end
-post '/play' do
-    play(params, mpd)
+post '/play-url' do
+    play_url(params, mpd)
 end
 
 get '/radios/custom' do
     erb :custom
 end
 
-get '/random' do
+get '/play-random' do
     play_random(mpd)
 end
 

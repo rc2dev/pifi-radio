@@ -1,9 +1,9 @@
 def get_name(mpd)
     song = mpd.current_song
     if song.nil?
-        "Nada"
+        ""
     elsif ! song.file.include?("://")
-        "Música"
+        "Coletânea"
     else
         $streams.key(song.file) || song.file
     end
@@ -21,6 +21,11 @@ def get_status(mpd)
     end
 end
 
-def is_local(path)
-    ! path.include?("://")
+def get_volume(mpd)
+    "Volume: " + mpd.volume.to_s + "%"
+end
+
+def first_random?(mpd)
+    already = mpd.playing? && mpd.current_song.file.include?("://")
+    ! already
 end

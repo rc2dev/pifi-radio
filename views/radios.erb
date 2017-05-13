@@ -1,13 +1,23 @@
 <div class="container-fluid">
-<div class="radios pagination-centered align-self-center">
+<div class="pagination-centered align-self-center" id="radios">
 <% if auto %><h4 class="text-center">Que silêncio...</h4><% end %>
 <h4 class="title text-center lead">Escolha uma rádio</h4>
 
 <% $streams.each do |key, value| %>
-    <a href="/play?url=<%= URI.escape(value) %>"><div class="radio-name"><h4><%= key %></h4></div></a>
+    <a href="/play-url?url=<%= URI.escape(value) %>"><div class="radio-name"><h4><%= key %></h4></div></a>
 <% end %>
-<a href="/radios/custom" class="text-muted"><div class="radio-name"><h4>Inserir endereço...</h4></div></a>
+<a href="#" id="insert"><div class="radio-name"><h4 class="text-muted">Inserir endereço...</h4></div></a>
 
+<p class="button-end text-center">
+<a href="/player"><button type="button" class="btn btn-primary btn-lg">Controles</button></a>
+</p>
+</div>
 
-<p class="button-end text-center"><a href="/player"><button type="button" class="btn btn-primary btn-lg">Controles</button></a></p>
-</div></div>
+<div id="div-insert" title="Tocar URL"> 
+<form method="POST" action="/play-url" class="form-group text-center">
+    <input type="text" name="url" class="form-control url-form" placeholder="Insira a URL">
+    <button type="submit" class="btn btn-primary" id="btn-ok">OK</button>
+</form>
+</div>
+
+</div>
