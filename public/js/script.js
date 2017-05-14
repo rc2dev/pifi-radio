@@ -88,8 +88,11 @@ $( document ).ready(function() {
     // Button: Play (só mandar comando se estiver parado)
     $( "#play" ).click(function( event ) {
         $.get( "/cmd/playing", function( data ) {
-            if( data == "false" )
+            if( data == "false" ) {
                 $.get( "/cmd/play", function( data ) { update_player(); });
+			} else {
+				update_player();
+			}
         });
        event.preventDefault();
     });
@@ -97,8 +100,11 @@ $( document ).ready(function() {
     // Button: Stop (só mandar comando se estiver tocando)
     $( "#stop" ).click(function( event ) {
         $.get( "/cmd/playing", function( data ) {
-            if( data == "true" )
+            if( data == "true" ) {
                 $.get( "/cmd/stop", function( data ) { update_player(); });
+			} else {
+				update_player();
+			};
         });
        event.preventDefault();
     });

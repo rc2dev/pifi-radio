@@ -23,25 +23,34 @@
 </div>
 
 
-<p class="button-end text-center">
+<div class="player-bottom text-center">
 <a href="#">
     <span class="btn btn-danger btn-lg btn-left" id="btn-random"><span class="glyphicon glyphicon-music"></span></span></a>
 <a href="#">
     <span class="btn btn-primary btn-lg btn-right" id="btn-radios"><span class="glyphicon glyphicon-list"></span> Rádios</span></a>
-</p>
+</div>
 </div>
 
 
 <!-- Lista de rádios -->
 <div class="pagination-centered align-self-center" id="radios">
-<h4 class="text-center lead" id="silence">Que silêncio...</h4>
-<h4 class="title text-center lead">Escolha uma rádio</h4>
+<h4 class="text-center" id="silence">Que silêncio...</h4>
+<h4 class="title text-center"><strong>Escolha uma rádio</strong></h4>
 
-<% $streams.each do |key, value| %>
-    <a href="#"><div class="radio-name" url="<%= URI.escape(value) %>"><h4><%= key %></h4></div></a>
-<% end %>
-<a href="#" ><div id="insert"><h4 class="text-muted">Inserir endereço...</h4></div></a>
-
+<ul class="list-group" id="radios-list">
+	<% $streams.each do |key, value| %>
+		<a href="#">
+			<li class="list-group-item radio-name" url="<%= URI.escape(value) %>">
+				<h4><%= key %></h4>
+			</li>
+		</a>
+	<% end %>
+	<a href="#" >
+		<li class="list-group-item" id="insert">
+			<h4 class="text-muted">Inserir endereço...</h4>
+		</li>
+	</a>
+</ul>
 <p class="button-end text-center">
 <a href="#">
 	<span class="btn btn-primary btn-lg" id="btn-player">

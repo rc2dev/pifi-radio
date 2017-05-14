@@ -53,15 +53,15 @@ def play_url(params, mpd)
 end
 
 def play_random(mpd)
-    # Se está tocando música local, vai para a próxima
+    # Se não está tocando música local, carrega toda a
+	# biblioteca em modo aleatório e começa a tocar
     if first_random?(mpd)
         mpd.clear
         pl = mpd.playlists.find { |p| p.name == "dbpl" }
         pl.load
         mpd.random= true
-        mpd.crossfade= true
         mpd.play
-    # Senão, insere toda a biblioteca em modo aleatório e começa a tocar
+    # Se está tocando música local, vai para a próxima
     else
         mpd.next
     end

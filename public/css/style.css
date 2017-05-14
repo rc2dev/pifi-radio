@@ -12,14 +12,6 @@ select {
     display: none;
 }
 
-#alert {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 230px;
-    padding-top: 45%;
-    display: none;
-}
-
 #controls {
     padding-top: 50px;
     margin-right: auto;
@@ -33,6 +25,14 @@ select {
 
 #vol {
     padding-top: 10px;
+}
+
+.player-bottom {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 220px;
 }
 
 
@@ -50,29 +50,34 @@ select {
     display: none;
 }
 
-.title {
-    padding-bottom: 20px;
+.radio-name, #insert { 
+	border: none !important; 
 }
 
-.radio-name, #insert {
-    padding-top: 20px;
-	padding-bottom: 20px;
+#radios-list {
+	box-shadow: none;
+	margin-top: 40px;
+}
+
+#btn-player {
+	margin-top: 25px;
+	margin-bottom: 40px;
 }
 
 
 /* Common */
-.button-end {
-    padding-top: 80px;
-    padding-bottom: 30px;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 220px;
-}
-
 .btn-left {
     float: left;
 }
 
 .btn-right {
     float: right;
+}
+
+#alert {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 230px;
+    padding-top: 45%;
+    display: none;
 }
