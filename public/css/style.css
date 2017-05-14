@@ -1,9 +1,15 @@
+/* Tentando desabilitar zoom no iPhone */
+select {
+    font-size: 50px;
+}
+
 /* player */
 #player {
     margin-right: auto;
     margin-left: auto;
     max-width: 300px;
     padding-top: 12%;
+    display: none;
 }
 
 #alert {
@@ -21,8 +27,8 @@
     max-width: 220px;
 }
 
-.btn-controls, .btn-controls:active {
-    color: #337ab7;
+.btn-controls {
+    color: #337ab7 !important;
 }
 
 #vol {
