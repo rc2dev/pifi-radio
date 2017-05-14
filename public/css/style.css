@@ -4,7 +4,7 @@ select {
 }
 
 /* player */
-#player {
+#player, #alert {
     margin-right: auto;
     margin-left: auto;
     max-width: 300px;
@@ -25,19 +25,19 @@ select {
     margin-left: 4px;
 }
 
-#player-bottom {
-    padding-top: 100px;
+#player-bottom, #osd {
     padding-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
     max-width: 252px;
 }
 
+#player-bottom {
+    padding-top: 100px;
+}
+
 #osd {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 230px;
-    padding-top: 25%;
+    padding-top: 70px;
     display: none;
 }
 
@@ -81,9 +81,9 @@ select {
 }
 
 #alert {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 230px;
-    padding-top: 45%;
     display: none;
+}
+
+#alert-text {
+    padding-top: 40%;
 }
