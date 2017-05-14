@@ -1,3 +1,35 @@
+def get_name(mpd)
+    song = mpd.current_song
+    if song.nil?
+        ""
+    elsif ! song.file.include?("://")
+        "Coletânea"
+    else
+        $streams.key(song.file) || song.file
+    end
+end
+
+def get_status(mpd)
+    if mpd.playing?
+        return "Tocando"
+    elsif mpd.stopped?
+        return "Parado"
+    elsif mpd.paused?
+        return "Pausado"
+    else
+        return ""
+    end
+end
+
+def get_volume(mpd)
+    "Volume: " + mpd.volume.to_s + "%"
+end
+
+def first_random?(mpd)
+    not_first = mpd.playing? && ! mpd.current_song.file.include?("://")
+    ! not_first
+end
+
 # Update DB and save it to dbpl playlist
 def update_db(mpd)
     mpd.update
@@ -12,48 +44,12 @@ def update_db(mpd)
     end
 end
 
-def show_player(mpd)
-    status = get_status(mpd)
-    name = get_name(mpd)
-    volume = get_volume(mpd)
-	erb :player, locals: {name: name, status: status, volume: volume}
-end
-
-def show_radios(auto)
-    erb :radios, locals: {auto: auto}
-end
-
 def play_url(params, mpd)
     url = params[:url]
     url.strip!
     mpd.clear
     mpd.add url
     mpd.play
-    redirect "/player"
-end
-
-def send_cmd(params, mpd)
-    cmd = params[:cmd]
-    case cmd
-    when "play"
-		mpd.play
-	when "stop"
-		mpd.stop
-	when "vdown"
-		mpd.send_command("volume -5")
-	when "vup"
-        mpd.send_command("volume +5")
-    when "vol"
-        get_volume(mpd)
-    when "playing"
-        mpd.playing?.to_s
-    when "status"
-        get_status(mpd)
-    when "name"
-        get_name(mpd)
-    when "first_random"
-        first_random?(mpd).to_s
-	end
 end
 
 def play_random(mpd)

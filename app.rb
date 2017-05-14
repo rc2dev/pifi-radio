@@ -2,7 +2,6 @@ require 'sinatra'
 require 'ruby-mpd'
 load 'methods.rb'
 load 'streams.rb'
-load 'util.rb'
 
 # Configuration
 configure do
@@ -23,23 +22,34 @@ end
 
 # Routes
 get '/' do
-    if mpd.playing?
-        show_player(mpd)      # Música tocando, mostra player.
-	else
-		show_radios(true)     # Nenhuma música tocando, escolher rádio.		
-	end
-end
-
-get '/radios' do
-    show_radios(false)
-end
-
-get '/player' do
-    show_player(mpd)
+    status = get_status(mpd)
+    name = get_name(mpd)
+    volume = get_volume(mpd)
+    erb :main, locals: { name: name, status: status, volume: volume }
 end
 
 get '/cmd/:cmd' do
-    send_cmd(params, mpd)
+    cmd = params[:cmd]
+    case cmd
+    when "play"
+		mpd.play
+	when "stop"
+		mpd.stop
+	when "vdown"
+		mpd.send_command("volume -5")
+	when "vup"
+        mpd.send_command("volume +5")
+    when "vol"
+        get_volume(mpd)
+    when "playing"
+        mpd.playing?.to_s
+    when "status"
+        get_status(mpd)
+    when "name"
+        get_name(mpd)
+    when "first_random"
+        first_random?(mpd).to_s
+	end
 end
     
 get '/play-url' do
@@ -47,10 +57,6 @@ get '/play-url' do
 end
 post '/play-url' do
     play_url(params, mpd)
-end
-
-get '/radios/custom' do
-    erb :custom
 end
 
 get '/play-random' do

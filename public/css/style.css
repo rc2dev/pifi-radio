@@ -1,4 +1,4 @@
-/* player.erb */
+/* player */
 #player {
     margin-right: auto;
     margin-left: auto;
@@ -30,28 +30,29 @@
 }
 
 
-/* radios.erb */
+/* radios list */
 #radios {
     margin-right: auto;
     margin-left: auto;
     max-width: 350px;
     padding-top: 30px;
     padding-bottom: 30px;
+    display: none;
+}
+
+#silence {
+    display: none;
 }
 
 .title {
     padding-bottom: 20px;
 }
 
-.radio-name {
+.radio-name, #insert {
     padding-top: 20px;
 	padding-bottom: 20px;
 }
 
-.url-form {
-    margin-top: 20px;
-	margin-bottom: 20px;  
-}
 
 /* Common */
 .button-end {
