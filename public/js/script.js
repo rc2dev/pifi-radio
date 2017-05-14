@@ -126,7 +126,7 @@ $( document ).ready(function() {
                 update_player();
             });
             if( data == "true" ) {
-                $( "#alert-text" ).html("Contactando o armazenamento...");
+                $( "#alert-text" ).html("Conectando-se à coletânea...");
             } else {
                 $( "#alert-text" ).html("Próxima música...");    
             }
