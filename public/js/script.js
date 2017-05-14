@@ -141,7 +141,7 @@ $( document ).ready(function() {
     // Link: Insert URL
     $("#insert").click(function( event ) {
         var url = prompt("Insira a URL");
-        if(url != "")
+        if(url != null)
             play_url(url);
     });
 });
