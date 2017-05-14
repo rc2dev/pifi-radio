@@ -2,15 +2,10 @@ var URL_ERROR="Não foi possível tocar essa rádio."
 var timeout;
 
 function update_player() {
-    $.get( "/cmd/status", function( data ) {
-        $( "#status" ).html( data );
-    });
-    $.get( "/cmd/name", function( data ) {
-        $( "#name" ).html( data );
-    });
-    $.get( "/cmd/vol", function( data ) {
-        $( "#vol" ).html( data );
-    });
+    $.get( "/cmd/state", function( data ) {
+        $( "#status" ).html( data.status );
+        $( "#name" ).html( data.name );
+    }, "json");
 };
 
 function show_player() {

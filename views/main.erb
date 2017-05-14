@@ -8,25 +8,27 @@
 
 <div class="text-center" id="controls" role="toolbar">
 <a href="#">
-    <span class="btn btn-default btn-lg btn-controls" id="play">
-    <span class="glyphicon glyphicon-play"></span></span></a>
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="play">
+    <span class="glyphicon glyphicon-play"></span></button></a>
 <a href="#">
-    <span class="btn btn-default btn-lg btn-controls" id="stop">
-    <span class="glyphicon glyphicon-stop"></span></span></a>
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="stop">
+    <span class="glyphicon glyphicon-stop"></span></button></a>
 <a href="#">
-    <span class="btn btn-default btn-lg btn-controls" id="vdown">
-    <span class="glyphicon glyphicon-volume-down"></span></span></a>
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="vdown">
+    <span class="glyphicon glyphicon-volume-down"></span></button></a>
 <a href="#">
-    <span class="btn btn-default btn-lg btn-controls" id="vup">
-    <span class="glyphicon glyphicon-volume-up"></span></span></a>
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="vup">
+    <span class="glyphicon glyphicon-volume-up"></span></button></a>
 </div>
 
 
 <div class="text-center" id="player-bottom">
 <a href="#">
-    <span class="btn btn-danger btn-lg btn-left" id="btn-random"><span class="glyphicon glyphicon-music"></span></span></a>
+    <button type="button" class="btn btn-danger btn-lg btn-left" id="btn-random">
+    <span class="glyphicon glyphicon-music"></span></button></a>
 <a href="#">
-    <span class="btn btn-primary btn-lg btn-right" id="btn-radios"><span class="glyphicon glyphicon-list"></span> Rádios</span></a>
+    <button type="button" class="btn btn-primary btn-lg btn-right" id="btn-radios">
+    <span class="glyphicon glyphicon-list"></span> Rádios</button></a>
 </div>
 
 <!-- Volume OSD -->
@@ -42,23 +44,19 @@
 <h4 class="title text-center"><strong>Escolha uma rádio</strong></h4>
 
 <ul class="list-group" id="radios-list">
-	<% $streams.each do |key, value| %>
-		<a href="#">
-			<li class="list-group-item radio-name" url="<%= URI.escape(value) %>">
-				<h4><%= key %></h4>
-			</li>
-		</a>
-	<% end %>
-	<a href="#" >
-		<li class="list-group-item" id="insert">
-			<h4 class="text-muted">Inserir endereço...</h4>
-		</li>
-	</a>
+    <% $streams.each do |key, value| %>
+        <a href="#">
+        <li class="list-group-item radio-name" url="<%= URI.escape(value) %>">
+        <h4><%= key %></h4></li></a>
+    <% end %>
+    <a href="#" >
+    <li class="list-group-item" id="insert">
+    <h4 class="text-muted">Inserir endereço...</h4></li></a>
 </ul>
 <p class="button-end text-center">
 <a href="#">
-	<span class="btn btn-primary btn-lg" id="btn-player">
-		<span class="glyphicon glyphicon-th"></span> Mostrar controles</span></a>
+    <button type="button" class="btn btn-primary btn-lg" id="btn-player">
+    <span class="glyphicon glyphicon-th"></span> Mostrar controles</button></a>
 </p>
 </div>
 

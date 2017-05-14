@@ -6,7 +6,6 @@ load 'streams.rb'
 # Configuration
 configure do
 	set :bind, '0.0.0.0'
-#    set :environment, 'production'
 end
 
 # Connect to MPD
@@ -40,12 +39,10 @@ get '/cmd/:cmd' do
         mpd.send_command("volume +5")
     when "vol"
         mpd.volume.to_s + "%"
+    when "state"
+        { :status => get_status(mpd), :name => get_name(mpd) }.to_json
     when "playing"
         mpd.playing?.to_s
-    when "status"
-        get_status(mpd)
-    when "name"
-        get_name(mpd)
     when "first_random"
         first_random?(mpd).to_s
 	end
