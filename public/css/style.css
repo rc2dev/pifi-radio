@@ -16,23 +16,29 @@ select {
     padding-top: 50px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 220px;
+    max-width: 252px; /*220*/
 }
 
 .btn-controls {
     color: #337ab7 !important;
+    margin-right: 4px;
+    margin-left: 4px;
 }
 
-#vol {
-    padding-top: 10px;
-}
-
-.player-bottom {
-    padding-top: 60px;
+#player-bottom {
+    padding-top: 100px;
     padding-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 220px;
+    max-width: 252px;
+}
+
+#osd {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 230px;
+    padding-top: 25%;
+    display: none;
 }
 
 

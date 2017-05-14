@@ -22,7 +22,7 @@ def get_status(mpd)
 end
 
 def get_volume(mpd)
-    "Volume: " + mpd.volume.to_s + "%"
+    mpd.volume.to_s + "%"
 end
 
 def first_random?(mpd)

@@ -24,8 +24,7 @@ end
 get '/' do
     status = get_status(mpd)
     name = get_name(mpd)
-    volume = get_volume(mpd)
-    erb :main, locals: { name: name, status: status, volume: volume }
+    erb :main, locals: { name: name, status: status }
 end
 
 get '/cmd/:cmd' do
@@ -40,7 +39,7 @@ get '/cmd/:cmd' do
 	when "vup"
         mpd.send_command("volume +5")
     when "vol"
-        get_volume(mpd)
+        mpd.volume.to_s + "%"
     when "playing"
         mpd.playing?.to_s
     when "status"

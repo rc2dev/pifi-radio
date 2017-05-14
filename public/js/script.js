@@ -1,4 +1,5 @@
 var URL_ERROR="Não foi possível tocar essa rádio."
+var timeout;
 
 function update_player() {
     $.get( "/cmd/status", function( data ) {
@@ -30,6 +31,19 @@ function show_alert() {
     $("#player").hide();
     $("#radios").hide();
     $("#alert").show();
+}
+
+function vol_osd() {
+    $.get( "/cmd/vol", function( data ) {
+        $("#player-bottom").hide();
+        $("#osd-text").html(data);
+        $("#osd").show();
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            $("#osd").hide();
+            $("#player-bottom").show();
+        }, 2500);    
+    });
 }
 
 // Decide o que mostrar ao iniciar, baseado se
@@ -69,18 +83,14 @@ $( document ).ready(function() {
     
     $( "#vup" ).click(function( event ) {
         $.get( "/cmd/vup", function( data ) {
-            $.get( "/cmd/vol", function( data ) {
-                $( "#vol" ).html( data );
-            });
+            vol_osd();
         });
        event.preventDefault();
     });
     
     $( "#vdown" ).click(function( event ) {
         $.get( "/cmd/vdown", function( data ) {
-            $.get( "/cmd/vol", function( data ) {
-                $( "#vol" ).html( data );
-            });
+            vol_osd();
         });
        event.preventDefault();
     });
