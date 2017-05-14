@@ -32,8 +32,8 @@ function show_alert() {
     $("#alert").show();
 }
 
-// Decide se mostra rádio ou listas, baseado se
-// está tocando. Senão, ainda inclui mensagem amigável.
+// Decide o que mostrar ao iniciar, baseado se
+// está tocando. Inclui mensagem amigável.
 function start_view() {
     $.get( "/cmd/playing", function( data ) {
         if(data == "true") {

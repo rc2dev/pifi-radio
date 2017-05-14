@@ -34,7 +34,7 @@
 
 <!-- Lista de rádios -->
 <div class="pagination-centered align-self-center" id="radios">
-<h4 class="text-center lead id="silence">Que silêncio...</h4>
+<h4 class="text-center lead" id="silence">Que silêncio...</h4>
 <h4 class="title text-center lead">Escolha uma rádio</h4>
 
 <% $streams.each do |key, value| %>
@@ -43,7 +43,9 @@
 <a href="#" ><div id="insert"><h4 class="text-muted">Inserir endereço...</h4></div></a>
 
 <p class="button-end text-center">
-<a href="#"><span class="btn btn-primary btn-lg" id="btn-player"><span class="glyphicon glyphicon-th"></span> Mostrar controles</span></a>
+<a href="#">
+	<span class="btn btn-primary btn-lg" id="btn-player">
+		<span class="glyphicon glyphicon-th"></span> Mostrar controles</span></a>
 </p>
 </div>
 
