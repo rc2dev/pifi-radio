@@ -3,6 +3,7 @@ var URL_ERROR = "Não foi possível tocar essa rádio.";
 var PLAYING = "Tocando";
 var NOT_PLAYING = "Parado";
 var timeout;
+var window_focus;
 
 
 // Funções
@@ -82,6 +83,26 @@ function play_url(url) {
 $( document ).ready(function() {
     start_view();
 
+    // Pausa atualização se janela não está em foco
+    // e esconde player se visível
+    window_focus = true;
+    $( window ).focus(function() {
+        window_focus = true;
+        if( $( "#alert" ).is(':visible') ) show_player();
+    }).blur(function() {
+        window_focus = false;
+        if( $( "#player" ).is(':visible') ) {
+          $("#alert-text").html("Pi - Rádio");
+          show_alert();
+        }
+    });
+
+    // Atualiza player periodicamente
+    setInterval(function() {
+      if( $( "#player" ).is(':visible') && window_focus ) update_player(); // this will run after every 5 seconds
+    }, 4000);
+
+
     $( "#vup" ).click(function( event ) {
         $.get( "/api/vup", function( data ) { vol_osd(); });
     });
@@ -108,7 +129,7 @@ $( document ).ready(function() {
                 }, 2500);
         });
     });
-    
+
     $("#btn-radios").click(function( event ) {
         show_radios();
     });

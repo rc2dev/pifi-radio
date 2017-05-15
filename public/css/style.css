@@ -56,8 +56,8 @@ select {
     display: none;
 }
 
-.radio-name, #insert { 
-	border: none !important; 
+.radio-name, #insert {
+	border: none !important;
 }
 
 #radios-list {
