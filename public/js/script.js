@@ -1,9 +1,14 @@
-var URL_ERROR="Não foi possível tocar essa rádio."
+// Constantes e variáveis globais
+var URL_ERROR = "Não foi possível tocar essa rádio.";
+var PLAYING = "Tocando";
+var NOT_PLAYING = "Parado";
 var timeout;
 
+
+// Funções
 function update_player() {
     $.get( "/api/state", function( data ) {
-        $( "#status" ).html( data.status );
+        $( "#status" ).html( data.playing ? PLAYING : NOT_PLAYING );
         $( "#name" ).html( data.name );
     }, "json");
 };
@@ -29,7 +34,7 @@ function show_alert() {
 }
 
 function vol_osd() {
-    $.get( "//vol", function( data ) {
+    $.get( "/api/vol", function( data ) {
         $("#player-bottom").hide();
         $("#osd-text").html(data);
         $("#osd").show();
@@ -44,8 +49,10 @@ function vol_osd() {
 // Decide o que mostrar ao iniciar, baseado se
 // está tocando. Inclui mensagem amigável.
 function start_view() {
-    $.get( "/api/playing", function( data ) {
-        if(data == "true") {
+    $.get( "/api/state", function( data ) {
+        if ( data.playing ) {
+            $( "#status" ).html( PLAYING );
+            $( "#name" ).html( data.name );
             show_player();
         } else {
             show_radios();
@@ -58,7 +65,7 @@ function play_url(url) {
     $("#alert-text").html("Sintonizando...");
     show_alert();
 
-    $.post("/play-url", {url: url})
+    $.get("/api/play-url", {url: url})
         .done(function() {
             setTimeout(function() {
                 show_player();
@@ -71,85 +78,50 @@ function play_url(url) {
 }
 
 
-
+// Documento
 $( document ).ready(function() {
-
     start_view();
 
     $( "#vup" ).click(function( event ) {
-        $.get( "/api/vup", function( data ) {
-            vol_osd();
-        });
-       event.preventDefault();
+        $.get( "/api/vup", function( data ) { vol_osd(); });
     });
 
     $( "#vdown" ).click(function( event ) {
-        $.get( "/api/vdown", function( data ) {
-            vol_osd();
-        });
-       event.preventDefault();
+        $.get( "/api/vdown", function( data ) { vol_osd(); });
     });
 
-    // Button: Play (só mandar comando se estiver parado)
     $( "#play" ).click(function( event ) {
-        $.get( "/api/playing", function( data ) {
-            if( data == "false" ) {
-                $.get( "/api/play", function( data ) { update_player(); });
-			} else {
-				update_player();
-			}
-        });
-       event.preventDefault();
+        $.get( "/api/play", function( data ) { update_player(); });
     });
 
-    // Button: Stop (só mandar comando se estiver tocando)
     $( "#stop" ).click(function( event ) {
-        $.get( "/api/playing", function( data ) {
-            if( data == "true" ) {
-                $.get( "/api/stop", function( data ) { update_player(); });
-			} else {
-				update_player();
-			};
-        });
-       event.preventDefault();
+        $.get( "/api/stop", function( data ) { update_player(); });
     });
 
-    // Button: play random
     $( "#btn-random" ).click(function( event ) {
-        $.get( "/api/first_random", function( data ) {
-            $.get( "/play-random", function( data ) {
-                update_player();
-            });
-            if( data == "true" ) {
-                $( "#alert-text" ).html("Conectando-se à coletânea...");
-            } else {
-                $( "#alert-text" ).html("Próxima música...");
-            }
-            show_alert();
+        $( "#alert-text" ).html("Aguarde...");
+        show_alert();
+        $.get( "/api/play-random" )
+            .always(function(data) {
             setTimeout(function() {
                 show_player();
                 }, 2500);
         });
-        event.preventDefault();
     });
-
-    // Button: Show radios
+    
     $("#btn-radios").click(function( event ) {
         show_radios();
     });
 
-    // Button: Show player
     $("#btn-player").click(function( event ) {
         show_player();
     });
 
-    // Link: Play from radios list
     $(".radio-name").click(function( event ) {
         url = $(this).attr("url");
         play_url(url);
     });
 
-    // Link: Insert URL
     $("#insert").click(function( event ) {
         url = prompt("Insira a URL");
         if(url != null)

@@ -21,37 +21,29 @@ end
 
 # Routes
 get '/' do
-    status = get_status(mpd)
-    name = get_name(mpd)
-    erb :main, locals: { name: name, status: status }
+    erb :main
 end
 
 get '/api/:cmd' do
     cmd = params[:cmd]
     case cmd
     when "play"
-		mpd.play
-	when "stop"
-		mpd.stop
-	when "vdown"
-		mpd.send_command("volume -5")
-	when "vup"
+		    mpd.play unless mpd.playing?
+    when "stop"
+		    mpd.stop if mpd.playing?
+    when "vdown"
+		    mpd.send_command("volume -5")
+    when "vup"
         mpd.send_command("volume +5")
     when "vol"
-        mpd.volume.to_s + "%"
+        mpd.volume.to_s + '%'
     when "state"
-        { :status => get_status(mpd), :name => get_name(mpd) }.to_json
-    when "playing"
-        mpd.playing?.to_s
-    when "first_random"
-        first_random?(mpd).to_s
-    when "play-random" do
-        play_random(mpd)
-	end
-end
-    
-post '/play-url' do
-    play_url(params, mpd)
+        { :playing => mpd.playing?, :name => get_name(mpd) }.to_json
+    when "play-url"
+        play_url(params, mpd)
+    when "play-random"
+        play_random(mpd).to_s   # Retorna se é primeiro random
+    end
 end
 
 get '/update' do
@@ -61,6 +53,6 @@ get '/update' do
 end
 
 error do
-  '<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
-          env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
+    '<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
+        env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
 end
