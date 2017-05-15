@@ -42,7 +42,7 @@ get '/api/:cmd' do
     when "play-url"
         play_url(params, mpd)
     when "play-random"
-        play_random(mpd).to_s   # Retorna se é primeiro random
+        play_random(mpd)
     end
 end
 
