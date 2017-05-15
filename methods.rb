@@ -60,6 +60,7 @@ def play_random(mpd)
         pl = mpd.playlists.find { |p| p.name == "dbpl" }
         pl.load
         mpd.random= true
+		mpd.crossfade= 6
         mpd.play
     # Se está tocando música local, vai para a próxima
     else

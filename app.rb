@@ -5,10 +5,10 @@ load 'streams.rb'
 
 # Configuration
 configure do
-	set :bind, '0.0.0.0'
+  set :bind, '0.0.0.0'
 end
 
-# Connect to MPD
+# Connect to MPD and set options
 mpd = MPD.new '127.0.0.1', 6600
 mpd.connect
 
@@ -26,43 +26,39 @@ get '/' do
     erb :main, locals: { name: name, status: status }
 end
 
-get '/cmd/:cmd' do
-    cmd = params[:cmd]
-    case cmd
-    when "play"
-		mpd.play
-	when "stop"
-		mpd.stop
-	when "vdown"
-		mpd.send_command("volume -5")
-	when "vup"
-        mpd.send_command("volume +5")
-    when "vol"
+get '/api/:cmd' do
+  cmd = params[:cmd]
+  case cmd
+  when "play"
+  mpd.play
+  when "stop"
+  mpd.stop
+  when "vdown"
+  mpd.send_command("volume -5")
+  when "vup"
+  mpd.send_command("volume +5")
+  when "vol"
         mpd.volume.to_s + "%"
-    when "state"
+  when "state"
         { :status => get_status(mpd), :name => get_name(mpd) }.to_json
-    when "playing"
+  when "playing"
         mpd.playing?.to_s
-    when "first_random"
+  when "first_random"
         first_random?(mpd).to_s
-	end
-end
-    
-get '/play-url' do
-    play_url(params, mpd)
-end
-post '/play-url' do
-    play_url(params, mpd)
+  when "/play-random" do
+      play_random(mpd)
+  end
+  end
 end
 
-get '/play-random' do
-    play_random(mpd)
+post '/api/play-url' do
+    play_url(params, mpd)
 end
 
 get '/update' do
     load 'streams.rb'
     update_db(mpd)
-    "<a href=\"/radios\">DB e playlist DB atualizados, streams.rb recarregado.</a>"
+    "<a href=\"/\">DB e playlist DB atualizados, streams.rb recarregado.</a>"
 end
 
 error do
