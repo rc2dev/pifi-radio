@@ -4,4 +4,4 @@
 *.log
 *.pid
 thin.yml
-streams.rb
+streams.json

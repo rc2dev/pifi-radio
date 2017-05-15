@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'ruby-mpd'
+require 'json'
 load 'methods.rb'
-load 'streams.rb'
 
 # Configuration
 configure do
@@ -18,10 +18,13 @@ if pl.nil?
     update_db(mpd)
 end
 
+# Load JSON
+streams = load_streams()
+
 # Routes
 get '/' do
 	  hostname = `uname -n`.chop.capitalize
-    erb :main, locals: {hostname: hostname}
+    erb :main, locals: {hostname: hostname, streams: streams}
 end
 
 get '/api/:cmd' do
@@ -38,7 +41,7 @@ get '/api/:cmd' do
     when "vol" # tried as return value for vdown/vup, but seemed slower
         mpd.volume.to_s + '%'
     when "state"
-        { :playing => mpd.playing?, :name => get_name(mpd) }.to_json
+        { :playing => mpd.playing?, :name => get_name(mpd, streams) }.to_json
     when "play-url"
         play_url(params, mpd)
     when "play-random"
@@ -47,9 +50,9 @@ get '/api/:cmd' do
 end
 
 get '/update' do
-    load 'streams.rb'
+    streams = load_streams()
     update_db(mpd)
-    "<a href=\"\">DB e playlist DB atualizados, streams.rb recarregado.</a>"
+    "<a href=\"\">DB e playlist DB atualizados, streams recarregados.</a>"
 end
 
 error do

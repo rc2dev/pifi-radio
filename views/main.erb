@@ -41,7 +41,7 @@
 <h4 class="title text-center"><strong>Escolha uma rádio</strong></h4>
 
 <ul class="list-group" id="radios-list">
-    <% $streams.each do |key, value| %>
+    <% streams.each do |key, value| %>
         <a href="#">
         <li class="list-group-item radio-name" data-url="<%= URI.escape(value) %>">
         <h4><%= key %></h4></li></a>

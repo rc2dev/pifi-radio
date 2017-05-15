@@ -1,11 +1,11 @@
-def get_name(mpd)
+def get_name(mpd, streams)
     song = mpd.current_song
     if song.nil?
         ""
     elsif ! song.file.include?("://")
         "Coletânea"
     else
-        $streams.key(song.file) || song.file
+        streams.key(song.file) || song.file
     end
 end
 
@@ -26,6 +26,15 @@ def update_db(mpd)
     for song in mpd.songs
         pl.add song
     end
+end
+
+def load_streams
+	file = File.read("streams.json")
+	hash = JSON.parse(file)
+  for key in hash.keys
+    hash.delete(key) if key.start_with?("//")
+  end
+  hash
 end
 
 def play_url(params, mpd)

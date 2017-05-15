@@ -21,8 +21,10 @@ select {
 
 .btn-controls {
     color: #337ab7 !important;
-    margin-right: 4px;
-    margin-left: 4px;
+}
+
+#btn-ps {
+    margin-right: 26px;
 }
 
 /* Placeholder before JS sets span-ps value */
