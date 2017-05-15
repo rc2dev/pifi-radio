@@ -18,24 +18,24 @@ if pl.nil?
     update_db(mpd)
 end
 
-
 # Routes
 get '/' do
-    erb :main
+	  hostname = `uname -n`.chop.capitalize
+    erb :main, locals: {hostname: hostname}
 end
 
 get '/api/:cmd' do
     cmd = params[:cmd]
     case cmd
     when "play"
-		    mpd.play unless mpd.playing?
+		    mpd.play
     when "stop"
-		    mpd.stop if mpd.playing?
+		    mpd.stop
     when "vdown"
 		    mpd.send_command("volume -5")
     when "vup"
         mpd.send_command("volume +5")
-    when "vol"
+    when "vol" # tried as return value for vdown/vup, but seemed slower
         mpd.volume.to_s + '%'
     when "state"
         { :playing => mpd.playing?, :name => get_name(mpd) }.to_json

@@ -16,7 +16,7 @@ select {
     padding-top: 50px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 252px; /*220*/
+    max-width: 252px;
 }
 
 .btn-controls {
@@ -25,11 +25,16 @@ select {
     margin-left: 4px;
 }
 
+/* Placeholder before JS sets span-ps value */
+.glyphicon-arrow-down {
+    visibility: hidden;
+}
+
 #player-bottom, #osd {
     padding-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 252px;
+    max-width: 244px;
 }
 
 #player-bottom {

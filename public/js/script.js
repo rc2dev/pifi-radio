@@ -3,12 +3,20 @@ var URL_ERROR = "Não foi possível tocar essa rádio.";
 var PLAYING = "Tocando";
 var NOT_PLAYING = "Parado";
 var timeout;
-var window_focus;
 
 
 // Funções
 function update_player() {
     $.get( "/api/state", function( data ) {
+      if( data.playing ){
+        $( "#status" ).html( PLAYING );
+        $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
+        $( "#btn-ps").attr('data-action', 'stop');
+      } else {
+        $( "#status" ).html( NOT_PLAYING );
+        $( "#span-ps").attr('class', 'glyphicon glyphicon-play');
+        $( "#btn-ps").attr('data-action', 'play');
+      }
         $( "#status" ).html( data.playing ? PLAYING : NOT_PLAYING );
         $( "#name" ).html( data.name );
     }, "json");
@@ -92,31 +100,35 @@ $( document ).ready(function() {
     }).blur(function() {
         window_focus = false;
         if( $( "#player" ).is(':visible') ) {
-          $("#alert-text").html("Pi - Rádio");
+          $("#alert-text").html(document.title);
           show_alert();
         }
     });
 
     // Atualiza player periodicamente
     setInterval(function() {
-      if( $( "#player" ).is(':visible') && window_focus ) update_player(); // this will run after every 5 seconds
+        if( $( "#player" ).is(':visible') && window_focus ) update_player();
     }, 4000);
 
+    // "Desclica" botões após clicados
+    $("button").click(function( event ){
+        $(this).blur();
+    });
 
-    $( "#vup" ).click(function( event ) {
+    $( "#btn-vup" ).click(function( event ) {
         $.get( "/api/vup", function( data ) { vol_osd(); });
     });
 
-    $( "#vdown" ).click(function( event ) {
+    $( "#btn-vdown" ).click(function( event ) {
         $.get( "/api/vdown", function( data ) { vol_osd(); });
     });
 
-    $( "#play" ).click(function( event ) {
-        $.get( "/api/play", function( data ) { update_player(); });
-    });
-
-    $( "#stop" ).click(function( event ) {
-        $.get( "/api/stop", function( data ) { update_player(); });
+    $( "#btn-ps" ).click(function( event ) {
+        action = $(this).attr("data-action");
+        if(action == "play")
+          $.get( "/api/play", function( data ) { update_player(); });
+        else if(action == "stop")
+          $.get( "/api/stop", function( data ) { update_player(); });
     });
 
     $( "#btn-random" ).click(function( event ) {
@@ -139,7 +151,7 @@ $( document ).ready(function() {
     });
 
     $(".radio-name").click(function( event ) {
-        url = $(this).attr("url");
+        url = $(this).attr("data-url");
         play_url(url);
     });
 

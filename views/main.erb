@@ -3,21 +3,18 @@
 
 <!-- Player -->
 <div class="pagination-centered align-self-center" id="player">
-<h4 class="text-center" id="status"></h5>
-<h2 class="text-center" id="name"></h2>
+<h4 class="text-center" id="status">&nbsp;</h5>
+<h2 class="text-center" id="name">&nbsp;</h2>
 
 <div class="text-center" id="controls" role="toolbar">
 <a href="#">
-    <button type="button" class="btn btn-default btn-lg btn-controls" id="play">
-    <span class="glyphicon glyphicon-play"></span></button></a>
+    <button type="button"class="btn btn-default btn-lg btn-controls" id="btn-ps">
+      <span id="span-ps" class="glyphicon glyphicon-arrow-down"></span></button></a>
 <a href="#">
-    <button type="button" class="btn btn-default btn-lg btn-controls" id="stop">
-    <span class="glyphicon glyphicon-stop"></span></button></a>
-<a href="#">
-    <button type="button" class="btn btn-default btn-lg btn-controls" id="vdown">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vdown">
     <span class="glyphicon glyphicon-volume-down"></span></button></a>
 <a href="#">
-    <button type="button" class="btn btn-default btn-lg btn-controls" id="vup">
+    <button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vup">
     <span class="glyphicon glyphicon-volume-up"></span></button></a>
 </div>
 
@@ -46,7 +43,7 @@
 <ul class="list-group" id="radios-list">
     <% $streams.each do |key, value| %>
         <a href="#">
-        <li class="list-group-item radio-name" url="<%= URI.escape(value) %>">
+        <li class="list-group-item radio-name" data-url="<%= URI.escape(value) %>">
         <h4><%= key %></h4></li></a>
     <% end %>
     <a href="#" >
