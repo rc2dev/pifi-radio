@@ -59,7 +59,7 @@ function start_view() {
             show_radios();
             $("#silence").show();
         }
-    });
+    }, "json");
 }
 
 function play_url(url) {
