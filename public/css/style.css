@@ -63,13 +63,23 @@ select {
     display: none;
 }
 
-.radio-name, #insert {
+.list-group-item {
 	border: none !important;
+}
+
+.radios-group {
+  margin-top: 45px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #radios-list {
 	box-shadow: none;
 	margin-top: 40px;
+}
+
+#insert {
+  margin-top: 45px;
 }
 
 #btn-player {

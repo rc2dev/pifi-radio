@@ -5,3 +5,4 @@
 *.pid
 thin.yml
 streams.json
+streams2.json

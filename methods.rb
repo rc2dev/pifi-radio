@@ -29,7 +29,7 @@ def update_db(mpd)
 end
 
 def load_streams
-	file = File.read("streams.json")
+	file = File.read("streams2.json")
 	hash = JSON.parse(file)
   for key in hash.keys
     hash.delete(key) if key.start_with?("//")
