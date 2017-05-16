@@ -14,9 +14,11 @@ def first_random?(mpd)
     ! not_first
 end
 
-# Update DB and save it to dbpl playlist
 def update_db(mpd)
+    # Update DB
     mpd.update
+
+    # Update/create playlist with whole DB
     pl = mpd.playlists.find { |p| p.name == "dbpl" }
     if pl.nil?
         mpd.save "dbpl"
@@ -28,8 +30,9 @@ def update_db(mpd)
     end
 end
 
-def load_streams
-	file = File.read("streams2.json")
+# Load JSON ignoring keys starting with //
+def load_streams(file_name)
+	file = File.read(file_name)
 	hash = JSON.parse(file)
   for key in hash.keys
     hash.delete(key) if key.start_with?("//")
@@ -45,8 +48,8 @@ def play_url(params, mpd)
 end
 
 def play_random(mpd)
-    # Se não está tocando música local, carrega toda a
-	  # biblioteca em modo aleatório e começa a tocar
+    # Se não está tocando arquivo local, carregar toda a
+	  # biblioteca e começa a tocar em modo aleatório
     if first_random?(mpd)
         mpd.clear
         pl = mpd.playlists.find { |p| p.name == "dbpl" }
@@ -54,7 +57,7 @@ def play_random(mpd)
         mpd.random= true
 		    mpd.crossfade= 6
         mpd.play
-    # Se está tocando música local, vai para a próxima
+    # Se está tocando arquivo local, tocar o próximo
     else
         mpd.next
     end

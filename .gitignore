@@ -5,4 +5,4 @@
 *.pid
 thin.yml
 streams.json
-streams2.json
+streams_private.json

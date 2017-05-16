@@ -54,8 +54,8 @@ select {
     margin-right: auto;
     margin-left: auto;
     max-width: 350px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin-top: 25px;
+    margin-bottom: 30px;
     display: none;
 }
 
@@ -67,10 +67,14 @@ select {
 	border: none !important;
 }
 
-.radios-group {
-  margin-top: 45px;
+.radios-group-title {
+  margin-top: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 1px solid;
 }
 
 #radios-list {
@@ -80,12 +84,23 @@ select {
 
 #insert {
   margin-top: 45px;
+  margin-bottom: 130px;
+}
+
+#radios-bottom {
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  width: 350px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 #btn-player {
-	margin-top: 25px;
-	margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-top: 25px;
 }
+
 
 
 /* Common */

@@ -43,8 +43,8 @@
 <ul class="list-group" id="radios-list">
     <% streams.each do |key, value| %>
         <% if value.empty? %>
-          <li class="list-group-item">
-          <h4 class="text-muted text-center bg-primary radios-group"><%= key %></h4></li>
+          <h4 class="text-muted text-center radios-group-title">
+          <%= key %></h4>
         <% else %>
           <a href="#">
           <li class="list-group-item radio-name" data-url="<%= URI.escape(value) %>">
@@ -55,11 +55,12 @@
     <li class="list-group-item" id="insert">
     <h4 class="text-muted">Inserir endereço...</h4></li></a>
 </ul>
-<p class="button-end text-center">
+
+<div class="text-center" id="radios-bottom">
 <a href="#">
-    <button type="button" class="btn btn-primary btn-lg" id="btn-player">
+    <button type="button" class="btn btn-default" id="btn-player">
     <span class="glyphicon glyphicon-th"></span> Mostrar controles</button></a>
-</p>
+</div>
 </div>
 
 
