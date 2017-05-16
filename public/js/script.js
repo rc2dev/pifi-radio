@@ -8,7 +8,7 @@ var timeout;
 // Funções
 function update_player() {
     $.get( "/api/state", function( data ) {
-      if( data.playing ){
+      if( data.playing ){               // Atualiza play-stop e status
         $( "#status" ).html( PLAYING );
         $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
         $( "#btn-ps").attr('data-action', 'stop');
@@ -17,8 +17,7 @@ function update_player() {
         $( "#span-ps").attr('class', 'glyphicon glyphicon-play');
         $( "#btn-ps").attr('data-action', 'play');
       }
-        $( "#status" ).html( data.playing ? PLAYING : NOT_PLAYING );
-        $( "#name" ).html( data.name );
+        $( "#name" ).html( data.name ); // Atualiza nome
     }, "json");
 };
 
@@ -60,7 +59,6 @@ function vol_osd() {
 function start_view() {
     $.get( "/api/state", function( data ) {
         if ( data.playing ) {
-            update_player();
             show_player();
         } else {
             show_radios();
