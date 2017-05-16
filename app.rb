@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'ruby-mpd'
 require 'json'
-load 'methods.rb'
+require_relative 'methods'
 
 # Configuration
 configure do

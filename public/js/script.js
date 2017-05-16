@@ -1,7 +1,7 @@
 // Constantes e variáveis globais
-var URL_ERROR = "Não foi possível tocar essa rádio.";
-var PLAYING = "Tocando";
-var NOT_PLAYING = "Parado";
+const URL_ERROR = "Não foi possível tocar essa rádio.";
+const PLAYING = "Tocando";
+const NOT_PLAYING = "Parado";
 var timeout;
 
 
@@ -60,8 +60,7 @@ function vol_osd() {
 function start_view() {
     $.get( "/api/state", function( data ) {
         if ( data.playing ) {
-            $( "#status" ).html( PLAYING );
-            $( "#name" ).html( data.name );
+            update_player();
             show_player();
         } else {
             show_radios();
@@ -96,10 +95,10 @@ $( document ).ready(function() {
     window_focus = true;
     $( window ).focus(function() {
         window_focus = true;
-        if( $( "#alert" ).is(':visible') ) show_player();
+        if( $( "#alert" ).is(":visible") ) show_player();
     }).blur(function() {
         window_focus = false;
-        if( $( "#player" ).is(':visible') ) {
+        if( $( "#player" ).is(":visible") ) {
           $("#alert-text").html(document.title);
           show_alert();
         }
@@ -107,7 +106,7 @@ $( document ).ready(function() {
 
     // Atualiza player periodicamente
     setInterval(function() {
-        if( $( "#player" ).is(':visible') && window_focus ) update_player();
+        if( $( "#player" ).is(":visible") && window_focus ) update_player();
     }, 4000);
 
     // "Desclica" botões após clicados
