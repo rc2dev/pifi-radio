@@ -28,12 +28,13 @@ streams_private = load_streams("streams_private.json")
 # Routes
 get '/' do
 	  hostname = `uname -n`.chop.capitalize
-    erb :main, locals: {hostname: hostname, streams: streams}
+    erb :main, locals: { hostname: hostname, streams: streams }
 end
 
 get '/s' do
 	  hostname = `uname -n`.chop.capitalize
-    erb :main, locals: {hostname: hostname, streams: streams.merge(streams_private)}
+    erb :main, locals: { hostname: hostname, streams:
+			streams_private.merge({"Rio de Janeiro":""}).merge(streams) }
 end
 
 get '/api/:cmd' do
@@ -60,8 +61,10 @@ get '/api/:cmd' do
 end
 
 get '/update' do
+	  streams = load_streams("streams.json")
+	  streams_private = load_streams("streams_private.json")
     update_db(mpd)
-    "<a href=\"\">DB e playlist DB atualizados.</a>"
+    "<a href=\"/\">Listas de streams, DB e playlist DB atualizados.</a>"
 end
 
 error do
