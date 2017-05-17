@@ -152,7 +152,7 @@ $( document ).ready(function() {
     });
 
     $( ".radio-name" ).click(function( event ) {
-        url = $(this).attr("data-url");
+        url = $(this).data("url");
         play_url(url);
     });
 
