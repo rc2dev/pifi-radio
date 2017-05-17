@@ -6,8 +6,10 @@ var timeout;
 
 
 // Funções
+
+// É assíncrona, retorna promisse
 function update_player() {
-    $.get( "/api/state", function( data ) {
+    return $.get( "/api/state", function( data ) {
       if( data.playing ){                 // Atualiza play-stop e status
         $( "#status" ).html( PLAYING );
         $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
@@ -22,10 +24,12 @@ function update_player() {
 };
 
 function show_player() {
-    update_player();
-    $("#alert").hide();
-    $("#radios").hide();
-    $("#player").show();
+    // Esperar update_player (que é assíncrono) para mostrar player
+    update_player().then(function (response) {
+      $("#alert").hide();
+      $("#radios").hide();
+      $("#player").show();
+    });
 }
 
 function show_radios() {
@@ -108,7 +112,7 @@ $( document ).ready(function() {
     }, 4000);
 
     // "Desclica" botões após clicados
-    $("button").click(function( event ){
+    $( "button" ).click(function( event ){
         $(this).blur();
     });
 
@@ -139,20 +143,20 @@ $( document ).ready(function() {
         });
     });
 
-    $("#btn-radios").click(function( event ) {
+    $( "#btn-radios" ).click(function( event ) {
         show_radios();
     });
 
-    $("#btn-player").click(function( event ) {
+    $( "#btn-player" ).click(function( event ) {
         show_player();
     });
 
-    $(".radio-name").click(function( event ) {
+    $( ".radio-name" ).click(function( event ) {
         url = $(this).attr("data-url");
         play_url(url);
     });
 
-    $("#insert").click(function( event ) {
+    $( "#insert" ).click(function( event ) {
         url = prompt("Insira a URL");
         if(url != null)
             play_url(url);
