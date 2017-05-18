@@ -3,8 +3,6 @@ require 'ruby-mpd'
 require 'json'
 require_relative 'methods'
 
-# Constants
-MY_IPS = ["127.0.0.1", "192.168.0.15", "192.168.0.2"]
 
 # Configuration
 configure do
@@ -52,7 +50,7 @@ get '/api/:cmd' do
         mpd.volume.to_s + '%'
     when "state"
         { :playing => mpd.playing?,
-					:name => get_name(mpd, streams.merge(streams_private)) }.to_json
+					:name => get_name(mpd, streams.merge(streams_private))}.to_json
     when "play-url"
         play_url(params, mpd)
     when "play-random"

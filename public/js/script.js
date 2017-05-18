@@ -133,13 +133,13 @@ $( document ).ready(function() {
     });
 
     $( "#btn-random" ).click(function( event ) {
-        $( "#alert-text" ).html("Aguarde...");
+        $( "#alert-text" ).html("Conectando ao armazenamento...");
         show_alert();
         $.get( "/api/play-random" )
             .always(function(data) {
             setTimeout(function() {
                 show_player();
-                }, 2500);
+              }, 3000);
         });
     });
 
