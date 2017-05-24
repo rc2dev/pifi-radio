@@ -3,6 +3,6 @@
 *.lock
 *.log
 *.pid
-thin.yml
+admin/
 streams.json
 streams_private.json

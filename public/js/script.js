@@ -3,6 +3,7 @@ const URL_ERROR = "Não foi possível tocar essa rádio.";
 const PLAYING = "Tocando";
 const NOT_PLAYING = "Parado";
 var timeout;
+var playing_local;
 
 
 // Funções
@@ -10,6 +11,7 @@ var timeout;
 // É assíncrona, retorna promisse
 function update_player() {
     return $.get( "/api/state", function( data ) {
+      playing_local = data.playing_local
       if( data.playing ){                 // Atualiza play-stop e status
         $( "#status" ).html( PLAYING );
         $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
@@ -62,6 +64,7 @@ function vol_osd() {
 // está tocando. Inclui mensagem amigável.
 function start_view() {
     $.get( "/api/state", function( data ) {
+        playing_local = data.playing_local;
         if ( data.playing ) {
             show_player();
         } else {
@@ -133,7 +136,11 @@ $( document ).ready(function() {
     });
 
     $( "#btn-random" ).click(function( event ) {
-        $( "#alert-text" ).html("Conectando ao armazenamento...");
+        // Define which alert to show based on player state
+        if( playing_local )
+              $( "#alert-text" ).html("Próxima música");
+        else
+              $( "#alert-text" ).html("Conectando ao armazenamento...");
         show_alert();
         $.get( "/api/play-random" )
             .always(function(data) {

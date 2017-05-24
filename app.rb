@@ -1,7 +1,12 @@
 require 'sinatra'
 require 'ruby-mpd'
 require 'json'
+require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
+
+# Constants
+NAS_FILE = "/mnt/airport/shared/.touch"
+NAS_TIME = 10		# in seconds
 
 
 # Configuration
@@ -12,6 +17,16 @@ end
 # Connect to MPD
 mpd = MPD.new '127.0.0.1', 6600
 mpd.connect
+
+# Workaround to avoid NAS to sleep
+Thread.new {
+	while true
+		if playing_local?(mpd)
+			FileUtils.touch(NAS_FILE)
+			puts "TOUCH NAS"
+		end
+		sleep NAS_TIME
+	end }
 
 # Check for DB playlist
 pl = mpd.playlists.find { |p| p.name == "dbpl" }
@@ -50,7 +65,8 @@ get '/api/:cmd' do
         mpd.volume.to_s + '%'
     when "state"
         { :playing => mpd.playing?,
-					:name => get_name(mpd, streams.merge(streams_private))}.to_json
+					:name => get_name(mpd, streams.merge(streams_private)),
+					:playing_local => playing_local?(mpd)}.to_json
     when "play-url"
         play_url(params, mpd)
     when "play-random"

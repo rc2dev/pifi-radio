@@ -3,15 +3,14 @@ def get_name(mpd, streams)
     if song.nil?
         ""
     elsif ! song.file.include?("://")
-        "Coletânea"
+        "Música local"
     else
         streams.key(song.file) || song.file
     end
 end
 
-def first_random?(mpd)
-    not_first = mpd.playing? && ! mpd.current_song.file.include?("://")
-    ! not_first
+def playing_local?(mpd)
+    mpd.playing? && ! mpd.current_song.file.include?("://")
 end
 
 def update_db(mpd)
@@ -48,17 +47,17 @@ def play_url(params, mpd)
 end
 
 def play_random(mpd)
+    # Se está tocando arquivo local, tocar o próximo
+    if playing_local?(mpd)
+        mpd.next
     # Se não está tocando arquivo local, carregar toda a
-	  # biblioteca e começa a tocar em modo aleatório
-    if first_random?(mpd)
+  	# biblioteca e começa a tocar em modo aleatório
+    else
         mpd.clear
         pl = mpd.playlists.find { |p| p.name == "dbpl" }
         pl.load
         mpd.random= true
-		    mpd.crossfade= 6
+		    mpd.crossfade= 5
         mpd.play
-    # Se está tocando arquivo local, tocar o próximo
-    else
-        mpd.next
     end
 end
