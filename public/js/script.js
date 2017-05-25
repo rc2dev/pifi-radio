@@ -131,12 +131,11 @@ $( document ).ready(function() {
     if( $( "#player" ).is(":visible") && window_focus ) update_player();
   }, 4000);
 
-  // Atualiza tempo
+  // Soma um segundo periodicamente ao tempo tocado
   setInterval(function() {
-    if(playing && $( "#player" ).is(":visible")) {
+    if(playing_local && $( "#player" ).is(":visible")) {
       elapsed++;
-      text = to_min_sec(elapsed);
-      $("#elapsed").text(text);
+      $("#elapsed").text(to_min_sec(elapsed));
     }
   }, 1000);
 
