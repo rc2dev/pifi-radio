@@ -56,7 +56,7 @@ function vol_osd() {
         timeout = setTimeout(function() {
             $("#osd").hide();
             $("#player-bottom").show();
-        }, 2500);
+        }, 1500);
     });
 }
 

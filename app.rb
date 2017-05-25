@@ -19,7 +19,7 @@ mpd = MPD.new '127.0.0.1', 6600
 mpd.connect
 
 # Workaround to avoid NAS to sleep
-Thread.new {
+Thread.new do
 	loop do
 		if playing_local?(mpd)
 			FileUtils.touch(NAS_FILE)
@@ -27,7 +27,7 @@ Thread.new {
 		end
 		sleep NAS_TIME
 	end
-}
+end
 
 # Check for DB playlist
 pl = mpd.playlists.find { |p| p.name == "dbpl" }

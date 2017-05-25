@@ -8,12 +8,12 @@ select {
     margin-right: auto;
     margin-left: auto;
     max-width: 300px;
-    padding-top: 12%;
+    padding-top: 19%;
     display: none;
 }
 
 #controls {
-    padding-top: 50px;
+    margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
     max-width: 252px;
@@ -33,18 +33,17 @@ select {
 }
 
 #player-bottom, #osd {
-    padding-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
     max-width: 244px;
 }
 
 #player-bottom {
-    padding-top: 100px;
+    margin-top: 120px;
 }
 
 #osd {
-    padding-top: 70px;
+    margin-top: 90px;
     display: none;
 }
 
@@ -98,7 +97,7 @@ select {
 
 #btn-player {
   margin-bottom: 20px;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 
