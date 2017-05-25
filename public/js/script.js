@@ -17,21 +17,21 @@ function update_player() {
     elapsed = data.elapsed;
     length = data.length;
     if( data.playing ){                 // Atualiza play-stop e status
-      $( "#status" ).html( PLAYING );
-      $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
-      $( "#btn-ps").attr('data-action', 'stop');
+      $("#status").html(PLAYING);
+      $("#span-ps").attr('class', 'glyphicon glyphicon-stop');
+      $("#btn-ps").attr('data-action', 'stop');
     } else {
-      $( "#status" ).html( NOT_PLAYING );
-      $( "#span-ps").attr('class', 'glyphicon glyphicon-play');
-      $( "#btn-ps").attr('data-action', 'play');
+      $("#status").html(NOT_PLAYING);
+      $("#span-ps").attr('class', 'glyphicon glyphicon-play');
+      $("#btn-ps").attr('data-action', 'play');
     }
-    $( "#name" ).html( data.name );   // Atualiza nome
+    $("#name").html( data.name );   // Atualiza nome
     if( playing_local ) {     // Se local: atualiza duração e tempo e os mostra
-      $( "#elapsed").html(to_min_sec(elapsed));
-      $( "#length" ).html(to_min_sec(length));
-      $( "#progress").show();
+      $("#elapsed").html(to_min_sec(elapsed));
+      $("#length").html(to_min_sec(length));
+      $("#progress").show();
     }  else {
-      $( "#progress" ).hide();
+      $("#progress").hide();
     }
   }, "json");
 };
@@ -140,19 +140,19 @@ $( document ).ready(function() {
   }, 1000);
 
   // "Desclica" botões após clicados
-  $( "button" ).click(function( event ){
+  $("button").click(function( event ){
     $(this).blur();
   });
 
-  $( "#btn-vup" ).click(function( event ) {
+  $("#btn-vup").click(function( event ) {
     $.get( "/api/vup", function( data ) { vol_osd(); });
   });
 
-  $( "#btn-vdown" ).click(function( event ) {
+  $("#btn-vdown").click(function( event ) {
     $.get( "/api/vdown", function( data ) { vol_osd(); });
   });
 
-  $( "#btn-ps" ).click(function( event ) {
+  $("#btn-ps").click(function( event ) {
     action = $(this).attr("data-action");
     if(action == "play")
       $.get( "/api/play", function( data ) { update_player(); });
@@ -160,7 +160,7 @@ $( document ).ready(function() {
       $.get( "/api/stop", function( data ) { update_player(); });
   });
 
-  $( "#btn-random" ).click(function( event ) {
+  $("#btn-random").click(function( event ) {
     // Define which alert to show based on player state
     if( playing_local ) {
       text = "Próxima música";
@@ -179,20 +179,20 @@ $( document ).ready(function() {
     });
   });
 
-  $( "#btn-radios" ).click(function( event ) {
+  $("#btn-radios").click(function( event ) {
     show_radios();
   });
 
-  $( "#btn-player" ).click(function( event ) {
+  $("#btn-player").click(function( event ) {
     show_player();
   });
 
-  $( ".radio-name" ).click(function( event ) {
+  $(".radio-name").click(function( event ) {
     url = $(this).data("url");
     play_url(url);
   });
 
-  $( "#insert" ).click(function( event ) {
+  $("#insert").click(function( event ) {
     url = prompt("Insira a URL");
     if(url != null)
       play_url(url);
