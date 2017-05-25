@@ -131,10 +131,12 @@ $( document ).ready(function() {
     if( $( "#player" ).is(":visible") && window_focus ) update_player();
   }, 4000);
 
-  // Soma um segundo periodicamente ao tempo tocado
+  // Soma um segundo periodicamente ao tempo tocado exibido na tela
   setInterval(function() {
     if(playing_local && $( "#player" ).is(":visible")) {
-      elapsed == length? elapsed : elapsed++;   // prevent outgrow length
+      if elapsed == length
+        return;       // prevent outgrow length
+      elapsed++;
       $("#elapsed").text(to_min_sec(elapsed));
     }
   }, 1000);
