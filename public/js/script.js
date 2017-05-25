@@ -5,7 +5,7 @@ const NOT_PLAYING = "Parado";
 var timeout;
 var playing_local;
 var elapsed;
-var playing;
+var length;
 
 
 // Funções
@@ -15,8 +15,8 @@ function update_player() {
   return $.get( "/api/state", function( data ) {
     playing_local = data.playing_local;
     elapsed = data.elapsed;
-    playing = data.playing;
-    if( playing ){                 // Atualiza play-stop e status
+    length = data.length;
+    if( data.playing ){                 // Atualiza play-stop e status
       $( "#status" ).html( PLAYING );
       $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
       $( "#btn-ps").attr('data-action', 'stop');
@@ -28,7 +28,7 @@ function update_player() {
     $( "#name" ).html( data.name );   // Atualiza nome
     if( playing_local ) {     // Se local: atualiza duração e tempo e os mostra
       $( "#elapsed").html(to_min_sec(elapsed));
-      $( "#length" ).html(to_min_sec(data.length));
+      $( "#length" ).html(to_min_sec(length));
       $( "#progress").show();
     }  else {
       $( "#progress" ).hide();
@@ -134,7 +134,7 @@ $( document ).ready(function() {
   // Soma um segundo periodicamente ao tempo tocado
   setInterval(function() {
     if(playing_local && $( "#player" ).is(":visible")) {
-      elapsed++;
+      elapsed == length? elapsed : elapsed++;   // prevent outgrow length
       $("#elapsed").text(to_min_sec(elapsed));
     }
   }, 1000);
