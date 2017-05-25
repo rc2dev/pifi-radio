@@ -9,6 +9,7 @@ def get_name(mpd, streams)
   end
 end
 
+
 def get_local_name(song)
   if song.artist.nil? || song.title.nil?
     "Música local"
@@ -19,13 +20,18 @@ def get_local_name(song)
   end
 end
 
+
 def playing_local?(mpd)
   mpd.playing? && ! mpd.current_song.file.include?("://")
 end
 
+
 def update_db(mpd)
   # Update DB
   mpd.update
+
+  # Workaround to wait for database update
+  sleep 10
 
   # Update/create playlist with whole DB
   pl = mpd.playlists.find { |p| p.name == "dbpl" }
@@ -39,6 +45,7 @@ def update_db(mpd)
   end
 end
 
+
 # Load JSON ignoring keys starting with //
 def load_streams(file_name)
 	file = File.read(file_name)
@@ -49,12 +56,14 @@ def load_streams(file_name)
   hash
 end
 
+
 def play_url(params, mpd)
   url = params[:url].strip
   mpd.clear
   mpd.add url
   mpd.play
 end
+
 
 def play_random(mpd)
   # Se está tocando arquivo local, tocar o próximo

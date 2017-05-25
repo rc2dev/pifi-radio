@@ -4,6 +4,8 @@ const PLAYING = "Tocando";
 const NOT_PLAYING = "Parado";
 var timeout;
 var playing_local;
+var elapsed;
+var playing;
 
 
 // Funções
@@ -11,8 +13,10 @@ var playing_local;
 // É assíncrona, retorna promisse
 function update_player() {
   return $.get( "/api/state", function( data ) {
-    playing_local = data.playing_local
-    if( data.playing ){                 // Atualiza play-stop e status
+    playing_local = data.playing_local;
+    elapsed = data.elapsed;
+    playing = data.playing;
+    if( playing ){                 // Atualiza play-stop e status
       $( "#status" ).html( PLAYING );
       $( "#span-ps").attr('class', 'glyphicon glyphicon-stop');
       $( "#btn-ps").attr('data-action', 'stop');
@@ -22,8 +26,22 @@ function update_player() {
       $( "#btn-ps").attr('data-action', 'play');
     }
     $( "#name" ).html( data.name );   // Atualiza nome
+    if( playing_local ) {     // Se local: atualiza duração e tempo e os mostra
+      $( "#elapsed").html(to_min_sec(elapsed));
+      $( "#length" ).html(to_min_sec(data.length));
+      $( "#progress").show();
+    }  else {
+      $( "#progress" ).hide();
+    }
   }, "json");
 };
+
+function to_min_sec(sec) {
+  minutes = Math.floor(sec / 60);
+  seconds = sec % 60;
+  seconds < 10 ? leading = "0" : leading = "";
+  return minutes + ":" + leading + seconds;
+}
 
 function show_player() {
   // Esperar update_player (que é assíncrono) para mostrar player
@@ -64,7 +82,6 @@ function vol_osd() {
 // está tocando. Inclui mensagem amigável.
 function start_view() {
   $.get( "/api/state", function( data ) {
-    playing_local = data.playing_local;
     if ( data.playing ) {
       show_player();
     } else {
@@ -113,6 +130,15 @@ $( document ).ready(function() {
   setInterval(function() {
     if( $( "#player" ).is(":visible") && window_focus ) update_player();
   }, 4000);
+
+  // Atualiza tempo
+  setInterval(function() {
+    if(playing && $( "#player" ).is(":visible")) {
+      elapsed++;
+      text = to_min_sec(elapsed);
+      $("#elapsed").text(text);
+    }
+  }, 1000);
 
   // "Desclica" botões após clicados
   $( "button" ).click(function( event ){
@@ -171,5 +197,5 @@ $( document ).ready(function() {
     url = prompt("Insira a URL");
     if(url != null)
       play_url(url);
-  });
+    });
 });
