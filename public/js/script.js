@@ -134,8 +134,8 @@ $( document ).ready(function() {
   // Soma um segundo periodicamente ao tempo tocado exibido na tela
   setInterval(function() {
     if(playing_local && $( "#player" ).is(":visible")) {
-      if elapsed == length
-        return;       // prevent outgrow length
+      if(elapsed == length)   // prevent outgrow length
+        return;
       elapsed++;
       $("#elapsed").text(to_min_sec(elapsed));
     }
