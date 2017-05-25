@@ -137,16 +137,20 @@ $( document ).ready(function() {
 
     $( "#btn-random" ).click(function( event ) {
         // Define which alert to show based on player state
-        if( playing_local )
-              $( "#alert-text" ).html("Próxima música");
-        else
-              $( "#alert-text" ).html("Conectando ao armazenamento...");
+        if( playing_local ) {
+            text = "Próxima música";
+            time = 2000;
+        } else {
+            text = "Conectando ao armazenamento...";
+            time = 5000;
+        }
+        $( "#alert-text" ).html(text);
         show_alert();
         $.get( "/api/play-random" )
             .always(function(data) {
             setTimeout(function() {
                 show_player();
-              }, 3000);
+            }, time);
         });
     });
 

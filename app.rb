@@ -20,7 +20,7 @@ mpd.connect
 
 # Workaround to avoid NAS to sleep
 Thread.new {
-	while true
+	loop do
 		if playing_local?(mpd)
 			FileUtils.touch(NAS_FILE)
 			puts "TOUCH NAS"

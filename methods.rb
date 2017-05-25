@@ -1,12 +1,22 @@
 def get_name(mpd, streams)
     song = mpd.current_song
-    if song.nil?
+    if song.nil?                               # Se nada
         ""
-    elsif ! song.file.include?("://")
-        "Música local"
-    else
+    elsif ! song.file.include?("://")          # Se é local
+        get_local_name(song)
+    else                                       # Se é remota
         streams.key(song.file) || song.file
     end
+end
+
+def get_local_name(song)
+  if song.artist.nil? || song.title.nil?
+    "Música local"
+  else
+    name = song.artist + " - " + song.title
+    #name = name.split.map(&:capitalize).join(' ')
+    name.length > 45 ? name[0..42] + "..." : name
+  end
 end
 
 def playing_local?(mpd)
