@@ -26,7 +26,8 @@ Thread.new {
 			puts "TOUCH NAS"
 		end
 		sleep NAS_TIME
-	end }
+	end
+}
 
 # Check for DB playlist
 pl = mpd.playlists.find { |p| p.name == "dbpl" }
@@ -66,7 +67,7 @@ get '/api/:cmd' do
     when "state"
         { :playing => mpd.playing?,
 					:name => get_name(mpd, streams.merge(streams_private)),
-					:playing_local => playing_local?(mpd)}.to_json
+					:playing_local => playing_local?(mpd) }.to_json
     when "play-url"
         play_url(params, mpd)
     when "play-random"
