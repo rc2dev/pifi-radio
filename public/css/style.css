@@ -8,7 +8,7 @@ select {
     margin-right: auto;
     margin-left: auto;
     max-width: 300px;
-    padding-top: 13%;
+    padding-top: 12%;
     display: none;
 }
 
@@ -20,7 +20,7 @@ select {
 }
 
 .btn-controls {
-    color: #337ab7 !important;
+    color: #337ab7;
 }
 
 #btn-ps {
