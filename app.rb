@@ -65,6 +65,7 @@ get '/api/:cmd' do
     when "vol" # tried as return value for vdown/vup, but seemed slower
       mpd.volume.to_s + '%'
     when "state"
+			content_type :json
 			time = mpd.status.include?(:time) ? mpd.status[:time] : [0,0]
       { :playing => mpd.playing?,
 				:name => get_name(mpd, streams.merge(streams_private)),
@@ -89,3 +90,5 @@ error do
   '<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
     env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
 end
+
+puts @routes

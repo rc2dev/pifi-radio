@@ -33,7 +33,7 @@ function update_player() {
     }  else {
       $("#progress").hide();
     }
-  }, "json");
+  });
 };
 
 function to_min_sec(sec) {
@@ -88,7 +88,7 @@ function start_view() {
       show_radios();
       $("#silence").show();
     }
-  }, "json");
+  });
 }
 
 function play_url(url) {
