@@ -10,8 +10,10 @@ NAS_TIME = 10		# in seconds
 
 
 # Configuration
+start_time = Time.now
 configure do
 	set :bind, '0.0.0.0'
+	set :static_cache_control, [:public, :max_age => 86400]
 end
 
 # Connect to MPD
@@ -39,6 +41,15 @@ end
 streams = load_streams("streams.json")
 streams_private = load_streams("streams_private.json")
 
+# Cache
+before /\/s?/ do 		# for / and /s
+	cache_control :public, :max_age => 86400
+	last_modified start_time
+end
+before '/api/*' do
+	cache_control :no_cache
+end
+
 # Routes
 get '/' do
 	hostname = `uname -n`.chop.capitalize
@@ -63,7 +74,7 @@ get '/api/:cmd' do
     when "vup"
       mpd.send_command("volume +5")
     when "vol" # tried as return value for vdown/vup, but seemed slower
-      mpd.volume.to_s + '%'
+      mpd.volume.to_s + "%"
     when "state"
 			content_type :json
 			time = mpd.status.include?(:time) ? mpd.status[:time] : [0,0]
@@ -79,16 +90,12 @@ get '/api/:cmd' do
   end
 end
 
-get '/update' do
-	streams = load_streams("streams.json")
-	streams_private = load_streams("streams_private.json")
+get '/updatedb' do
   update_db(mpd)
-  "<a href=\"/\">Listas de streams, DB e playlist DB atualizados.</a>"
+  "<a href=\"/\">DB e playlist DB atualizados.</a>"
 end
 
 error do
   '<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
     env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
 end
-
-puts @routes
