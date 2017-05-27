@@ -22,9 +22,9 @@ function update_player() {
       $("#btn-ps").attr('data-action', 'play');
     }
     $("#name").html( state.name );   // Atualiza nome
-    if( playing_local ) {     // Se local: atualiza duração e tempo e os mostra
-      $("#elapsed").html(to_min_sec(elapsed));
-      $("#length").html(to_min_sec(length));
+    if( state.playing_local ) {     // Se local: atualiza duração e tempo e os mostra
+      $("#elapsed").html(to_min_sec(state.elapsed));
+      $("#length").html(to_min_sec(state.length));
       $("#progress").show();
     }  else {
       $("#progress").hide();
