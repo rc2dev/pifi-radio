@@ -166,7 +166,7 @@ $( document ).ready(function() {
     // Define which alert to show based on player state
     if( playing_local ) {
       text = "Próxima música";
-      time = 2000;
+      time = 1500;
     } else {
       text = "Conectando ao armazenamento...";
       time = 5000;
