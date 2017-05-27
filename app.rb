@@ -5,7 +5,7 @@ require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
 
 # Constants
-NAS_FILE = "/mnt/airport/shared/.touch"
+NAS_FILE = "/airport/.touch"
 NAS_TIME = 10		# in seconds
 
 

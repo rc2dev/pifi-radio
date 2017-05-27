@@ -3,9 +3,7 @@ const URL_ERROR = "Não foi possível tocar essa rádio.";
 const PLAYING = "Tocando";
 const NOT_PLAYING = "Parado";
 var timeout;
-var playing_local;
-var elapsed;
-var length;
+var state;
 
 
 // Funções
@@ -13,10 +11,8 @@ var length;
 // É assíncrona, retorna promisse
 function update_player() {
   return $.get( "/api/state", function( data ) {
-    playing_local = data.playing_local;
-    elapsed = data.elapsed;
-    length = data.length;
-    if( data.playing ){                 // Atualiza play-stop e status
+    state = data;
+    if( state.playing ){                 // Atualiza play-stop e status
       $("#status").html(PLAYING);
       $("#span-ps").attr('class', 'glyphicon glyphicon-stop');
       $("#btn-ps").attr('data-action', 'stop');
@@ -25,7 +21,7 @@ function update_player() {
       $("#span-ps").attr('class', 'glyphicon glyphicon-play');
       $("#btn-ps").attr('data-action', 'play');
     }
-    $("#name").html( data.name );   // Atualiza nome
+    $("#name").html( state.name );   // Atualiza nome
     if( playing_local ) {     // Se local: atualiza duração e tempo e os mostra
       $("#elapsed").html(to_min_sec(elapsed));
       $("#length").html(to_min_sec(length));
@@ -133,11 +129,11 @@ $( document ).ready(function() {
 
   // Soma um segundo periodicamente ao tempo tocado exibido na tela
   setInterval(function() {
-    if(playing_local && $( "#player" ).is(":visible")) {
-      if(elapsed == length)   // prevent outgrow length
+    if(state.playing_local && $( "#player" ).is(":visible")) {
+      if(state.elapsed == state.length)   // prevent outgrow length
         return;
-      elapsed++;
-      $("#elapsed").text(to_min_sec(elapsed));
+      state.elapsed++;
+      $("#elapsed").text(to_min_sec(state.elapsed));
     }
   }, 1000);
 
@@ -164,7 +160,7 @@ $( document ).ready(function() {
 
   $("#btn-random").click(function( event ) {
     // Define which alert to show based on player state
-    if( playing_local ) {
+    if( state.playing_local ) {
       text = "Próxima música";
       time = 1500;
     } else {
