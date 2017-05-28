@@ -1,65 +1,65 @@
 /* Tentando desabilitar zoom no iPhone */
 select {
-    font-size: 50px;
+	font-size: 50px;
 }
 
 /* player */
 #player, #alert {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 300px;
-    padding-top: 12%;
-    display: none;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 300px;
+	padding-top: 12%;
+	display: none;
 }
 
 #controls {
-    margin-top: 0px;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 252px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 252px;
 }
 
 .btn-controls {
-    color: #337ab7;
+	color: #337ab7;
 }
 
 #btn-ps {
-    margin-right: 26px;
+	margin-right: 26px;
 }
 
 /* Placeholder before JS sets span-ps value */
 .glyphicon-arrow-down {
-    visibility: hidden;
+	visibility: hidden;
 }
 
 #player-bottom, #osd {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 244px;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 244px;
 }
 
 #player-bottom {
-    margin-top: 120px;
+	margin-top: 120px;
 }
 
 #osd {
-    margin-top: 90px;
-    display: none;
+	margin-top: 90px;
+	display: none;
 }
 
 
 /* radios list */
 #radios {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 350px;
-    margin-top: 25px;
-    margin-bottom: 30px;
-    display: none;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 350px;
+	margin-top: 25px;
+	margin-bottom: 30px;
+	display: none;
 }
 
 #silence {
-    display: none;
+	display: none;
 }
 
 .list-group-item {
@@ -67,13 +67,13 @@ select {
 }
 
 .radios-group-title {
-  margin-top: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  border-bottom: 1px solid;
+	margin-top: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 1px solid;
 }
 
 #radios-list {
@@ -82,39 +82,39 @@ select {
 }
 
 #insert {
-  margin-top: 45px;
-  margin-bottom: 130px;
+	margin-top: 45px;
+	margin-bottom: 130px;
 }
 
 #radios-bottom {
-  position: fixed;
-  bottom: 0px;
-  background-color: white;
-  width: 350px;
-  left: 50%;
-  transform: translate(-50%, 0%);
+	position: fixed;
+	bottom: 0px;
+	background-color: white;
+	width: 350px;
+	left: 50%;
+	transform: translate(-50%, 0%);
 }
 
 #btn-player {
-  margin-bottom: 20px;
-  margin-top: 30px;
+	margin-bottom: 20px;
+	margin-top: 30px;
 }
 
 
 
 /* Common */
 .btn-left {
-    float: left;
+	float: left;
 }
 
 .btn-right {
-    float: right;
+	float: right;
 }
 
 #alert {
-    display: none;
+	display: none;
 }
 
 #alert-text {
-    padding-top: 40%;
+	padding-top: 40%;
 }

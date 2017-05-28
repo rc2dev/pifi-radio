@@ -1,80 +1,80 @@
 <div class="container-fluid">
 
 
-  <!-- Player -->
-  <div class="pagination-centered align-self-center" id="player">
+	<!-- Player -->
+	<div class="pagination-centered align-self-center" id="player">
 
-    <h4 class="text-center"><span id="status">&nbsp;</span>
-      <span id="progress">
-        (<span id="elapsed"></span>/<span id="length"></span>)
-      </span>
-    </h4>
-    <h3 class="text-center" id="name">&nbsp;</h3>
-    <h3 class="text-center" id="elapsed">&nbsp;</h3>
+		<h4 class="text-center"><span id="status">&nbsp;</span>
+			<span id="progress">
+				(<span id="elapsed"></span>/<span id="length"></span>)
+			</span>
+		</h4>
+		<h3 class="text-center" id="name">&nbsp;</h3>
+		<h3 class="text-center" id="elapsed">&nbsp;</h3>
 
-    <div class="text-center" id="controls" role="toolbar">
-      <button type="button"class="btn btn-default btn-lg btn-controls" id="btn-ps">
-        <span id="span-ps" class="glyphicon glyphicon-arrow-down"></span></button>
-      <button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vdown">
-        <span class="glyphicon glyphicon-volume-down"></span></button>
-      <button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vup">
-        <span class="glyphicon glyphicon-volume-up"></span></button>
-    </div>
-
-
-    <div class="text-center" id="player-bottom">
-      <button type="button" class="btn btn-danger btn-left" id="btn-random">
-        <span class="glyphicon glyphicon-music"></span> Aleatória</button>
-      <button type="button" class="btn btn-primary btn-right" id="btn-radios">
-        <span class="glyphicon glyphicon-list"></span> Rádios</button>
-    </div>
-
-    <!-- Volume OSD -->
-    <div class="pagination-centered align-self-center" id="osd">
-      <h2 class="text-center text-info" id="osd-text"></h2>
-    </div>
-
-  </div>
+		<div class="text-center" id="controls" role="toolbar">
+			<button type="button"class="btn btn-default btn-lg btn-controls" id="btn-ps">
+				<span id="span-ps" class="glyphicon glyphicon-arrow-down"></span></button>
+			<button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vdown">
+				<span class="glyphicon glyphicon-volume-down"></span></button>
+			<button type="button" class="btn btn-default btn-lg btn-controls" id="btn-vup">
+				<span class="glyphicon glyphicon-volume-up"></span></button>
+		</div>
 
 
-  <!-- Lista de rádios -->
-  <div class="pagination-centered align-self-center" id="radios">
+		<div class="text-center" id="player-bottom">
+			<button type="button" class="btn btn-danger btn-left" id="btn-random">
+				<span class="glyphicon glyphicon-music"></span> Aleatória</button>
+			<button type="button" class="btn btn-primary btn-right" id="btn-radios">
+				<span class="glyphicon glyphicon-list"></span> Rádios</button>
+		</div>
 
-    <h4 class="text-center" id="silence"><em>Que silêncio...</em></h4>
-    <h4 class="title text-center"><strong>Escolha uma rádio</strong></h4>
+		<!-- Volume OSD -->
+		<div class="pagination-centered align-self-center" id="osd">
+			<h2 class="text-center text-info" id="osd-text"></h2>
+		</div>
 
-    <ul class="list-group" id="radios-list">
-      <% streams.each do |key, value| %>
-        <% if value.empty? %>
-          <h4 class="text-muted text-center radios-group-title"><%= key %></h4>
-        <% else %>
-          <a href="#">
-            <li class="list-group-item radio-name" data-url="<%= URI.escape(value) %>">
-              <h4><%= key %></h4>
-            </li>
-          </a>
-        <% end %>
-      <% end %>
-      <a href="#" >
-        <li class="list-group-item" id="insert">
-          <h4 class="text-muted">Tocar URL...</h4>
-        </li>
-      </a>
-    </ul>
+	</div>
 
-    <div class="text-center" id="radios-bottom">
-      <a href="#">
-        <button type="button" class="btn btn-default" id="btn-player">
-          <span class="glyphicon glyphicon-th"></span> Controles
-        </button>
-      </a>
-    </div>
-  </div>
+
+	<!-- Lista de rádios -->
+	<div class="pagination-centered align-self-center" id="radios">
+
+		<h4 class="text-center" id="silence"><em>Que silêncio...</em></h4>
+		<h4 class="title text-center"><strong>Escolha uma rádio</strong></h4>
+
+		<ul class="list-group" id="radios-list">
+			<% streams.each do |key, value| %>
+				<% if value.empty? %>
+					<h4 class="text-muted text-center radios-group-title"><%= key %></h4>
+				<% else %>
+					<a href="#">
+						<li class="list-group-item radio-name" data-url="<%= URI.escape(value) %>">
+							<h4><%= key %></h4>
+						</li>
+					</a>
+				<% end %>
+			<% end %>
+			<a href="#" >
+				<li class="list-group-item" id="insert">
+					<h4 class="text-muted">Tocar URL...</h4>
+				</li>
+			</a>
+		</ul>
+
+		<div class="text-center" id="radios-bottom">
+			<a href="#">
+				<button type="button" class="btn btn-default" id="btn-player">
+					<span class="glyphicon glyphicon-th"></span> Controles
+				</button>
+			</a>
+		</div>
+	</div>
 
 
 <!-- Para exibição de alertas -->
-  <div class="pagination-centered align-self-center" id="alert">
-    <h3 class="text-center text-info" id="alert-text"></h3>
-  </div>
+	<div class="pagination-centered align-self-center" id="alert">
+		<h3 class="text-center text-info" id="alert-text"></h3>
+	</div>
 
 </div>
