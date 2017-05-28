@@ -12,7 +12,9 @@ var state;
 function update_player() {
 	return $.get( "/api/state", function( data ) {
 		state = data;
-		if( state.playing ){                 // Atualiza play-stop e status
+
+		// Atualiza play-stop, status e nome
+		if(state.playing){
 			$("#status").html(PLAYING);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
 			$("#btn-ps").attr('data-action', 'stop');
@@ -21,12 +23,14 @@ function update_player() {
 			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
 			$("#btn-ps").attr('data-action', 'play');
 		}
-		$("#name").html( state.name );   // Atualiza nome
-		if( state.playing_local ) {     // Se local: atualiza duração, tempo e exibe
+		$("#name").html(state.name);
+
+		// Se local: atualiza duração, tempo e exibe
+		if(state.playing_local) {
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
 			$("#progress").show();
-		}  else {
+		} else {
 			$("#progress").hide();
 		}
 	});
@@ -40,7 +44,7 @@ function to_min_sec(sec) {
 }
 
 function show_player() {
-	// Esperar update_player (que é assíncrono) para mostrar player
+	// Esperar update_player (é assíncrona) para mostrar player
 	update_player().then(function (response) {
 		$("#alert").hide();
 		$("#radios").hide();
@@ -79,7 +83,7 @@ function vol_osd() {
 // está tocando. Inclui mensagem amigável.
 function start_view() {
 	$.get( "/api/state", function( data ) {
-		if ( data.playing ) {
+		if(data.playing) {
 			show_player();
 		} else {
 			show_radios();
@@ -128,7 +132,7 @@ $( document ).ready(function() {
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
-		if(state.playing_local && $("#player").is(":visible") && \
+		if(state.playing_local && $("#player").is(":visible") &&
 			state.elapsed < state.length) {			// prevent outgrowing length
 			state.elapsed++;
 			$("#elapsed").text(to_min_sec(state.elapsed));
