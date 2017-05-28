@@ -5,6 +5,7 @@ require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
 
 # Constants
+CACHE_MAX_AGE = 86400
 NAS_FILE = "/airport/.touch"
 NAS_TIME = 10		# in seconds
 
@@ -13,7 +14,7 @@ NAS_TIME = 10		# in seconds
 start_time = Time.now
 configure do
 	set :bind, '0.0.0.0'
-	set :static_cache_control, [:public, :max_age => 86400]
+	set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
 end
 
 # Connect to MPD
@@ -43,7 +44,7 @@ streams_private = load_streams("streams_private.json")
 
 # Cache
 before /\/s?/ do 		# for / and /s
-	cache_control :public, :max_age => 86400
+	cache_control :public, :max_age => CACHE_MAX_AGE
 	last_modified start_time
 end
 before '/api/*' do

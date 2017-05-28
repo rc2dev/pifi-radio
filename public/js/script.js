@@ -1,7 +1,13 @@
-// Constantes e variáveis globais
-const URL_ERROR = "Não foi possível tocar essa rádio.";
+// Constantes (mensagens)
 const PLAYING = "Tocando";
 const NOT_PLAYING = "Parado";
+const URL_ERROR = "Não foi possível tocar essa rádio.";
+const URL_TRYING = "Sintonizando...";
+const URL_INSERT = "Insira a URL";
+const RANDOM_NEXT = "Próxima música";
+const RANDOM_FIRST = "Conectando ao armazenamento...";
+
+// Variáveis globais
 var timeout;
 var state;
 
@@ -93,7 +99,7 @@ function start_view() {
 }
 
 function play_url(url) {
-	show_alert("Sintonizando...");
+	show_alert(URL_TRYING);
 
 	$.get("/api/play-url", {url: url})
 	.done(function() {
@@ -163,10 +169,10 @@ $( document ).ready(function() {
 	$("#btn-random").click(function( event ) {
 		// Define which alert to show based on player state
 		if( state.playing_local ) {
-			text = "Próxima música";
+			text = RANDOM_NEXT;
 			time = 1500;
 		} else {
-			text = "Conectando ao armazenamento...";
+			text = RANDOM_FIRST;
 			time = 5000;
 		}
 		show_alert(text);
@@ -192,7 +198,7 @@ $( document ).ready(function() {
 	});
 
 	$("#insert").click(function( event ) {
-		url = prompt("Insira a URL");
+		url = prompt(URL_INSERT);
 		if(url != null)
 			play_url(url);
 		});
