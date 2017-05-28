@@ -14,7 +14,7 @@ function update_player() {
 		state = data;
 
 		// Atualiza play-stop, status e nome
-		if(state.playing){
+		if(state.playing) {
 			$("#status").html(PLAYING);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
 			$("#btn-ps").attr('data-action', 'stop');
