@@ -22,7 +22,7 @@ function update_player() {
 			$("#btn-ps").attr('data-action', 'play');
 		}
 		$("#name").html( state.name );   // Atualiza nome
-		if( state.playing_local ) {     // Se local: atualiza duração e tempo e os mostra
+		if( state.playing_local ) {     // Se local: atualiza duração, tempo e exibe
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
 			$("#progress").show();
@@ -55,7 +55,8 @@ function show_radios() {
 	$("#radios").show();
 }
 
-function show_alert() {
+function show_alert(text) {
+	$("#alert-text").text(text);
 	$("#player").hide();
 	$("#radios").hide();
 	$("#alert").show();
@@ -88,8 +89,7 @@ function start_view() {
 }
 
 function play_url(url) {
-	$("#alert-text").html("Sintonizando...");
-	show_alert();
+	show_alert("Sintonizando...");
 
 	$.get("/api/play-url", {url: url})
 	.done(function() {
@@ -111,27 +111,25 @@ $( document ).ready(function() {
 	// Pausa atualização se janela não está em foco
 	// e esconde player se visível
 	window_focus = true;
-	$( window ).focus(function() {
-		window_focus = true;
-		if( $( "#alert" ).is(":visible") ) show_player();
-	}).blur(function() {
-		window_focus = false;
-		if( $( "#player" ).is(":visible") ) {
-			$("#alert-text").html(document.title);
-			show_alert();
-		}
-	});
+	$(window)
+		.focus(function() {
+			window_focus = true;
+			if( $("#alert").is(":visible") ) show_player();
+		})
+		.blur(function() {
+			window_focus = false;
+			if( $("#player").is(":visible") ) show_alert(document.title);
+		});
 
 	// Atualiza player periodicamente
 	setInterval(function() {
-		if( $( "#player" ).is(":visible") && window_focus ) update_player();
+		if( $("#player").is(":visible") && window_focus ) update_player();
 	}, 4000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
-		if(state.playing_local && $( "#player" ).is(":visible")) {
-			if(state.elapsed == state.length)   // prevent outgrow length
-				return;
+		if(state.playing_local && $("#player").is(":visible") && \
+			state.elapsed < state.length) {			// prevent outgrowing length
 			state.elapsed++;
 			$("#elapsed").text(to_min_sec(state.elapsed));
 		}
@@ -167,8 +165,7 @@ $( document ).ready(function() {
 			text = "Conectando ao armazenamento...";
 			time = 5000;
 		}
-		$( "#alert-text" ).html(text);
-		show_alert();
+		show_alert(text);
 		$.get( "/api/play-random" )
 			.always(function(data) {
 				setTimeout(function() {
