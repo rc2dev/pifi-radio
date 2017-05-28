@@ -20,7 +20,7 @@ select {
 }
 
 .btn-controls {
-	color: #337ab7;
+	color: #337ab7 !important;
 }
 
 #btn-ps {
