@@ -19,8 +19,8 @@ select {
 	max-width: 252px;
 }
 
-.btn-controls {
-	color: #337ab7 !important;
+.btn-controls, .btn-controls:active, .btn-controls:focus, .btn-controls:hover {
+	color: #337ab7;
 }
 
 #btn-ps {
@@ -63,17 +63,15 @@ select {
 }
 
 .list-group-item {
-	border: none !important;
+	border-style: none;
 }
 
 .radios-group-title {
 	margin-top: 40px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-top: 0px;
-	border-left: 0px;
-	border-right: 0px;
-	border-bottom: 1px solid;
+	border-width: 0px 0px 1px 0px;	/* just bottom border */
+	border-style: solid;
 }
 
 #radios-list {
