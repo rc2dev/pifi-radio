@@ -6,12 +6,15 @@ require_relative 'methods'
 
 # Constants
 CACHE_MAX_AGE = 86400
-NAS_FILE = "/airport/.touch"
 NAS_TIME = 10		# in seconds
 
-
-# Configuration
+# For cache use
 start_time = Time.now
+
+# User Configuration
+config = load_json("config.json")
+
+# Sinatra configuration
 configure do
 	set :bind, '0.0.0.0'
 	set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
@@ -22,15 +25,19 @@ mpd = MPD.new '127.0.0.1', 6600
 mpd.connect
 
 # Workaround to avoid NAS to sleep
-Thread.new do
-	loop do
-		if playing_local?(mpd)
-			FileUtils.touch(NAS_FILE)
-			puts "TOUCH NAS"
+if config["ping_path"].nil?
+	"Caminho de ping não definido."
+else
+	Thread.new do
+		loop do
+			if playing_local?(mpd)
+				FileUtils.touch(config["ping_path"])
+			end
+			sleep NAS_TIME
 		end
-		sleep NAS_TIME
 	end
 end
+
 
 # Check for DB playlist
 pl = mpd.playlists.find { |p| p.name == "dbpl" }
@@ -39,8 +46,9 @@ if pl.nil?
 end
 
 # Load JSONs
-streams = load_streams("streams.json")
-streams_private = load_streams("streams_private.json")
+path = File.join(config["streams_dir"], "streams.json")
+path_private = File.join(config["streams_dir"], "streams_private.json")
+streams, streams_private = load_json(path), load_json(path_private)
 
 # Cache
 before /\/s?/ do 		# for / and /s

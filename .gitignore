@@ -4,5 +4,6 @@
 *.log
 *.pid
 admin/
+config.json
 streams.json
 streams_private.json

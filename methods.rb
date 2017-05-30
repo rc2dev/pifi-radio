@@ -47,8 +47,8 @@ end
 
 
 # Load JSON ignoring keys starting with //
-def load_streams(file_name)
-	file = File.read(file_name)
+def load_json(path)
+	file = File.read(path)
 	hash = JSON.parse(file)
 	for key in hash.keys
 		hash.delete(key) if key.start_with?("//")
