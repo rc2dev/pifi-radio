@@ -49,7 +49,9 @@ function to_min_sec(sec) {
 	return minutes + ":" + leading + seconds;
 }
 
-function show_player(update = true) {
+function show_player(update) {
+	update = typeof update !== 'undefined' ?  update : true;
+
 	function set_visibility() {
 		$("#alert").hide();
 		$("#radios").hide();
