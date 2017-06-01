@@ -194,6 +194,7 @@ $( document ).ready(function() {
 	});
 
 	$("#btn-player").click(function( event ) {
+		show_alert("Aguarde...");
 		show_player();
 	});
 
