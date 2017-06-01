@@ -15,7 +15,7 @@ var state;
 // Funções
 
 // É assíncrona, retorna promisse
-function update_player() {
+function update_state() {
 	return $.get( "/api/state", function( data ) {
 		state = data;
 
@@ -49,13 +49,18 @@ function to_min_sec(sec) {
 	return minutes + ":" + leading + seconds;
 }
 
-function show_player() {
-	// Esperar update_player (é assíncrona) para mostrar player
-	update_player().then(function (response) {
+function show_player(update = true) {
+	function set_visibility() {
 		$("#alert").hide();
 		$("#radios").hide();
 		$("#player").show();
-	});
+	}
+
+	if(update)
+		// Esperar update_state (é assíncrona) para mostrar player
+		update_state().then(function (response) { set_visibility(); });
+	else
+		set_visibility();
 }
 
 function show_radios() {
@@ -88,9 +93,9 @@ function vol_osd() {
 // Decide o que mostrar ao iniciar, baseado se
 // está tocando. Inclui mensagem amigável.
 function start_view() {
-	$.get( "/api/state", function( data ) {
-		if(data.playing) {
-			show_player();
+	update_state().then(function (response) {
+		if(state.playing) {
+			show_player(false);
 		} else {
 			show_radios();
 			$("#silence").show();
@@ -133,7 +138,7 @@ $( document ).ready(function() {
 
 	// Atualiza player periodicamente
 	setInterval(function() {
-		if( $("#player").is(":visible") && window_focus ) update_player();
+		if( $("#player").is(":visible") && window_focus ) update_state();
 	}, 4000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
@@ -161,9 +166,9 @@ $( document ).ready(function() {
 	$("#btn-ps").click(function( event ) {
 		action = $(this).attr("data-action");
 		if(action == "play")
-			$.get( "/api/play", function( data ) { update_player(); });
+			$.get( "/api/play", function( data ) { update_state(); });
 		else if(action == "stop")
-			$.get( "/api/stop", function( data ) { update_player(); });
+			$.get( "/api/stop", function( data ) { update_state(); });
 	});
 
 	$("#btn-random").click(function( event ) {
