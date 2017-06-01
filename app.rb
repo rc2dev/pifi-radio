@@ -86,12 +86,11 @@ get '/api/:cmd' do
 		mpd.volume.to_s + "%"
 	when "state"
 		content_type :json
-		time = mpd.status.include?(:time) ? mpd.status[:time] : [0,0]
 		{ :playing => mpd.playing?,
 			:name => get_name(mpd, streams.merge(streams_private)),
 			:playing_local => playing_local?(mpd),
-			:elapsed => time[0],
-			:length => time[1] }.to_json
+			:elapsed => mpd.playing? ? mpd.status[:time][0] : 0,
+			:length => mpd.playing? ? mpd.status[:time][1] : 0 }.to_json
 	when "play-url"
 		play_url(params, mpd)
 	when "play-random"
