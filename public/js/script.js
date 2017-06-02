@@ -31,8 +31,8 @@ function update_state() {
 		}
 		$("#name").html(state.name);
 
-		// Se local: atualiza duração, tempo e exibe
-		if(state.local) {
+		// Se local e tocando: atualiza duração, tempo e exibe
+		if(state.local && state.playing) {
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
 			$("#progress").show();
