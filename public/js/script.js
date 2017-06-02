@@ -32,7 +32,7 @@ function update_state() {
 		$("#name").html(state.name);
 
 		// Se local: atualiza duração, tempo e exibe
-		if(state.playing_local) {
+		if(state.local) {
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
 			$("#progress").show();
@@ -80,17 +80,15 @@ function show_alert(text) {
 	$("#alert").show();
 }
 
-function vol_osd() {
-	$.get( "/api/vol", function( data ) {
-		$("#player-bottom").hide();
-		$("#osd-text").html(data);
-		$("#osd").show();
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			$("#osd").hide();
-			$("#player-bottom").show();
-		}, 1500);
-	});
+function vol_osd(vol) {
+	$("#osd-text").html(vol);
+	$("#player-bottom").hide();
+	$("#osd").show();
+	clearTimeout(timeout);
+	timeout = setTimeout(function() {
+		$("#osd").hide();
+		$("#player-bottom").show();
+	}, 1500);
 }
 
 // Decide o que mostrar ao iniciar, baseado se
@@ -142,11 +140,11 @@ $( document ).ready(function() {
 	// Atualiza player periodicamente
 	setInterval(function() {
 		if( $("#player").is(":visible") && window_focus ) update_state();
-	}, 4000);
+	}, 2000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
-		if($("#player").is(":visible") && state.playing_local &&
+		if($("#player").is(":visible") && state.playing && state.local &&
 			state.elapsed < state.length) {			// prevent outgrowing length
 			state.elapsed++;
 			$("#elapsed").text(to_min_sec(state.elapsed));
@@ -159,11 +157,11 @@ $( document ).ready(function() {
 	});
 
 	$("#btn-vup").click(function( event ) {
-		$.get( "/api/vup", function( data ) { vol_osd(); });
+		$.get( "/api/vup", function( data ) { vol_osd(data); });
 	});
 
 	$("#btn-vdown").click(function( event ) {
-		$.get( "/api/vdown", function( data ) { vol_osd(); });
+		$.get( "/api/vdown", function( data ) { vol_osd(data); });
 	});
 
 	$("#btn-ps").click(function( event ) {
@@ -176,7 +174,7 @@ $( document ).ready(function() {
 
 	$("#btn-random").click(function( event ) {
 		// Define which alert to show based on player state
-		if( state.playing_local ) {
+		if( state.playing && state.local ) {
 			text = RANDOM_NEXT;
 			time = 1500;
 		} else {

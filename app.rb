@@ -3,6 +3,7 @@ require 'ruby-mpd'
 require 'json'
 require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
+require_relative 'player'
 
 # Constants
 CACHE_MAX_AGE = 86400
@@ -13,42 +14,17 @@ start_time = Time.now
 
 # User Configuration
 config = load_json("config.json")
+streams, streams_private = load_streams(config["streams_dir"])
 
 # Sinatra configuration
 configure do
-	set :bind, '0.0.0.0'
-	set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
+ 	set :bind, '0.0.0.0'
+ 	set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
 end
 
-# Connect to MPD
-mpd = MPD.new '127.0.0.1', 6600
-mpd.connect
-
-# Workaround to avoid NAS to sleep
-if config["ping_path"].nil?
-	"Caminho de ping não definido."
-else
-	Thread.new do
-		loop do
-			if playing_local?(mpd)
-				FileUtils.touch(config["ping_path"])
-			end
-			sleep NAS_TIME
-		end
-	end
-end
-
-
-# Check for DB playlist
-pl = mpd.playlists.find { |p| p.name == "dbpl" }
-if pl.nil?
-	update_db(mpd)
-end
-
-# Load JSONs
-path = File.join(config["streams_dir"], "streams.json")
-path_private = File.join(config["streams_dir"], "streams_private.json")
-streams, streams_private = load_json(path), load_json(path_private)
+# Create player and NAS thread
+player = Player.new(streams.merge(streams_private))
+nas_ping(config["ping_path"], player)
 
 # Cache
 before /\/s?/ do 		# for / and /s
@@ -59,7 +35,36 @@ before '/api/*' do
 	cache_control :no_cache
 end
 
+
 # Routes
+get '/api/:cmd' do
+	cmd = params[:cmd]
+	case cmd
+	when "play"
+		player.play
+	when "stop"
+		player.stop
+	when "vdown"
+		player.vdown
+		player.vol
+	when "vup"
+		player.vup
+		player.vol
+	when "state"
+		content_type :json
+		{ :playing => player.playing,
+			:name => player.song,
+			:local => player.local,
+			:elapsed => player.elapsed,
+			:length => player.length }.to_json
+	when "play-url"
+		url = params[:url].strip
+		player.play_url(url)
+	when "play-random"
+		player.play_random
+	end
+end
+
 get '/' do
 	hostname = `uname -n`.chop.capitalize
 	erb :main, locals: { hostname: hostname, streams: streams }
@@ -71,35 +76,9 @@ get '/s' do
 		streams_private.merge({"Rio de Janeiro":""}).merge(streams) }
 end
 
-get '/api/:cmd' do
-	cmd = params[:cmd]
-	case cmd
-	when "play"
-		mpd.play
-	when "stop"
-		mpd.stop
-	when "vdown"
-		mpd.send_command("volume -5")
-	when "vup"
-		mpd.send_command("volume +5")
-	when "vol" # tried as return value for vdown/vup, but seemed slower
-		mpd.volume.to_s + "%"
-	when "state"
-		content_type :json
-		{ :playing => mpd.playing?,
-			:name => get_name(mpd, streams.merge(streams_private)),
-			:playing_local => playing_local?(mpd),
-			:elapsed => mpd.playing? ? mpd.status[:time][0] : 0,
-			:length => mpd.playing? ? mpd.status[:time][1] : 0 }.to_json
-	when "play-url"
-		play_url(params, mpd)
-	when "play-random"
-		play_random(mpd)
-	end
-end
 
 get '/updatedb' do
-	update_db(mpd)
+	player.update_db
 	"<a href=\"/\">DB e playlist DB atualizados.</a>"
 end
 

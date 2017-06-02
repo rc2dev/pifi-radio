@@ -1,82 +1,62 @@
-def get_name(mpd, streams)
-	song = mpd.current_song
-	if song.nil?                               # Se nada
-		""
-	elsif ! song.file.include?("://")          # Se é local
-		get_local_name(song)
-	else                                       # Se é remota
-		streams.key(song.file) || song.file
+#module Methods
+
+# Workaround to avoid NAS to sleep
+	def nas_ping(path, player)
+		if path.nil?
+			"Caminho de ping não definido."
+		else
+			Thread.new do
+				loop do
+					if player.local?
+						FileUtils.touch(path)
+					end
+					sleep NAS_TIME
+				end
+			end
+		end
 	end
-end
 
-
-def get_local_name(song)
-	if song.artist.nil? || song.title.nil?
-		"Música local"
-	else
-		name = song.artist + " - " + song.title
-		#name = name.split.map(&:capitalize).join(' ')
-		name.length > 45 ? name[0..42] + "..." : name
+# Load JSONs
+	def load_streams(dir)
+		path = File.join(dir, "streams.json")
+		path_private = File.join(dir, "streams_private.json")
+		[load_json(path), load_json(path_private)]
 	end
-end
 
 
-def playing_local?(mpd)
-	mpd.playing? && ! mpd.current_song.file.include?("://")
-end
+
+	# def update_db(mpd)
+	# 	# Update DB
+	# 	mpd.update
+	#
+	# 	# Workaround to wait for database update
+	# 	sleep 10
+	#
+	# 	# Update/create playlist with whole DB
+	# 	pl = mpd.playlists.find { |p| p.name == "dbpl" }
+	# 	if pl.nil?
+	# 		mpd.save "dbpl"
+	# 		pl = mpd.playlists.find { |p| p.name == "dbpl" }
+	# 	end
+	# 	pl.clear
+	# 	for song in mpd.songs
+	# 		pl.add song
+	# 	end
+	# end
 
 
-def update_db(mpd)
-	# Update DB
-	mpd.update
-
-	# Workaround to wait for database update
-	sleep 10
-
-	# Update/create playlist with whole DB
-	pl = mpd.playlists.find { |p| p.name == "dbpl" }
-	if pl.nil?
-		mpd.save "dbpl"
-		pl = mpd.playlists.find { |p| p.name == "dbpl" }
+	# Load JSON ignoring keys starting with //
+	def load_json(path)
+		file = File.read(path)
+		hash = JSON.parse(file)
+		for key in hash.keys
+			hash.delete(key) if key.start_with?("//")
+		end
+		hash
 	end
-	pl.clear
-	for song in mpd.songs
-		pl.add song
-	end
-end
 
 
-# Load JSON ignoring keys starting with //
-def load_json(path)
-	file = File.read(path)
-	hash = JSON.parse(file)
-	for key in hash.keys
-		hash.delete(key) if key.start_with?("//")
-	end
-	hash
-end
 
 
-def play_url(params, mpd)
-	url = params[:url].strip
-	mpd.clear
-	mpd.add url
-	mpd.play
-end
 
-
-def play_random(mpd)
-	# Se está tocando arquivo local, tocar o próximo
-	if playing_local?(mpd)
-		mpd.next
-	# Se não está tocando arquivo local, carregar toda a
-	# biblioteca e começa a tocar em modo aleatório
-	else
-		mpd.clear
-		pl = mpd.playlists.find { |p| p.name == "dbpl" }
-		pl.load
-		mpd.random= true
-		mpd.crossfade= 5
-		mpd.play
-	end
-end
+#end
