@@ -50,6 +50,7 @@ function to_min_sec(sec) {
 }
 
 function show_player(update) {
+	// Default parameter. Seems need for some Android's Chrome
 	update = typeof update !== 'undefined' ?  update : true;
 
 	function set_visibility() {

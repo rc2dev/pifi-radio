@@ -3,7 +3,7 @@
 *.lock
 *.log
 *.pid
-admin/
-config.json
-streams.json
-streams_private.json
+.directory
+/admin
+/config.json
+TODO
