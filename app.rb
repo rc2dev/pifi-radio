@@ -16,9 +16,10 @@ NAS_TIME = 10		# in seconds
 # For cache use
 start_time = Time.now
 
-# User Configuration
+# User configuration
+hostname = `uname -n`.chop.capitalize
 config = load_json("config.json")
-streams, streams_private = load_streams(config["streams_dir"])
+streams, streams_all = load_streams(config["streams_dir"])
 
 # Sinatra configuration
 configure do
@@ -27,8 +28,8 @@ configure do
 end
 
 # Create player and NAS thread
-player = Player.new(streams.merge(streams_private))
-nas_ping(config["ping_path"], player)
+player = Player.new(streams_all)
+nas_ping(config["ping_path"], NAS_TIME, player)
 
 # Cache
 before /\/s?/ do 		# for / and /s
@@ -70,14 +71,11 @@ post '/api' do
 end
 
 get '/' do
-	hostname = `uname -n`.chop.capitalize
 	erb :main, locals: { hostname: hostname, streams: streams }
 end
 
 get '/s' do
-	hostname = `uname -n`.chop.capitalize
-	erb :main, locals: { hostname: hostname, streams:
-		streams_private.merge({"Rio de Janeiro":""}).merge(streams) }
+	erb :main, locals: { hostname: hostname, streams: streams_all }
 end
 
 
