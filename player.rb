@@ -1,6 +1,6 @@
 #class RcRadio
   class Player
-    attr_reader :playing, :song, :local, :vol, :elapsed, :length
+    attr_reader :playing, :song, :local, :elapsed, :length
 
     def initialize(streams)
       @streams = streams
@@ -9,7 +9,7 @@
       @mpd = MPD.new '127.0.0.1', 6600, { callbacks: true }
       @mpd.connect
 
-      # Check if playlist exists, create it
+      # Check if playlist exists, create it if not
       check_pl
 
       # Callbacks
@@ -21,31 +21,35 @@
 
 
     def play
-      ! @playing ? @mpd.play : nil
+      if @mpd.play
+        @playing = true   # Quicker than callback, good for following API call
+      end
     end
     def stop
-      @playing ? @mpd.stop : nil
+      if @mpd.stop
+        @playing = false  # Quicker than callback, good for following API call
+      end
     end
-    def next
-      @mpd.next
-    end
-    def vdown
-      @mpd.send_command("volume -5")
-    end
-    def vup
-      @mpd.send_command("volume +5")
+    def vch(inc)
+      value = @vol + inc
+      if value > 100
+        value = 100
+      elsif value < 0
+        value = 0
+      end
+      @vol = @mpd.volume=(value)  # Writing to @vol avoids race conditions
     end
 
     def play_url(url)
   		@mpd.clear
-  		@mpd.add url
+  		@mpd.add(url)
   		@mpd.play
   	end
 
     def play_random
   		# Se está tocando arquivo local, tocar o próximo
   		if @playing && @local
-  			self.next
+  			@mpd.next
   		# Se não está tocando arquivo local, carregar toda a
   		# biblioteca e começa a tocar em modo aleatório
   		else
@@ -83,25 +87,29 @@
       @playing = state == :play
     end
 
-    def set_time(elapsed, total)
-      @elapsed, @length = elapsed, total
+    def set_time(elapsed, length)
+      @elapsed = elapsed
+      @length = length
     end
 
-    def set_song(song)
-      if song.nil?
+    def set_song(*args)
+      if args.length == 0
         @song = ""
         @local = false
-      elsif ! song.file.include?("://")
-        @song = local_name(song)
-        @local = true
       else
-        @song = @streams.key(song.file) || song.file
-        @local = false
+        file = args[0].file
+        if file.include?("://")
+          @song = @streams.key(file) || file
+          @local = false
+        else
+          @song = local_name(args[0])
+          @local = true
+        end
       end
     end
 
     def set_vol(vol)
-     @vol = vol.to_s + "%"
+     @vol = vol
     end
 
     def local_name(song)

@@ -16,7 +16,7 @@ var state;
 
 // É assíncrona, retorna promisse
 function update_state() {
-	return $.get( "/api/state", function( data ) {
+	return $.get( "/api", function( data ) {
 		state = data;
 
 		// Atualiza play-stop, status e nome
@@ -29,7 +29,7 @@ function update_state() {
 			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
 			$("#btn-ps").attr('data-action', 'play');
 		}
-		$("#name").html(state.name);
+		$("#song").html(state.song);
 
 		// Se local e tocando: atualiza duração, tempo e exibe
 		if(state.local && state.playing) {
@@ -88,7 +88,7 @@ function vol_osd(vol) {
 	timeout = setTimeout(function() {
 		$("#osd").hide();
 		$("#player-bottom").show();
-	}, 1500);
+	}, 1300);
 }
 
 // Decide o que mostrar ao iniciar, baseado se
@@ -107,7 +107,7 @@ function start_view() {
 function play_url(url) {
 	show_alert(URL_TRYING);
 
-	$.get("/api/play-url", {url: url})
+	$.post("/api", {cmd: "play-url", url: url})
 	.done(function() {
 		setTimeout(function() {
 			show_player();
@@ -140,7 +140,7 @@ $( document ).ready(function() {
 	// Atualiza player periodicamente
 	setInterval(function() {
 		if( $("#player").is(":visible") && window_focus ) update_state();
-	}, 2000);
+	}, 1000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
@@ -157,19 +157,19 @@ $( document ).ready(function() {
 	});
 
 	$("#btn-vup").click(function( event ) {
-		$.get( "/api/vup", function( data ) { vol_osd(data); });
+		$.post( "/api", { cmd: "vup" }, function( data ) { vol_osd(data); });
 	});
 
 	$("#btn-vdown").click(function( event ) {
-		$.get( "/api/vdown", function( data ) { vol_osd(data); });
+		$.post( "/api", { cmd: "vdown" }, function( data ) { vol_osd(data); });
 	});
 
 	$("#btn-ps").click(function( event ) {
 		action = $(this).attr("data-action");
 		if(action == "play")
-			$.get( "/api/play", function( data ) { update_state(); });
+			$.post( "/api", { cmd: "play" }, function( data ) { update_state(); });
 		else if(action == "stop")
-			$.get( "/api/stop", function( data ) { update_state(); });
+			$.post( "/api", { cmd: "stop" }, function( data ) { update_state(); });
 	});
 
 	$("#btn-random").click(function( event ) {
@@ -182,7 +182,7 @@ $( document ).ready(function() {
 			time = 5000;
 		}
 		show_alert(text);
-		$.get( "/api/play-random" )
+		$.post( "/api", { cmd: "play-random" })
 			.always(function(data) {
 				setTimeout(function() {
 					show_player();

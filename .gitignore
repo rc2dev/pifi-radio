@@ -1,9 +1,9 @@
 *.swp
 *.kate-swp
 *.lock
-*.log
 *.pid
 .directory
 /admin
+/log
 /config.json
 TODO
