@@ -23,11 +23,9 @@ function update_state() {
 		if(state.playing) {
 			$("#status").html(PLAYING);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
-			$("#btn-ps").attr('data-action', 'stop');
 		} else {
 			$("#status").html(NOT_PLAYING);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
-			$("#btn-ps").attr('data-action', 'play');
 		}
 		$("#song").html(state.song);
 
@@ -162,11 +160,10 @@ $( document ).ready(function() {
 	});
 
 	$("#btn-ps").click(function( event ) {
-		action = $(this).attr("data-action");
-		if(action == "play")
-			$.post( "/api", { cmd: "play" }, function( data ) { update_state(); });
-		else if(action == "stop")
+		if(state.playing)
 			$.post( "/api", { cmd: "stop" }, function( data ) { update_state(); });
+		else
+			$.post( "/api", { cmd: "play" }, function( data ) { update_state(); });
 	});
 
 	$("#btn-random").click(function( event ) {
