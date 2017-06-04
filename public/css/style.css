@@ -19,7 +19,7 @@ select {
 	max-width: 252px;
 }
 
-.btn-controls, .btn-controls:focus, .btn-controls:hover, .btn-controls:active {
+#controls span {
 	color: #337ab7;
 }
 
