@@ -44,10 +44,6 @@ function update_state() {
 
 function to_min_sec(sec) {
  	return new Date(sec * 1000).toISOString().substr(14, 5);
-	// minutes = Math.floor(sec / 60);
-	// seconds = sec % 60;
-	// seconds < 10 ? leading = "0" : leading = "";
-	// return minutes + ":" + leading + seconds;
 }
 
 function show_player(update) {
