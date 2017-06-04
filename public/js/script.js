@@ -43,10 +43,11 @@ function update_state() {
 };
 
 function to_min_sec(sec) {
-	minutes = Math.floor(sec / 60);
-	seconds = sec % 60;
-	seconds < 10 ? leading = "0" : leading = "";
-	return minutes + ":" + leading + seconds;
+ 	return new Date(sec * 1000).toISOString().substr(14, 5);
+	// minutes = Math.floor(sec / 60);
+	// seconds = sec % 60;
+	// seconds < 10 ? leading = "0" : leading = "";
+	// return minutes + ":" + leading + seconds;
 }
 
 function show_player(update) {
@@ -140,7 +141,7 @@ $( document ).ready(function() {
 	// Atualiza player periodicamente
 	setInterval(function() {
 		if( $("#player").is(":visible") && window_focus ) update_state();
-	}, 1000);
+	}, 3000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {

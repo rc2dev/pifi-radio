@@ -5,7 +5,7 @@ require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
 require_relative 'player'
 
-
+# For thread debugging
 Thread::abort_on_exception = true
 
 
@@ -36,7 +36,7 @@ before /\/s?/ do 		# for / and /s
 	cache_control :public, :max_age => CACHE_MAX_AGE
 	last_modified start_time
 end
-before '/api/*' do
+before '/api' do
 	cache_control :no_cache
 end
 
@@ -44,11 +44,11 @@ end
 # Routes
 get '/api' do
   content_type :json
-	{ :playing => player.playing,
-		:song => player.song,
-		:local => player.local,
-		:elapsed => player.elapsed,
-		:length => player.length }.to_json
+	{ playing: player.playing,
+		song: player.song,
+		local: player.local,
+		elapsed: player.elapsed,
+		length: player.length }.to_json
 end
 
 post '/api' do

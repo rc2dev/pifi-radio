@@ -93,16 +93,17 @@
     end
 
     def set_song(*args)
-      if args.length == 0
-        @song = ""
+      if args.length == 0     # Sometimes it passes no arguments, instead of
+        @song = ""            # MPD::Song object
         @local = false
       else
-        file = args[0].file
+        song = args[0]
+        file = song.file
         if file.include?("://")
           @song = @streams.key(file) || file
           @local = false
         else
-          @song = local_name(args[0])
+          @song = local_name(song)
           @local = true
         end
       end
