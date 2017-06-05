@@ -83,9 +83,11 @@ get '/s' do
 end
 
 
-get '/updatedb' do
+get '/update' do
 	player.update_db
-	"<a href=\"/\">DB e playlist DB atualizados.</a>"
+  streams, streams_all = load_streams(config["streams_dir"])
+  start_time = Time.now
+  "<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
 end
 
 error do
