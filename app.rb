@@ -65,10 +65,11 @@ post '/api' do
 		player.vch(-5).to_s + "%"
 	when "vup"
 		player.vch(+5).to_s + "%"
-	when "play-url"
-		url = params[:url].strip
-		player.play_url(url)
-	when "play-random"
+	when "play_stream"
+    type = params[:type]
+		value = params[:value].strip
+		player.play_stream(type, value)
+	when "play_random"
 		player.play_random
 	end
 end

@@ -1,8 +1,8 @@
 // Constantes (mensagens)
 const PLAYING = "Tocando";
 const NOT_PLAYING = "Parado";
-const URL_ERROR = "Não foi possível tocar essa rádio.";
-const URL_TRYING = "Sintonizando...";
+const STREAM_ERROR = "Não foi possível tocar essa rádio.";
+const STREAM_TRYING = "Sintonizando...";
 const URL_INSERT = "Insira a URL";
 const RANDOM_NEXT = "Próxima música";
 const RANDOM_FIRST = "Conectando ao armazenamento...";
@@ -99,10 +99,10 @@ function start_view() {
 	});
 }
 
-function play_url(url) {
-	show_alert(URL_TRYING);
+function play_stream(type, value) {
+	show_alert(STREAM_TRYING);
 
-	$.post("/api", {cmd: "play-url", url: url})
+	$.post("/api", {cmd: "play_stream", type: type, value: value})
 	.done(function() {
 		setTimeout(function() {
 			show_player();
@@ -110,7 +110,7 @@ function play_url(url) {
 	})
 	.fail(function() {
 		show_radios();
-		alert(URL_ERROR);
+		alert(STREAM_ERROR);
 	});
 }
 
@@ -176,7 +176,7 @@ $( document ).ready(function() {
 			time = 5000;
 		}
 		show_alert(text);
-		$.post( "/api", { cmd: "play-random" })
+		$.post( "/api", { cmd: "play_random" })
 			.always(function(data) {
 				setTimeout(function() {
 					show_player();
@@ -193,13 +193,13 @@ $( document ).ready(function() {
 	});
 
 	$(".radio-name").click(function( event ) {
-		url = $(this).data("url");
-		play_url(url);
+		name = $(this).text();
+		play_stream("name", name);
 	});
 
 	$("#insert").click(function( event ) {
 		url = prompt(URL_INSERT);
 		if(url != null)
-			play_url(url);
+			play_stream("url", url);
 		});
 });

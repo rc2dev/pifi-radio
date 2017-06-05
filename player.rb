@@ -39,7 +39,8 @@ class Player
     @vol = @mpd.volume=(value)  # Writing to @vol avoids race conditions
   end
 
-  def play_url(url)
+  def play_stream(type, value)
+    url = type == "url" ? value : @streams[value]
 		@mpd.clear
 		@mpd.add(url)
 		@mpd.play
