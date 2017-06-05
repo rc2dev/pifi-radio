@@ -22,9 +22,12 @@ config = load_json("config.json")
 streams, streams_all = load_streams(config["streams_dir"])
 
 # Sinatra configuration
-configure do
+configure :development do
  	set :bind, '0.0.0.0'
- 	set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
+#  set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
+end
+configure :production do
+  set :static, false
 end
 
 # Create player and NAS thread
