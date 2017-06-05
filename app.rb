@@ -8,10 +8,8 @@ require_relative 'player'
 # For thread debugging
 Thread::abort_on_exception = true
 
-
 # Constants
 CACHE_MAX_AGE = 86400
-NAS_TIME = 10		# in seconds
 
 # For cache use
 start_time = Time.now
@@ -32,7 +30,7 @@ end
 
 # Create player and NAS thread
 player = Player.new(streams_all)
-nas_ping(config["ping_path"], NAS_TIME, player)
+nas_ping(config["ping_path"], config["ping_time"], player)
 
 # Cache
 before /\/s?/ do 		# for / and /s
