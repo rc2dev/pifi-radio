@@ -22,7 +22,6 @@ streams, streams_all = load_streams(config["streams_dir"])
 # Sinatra configuration
 configure :development do
  	set :bind, '0.0.0.0'
-#  set :static_cache_control, [:public, :max_age => CACHE_MAX_AGE]
 end
 configure :production do
   set :static, false

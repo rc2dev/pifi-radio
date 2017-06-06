@@ -1,15 +1,9 @@
 # Workaround to avoid NAS to sleep
 def nas_ping(path, time, player)
-	if path.nil?
-		"Caminho de ping não definido."
-	else
-		Thread.new do
-			loop do
-				if player.local
-					FileUtils.touch(path)
-				end
-				sleep time
-			end
+	Thread.new do
+		loop do
+			FileUtils.touch(path) if player.local
+			sleep time
 		end
 	end
 end
