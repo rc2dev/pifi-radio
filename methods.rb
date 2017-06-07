@@ -2,7 +2,7 @@
 def nas_ping(path, time, player)
 	Thread.new do
 		loop do
-			FileUtils.touch(path) if player.local
+			FileUtils.touch(path) if player.local && player.playing
 			sleep time
 		end
 	end
