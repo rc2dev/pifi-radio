@@ -125,11 +125,11 @@ $( document ).ready(function() {
 	$(window)
 		.focus(function() {
 			window_focus = true;
-			if( $("#alert").is(":visible") ) show_player();
+			if( $("#alert").is(":visible") ) start_view();
 		})
 		.blur(function() {
 			window_focus = false;
-			if( $("#player").is(":visible") ) show_alert(document.title);
+			show_alert(document.title);
 		});
 
 	// Atualiza player periodicamente
