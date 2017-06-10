@@ -57,10 +57,12 @@ post '/api' do
 		player.play
 	when "stop"
 		player.stop
-	when "vdown"
-		player.vch(-5).to_s + "%"
-	when "vup"
-		player.vch(+5).to_s + "%"
+	when "vol_down"
+		vol = player.vol_ch(-5)
+    vol.to_s + "%"
+	when "vol_up"
+		vol = player.vol_ch(+5)
+    vol.to_s + "%"
 	when "play_stream"
     type = params[:type]
 		value = params[:value].strip

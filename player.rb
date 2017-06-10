@@ -29,7 +29,7 @@ class Player
     @playing = false if @mpd.stop
   end
 
-  def vch(inc)
+  def vol_ch(inc)
     new_vol = @vol + inc
     new_vol =
       if new_vol < 0 then 0
