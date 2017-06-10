@@ -20,27 +20,33 @@ class Player
 
 
   def play
-    if @mpd.play
-      @playing = true   # Quicker than callback, good for following API call
-    end
+    # Quicker than callback, good for following API call
+    @playing = true if @mpd.play
   end
+
   def stop
-    if @mpd.stop
-      @playing = false  # Quicker than callback, good for following API call
-    end
+    # Quicker than callback, good for following API call
+    @playing = false if @mpd.stop
   end
+
   def vch(inc)
-    value = @vol + inc
-    if value > 100
-      value = 100
-    elsif value < 0
-      value = 0
-    end
-    @vol = @mpd.volume=(value)  # Writing to @vol avoids race conditions
+    new_vol = @vol + inc
+    new_vol =
+      if new_vol < 0 then 0
+      elsif new_vol > 100 then 100
+      else new_vol
+      end
+
+    @vol = @mpd.volume=(new_vol)  # Writing to @vol avoids race conditions
   end
 
   def play_stream(type, value)
-    url = type == "url" ? value : @streams[value]
+    url =
+      case type
+      when "url" then value
+      when "radio" then @streams[value]
+      end
+
 		@mpd.clear
 		@mpd.add(url)
 		@mpd.play
@@ -84,7 +90,7 @@ class Player
 
   private
   def set_state(state)
-    @playing = state == :play
+    @playing = (state == :play)
   end
 
   def set_time(elapsed, length)
@@ -110,7 +116,7 @@ class Player
   end
 
   def set_vol(vol)
-   @vol = vol
+    @vol = vol
   end
 
   def local_name(song)
