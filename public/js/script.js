@@ -151,6 +151,11 @@ $( document ).ready(function() {
 		$(this).blur();
 	});
 
+	// Previne href="#" de ser executado
+	$('a[href="#"]').click(function( event ) {
+    return false;
+	});
+
 	$("#btn-vup").click(function( event ) {
 		$.post( "/api", { cmd: "vup" }, function( data ) { vol_osd(data); });
 	});
