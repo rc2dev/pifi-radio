@@ -52,8 +52,7 @@ get '/api' do
 end
 
 post '/api' do
-	cmd = params[:cmd]
-	case cmd
+	case params[:cmd]
 	when "play"
 		player.play
 	when "stop"

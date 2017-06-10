@@ -8,7 +8,7 @@ def nas_ping(path, time, player)
 	end
 end
 
-# Load JSONs
+# Load streams to variables
 def load_streams(dir)
 	path = File.join(dir, "streams.json")
 	path_private = File.join(dir, "streams_private.json")
