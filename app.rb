@@ -64,9 +64,7 @@ post '/api' do
 		vol = player.vol_ch(+5)
     vol.to_s + "%"
 	when "play_stream"
-    type = params[:type]
-		value = params[:value].strip
-		player.play_stream(type, value)
+		player.play_stream(params[:type], params[:value].strip)
 	when "play_random"
 		player.play_random
 	end
