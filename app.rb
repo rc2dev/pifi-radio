@@ -56,25 +56,38 @@ end
 post '/api' do
 	case params[:cmd]
 	when "play"
+    status 204
 		player.play
+
 	when "stop"
+    status 204
 		player.stop
+
 	when "vol_down"
-		vol = player.vol_ch(-5)
+    status 200
+    content_type :text
+    vol = player.vol_ch(-5)
     vol.to_s + "%"
+
 	when "vol_up"
-		vol = player.vol_ch(+5)
+    status 200
+    content_type :text
+    vol = player.vol_ch(+5)
     vol.to_s + "%"
+
 	when "play_stream"
-    return 400 unless params.include?([:value]) && params.include?([:type])
-    return 400 unless ["url", "name"].include?(params[:type])
-    value = params[:value].strip
-    type = params[:type]
-		player.play_stream(type, value)
+    status 204
+    halt 400 unless params.include?([:value]) && params.include?([:type])
+    halt 400 unless ["url", "name"].include?(params[:type])
+
+		player.play_stream(params[:type], params[:value].strip)
+
 	when "play_random"
+    status 204
 		player.play_random
+
   else
-    return 400
+    halt 400
 	end
 end
 
@@ -85,7 +98,6 @@ end
 get '/s' do
 	erb :main, locals: { hostname: hostname, streams: streams_all }
 end
-
 
 get '/update' do
 	player.update_db
