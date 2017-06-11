@@ -66,12 +66,15 @@ post '/api' do
 		vol = player.vol_ch(+5)
     vol.to_s + "%"
 	when "play_stream"
-    type = params[:type]
+    return 400 unless params.include?([:value]) && params.include?([:type])
+    return 400 unless ["url", "name"].include?(params[:type])
     value = params[:value].strip
-    return 400 unless ["url", "name"].include?(type) && !value.nil?
+    type = params[:type]
 		player.play_stream(type, value)
 	when "play_random"
 		player.play_random
+  else
+    return 400
 	end
 end
 
