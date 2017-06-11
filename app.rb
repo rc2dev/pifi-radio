@@ -77,10 +77,12 @@ post '/api' do
 
 	when "play_stream"
     status 204
-    halt 400 unless params.include?([:value]) && params.include?([:type])
-    halt 400 unless ["url", "name"].include?(params[:type])
 
-		player.play_stream(params[:type], params[:value].strip)
+    begin
+		  player.play_stream(params[:type], params[:value].strip)
+    rescue
+      halt 400
+    end
 
 	when "play_random"
     status 204

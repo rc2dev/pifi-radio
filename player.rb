@@ -45,14 +45,12 @@ class Player
       case type
       when "url" then value
       when "name" then @streams[value]
+      else raise "Invalid 'type' value."
       end
 
 		@mpd.clear
 		@mpd.add(url)
 		@mpd.play
-
-    rescue Exception
-      400
 	end
 
   def play_random
