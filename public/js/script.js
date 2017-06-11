@@ -15,12 +15,12 @@ var state;
 // Funções
 
 // É assíncrona, retorna promisse
-function update_state() {
-	return $.get( "/api", function( data ) {
+function $update_state() {
+	return $.get("/api", function(data) {
 		state = data;
 
 		// Atualiza play-stop, status e nome
-		if(state.playing) {
+		if (state.playing) {
 			$("#status").html(PLAYING);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
 		} else {
@@ -30,7 +30,7 @@ function update_state() {
 		$("#song").html(state.song);
 
 		// Se local e tocando: atualiza duração, tempo e exibe
-		if(state.local && state.playing) {
+		if (state.local && state.playing) {
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
 			$("#progress").show();
@@ -54,11 +54,12 @@ function show_player(update) {
 		$("#player").show();
 	}
 
-	if(update)
+	if (update) {
 		// Esperar update_state (é assíncrona) para mostrar player
-		update_state().then(function (response) { set_visibility(); });
-	else
+		$update_state().then(function(response) { set_visibility(); });
+	} else {
 		set_visibility();
+	}
 }
 
 function show_radios() {
@@ -89,8 +90,8 @@ function vol_osd(vol) {
 // Decide o que mostrar ao iniciar, baseado se
 // está tocando. Inclui mensagem amigável.
 function start_view() {
-	update_state().then(function (response) {
-		if(state.playing) {
+	$update_state().then(function (response) {
+		if (state.playing) {
 			show_player(false);
 		} else {
 			show_radios();
@@ -102,7 +103,7 @@ function start_view() {
 function play_stream(type, value) {
 	show_alert(STREAM_TRYING);
 
-	$.post("/api", {cmd: "play_stream", type: type, value: value})
+	$.post("/api", { cmd: "play_stream", type: type, value: value })
 	.done(function() {
 		setTimeout(function() {
 			show_player();
@@ -116,7 +117,7 @@ function play_stream(type, value) {
 
 
 // Documento
-$( document ).ready(function() {
+$(document).ready(function() {
 	start_view();
 
 	// Pausa atualização se janela não está em foco
@@ -125,7 +126,7 @@ $( document ).ready(function() {
 	$(window)
 		.focus(function() {
 			window_focus = true;
-			if( $("#alert").is(":visible") ) start_view();
+			if ($("#alert").is(":visible")) start_view();
 		})
 		.blur(function() {
 			window_focus = false;
@@ -134,12 +135,12 @@ $( document ).ready(function() {
 
 	// Atualiza player periodicamente
 	setInterval(function() {
-		if( $("#player").is(":visible") && window_focus ) update_state();
+		if ($("#player").is(":visible") && window_focus) $update_state();
 	}, 3000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
-		if($("#player").is(":visible") && state.playing && state.local &&
+		if ($("#player").is(":visible") && state.playing && state.local &&
 			state.elapsed < state.length) {			// prevent outgrowing length
 			state.elapsed++;
 			$("#elapsed").text(to_min_sec(state.elapsed));
@@ -147,33 +148,33 @@ $( document ).ready(function() {
 	}, 1000);
 
 	// "Desclica" botões após clicados
-	$("button").click(function( event ){
+	$("button").click(function(event) {
 		$(this).blur();
 	});
 
 	// Previne href="#" de ser executado
-	$('a[href="#"]').click(function( event ) {
+	$('a[href="#"]').click(function(event) {
     return false;
 	});
 
-	$("#btn-vup").click(function( event ) {
-		$.post( "/api", { cmd: "vol_up" }, function( data ) { vol_osd(data); });
+	$("#btn-vup").click(function(event) {
+		$.post( "/api", { cmd: "vol_up" }, function(data) { vol_osd(data); });
 	});
 
-	$("#btn-vdown").click(function( event ) {
-		$.post( "/api", { cmd: "vol_down" }, function( data ) { vol_osd(data); });
+	$("#btn-vdown").click(function(event) {
+		$.post( "/api", { cmd: "vol_down" }, function(data) { vol_osd(data); });
 	});
 
 	$("#btn-ps").click(function( event ) {
-		if(state.playing)
-			$.post( "/api", { cmd: "stop" }, function( data ) { update_state(); });
+		if (state.playing)
+			$.post( "/api", { cmd: "stop" }, function(data) { $update_state(); });
 		else
-			$.post( "/api", { cmd: "play" }, function( data ) { update_state(); });
+			$.post( "/api", { cmd: "play" }, function(data) { $update_state(); });
 	});
 
 	$("#btn-random").click(function( event ) {
 		// Define which alert to show based on player state
-		if( state.playing && state.local ) {
+		if (state.playing && state.local) {
 			text = RANDOM_NEXT;
 			time = 1500;
 		} else {
@@ -181,7 +182,7 @@ $( document ).ready(function() {
 			time = 5000;
 		}
 		show_alert(text);
-		$.post( "/api", { cmd: "play_random" })
+		$.post("/api", { cmd: "play_random" })
 			.always(function(data) {
 				setTimeout(function() {
 					show_player();
@@ -189,22 +190,22 @@ $( document ).ready(function() {
 			});
 	});
 
-	$("#btn-radios").click(function( event ) {
+	$("#btn-radios").click(function(event) {
 		show_radios();
 	});
 
-	$("#btn-player").click(function( event ) {
+	$("#btn-player").click(function(event) {
 		show_player();
 	});
 
-	$(".radio-name").click(function( event ) {
+	$(".radio-name").click(function(event) {
 		name = $(this).text();
 		play_stream("name", name);
 	});
 
-	$("#insert").click(function( event ) {
+	$("#insert").click(function(event) {
 		url = prompt(URL_INSERT);
-		if(url != null)
+		if (url != null)
 			play_stream("url", url);
 		});
 });

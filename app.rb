@@ -9,15 +9,17 @@ require_relative 'player'
 Thread::abort_on_exception = true
 
 # Constants
+CONFIG_FILE = "config.json"
+CONFIG_KEYS = ["streams_dir", "ping_path", "ping_time"]
 CACHE_MAX_AGE = 86400
 
 # For cache use
 start_time = Time.now
 
 # User configuration
-hostname = `uname -n`.chop.capitalize
-config = load_json("config.json")
+config = load_config(CONFIG_FILE, CONFIG_KEYS)
 streams, streams_all = load_streams(config["streams_dir"])
+hostname = `uname -n`.chop.capitalize
 
 # Sinatra configuration
 configure :development do
@@ -64,7 +66,10 @@ post '/api' do
 		vol = player.vol_ch(+5)
     vol.to_s + "%"
 	when "play_stream"
-		player.play_stream(params[:type], params[:value].strip)
+    type = params[:type]
+    value = params[:value].strip
+    return 400 unless ["url", "name"].include?(type) && !value.nil?
+		player.play_stream(type, value)
 	when "play_random"
 		player.play_random
 	end

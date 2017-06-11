@@ -44,12 +44,15 @@ class Player
     url =
       case type
       when "url" then value
-      when "radio" then @streams[value]
+      when "name" then @streams[value]
       end
 
 		@mpd.clear
 		@mpd.add(url)
 		@mpd.play
+
+    rescue Exception
+      400
 	end
 
   def play_random
@@ -62,8 +65,8 @@ class Player
 			@mpd.clear
 			pl = @mpd.playlists.find { |p| p.name == "dbpl" }
 			pl.load
-			@mpd.random= true
-			@mpd.crossfade= 5
+			@mpd.random=(true)
+			@mpd.crossfade=(5)
 			@mpd.play
 		end
   end

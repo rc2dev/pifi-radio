@@ -27,3 +27,18 @@ def load_json(path)
 	end
 	hash
 end
+
+# Load config file, checking for errors
+def load_config(path, keys)
+	file = File.read(path)
+	config = JSON.parse(file)
+
+	keys.each do |key|
+		raise "Key '#{key}' missing from config file." unless config.include?(key)
+	end
+	config.each do |key, value|
+		raise "Invalid key '#{key}'." unless keys.include?(key)
+	end
+
+	config
+end
