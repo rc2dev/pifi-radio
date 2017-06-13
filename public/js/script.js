@@ -158,11 +158,11 @@ $(document).ready(function() {
 	});
 
 	$("#btn-vup").click(function(event) {
-		$.post( "/api", { cmd: "vol_up" }, function(data) { vol_osd(data); });
+		$.post( "/api", { cmd: "vol_ch", inc: "+5" }, function(data) { vol_osd(data); });
 	});
 
 	$("#btn-vdown").click(function(event) {
-		$.post( "/api", { cmd: "vol_down" }, function(data) { vol_osd(data); });
+		$.post( "/api", { cmd: "vol_ch", inc: "-5" }, function(data) { vol_osd(data); });
 	});
 
 	$("#btn-ps").click(function( event ) {

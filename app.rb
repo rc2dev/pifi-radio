@@ -35,7 +35,7 @@ nas_ping(config["ping_path"], config["ping_time"], player)
 
 
 # Routes
-get '/api' do
+get "/api" do
   content_type :json
   cache_control :no_cache
 	{ playing: player.playing,
@@ -45,7 +45,7 @@ get '/api' do
 		length: player.length }.to_json
 end
 
-post '/api' do
+post "/api" do
 	case params[:cmd]
 	when "play"
     status 204
@@ -55,23 +55,22 @@ post '/api' do
     status 204
 		player.stop
 
-	when "vol_down"
+	when "vol_ch"
     status 200
     content_type :text
-    vol = player.vol_ch(-5)
-    vol.to_s + "%"
+    halt 400 unless params.include?(:inc)
 
-	when "vol_up"
-    status 200
-    content_type :text
-    vol = player.vol_ch(+5)
+    inc = params[:inc].to_i
+    vol = player.vol_ch(inc)
     vol.to_s + "%"
 
 	when "play_stream"
     status 204
+    halt 400 unless params.include?(:type) && params.include?(:value)
+
     begin
 		  player.play_stream(params[:type], params[:value].strip)
-    rescue
+    rescue ArgumentError, MPD::NotFound
       halt 400
     end
 
@@ -84,26 +83,29 @@ post '/api' do
 	end
 end
 
-get '/' do
+get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified start_time
 	erb :main, locals: { hostname: hostname, streams: streams }
 end
 
-get '/s' do
+get "/s" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified start_time
 	erb :main, locals: { hostname: hostname, streams: streams_all }
 end
 
-get '/update' do
+get "/update" do
 	player.update_pl
+
   streams, streams_all = load_streams(config["streams_dir"])
   start_time = Time.now
+
   "<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
 end
 
 error do
-	'<h3>Desculpe, ocorreu um erro.</h3><p>Mensagem: ' + \
-		env['sinatra.error'].message + '</p><a href="/"><h2>Voltar</h2></a>'
+	"<h3>Desculpe, ocorreu um erro.</h3>" +
+    "<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
+    "<a href="/"><h2>Voltar</h2></a>"
 end

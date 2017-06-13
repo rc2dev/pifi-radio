@@ -46,7 +46,7 @@ class Player
       case type
       when "url" then value
       when "name" then @streams[value]
-      else raise "Invalid 'type' value."
+      else raise ArgumentError, "Invalid 'type' value."
       end
 
 		@mpd.clear
@@ -132,7 +132,6 @@ class Player
 		end
 	end
 
-  # Returns playlist
   def get_pl
     @mpd.playlists.find { |p| p.name == "dbpl" }
   end
