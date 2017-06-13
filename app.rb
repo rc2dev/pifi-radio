@@ -11,7 +11,7 @@ Thread::abort_on_exception = true
 # Constants
 CONFIG_FILE = "config.json"
 CONFIG_KEYS = ["streams_dir", "ping_path", "ping_time"]
-CACHE_MAX_AGE = 86400
+CACHE_MAX_AGE = 120
 
 # For cache use
 start_time = Time.now
@@ -33,19 +33,11 @@ end
 player = Player.new(streams_all)
 nas_ping(config["ping_path"], config["ping_time"], player)
 
-# Cache
-before /\/s?/ do 		# for / and /s
-	cache_control :public, :max_age => CACHE_MAX_AGE
-	last_modified start_time
-end
-before '/api' do
-	cache_control :no_cache
-end
-
 
 # Routes
 get '/api' do
   content_type :json
+  cache_control :no_cache
 	{ playing: player.playing,
 		song: player.song,
 		local: player.local,
@@ -77,7 +69,6 @@ post '/api' do
 
 	when "play_stream"
     status 204
-
     begin
 		  player.play_stream(params[:type], params[:value].strip)
     rescue
@@ -94,10 +85,14 @@ post '/api' do
 end
 
 get '/' do
+  cache_control :public, :max_age => CACHE_MAX_AGE
+  last_modified start_time
 	erb :main, locals: { hostname: hostname, streams: streams }
 end
 
 get '/s' do
+  cache_control :public, :max_age => CACHE_MAX_AGE
+  last_modified start_time
 	erb :main, locals: { hostname: hostname, streams: streams_all }
 end
 
