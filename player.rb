@@ -8,8 +8,9 @@ class Player
     @mpd = MPD.new '127.0.0.1', 6600, { callbacks: true }
     @mpd.connect
 
-    # Check if playlist exists, create it if not
-    @pl = check_pl
+    # Get playlist if exists, create it if not
+    @pl = get_pl
+    update_pl if @pl.nil?
 
     # Callbacks
     @mpd.on :state, &method(:set_state)
@@ -64,7 +65,8 @@ class Player
       begin
 			  @pl.load
       rescue
-        @pl = check_pl
+        @pl = get_pl
+        update_pl
         @pl.load
       end
 			@mpd.random=(true)
@@ -73,22 +75,20 @@ class Player
 		end
   end
 
-  # Update/create DB and playlist
-  def update_db
+  # Update/create playlist
+  def update_pl
+    # Update DB
     @mpd.update
-
     # Workaround to wait for database update
     sleep 10
 
-    # Update/create playlist with whole DB
-    pl = @mpd.playlists.find { |p| p.name == "dbpl" }
-    if pl.nil?
+    # Update/create playlist
+    if @pl.nil?
       @mpd.save "dbpl"
-      pl = @mpd.playlists.find { |p| p.name == "dbpl" }
+      @pl = get_pl
     end
-    pl.clear
-    @mpd.songs.each { |song| pl.add(song) }
-    pl
+    @pl.clear
+    @mpd.songs.each { |song| @pl.add(song) }
   end
 
 
@@ -132,10 +132,8 @@ class Player
 		end
 	end
 
-  # Check for DB playlist
-  def check_pl
-    pl = @mpd.playlists.find { |p| p.name == "dbpl" }
-    pl = update_db if pl.nil?
-    pl
+  # Returns playlist
+  def get_pl
+    @mpd.playlists.find { |p| p.name == "dbpl" }
   end
 end

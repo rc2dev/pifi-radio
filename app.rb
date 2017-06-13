@@ -97,7 +97,7 @@ get '/s' do
 end
 
 get '/update' do
-	player.update_db
+	player.update_pl
   streams, streams_all = load_streams(config["streams_dir"])
   start_time = Time.now
   "<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
