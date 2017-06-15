@@ -37,6 +37,16 @@
 	margin-top: 120px;
 }
 
+#btn-random {
+	float: left;
+	width: 100px;
+}
+
+#btn-radios {
+	float: right;
+	width: 100px;
+}
+
 #osd {
 	margin-top: 90px;
 	display: none;
@@ -96,14 +106,6 @@
 
 
 /* Common */
-.btn-left {
-	float: left;
-}
-
-.btn-right {
-	float: right;
-}
-
 #alert {
 	display: none;
 }

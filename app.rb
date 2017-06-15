@@ -14,7 +14,7 @@ CONFIG_KEYS = ["streams_dir", "ping_path", "ping_time"]
 CACHE_MAX_AGE = 120
 
 # For cache use
-start_time = Time.now
+cache_time = Time.now
 
 # User configuration
 config = load_config(CONFIG_FILE, CONFIG_KEYS)
@@ -83,15 +83,16 @@ post "/api" do
 	end
 end
 
+
 get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
-  last_modified start_time
+  last_modified cache_time
 	erb :main, locals: { hostname: hostname, streams: streams }
 end
 
 get "/s" do
   cache_control :public, :max_age => CACHE_MAX_AGE
-  last_modified start_time
+  last_modified cache_time
 	erb :main, locals: { hostname: hostname, streams: streams_all }
 end
 
@@ -99,7 +100,7 @@ get "/update" do
 	player.update_pl
 
   streams, streams_all = load_streams(config["streams_dir"])
-  start_time = Time.now
+  cache_time = Time.now
 
   "<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
 end
