@@ -23,11 +23,9 @@ streams, streams_all = load_streams(config["streams_dir"])
 # Sinatra configuration
 configure :development do
  	set :bind, '0.0.0.0'
-  title = "Development - Rádio"
 end
 configure :production do
   set :static, false
-  title = "Rádio"
 end
 
 # Create player and NAS thread
@@ -84,7 +82,7 @@ post "/api" do
 	end
 end
 
-
+title = production ? "Rádio" : "Development - Rádio"
 get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
