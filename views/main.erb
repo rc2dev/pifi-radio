@@ -4,28 +4,30 @@
 	<!-- Player -->
 	<div class="pagination-centered align-self-center" id="player">
 
-		<h4 class="text-center"><span id="status">&nbsp;</span>
-			<span id="progress">
-				(<span id="elapsed"></span>/<span id="length"></span>)
-			</span>
-		</h4>
-		<h3 class="text-center" id="song">&nbsp;</h3>
-		<h3 class="text-center">&nbsp;</h3>
+		<div id="state" class="text-center">
+			<h4>
+				<span id="status">&nbsp;</span>
+				<span id="progress">
+					(<span id="elapsed"></span>/<span id="length"></span>)
+				</span>
+			</h4>
+			<h3 id="song">&nbsp;</h3>
+		</div>
 
-		<div class="text-center" id="controls" role="toolbar">
-			<button type="button"class="btn btn-default btn-lg" id="btn-ps">
+		<div id="controls" class="text-center" role="toolbar">
+			<button type="button" id="btn-ps" class="btn btn-default btn-lg">
 				<span id="span-ps" class="glyphicon glyphicon-arrow-down"></span>
 			</button>
-			<button type="button" class="btn btn-default btn-lg" id="btn-vdown">
+			<button type="button" id="btn-vdown" class="btn btn-default btn-lg">
 				<span class="glyphicon glyphicon-volume-down"></span>
 			</button>
-			<button type="button" class="btn btn-default btn-lg" id="btn-vup">
+			<button type="button" id="btn-vup" class="btn btn-default btn-lg">
 				<span class="glyphicon glyphicon-volume-up"></span>
 			</button>
 		</div>
 
 
-		<div class="text-center" id="player-bottom">
+		<div id="player-bottom">
 			<button type="button" class="btn btn-danger" id="btn-random">
 				<span class="glyphicon glyphicon-music"></span> Aleatória
 			</button>
@@ -65,7 +67,7 @@
 			</a>
 		</ul>
 
-		<div class="text-center" id="radios-bottom">
+		<div id="radios-bottom" class="text-center">
 			<a href="#">
 				<button type="button" class="btn btn-default" id="btn-player">
 					<span class="glyphicon glyphicon-th"></span> Controles

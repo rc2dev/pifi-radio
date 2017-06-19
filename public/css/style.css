@@ -7,6 +7,10 @@
 	display: none;
 }
 
+#state {
+	height: 125px;
+}
+
 #controls {
 	margin-top: 0px;
 	margin-right: auto;
