@@ -9,7 +9,7 @@ require_relative 'player'
 Thread::abort_on_exception = true
 
 # Constants
-CONFIG_FILE = "config.json"
+CONFIG_FILE = "/etc/rcradio.conf"
 CONFIG_KEYS = ["streams_dir", "ping_path", "ping_time"]
 CACHE_MAX_AGE = 120
 
@@ -19,14 +19,15 @@ cache_time = Time.now
 # User configuration
 config = load_config(CONFIG_FILE, CONFIG_KEYS)
 streams, streams_all = load_streams(config["streams_dir"])
-hostname = `uname -n`.chop.capitalize
 
 # Sinatra configuration
 configure :development do
  	set :bind, '0.0.0.0'
+  title = "Development - Rádio"
 end
 configure :production do
   set :static, false
+  title = "Rádio"
 end
 
 # Create player and NAS thread
@@ -87,13 +88,13 @@ end
 get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
-	erb :main, locals: { hostname: hostname, streams: streams }
+	erb :main, locals: { title: title, streams: streams }
 end
 
 get "/s" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
-	erb :main, locals: { hostname: hostname, streams: streams_all }
+	erb :main, locals: { title: title, streams: streams_all }
 end
 
 get "/update" do
