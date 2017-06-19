@@ -82,7 +82,7 @@ post "/api" do
 	end
 end
 
-title = production ? "Rádio" : "Development - Rádio"
+title = production? ? "Rádio" : "Development - Rádio"
 get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
