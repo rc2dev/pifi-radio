@@ -12,6 +12,10 @@
 	overflow: hidden;
 }
 
+#song {
+	margin-top: 10px;
+}
+
 #controls {
 	margin-top: 0px;
 	margin-right: auto;
