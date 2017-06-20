@@ -1,11 +1,11 @@
 class Player
   attr_reader :playing, :song, :local, :elapsed, :length
 
-  def initialize(streams)
+  def initialize(host, streams)
     @streams = streams
 
     # Connect to MPD
-    @mpd = MPD.new '127.0.0.1', 6600, { callbacks: true }
+    @mpd = MPD.new host, 6600, { callbacks: true }
     @mpd.connect
 
     # Get playlist if exists, create it if not

@@ -20,7 +20,7 @@
 	margin-top: 0px;
 	margin-right: auto;
 	margin-left: auto;
-	max-width: 252px;
+	width: 250px;
 }
 
 #controls span {
@@ -39,7 +39,7 @@
 #player-bottom, #osd {
 	margin-right: auto;
 	margin-left: auto;
-	max-width: 244px;
+	max-width: 250px;
 }
 
 #player-bottom {
