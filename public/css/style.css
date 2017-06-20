@@ -14,13 +14,7 @@
 
 #song {
 	margin-top: 10px;
-}
-
-#controls {
-	margin-top: 0px;
-	margin-right: auto;
-	margin-left: auto;
-	width: 250px;
+	margin-bottom: 0px;
 }
 
 #controls span {
@@ -28,22 +22,19 @@
 }
 
 #btn-ps {
-	margin-right: 26px;
+	margin-right: 30px;
 }
 
-/* Placeholder before JS sets span-ps value */
-.glyphicon-arrow-down {
-	visibility: hidden;
-}
-
-#player-bottom, #osd {
+#player-bottom {
+	margin-top: 120px;
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 250px;
 }
 
-#player-bottom {
-	margin-top: 120px;
+#osd {
+	margin-top: 90px;
+	display: none;
 }
 
 #btn-random {
@@ -54,11 +45,6 @@
 #btn-radios {
 	float: right;
 	width: 100px;
-}
-
-#osd {
-	margin-top: 90px;
-	display: none;
 }
 
 
@@ -111,7 +97,6 @@
 	margin-bottom: 20px;
 	margin-top: 30px;
 }
-
 
 
 /* Common */
