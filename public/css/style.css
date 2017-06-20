@@ -2,13 +2,14 @@
 #player, #alert {
 	margin-right: auto;
 	margin-left: auto;
-	max-width: 300px;
+	max-width: 320px;
 	padding-top: 12%;
 	display: none;
 }
 
 #state {
 	height: 125px;
+	overflow: hidden;
 }
 
 #controls {
