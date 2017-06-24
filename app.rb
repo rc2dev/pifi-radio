@@ -10,7 +10,7 @@ Thread::abort_on_exception = true
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["host", "streams_dir", "ping_path", "ping_time"]
+CONFIG_KEYS = ["host", "streams_dir", "play_local", "ping_path", "ping_time"]
 CACHE_MAX_AGE = 120
 
 # For cache use
@@ -30,8 +30,10 @@ end
 
 # Create player and NAS thread
 player = Player.new(config["host"], streams_all)
-nas_ping(config["ping_path"], config["ping_time"], player)
-
+if config["play_local"]
+  nas_ping(config["ping_path"], config["ping_time"], player)
+end
+  
 
 # Routes
 get "/api" do
@@ -86,7 +88,8 @@ title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
-	erb :main, locals: { title: title, streams: streams }
+	erb :main, locals: { title: title, streams: streams,
+    play_local: config["play_local"] }
 end
 
 get "/s" do

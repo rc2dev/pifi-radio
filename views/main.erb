@@ -28,9 +28,11 @@
 
 
 		<div id="player-bottom">
-			<button type="button" class="btn btn-danger" id="btn-random">
-				<span class="glyphicon glyphicon-music"></span> Aleatória
-			</button>
+			<% if play_local %>
+				<button type="button" class="btn btn-danger" id="btn-random">
+					<span class="glyphicon glyphicon-music"></span> Aleatória
+				</button>
+			<% end %>
 			<button type="button" class="btn btn-primary" id="btn-radios">
 				<span class="glyphicon glyphicon-list"></span> Rádios
 			</button>
@@ -69,7 +71,7 @@
 
 		<div id="radios-bottom" class="text-center">
 			<a href="#">
-				<button type="button" class="btn btn-default" id="btn-player">
+				<button type="button" class="btn btn-primary" id="btn-player">
 					<span class="glyphicon glyphicon-th"></span> Controles
 				</button>
 			</a>
