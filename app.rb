@@ -33,7 +33,7 @@ player = Player.new(config["host"], streams_all)
 if config["play_local"]
   nas_ping(config["ping_path"], config["ping_time"], player)
 end
-  
+
 
 # Routes
 get "/api" do

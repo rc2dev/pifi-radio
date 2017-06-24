@@ -42,11 +42,14 @@
 	width: 100px;
 }
 
-#btn-radios {
+/* Only float right if btn-random is present */
+#btn-random ~ #btn-radios {
 	float: right;
-	width: 100px;
 }
 
+#btn-radios {
+	width: 100px;
+}
 
 /* radios list */
 #radios {
