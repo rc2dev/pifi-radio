@@ -95,7 +95,8 @@ end
 get "/s" do
   cache_control :public, :max_age => CACHE_MAX_AGE
   last_modified cache_time
-	erb :main, locals: { title: title, streams: streams_all }
+	erb :main, locals: { title: title, streams: streams_all,
+    play_local: config["play_local"] }
 end
 
 get "/update" do
