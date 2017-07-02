@@ -108,25 +108,25 @@ function play_stream(type, value) {
 $(document).ready(function() {
 	start_view();
 
-	// Pausa atualização se janela não está em foco
-	// e esconde player se visível
+	// Se janela perde foco: esconde player
+	// Se janela ganha foco: reinicializa
 	window_focus = true;
 	$(window)
 		.focus(function() {
 			window_focus = true;
-			if ($("#alert").is(":visible")) start_view();
+			start_view();
 		})
 		.blur(function() {
 			window_focus = false;
 			show_alert(document.title);
 		});
 
-	// Atualiza player periodicamente
+	// Atualiza player periodicamente se janela em foco
 	setInterval(function() {
 		if (window_focus) $update_state();
 	}, 2000);
 
-	// Soma um segundo periodicamente ao tempo tocado exibido na tela
+	// Soma segundo a segundo o tempo tocado
 	setInterval(function() {
 		if (window_focus && state.playing && state.local &&
 			state.elapsed < state.length) {			// prevent outgrowing length
