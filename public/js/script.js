@@ -44,22 +44,10 @@ function to_min_sec(sec) {
  	return new Date(sec * 1000).toISOString().substr(14, 5);
 }
 
-function show_player(update) {
-	// Default parameter. Seems need for some Android's Chrome
-	update = typeof update !== 'undefined' ?  update : true;
-
-	function set_visibility() {
-		$("#alert").hide();
-		$("#radios").hide();
-		$("#player").show();
-	}
-
-	if (update) {
-		// Esperar update_state (é assíncrona) para mostrar player
-		$update_state().then(function(response) { set_visibility(); });
-	} else {
-		set_visibility();
-	}
+function show_player() {
+	$("#alert").hide();
+	$("#radios").hide();
+	$("#player").show();
 }
 
 function show_radios() {
@@ -92,7 +80,7 @@ function vol_osd(vol) {
 function start_view() {
 	$update_state().then(function (response) {
 		if (state.playing) {
-			show_player(false);
+			show_player();
 		} else {
 			show_radios();
 			$("#silence").show();
@@ -135,12 +123,12 @@ $(document).ready(function() {
 
 	// Atualiza player periodicamente
 	setInterval(function() {
-		if ($("#player").is(":visible") && window_focus) $update_state();
-	}, 3000);
+		if (window_focus) $update_state();
+	}, 2000);
 
 	// Soma um segundo periodicamente ao tempo tocado exibido na tela
 	setInterval(function() {
-		if ($("#player").is(":visible") && state.playing && state.local &&
+		if (window_focus && state.playing && state.local &&
 			state.elapsed < state.length) {			// prevent outgrowing length
 			state.elapsed++;
 			$("#elapsed").text(to_min_sec(state.elapsed));
@@ -200,7 +188,11 @@ $(document).ready(function() {
 
 	$(".radio-name").click(function(event) {
 		name = $(this).text();
-		play_stream("name", name);
+		if(state.song == name && state.local == false) {
+			show_player();
+		} else {
+			play_stream("name", name);
+		}
 	});
 
 	$("#insert").click(function(event) {
