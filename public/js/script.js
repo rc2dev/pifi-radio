@@ -188,7 +188,7 @@ $(document).ready(function() {
 
 	$(".radio-name").click(function(event) {
 		name = $(this).text();
-		if(state.song == name && state.local == false) {
+		if (name == state.song && ! state.local && state.playing) {
 			show_player();
 		} else {
 			play_stream("name", name);
