@@ -68,6 +68,7 @@ function vol_osd(vol) {
 	$("#osd-text").html(vol);
 	$("#player-bottom").hide();
 	$("#osd").show();
+	
 	clearTimeout(timeout);
 	timeout = setTimeout(function() {
 		$("#osd").hide();
@@ -174,6 +175,7 @@ $(document).ready(function() {
 			time = 5000;
 		}
 		show_alert(text);
+
 		$.post("/api", { cmd: "play_random" })
 			.always(function(data) {
 				setTimeout(function() {
