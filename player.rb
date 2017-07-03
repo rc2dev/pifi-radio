@@ -128,6 +128,7 @@ class Player
 			"Música local"
 		else
 			name = song.artist + " - " + song.title
+      # If larger than 45, make it 45! 45 - 3 (reticences) = 42. 0-41 is 42.
 			name.length > 45 ? name[0..41] + "..." : name
 		end
 	end

@@ -10,7 +10,8 @@ Thread::abort_on_exception = true
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["host", "streams_dir", "play_local", "ping_path", "ping_time"]
+CONFIG_KEYS = ["host", "streams_dir", "play_local", "ping", "ping_path",
+  "ping_time"]
 CACHE_MAX_AGE = 120
 
 # For cache use
@@ -30,7 +31,7 @@ end
 
 # Create player and NAS thread
 player = Player.new(config["host"], streams_all)
-if config["play_local"]
+if config["ping"] && config["play_local"]
   nas_ping(config["ping_path"], config["ping_time"], player)
 end
 
