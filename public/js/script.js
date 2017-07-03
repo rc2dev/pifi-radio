@@ -124,7 +124,7 @@ $(document).ready(function() {
 	// Atualiza player periodicamente se janela em foco
 	setInterval(function() {
 		if (window_focus) $update_state();
-	}, 2000);
+	}, 1500);
 
 	// Soma segundo a segundo o tempo tocado
 	setInterval(function() {
@@ -146,18 +146,22 @@ $(document).ready(function() {
 	});
 
 	$("#btn-vup").click(function(event) {
-		$.post( "/api", { cmd: "vol_ch", inc: "+5" }, function(data) { vol_osd(data); });
+		$.post( "/api", { cmd: "vol_ch", inc: "+5" }, function(data) {
+			vol_osd(data);
+		});
 	});
 
 	$("#btn-vdown").click(function(event) {
-		$.post( "/api", { cmd: "vol_ch", inc: "-5" }, function(data) { vol_osd(data); });
+		$.post( "/api", { cmd: "vol_ch", inc: "-5" }, function(data) {
+			vol_osd(data);
+		});
 	});
 
 	$("#btn-ps").click(function( event ) {
-		if (state.playing)
-			$.post( "/api", { cmd: "stop" }, function(data) { $update_state(); });
-		else
-			$.post( "/api", { cmd: "play" }, function(data) { $update_state(); });
+		cmd = state.playing ? "stop" : "play";
+		$.post( "/api", { cmd: cmd }, function(data) {
+			$update_state();
+		});
 	});
 
 	$("#btn-random").click(function( event ) {
