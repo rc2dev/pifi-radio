@@ -29,7 +29,7 @@ function $update_state() {
 		}
 		$("#song").html(state.song);
 
-		// Se local e tocando: atualiza duração, tempo e exibe
+		// Se local e tocando: atualiza duração, tempo e os exibe
 		if (state.local && state.playing) {
 			$("#elapsed").html(to_min_sec(state.elapsed));
 			$("#length").html(to_min_sec(state.length));
@@ -68,7 +68,7 @@ function vol_osd(vol) {
 	$("#osd-text").html(vol);
 	$("#player-bottom").hide();
 	$("#osd").show();
-	
+
 	clearTimeout(timeout);
 	timeout = setTimeout(function() {
 		$("#osd").hide();
@@ -125,7 +125,7 @@ $(document).ready(function() {
 	// Atualiza player periodicamente se janela em foco
 	setInterval(function() {
 		if (window_focus) $update_state();
-	}, 1500);
+	}, 2000);
 
 	// Soma segundo a segundo o tempo tocado
 	setInterval(function() {

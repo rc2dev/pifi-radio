@@ -128,7 +128,7 @@ class Player
 			"Música local"
 		else
 			name = song.artist + " - " + song.title
-			name.length > 45 ? name[0..42] + "..." : name
+			name.length > 45 ? name[0..41] + "..." : name
 		end
 	end
 
