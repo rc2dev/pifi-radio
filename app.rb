@@ -11,7 +11,7 @@ Thread::abort_on_exception = true
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
 CONFIG_KEYS = ["host", "streams_dir", "play_local", "ping", "ping_path",
-  "ping_time"]
+	"ping_time"]
 CACHE_MAX_AGE = 120
 
 # For cache use
@@ -23,23 +23,23 @@ streams, streams_all = load_streams(config["streams_dir"])
 
 # Sinatra configuration
 configure :development do
- 	set :bind, '0.0.0.0'
+	set :bind, '0.0.0.0'
 end
 configure :production do
-  set :static, false
+	set :static, false
 end
 
 # Create player and NAS thread
 player = Player.new(config["host"], streams_all)
 if config["ping"] && config["play_local"]
-  nas_ping(config["ping_path"], config["ping_time"], player)
+	nas_ping(config["ping_path"], config["ping_time"], player)
 end
 
 
 # Routes
 get "/api" do
-  content_type :json
-  cache_control :no_cache
+	content_type :json
+	cache_control :no_cache
 	{ playing: player.playing,
 		song: player.song,
 		local: player.local,
@@ -50,67 +50,67 @@ end
 post "/api" do
 	case params[:cmd]
 	when "play"
-    status 204
+		status 204
 		player.play
 
 	when "stop"
-    status 204
+		status 204
 		player.stop
 
 	when "vol_ch"
-    status 200
-    content_type :text
-    halt 400 unless params.include?(:inc)
+		status 200
+		content_type :text
+		halt 400 unless params.include?(:inc)
 
-    inc = params[:inc].to_i
-    vol = player.vol_ch(inc)
-    vol.to_s + "%"
+		inc = params[:inc].to_i
+		vol = player.vol_ch(inc)
+		vol.to_s + "%"
 
 	when "play_stream"
-    status 204
-    halt 400 unless params.include?(:type) && params.include?(:value)
+		status 204
+		halt 400 unless params.include?(:type) && params.include?(:value)
 
-    begin
-		  player.play_stream(params[:type], params[:value].strip)
-    rescue ArgumentError, MPD::NotFound
-      halt 400
-    end
+		begin
+			player.play_stream(params[:type], params[:value].strip)
+		rescue ArgumentError, MPD::NotFound
+			halt 400
+		end
 
 	when "play_random"
-    status 204
+		status 204
 		player.play_random
 
-  else
-    halt 400
+	else
+		halt 400
 	end
 end
 
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
-  cache_control :public, :max_age => CACHE_MAX_AGE
-  last_modified cache_time
+	cache_control :public, :max_age => CACHE_MAX_AGE
+	last_modified cache_time
 	erb :main, locals: { title: title, streams: streams,
-    play_local: config["play_local"] }
+		play_local: config["play_local"] }
 end
 
 get "/s" do
-  cache_control :public, :max_age => CACHE_MAX_AGE
-  last_modified cache_time
+	cache_control :public, :max_age => CACHE_MAX_AGE
+	last_modified cache_time
 	erb :main, locals: { title: title, streams: streams_all,
-    play_local: config["play_local"] }
+		play_local: config["play_local"] }
 end
 
 get "/update" do
 	player.update_pl
 
-  streams, streams_all = load_streams(config["streams_dir"])
-  cache_time = Time.now
+	streams, streams_all = load_streams(config["streams_dir"])
+	cache_time = Time.now
 
-  "<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
+	"<a href=\"/\">DB, playlist DB e streams atualizados.</a>"
 end
 
 error do
 	"<h3>Desculpe, ocorreu um erro.</h3>" +
-    "<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
-    "<a href="/"><h2>Voltar</h2></a>"
+		"<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
+		"<a href="/"><h2>Voltar</h2></a>"
 end
