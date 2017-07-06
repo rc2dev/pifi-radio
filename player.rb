@@ -110,7 +110,7 @@ class Player
       song = args[0]
       file = song.file
       if file.include?("://")
-        @song = @streams.key(file) || file
+        @song = @streams.key(file) || "Streaming"
         @local = false
       else
         @song = local_name(song)
