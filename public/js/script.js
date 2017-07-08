@@ -125,15 +125,6 @@ $(document).ready(function() {
 	// Atualiza player periodicamente se janela em foco
 	setInterval(function() {
 		if (window_focus) $update_state();
-	}, 2000);
-
-	// Soma segundo a segundo o tempo tocado
-	setInterval(function() {
-		if (window_focus && state.playing && state.local &&
-			state.elapsed < state.length) {			// prevent outgrowing length
-			state.elapsed++;
-			$("#elapsed").text(to_min_sec(state.elapsed));
-		}
 	}, 1000);
 
 	// "Desclica" botões após clicados
