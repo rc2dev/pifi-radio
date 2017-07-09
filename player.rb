@@ -84,6 +84,7 @@ class Player
 		end
 
     # Update/create playlist
+		@pl = get_pl
     if @pl.nil?
       @mpd.save "dbpl"
       @pl = get_pl
