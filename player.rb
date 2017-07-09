@@ -8,10 +8,6 @@ class Player
     @mpd = MPD.new host, 6600, { callbacks: true }
     @mpd.connect
 
-    # Get playlist if exists, create it if not
-    @pl = get_pl
-    update_pl if @pl.nil?
-
     # Callbacks
     @mpd.on :state, &method(:set_state)
     @mpd.on :time, &method(:set_time)
@@ -62,37 +58,12 @@ class Player
 		# biblioteca e começa a tocar em modo aleatório
 		else
 			@mpd.clear
-      begin
-			  @pl.load
-      rescue
-        @pl = get_pl
-        update_pl
-        @pl.load
-      end
+      @mpd.add("/")
 			@mpd.random=(true)
 			@mpd.crossfade=(5)
 			@mpd.play
 		end
   end
-
-  # Update/create playlist
-  def update_pl
-    # Update DB
-    @mpd.update
-    while @mpd.status.has_key?(:updating_db)
-			sleep 1
-		end
-
-    # Update/create playlist
-		@pl = get_pl
-    if @pl.nil?
-      @mpd.save "dbpl"
-      @pl = get_pl
-    end
-    @pl.clear
-    @mpd.songs.each { |song| @pl.add(song) }
-  end
-
 
   private
   def set_state(state)
@@ -134,8 +105,4 @@ class Player
 			name.length > 45 ? name[0..41] + "..." : name
 		end
 	end
-
-  def get_pl
-    @mpd.playlists.find { |p| p.name == "dbpl" }
-  end
 end
