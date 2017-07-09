@@ -79,8 +79,9 @@ class Player
   def update_pl
     # Update DB
     @mpd.update
-    # Workaround to wait for database update
-    sleep 10
+    while @mpd.status.has_key?(:updating_db)
+			sleep 1
+		end
 
     # Update/create playlist
     if @pl.nil?
