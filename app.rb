@@ -100,11 +100,12 @@ get "/s" do
 		play_local: config["play_local"] }
 end
 
-get "/update" do
+get "/reload_streams" do
 	streams, streams_all = load_streams(config["streams_dir"])
 	cache_time = Time.now
 
-	"<a href=\"/\">Streams atualizados.</a>"
+	content_type :text
+	"Streams recarregados."
 end
 
 error do
