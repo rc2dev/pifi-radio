@@ -3,6 +3,7 @@
 *.lock
 *.pid
 .directory
+tags
 /admin
 /log
 /config.json
