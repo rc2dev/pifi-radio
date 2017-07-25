@@ -71,7 +71,10 @@ post "/api" do
 		halt 400 unless params.include?(:type) && params.include?(:value)
 
 		begin
-			player.play_stream(params[:type], params[:value].strip)
+			type = params[:type]
+			value = params[:value].strip
+			queue = params.include?(:queue) ? params[:queue].strip : nil
+			player.play_stream(type, value, queue)
 		rescue ArgumentError, MPD::NotFound
 			halt 400
 		end

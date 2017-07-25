@@ -37,16 +37,21 @@ class Player
 		@vol = @mpd.volume=(new_vol)  # Writing to @vol avoids race conditions
 	end
 
-	def play_stream(type, value)
-		url =
-			case type
-			when "url" then value
-			when "name" then @streams[value]
-			else raise ArgumentError, "Invalid 'type' value."
-			end
+	def play_stream(type, value, queue)
+		case type
+		when "url"
+			url = value
+			url_queue = queue unless queue.nil?
+		when "name"
+			url = @streams[value]
+			url_queue = @streams[queue] unless queue.nil?
+		else
+			raise ArgumentError, "Invalid 'type' value."
+		end
 
 		@mpd.clear
 		@mpd.add(url)
+		@mpd.add(url_queue) unless queue.nil?
 		@mpd.play
 	end
 
