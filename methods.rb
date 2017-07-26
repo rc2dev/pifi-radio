@@ -1,13 +1,3 @@
-# Workaround to avoid NAS to sleep
-def nas_ping(path, time, player)
-	Thread.new do
-		loop do
-			FileUtils.touch(path) if player.local && player.playing
-			sleep time
-		end
-	end
-end
-
 # Load streams to variables
 def load_streams(dir)
 	path = File.join(dir, "streams.json")
