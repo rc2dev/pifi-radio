@@ -1,7 +1,6 @@
 require 'sinatra'
 require 'ruby-mpd'
 require 'json'
-require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
 require_relative 'player'
 
