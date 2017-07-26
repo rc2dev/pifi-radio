@@ -5,8 +5,6 @@ require 'fileutils'					# para workaround de touch no AirPort
 require_relative 'methods'
 require_relative 'player'
 
-# For thread debugging
-Thread::abort_on_exception = true
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
@@ -28,7 +26,7 @@ configure :production do
 	set :static, false
 end
 
-# Create player and NAS thread
+# Create player
 player = Player.new(config["host"], streams_all)
 
 
