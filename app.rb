@@ -81,6 +81,8 @@ post "/api" do
 
 	when "play_random"
 		status 204
+		halt 503 unless config["play_local"]
+
 		player.play_random
 
 	else
