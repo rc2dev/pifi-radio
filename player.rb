@@ -52,6 +52,7 @@ class Player
 		@mpd.clear
 		@mpd.add(url)
 		@mpd.add(url_queue) unless queue.nil?
+		@mpd.random=(false)
 		@mpd.play
 	end
 
