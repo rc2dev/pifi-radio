@@ -98,14 +98,6 @@ get "/s" do
 		play_local: config["play_local"] }
 end
 
-get "/reload_streams" do
-	streams, streams_all = load_streams(config["streams_dir"])
-	cache_time = Time.now
-
-	content_type :text
-	"Streams recarregados."
-end
-
 error do
 	"<h3>Desculpe, ocorreu um erro.</h3>" +
 		"<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
