@@ -51,7 +51,6 @@ function show_player() {
 }
 
 function show_radios() {
-	$("#silence").hide();   // Estratégico para só aparecer quando pedido.
 	$("#alert").hide();
 	$("#player").hide();
 	$("#radios").show();
@@ -77,14 +76,13 @@ function vol_osd(vol) {
 }
 
 // Decide o que mostrar ao iniciar, baseado se
-// está tocando. Inclui mensagem amigável.
+// está tocando.
 function start_view() {
 	$update_state().then(function (response) {
 		if (state.playing) {
 			show_player();
 		} else {
 			show_radios();
-			$("#silence").show();
 		}
 	});
 }
