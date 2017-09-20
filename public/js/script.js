@@ -94,7 +94,7 @@ function play_stream(type, value) {
 	.done(function() {
 		setTimeout(function() {
 			show_player();
-		}, 1000);
+		}, 1500);
 	})
 	.fail(function() {
 		show_radios();
