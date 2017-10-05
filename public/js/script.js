@@ -148,13 +148,16 @@ $(document).ready(function() {
 	});
 
 	$("#btn-ps").click(function( event ) {
-		cmd = state.playing ? "stop" : "play";
+		var cmd = state.playing ? "stop" : "play";
 		$.post( "/api", { cmd: cmd }, function(data) {
 			$update_state();
 		});
 	});
 
 	$("#btn-random").click(function( event ) {
+		var text;
+		var time;
+
 		// Define which alert to show based on player state
 		if (state.playing && state.local) {
 			text = RANDOM_NEXT;
@@ -182,7 +185,7 @@ $(document).ready(function() {
 	});
 
 	$(".radio-name").click(function(event) {
-		name = $(this).text();
+		var name = $(this).text();
 		if (name == state.song && ! state.local && state.playing) {
 			show_player();
 		} else {
@@ -191,7 +194,7 @@ $(document).ready(function() {
 	});
 
 	$("#insert").click(function(event) {
-		url = prompt(URL_INSERT);
+		var url = prompt(URL_INSERT);
 		if (url != null)
 			play_stream("url", url);
 		});
