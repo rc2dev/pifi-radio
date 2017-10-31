@@ -94,7 +94,7 @@ function play_stream(type, value) {
 	.done(function() {
 		setTimeout(function() {
 			show_player();
-		}, 1500);
+		}, 2000);
 	})
 	.fail(function() {
 		show_radios();
@@ -136,13 +136,13 @@ $(document).ready(function() {
 	});
 
 	$("#btn-vup").click(function(event) {
-		$.post( "/api", { cmd: "vol_ch", inc: "+4" }, function(data) {
+		$.post( "/api", { cmd: "vol_ch", inc: "+5" }, function(data) {
 			vol_osd(data);
 		});
 	});
 
 	$("#btn-vdown").click(function(event) {
-		$.post( "/api", { cmd: "vol_ch", inc: "-4" }, function(data) {
+		$.post( "/api", { cmd: "vol_ch", inc: "-5" }, function(data) {
 			vol_osd(data);
 		});
 	});
