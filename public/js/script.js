@@ -41,7 +41,7 @@ function $update_state() {
 };
 
 function to_min_sec(sec) {
- 	return new Date(sec * 1000).toISOString().substr(14, 5);
+	return new Date(sec * 1000).toISOString().substr(14, 5);
 }
 
 function show_player() {
@@ -79,11 +79,7 @@ function vol_osd(vol) {
 // está tocando.
 function start_view() {
 	$update_state().then(function (response) {
-		if (state.playing) {
-			show_player();
-		} else {
-			show_radios();
-		}
+		show_player();
 	});
 }
 
@@ -107,22 +103,9 @@ function play_stream(type, value) {
 $(document).ready(function() {
 	start_view();
 
-	// Se janela perde foco: esconde player
-	// Se janela ganha foco: reinicializa
-	window_focus = true;
-	$(window)
-		.focus(function() {
-			window_focus = true;
-			start_view();
-		})
-		.blur(function() {
-			window_focus = false;
-			show_alert(document.title);
-		});
-
-	// Atualiza player periodicamente se janela em foco
+	// Atualiza player periodicamente
 	setInterval(function() {
-		if (window_focus) $update_state();
+		$update_state();
 	}, 1000);
 
 	// "Desclica" botões após clicados
