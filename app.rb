@@ -3,6 +3,7 @@ require 'ruby-mpd'
 require 'json'
 require_relative 'methods'
 require_relative 'player'
+require_relative 'lang'
 
 
 # Constants
@@ -85,10 +86,11 @@ end
 
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
+	lang = set_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
 	cache_control :public, :max_age => CACHE_MAX_AGE
 	last_modified cache_time
 	erb :main, locals: { title: title, streams: streams,
-		play_local: config["play_local"] }
+		play_local: config["play_local"], lang: lang }
 end
 
 get "/s" do
@@ -103,3 +105,6 @@ error do
 		"<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
 		"<a href="/"><h2>Voltar</h2></a>"
 end
+
+lang = Lang.new("")
+print lang.avail

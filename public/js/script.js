@@ -1,12 +1,3 @@
-// Constantes (mensagens)
-const PLAYING = "Tocando";
-const NOT_PLAYING = "Parado";
-const STREAM_ERROR = "Não foi possível tocar essa rádio.";
-const STREAM_TRYING = "Sintonizando...";
-const URL_INSERT = "Insira a URL";
-const RANDOM_NEXT = "Próxima música";
-const RANDOM_FIRST = "Conectando ao armazenamento...";
-
 // Variáveis globais
 var timeout;
 var state;
@@ -21,10 +12,10 @@ function $update_state() {
 
 		// Atualiza play-stop, status e nome
 		if (state.playing) {
-			$("#status").html(PLAYING);
+			$("#status").html(lang.playing);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
 		} else {
-			$("#status").html(NOT_PLAYING);
+			$("#status").html(lang.not_playing);
 			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
 		}
 		$("#song").html(state.song);
@@ -84,7 +75,7 @@ function start_view() {
 }
 
 function play_stream(type, value) {
-	show_alert(STREAM_TRYING);
+	show_alert(lang.stream_trying);
 
 	$.post("/api", { cmd: "play_stream", type: type, value: value })
 	.done(function() {
@@ -94,7 +85,7 @@ function play_stream(type, value) {
 	})
 	.fail(function() {
 		show_radios();
-		alert(STREAM_ERROR);
+		alert(lang.stream_error);
 	});
 }
 
@@ -143,10 +134,10 @@ $(document).ready(function() {
 
 		// Define which alert to show based on player state
 		if (state.playing && state.local) {
-			text = RANDOM_NEXT;
+			text = lang.random_next;
 			time = 1500;
 		} else {
-			text = RANDOM_FIRST;
+			text = lang.random_first;
 			time = 5000;
 		}
 		show_alert(text);
@@ -177,7 +168,7 @@ $(document).ready(function() {
 	});
 
 	$("#insert").click(function(event) {
-		var url = prompt(URL_INSERT);
+		var url = prompt(lang.url_insert);
 		if (url != null)
 			play_stream("url", url);
 		});
