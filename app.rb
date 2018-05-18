@@ -8,15 +8,15 @@ require_relative 'lang'
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["host", "streams_dir", "play_local"]
-CACHE_MAX_AGE = 120
+CONFIG_KEYS = ["cache_max_age", "host", "streams_file", "streamsp_file",
+							 "special_ips", "play_local"]
 
 # For cache use
 cache_time = Time.now
 
 # User configuration
 config = load_config(CONFIG_FILE, CONFIG_KEYS)
-streams, streams_all = load_streams(config["streams_dir"])
+streams, streams_all = load_streams(config["streams_file"], config["streamsp_file"])
 
 # Sinatra configuration
 configure :development do
@@ -87,24 +87,18 @@ end
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
 	lang = set_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
-	cache_control :public, :max_age => CACHE_MAX_AGE
+	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
-	erb :main, locals: { title: title, streams: streams,
-		play_local: config["play_local"], lang: lang }
-end
 
-get "/s" do
-	cache_control :public, :max_age => CACHE_MAX_AGE
-	last_modified cache_time
-	erb :main, locals: { title: title, streams: streams_all,
+	# Try to get remote IP if behind reverse-proxy
+	ip = env.has_key?("HTTP_X_FORWARDED_FOR") ? env["HTTP_X_FORWARDED_FOR"] : request.ip
+	is_special = config["special_ips"].include?(ip)
+	stream_set = is_special ? streams_all : streams
+
+	erb :main, locals: { title: title, streams: stream_set,
 		play_local: config["play_local"] }
 end
 
-error do
-	"<h3>Desculpe, ocorreu um erro.</h3>" +
-		"<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
-		"<a href="/"><h2>Voltar</h2></a>"
-end
 
 lang = Lang.new("")
 print lang.avail
