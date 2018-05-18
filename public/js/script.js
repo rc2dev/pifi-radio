@@ -89,10 +89,20 @@ function play_stream(type, value) {
 	});
 }
 
+function set_static_str() {
+	$("#btn-random").append(lang.s_btn_random);
+	$("#btn-radios").append(lang.s_btn_radios);
+	$("#btn-player").append(lang.s_btn_player);
+	$("#title strong").text(lang.s_title);
+	$("#insert h4").text(lang.s_insert);
+}
 
 // Documento
 $(document).ready(function() {
 	start_view();
+
+	// Set static strings
+	set_static_str();
 
 	// Atualiza player periodicamente
 	setInterval(function() {
