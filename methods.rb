@@ -1,10 +1,8 @@
 # Load streams to variables
-def load_streams(dir)
-	path = File.join(dir, "streams.json")
-	path_private = File.join(dir, "streams_private.json")
-	streams = load_json(path)
-	streams_private = load_json(path_private)
-	streams_all = streams.merge(streams_private)
+def load_streams(streams_file, streamsp_file)
+	streams = load_json(streams_file)
+	streamsp = load_json(streamsp_file)
+	streams_all = streams.merge(streamsp)
 	[streams, streams_all]
 end
 

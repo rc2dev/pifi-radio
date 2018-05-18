@@ -7,14 +7,15 @@ require_relative 'player'
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["cache_max_age", "host", "streams_dir", "special_ips", "play_local"]
+CONFIG_KEYS = ["cache_max_age", "host", "streams_file", "streamsp_file",
+							 "special_ips", "play_local"]
 
 # For cache use
 cache_time = Time.now
 
 # User configuration
 config = load_config(CONFIG_FILE, CONFIG_KEYS)
-streams, streams_all = load_streams(config["streams_dir"])
+streams, streams_all = load_streams(config["streams_file"], config["streamsp_file"])
 
 # Sinatra configuration
 configure :development do
