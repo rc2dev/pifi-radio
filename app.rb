@@ -97,8 +97,3 @@ get "/s" do
 		play_local: config["play_local"] }
 end
 
-error do
-	"<h3>Desculpe, ocorreu um erro.</h3>" +
-		"<p>Mensagem: " + env["sinatra.error"].message + "</p>" +
-		"<a href="/"><h2>Voltar</h2></a>"
-end
