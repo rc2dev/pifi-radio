@@ -9,7 +9,7 @@ class LangSetter
 	end
 
 	def get_avail
-		avail = Dir.glob("locales/*.rb")
+		avail = Dir.glob("public/js/lang/*")
 		avail.map! { |x| File.basename(x, ".*") }
 		@avail = avail
 	end
