@@ -3,7 +3,7 @@ require 'ruby-mpd'
 require 'json'
 require_relative 'methods'
 require_relative 'player'
-require_relative 'lang'
+require_relative 'langsetter'
 
 
 # Constants
