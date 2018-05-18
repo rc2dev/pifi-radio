@@ -7,8 +7,7 @@ require_relative 'player'
 
 # Constants
 CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["host", "streams_dir", "play_local"]
-CACHE_MAX_AGE = 120
+CONFIG_KEYS = ["cache_max_age", "host", "streams_dir", "play_local"]
 
 # For cache use
 cache_time = Time.now
@@ -85,14 +84,14 @@ end
 
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
-	cache_control :public, :max_age => CACHE_MAX_AGE
+	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
 	erb :main, locals: { title: title, streams: streams,
 		play_local: config["play_local"] }
 end
 
 get "/s" do
-	cache_control :public, :max_age => CACHE_MAX_AGE
+	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
 	erb :main, locals: { title: title, streams: streams_all,
 		play_local: config["play_local"] }
