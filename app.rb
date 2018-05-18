@@ -86,7 +86,9 @@ end
 
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
-	lang = set_lang(request.env['HTTP_ACCEPT_LANGUAGE'])
+	langSetter = LangSetter.new(env)
+	lang = langSetter.lang
+
 	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
 
@@ -95,10 +97,7 @@ get "/" do
 	is_special = config["special_ips"].include?(ip)
 	stream_set = is_special ? streams_all : streams
 
-	erb :main, locals: { title: title, streams: stream_set,
+	erb :main, locals: { title: title, lang: lang, streams: stream_set,
 		play_local: config["play_local"] }
 end
 
-
-lang = Lang.new("")
-print lang.avail

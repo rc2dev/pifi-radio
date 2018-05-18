@@ -1,9 +1,11 @@
-class Lang
+class LangSetter
 
-	attr_reader :avail
+	attr_reader :lang
 
-	def initialize
+	def initialize(env)
 		get_avail
+		get_accepted(env)
+		set_lang
 	end
 
 	def get_avail
@@ -12,6 +14,20 @@ class Lang
 		@avail = avail
 	end
 
-	def set_lang(accept)
+	def get_accepted(env)
+		request = env["HTTP_ACCEPT_LANGUAGE"]
+		@accepted = request.split(";")[0].split(",")
 	end
+
+	def set_lang
+		@accepted.each do |acc|
+			acc = acc.downcase
+			if @avail.include?(acc)
+				@lang = acc
+				return
+			end
+		end
+		@lang = "en-us"
+	end
+
 end
