@@ -88,7 +88,9 @@ get "/" do
 	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
 
-	is_special = config["special_ips"].include?(request.ip)
+	# Try to get remote IP if behind reverse-proxy
+	ip = env.has_key?("HTTP_X_FORWARDED_FOR") ? env["HTTP_X_FORWARDED_FOR"] : request.ip
+	is_special = config["special_ips"].include?(ip)
 	stream_set = is_special ? streams_all : streams
 
 	erb :main, locals: { title: title, streams: stream_set,
