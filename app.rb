@@ -86,8 +86,8 @@ end
 
 title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
 get "/" do
-	langSetter = LangSetter.new(env)
-	lang = langSetter.lang
+	lang_setter = LangSetter.new(env)
+	lang = lang_setter.lang
 
 	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
