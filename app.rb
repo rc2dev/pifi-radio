@@ -1,22 +1,10 @@
 require 'sinatra'
 require 'ruby-mpd'
-require 'json'
 require_relative 'methods'
+require_relative 'config_getter'
 require_relative 'player'
-require_relative 'langsetter'
+require_relative 'lang_setter'
 
-
-# Constants
-CONFIG_FILE = "/etc/rcradio.conf"
-CONFIG_KEYS = ["cache_max_age", "host", "streams_file", "streamsp_file",
-							 "special_ips", "play_local"]
-
-# For cache use
-cache_time = Time.now
-
-# User configuration
-config = load_config(CONFIG_FILE, CONFIG_KEYS)
-streams, streams_all = load_streams(config["streams_file"], config["streamsp_file"])
 
 # Sinatra configuration
 configure :development do
@@ -25,6 +13,17 @@ end
 configure :production do
 	set :static, false
 end
+
+# For cache use
+cache_time = Time.now
+
+# Configuration
+config_getter = ConfigGetter.new
+config = config_getter.config
+
+# Streams
+streams, streams_all = Methods.get_streams(
+	config["streams_file"], config["streamsp_file"])
 
 # Create player
 player = Player.new(config["host"], streams_all)
