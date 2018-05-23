@@ -31,8 +31,3 @@ def load_config(path, keys)
 	config
 end
 
-# Determine which language to use, based on HTTP request headers
-def set_lang(accept)
-	langs = accept.to_s.split(",").map
-
-end
