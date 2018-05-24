@@ -63,7 +63,7 @@ function vol_osd(vol) {
 	timeout = setTimeout(function() {
 		$("#osd").hide();
 		$("#player-bottom").show();
-	}, 1300);
+	}, to.vol_osd);
 }
 
 // Decide o que mostrar ao iniciar, baseado se
@@ -81,7 +81,7 @@ function play_stream(type, value) {
 	.done(function() {
 		setTimeout(function() {
 			show_player();
-		}, 2000);
+		}, to.play_stream);
 	})
 	.fail(function() {
 		show_radios();
@@ -107,7 +107,7 @@ $(document).ready(function() {
 	// Atualiza player periodicamente
 	setInterval(function() {
 		$update_state();
-	}, 1000);
+	}, to.update);
 
 	// "Desclica" botões após clicados
 	$("button").click(function(event) {
@@ -145,10 +145,10 @@ $(document).ready(function() {
 		// Define which alert to show based on player state
 		if (state.playing && state.local) {
 			text = lang.random_next;
-			time = 1500;
+			time = to.random_next;
 		} else {
 			text = lang.random_first;
-			time = 5000;
+			time = to.random_first;
 		}
 		show_alert(text);
 
