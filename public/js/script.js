@@ -1,4 +1,6 @@
-app = function(){
+"use strict";
+
+var app = function(){
 
 	var timeout = null;
 	var state = null;
