@@ -10,12 +10,12 @@ app = function(){
 		update: 1000,
 	}
 
-	// É assíncrona, retorna promisse
+	// Async, returns promise
 	function $update_state() {
 		return $.get("/api", function(data) {
 			state = data;
 
-			// Atualiza play-stop, status e nome
+			// Update info on screen
 			if (state.playing) {
 				$("#status").html(lang.playing);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
@@ -25,7 +25,7 @@ app = function(){
 			}
 			$("#song").html(state.song);
 
-			// Se local e tocando: atualiza duração, tempo e os exibe
+			// Update additional info if playing local music
 			if (state.local && state.playing) {
 				$("#elapsed").html(to_min_sec(state.elapsed));
 				$("#length").html(to_min_sec(state.length));
@@ -172,19 +172,19 @@ $(document).ready(function() {
 	// Set static strings
 	app.set_static_str();
 
-	// Atualiza player periodicamente
+	// Update player periodically
 	setInterval(function() {
 		app.$update_state();
 	}, app.to.update);
 
-	// "Desclica" botões após clicados
+	// "Unclick" buttons after clicked
 	$("button").click(function(event) {
 		$(this).blur();
 	});
 
-	// Previne href="#" de ser executado
+	// Prevent href="#" to be executed
 	$('a[href="#"]').click(function(event) {
-    return false;
+		return false;
 	});
 
 	$("#btn-vup").click(function(event) {
