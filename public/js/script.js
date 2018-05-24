@@ -4,16 +4,16 @@ var app = function(){
 
 	var timeout = null;
 	var state = null;
-	var to = {
-		play_stream: 2000,
-		random_next: 1500,
-		random_first: 5000,
-		vol_osd: 1300,
+	var time = {
+		playStream: 2000,
+		randomNext: 1500,
+		randomFirst: 5000,
+		volOsd: 1300,
 		update: 1000,
 	}
 
 	// Async, returns promise
-	function $update_state() {
+	function $updateState() {
 		return $.get("/api", function(data) {
 			state = data;
 
@@ -22,15 +22,15 @@ var app = function(){
 				$("#status").html(lang.playing);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
 			} else {
-				$("#status").html(lang.not_playing);
+				$("#status").html(lang.notPlaying);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-play');
 			}
 			$("#song").html(state.song);
 
 			// Update additional info if playing local music
 			if (state.local && state.playing) {
-				$("#elapsed").html(to_min_sec(state.elapsed));
-				$("#length").html(to_min_sec(state.length));
+				$("#elapsed").html(toMinSec(state.elapsed));
+				$("#length").html(toMinSec(state.length));
 				$("#progress").show();
 			} else {
 				$("#progress").hide();
@@ -38,104 +38,104 @@ var app = function(){
 		});
 	};
 
-	function set_static_str() {
-		$("#btn-random").append(lang.s_btn_random);
-		$("#btn-radios").append(lang.s_btn_radios);
-		$("#btn-player").append(lang.s_btn_player);
-		$("#title strong").text(lang.s_title);
-		$("#insert h4").text(lang.s_insert);
+	function setStaticStr() {
+		$("#btn-random").append(lang.sBtnRandom);
+		$("#btn-radios").append(lang.sBtnRadios);
+		$("#btn-player").append(lang.sBtnPlayer);
+		$("#title strong").text(lang.sTitle);
+		$("#insert h4").text(lang.sInsert);
 	}
 
-	function start_view() {
-		$update_state().then(function (response) {
-			show_player();
+	function startView() {
+		$updateState().then(function (response) {
+			showPlayer();
 		});
 	}
 
-	function click_random() {
+	function clickRandom() {
 		var text;
-		var time;
+		var waitTime;
 
 		// Define which alert to show based on player state
 		if (state.playing && state.local) {
-			text = lang.random_next;
-			time = to.random_next;
+			text = lang.randomNext;
+			waitTime = time.randomNext;
 		} else {
-			text = lang.random_first;
-			time = to.random_first;
+			text = lang.randomFirst;
+			waitTime = time.randomFirst;
 		}
-		osd_alert(text);
+		osdAlert(text);
 
 		$.post("/api", { cmd: "play_random" })
 			.always(function(data) {
 				setTimeout(function() {
-					show_player();
-				}, time);
+					showPlayer();
+				}, waitTime);
 			});
 	}
 
-	function click_vol(vol) {
-		$.post( "/api", { cmd: "vol_ch", inc: vol }, function(data) {
-			osd_vol(data);
+	function clickVol(inc) {
+		$.post( "/api", { cmd: "vol_ch", inc: inc }, function(data) {
+			osdVol(data);
 		});
 	}
 
-	function click_ps() {
+	function clickPs() {
 		var cmd = state.playing ? "stop" : "play";
 		$.post( "/api", { cmd: cmd }, function(data) {
-			$update_state();
+			$updateState();
 		});
 	}
 
-	function click_radio(name) {
+	function clickRadio(name) {
 		if (name == state.song && ! state.local && state.playing) {
-			show_player();
+			showPlayer();
 		} else {
-			play_stream("name", name);
+			playStream("name", name);
 		}
 	}
 
-	function click_insert(url) {
+	function clickInsert(url) {
 		if (url != null) {
-			play_stream("url", url);
+			playStream("url", url);
 		}
 	}
 
-	function play_stream(type, value) {
-		osd_alert(lang.stream_trying);
+	function playStream(type, value) {
+		osdAlert(lang.streamTrying);
 
 		$.post("/api", { cmd: "play_stream", type: type, value: value })
 		.done(function() {
 			setTimeout(function() {
-				show_player();
-			}, to.play_stream);
+				showPlayer();
+			}, to.playStream);
 		})
 		.fail(function() {
-			show_radios();
-			alert(lang.stream_error);
+			showRadios();
+			alert(lang.streamError);
 		});
 	}
 
-	function show_player() {
+	function showPlayer() {
 		$("#alert").hide();
 		$("#radios").hide();
 		$("#player").show();
 	}
 
-	function show_radios() {
+	function showRadios() {
 		$("#alert").hide();
 		$("#player").hide();
 		$("#radios").show();
 	}
 
-	function osd_alert(text) {
+	function osdAlert(text) {
 		$("#alert-text").text(text);
 		$("#player").hide();
 		$("#radios").hide();
 		$("#alert").show();
 	}
 
-	function osd_vol(vol) {
+	function osdVol(vol) {
 		$("#osd-text").html(vol);
 		$("#player-bottom").hide();
 		$("#osd").show();
@@ -144,39 +144,39 @@ var app = function(){
 		timeout = setTimeout(function() {
 			$("#osd").hide();
 			$("#player-bottom").show();
-		}, app.to.vol_osd);
+		}, to.volOsd);
 	}
 
-	function to_min_sec(sec) {
+	function toMinSec(sec) {
 		return new Date(sec * 1000).toISOString().substr(14, 5);
 	}
 
 
 	return {
-		start_view: start_view,
-		set_static_str: set_static_str,
-		$update_state: $update_state,
-		show_player: show_player,
-		show_radios: show_radios,
-		click_ps: click_ps,
-		click_vol: click_vol,
-		click_random: click_random,
-		click_radio: click_radio,
-		click_insert: click_insert,
-		to: to
+		startView: startView,
+		setStaticStr: setStaticStr,
+		$updateState: $updateState,
+		showPlayer: showPlayer,
+		showRadios: showRadios,
+		clickPs: clickPs,
+		clickVol: clickVol,
+		clickRandom: clickRandom,
+		clickRadio: clickRadio,
+		clickInsert: clickInsert,
+		time: time
 	}
 }();
 
 // Documento
 $(document).ready(function() {
-	app.start_view();
+	app.startView();
 
 	// Set static strings
-	app.set_static_str();
+	app.setStaticStr();
 
 	// Update player periodically
 	setInterval(function() {
-		app.$update_state();
+		app.$updateState();
 	}, app.to.update);
 
 	// "Unclick" buttons after clicked
@@ -190,36 +190,36 @@ $(document).ready(function() {
 	});
 
 	$("#btn-vup").click(function(event) {
-		app.click_vol("+5");
+		app.clickVol("+5");
 	});
 
 	$("#btn-vdown").click(function(event) {
-		app.click_vol("-5");
+		app.clickVol("-5");
 	});
 
 	$("#btn-ps").click(function( event ) {
-		app.click_ps();
+		app.clickPs();
 	});
 
 	$("#btn-random").click(function( event ) {
-		app.click_random();
+		app.clickRandom();
 	});
 
 	$("#btn-radios").click(function(event) {
-		app.show_radios();
+		app.showRadios();
 	});
 
 	$("#btn-player").click(function(event) {
-		app.show_player();
+		app.showPlayer();
 	});
 
 	$(".radio-name").click(function(event) {
 		var name = $(this).text();
-		app.click_radio(name);
+		app.clickRadio(name);
 	});
 
 	$("#insert").click(function(event) {
-		var url = prompt(lang.url_insert);
-		app.click_insert(url);
+		var url = prompt(lang.urlInsert);
+		app.clickInsert(url);
 	});
 });
