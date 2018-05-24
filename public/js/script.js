@@ -108,7 +108,7 @@ var app = function(){
 		.done(function() {
 			setTimeout(function() {
 				showPlayer();
-			}, to.playStream);
+			}, time.playStream);
 		})
 		.fail(function() {
 			showRadios();
@@ -144,7 +144,7 @@ var app = function(){
 		timeout = setTimeout(function() {
 			$("#osd").hide();
 			$("#player-bottom").show();
-		}, to.volOsd);
+		}, time.volOsd);
 	}
 
 	function toMinSec(sec) {
@@ -177,7 +177,7 @@ $(document).ready(function() {
 	// Update player periodically
 	setInterval(function() {
 		app.$updateState();
-	}, app.to.update);
+	}, app.time.update);
 
 	// "Unclick" buttons after clicked
 	$("button").click(function(event) {
