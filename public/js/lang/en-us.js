@@ -5,7 +5,7 @@ var lang = {
 	streamTrying: "Tunning...",
 	urlInsert: "Type the URL",
 	randomNext: "Next song",
-	randomFirst: "Connecting to NAS",
+	randomFirst: "Connecting to NAS...",
 
 	// Static
 	sBtnRandom: "Random",
