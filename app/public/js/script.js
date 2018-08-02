@@ -167,7 +167,7 @@ var app = function(){
 	}
 }();
 
-// Documento
+// Document
 $(document).ready(function() {
 	app.startView();
 
