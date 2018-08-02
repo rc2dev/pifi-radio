@@ -3,7 +3,7 @@ require 'json'
 class ConfigGetter
 	attr_reader :config
 
-	@@PATH = "/etc/rcradio.conf"
+	@@PATH = "/etc/pifiradio.conf"
 	@@KEYS = ["cache_max_age", "host", "streams_file", "streamsp_file",
 						 "special_ips", "play_local"]
 

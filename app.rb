@@ -83,7 +83,7 @@ post "/api" do
 	end
 end
 
-title = production? ? "Rádio" : "#{settings.environment.capitalize} - Rádio"
+title = production? ? "PiFi Radio" : "#{settings.environment.capitalize} - PiFi Radio"
 get "/" do
 	lang_setter = LangSetter.new(env)
 	lang = lang_setter.lang
