@@ -4,7 +4,7 @@ class ConfigGetter
 	attr_reader :config
 
 	@@PATH = "/etc/pifiradio.conf"
-	@@KEYS = ["cache_max_age", "host", "streams_file", "streamsp_file",
+	@@KEYS = ["cache_max_age", "host", "port", "streams_file", "streamsp_file",
 						 "special_ips", "play_local"]
 
 	def initialize

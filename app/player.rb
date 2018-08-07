@@ -1,9 +1,9 @@
 class Player
 	attr_reader :playing, :song, :local, :elapsed, :length, :con_mpd
 
-	def initialize(host, streams)
+	def initialize(host, port, streams)
 		@streams = streams
-		@mpd = MPD.new host, 6600, { callbacks: true }
+		@mpd = MPD.new host, port, { callbacks: true }
 
 		@mpd.connect
 

@@ -26,7 +26,7 @@ streams, streams_all = Methods.get_streams(
 	config["streams_file"], config["streamsp_file"])
 
 # Create player
-player = Player.new(config["host"], streams_all)
+player = Player.new(config["host"], config["port"], streams_all)
 
 
 # Routes
