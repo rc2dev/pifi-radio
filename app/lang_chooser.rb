@@ -1,4 +1,4 @@
-class LangSetter
+class LangChooser
 
 	attr_reader :lang
 

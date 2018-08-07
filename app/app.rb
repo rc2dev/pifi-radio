@@ -3,7 +3,7 @@ require 'ruby-mpd'
 require_relative 'methods'
 require_relative 'config_getter'
 require_relative 'player'
-require_relative 'lang_setter'
+require_relative 'lang_chooser'
 
 
 # Sinatra configuration
@@ -85,8 +85,8 @@ end
 
 title = production? ? "PiFi Radio" : "#{settings.environment.capitalize} - PiFi Radio"
 get "/" do
-	lang_setter = LangSetter.new(env)
-	lang = lang_setter.lang
+	lang_chooser = LangChooser.new(env)
+	lang = lang_chooser.lang
 
 	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
