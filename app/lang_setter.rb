@@ -2,27 +2,27 @@ class LangSetter
 
 	attr_reader :lang
 
-	def initialize(env)
-		get_avail
-		get_accepted(env)
-		set_lang
-	end
 
-	def get_avail
-		avail = Dir.glob("public/js/lang/*")
+	def self.set_avail
+		avail = Dir.glob("app/public/js/lang/*")
 		avail.map! { |x| File.basename(x, ".*") }
-		@avail = avail
+		@@avail = avail
 	end
 
-	def get_accepted(env)
+	def initialize(env)
+		set_accepted(env)
+		choose_lang
+	end
+
+	def set_accepted(env)
 		request = env["HTTP_ACCEPT_LANGUAGE"]
 		@accepted = request.split(";")[0].split(",")
 	end
 
-	def set_lang
+	def choose_lang
 		@accepted.each do |acc|
 			acc = acc.downcase
-			if @avail.include?(acc)
+			if @@avail.include?(acc)
 				@lang = acc
 				return
 			end
@@ -30,4 +30,5 @@ class LangSetter
 		@lang = "en-us"
 	end
 
+	self.set_avail
 end
