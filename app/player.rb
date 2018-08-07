@@ -1,11 +1,10 @@
 class Player
-	attr_reader :playing, :song, :local, :elapsed, :length
+	attr_reader :playing, :song, :local, :elapsed, :length, :con_mpd
 
 	def initialize(host, streams)
 		@streams = streams
-
-		# Connect to MPD
 		@mpd = MPD.new host, 6600, { callbacks: true }
+
 		@mpd.connect
 
 		# Callbacks
@@ -13,6 +12,7 @@ class Player
 		@mpd.on :time, &method(:set_time)
 		@mpd.on :song, &method(:set_song)
 		@mpd.on :volume, &method(:set_vol)
+		@mpd.on :connection, &method(:set_con_mpd)
 	end
 
 
@@ -100,6 +100,10 @@ class Player
 
 	def set_vol(vol)
 		@vol = vol
+	end
+
+	def set_con_mpd(con_mpd)
+		@con_mpd = con_mpd
 	end
 
 	def local_name(song)

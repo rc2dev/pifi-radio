@@ -4,6 +4,7 @@ var app = function(){
 
 	var timeout = null;
 	var state = null;
+	var hidden = null;
 	var time = {
 		playStream: 2000,
 		randomNext: 1500,
@@ -35,7 +36,19 @@ var app = function(){
 			} else {
 				$("#progress").hide();
 			}
-		});
+
+			// Hide data if backend is disconnected from MPD
+			if (state.con_mpd) {
+				if (hidden) {
+					unhide();
+				}
+			} else {
+				hide(lang.disconnectedMpd);
+			}
+		})
+			.fail(function() {
+				hide(lang.disconnectedNet);
+			});
 	};
 
 	function setStaticStr() {
@@ -126,6 +139,16 @@ var app = function(){
 		$("#alert").hide();
 		$("#player").hide();
 		$("#radios").show();
+	}
+
+	function hide(text) {
+		osdAlert(text);
+		hidden = true;
+	}
+
+	function unhide() {
+		showPlayer();
+		hidden = false;
 	}
 
 	function osdAlert(text) {

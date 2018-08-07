@@ -6,6 +6,8 @@ var lang = {
 	urlInsert: "Type the URL",
 	randomNext: "Next song",
 	randomFirst: "Connecting to NAS...",
+	disconnectedMpd: "Disconnected from MPD",
+	disconnectedNet: "No connection",
 
 	// Static
 	sBtnRandom: "Random",

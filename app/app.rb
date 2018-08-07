@@ -37,7 +37,8 @@ get "/api" do
 		song: player.song,
 		local: player.local,
 		elapsed: player.elapsed,
-		length: player.length }.to_json
+		length: player.length,
+		con_mpd: player.con_mpd }.to_json
 end
 
 post "/api" do
