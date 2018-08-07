@@ -200,10 +200,14 @@ var app = function(){
 // Document
 $(document).ready(function() {
 
+	// Set initial "loading" screen
 	app.hide(lang.loading);
 
 	// Set static strings
 	app.setStaticStr();
+
+	// Initial update. Don't rely on setInterval, because it can delay
+	app.$updateState();
 
 	// Get API data and update player periodically
 	setInterval(function() {
