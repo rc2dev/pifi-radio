@@ -2,9 +2,10 @@
 
 var app = function(){
 
+	var started = false;
+	var hidden = false;
 	var timeout = null;
 	var state = null;
-	var hidden = null;
 	var time = {
 		playStream: 2000,
 		randomNext: 1500,
@@ -37,6 +38,11 @@ var app = function(){
 				$("#progress").hide();
 			}
 
+			// Choose view if first update
+			if (started == false) {
+				setStartView();
+			}
+
 			// Hide data if backend is disconnected from MPD
 			if (state.con_mpd) {
 				if (hidden) {
@@ -59,10 +65,13 @@ var app = function(){
 		$("#insert h4").text(lang.sInsert);
 	}
 
-	function startView() {
-		$updateState().then(function (response) {
+	function setStartView() {
+		if (state.playing) {
 			showPlayer();
-		});
+		} else {
+			showRadios();
+		}
+		started = true;
 	}
 
 	function clickRandom() {
@@ -176,7 +185,7 @@ var app = function(){
 
 
 	return {
-		startView: startView,
+		time: time,
 		setStaticStr: setStaticStr,
 		$updateState: $updateState,
 		showPlayer: showPlayer,
@@ -185,19 +194,16 @@ var app = function(){
 		clickVol: clickVol,
 		clickRandom: clickRandom,
 		clickRadio: clickRadio,
-		clickInsert: clickInsert,
-		time: time
+		clickInsert: clickInsert
 	}
 }();
 
 // Document
 $(document).ready(function() {
-	app.startView();
-
 	// Set static strings
 	app.setStaticStr();
 
-	// Update player periodically
+	// Get API data and update player periodically
 	setInterval(function() {
 		app.$updateState();
 	}, app.time.update);
