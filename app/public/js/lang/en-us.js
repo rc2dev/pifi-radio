@@ -8,6 +8,7 @@ var lang = {
 	randomFirst: "Connecting to NAS...",
 	disconnectedMpd: "Disconnected from MPD",
 	disconnectedNet: "No connection",
+	loading: "Loading...",
 
 	// Static
 	sBtnRandom: "Random",

@@ -3,7 +3,7 @@
 var app = function(){
 
 	var started = false;
-	var hidden = false;
+	var hidden = true;
 	var timeout = null;
 	var state = null;
 	var time = {
@@ -36,11 +36,6 @@ var app = function(){
 				$("#progress").show();
 			} else {
 				$("#progress").hide();
-			}
-
-			// Choose view if first update
-			if (started == false) {
-				setStartView();
 			}
 
 			// Hide data if backend is disconnected from MPD
@@ -156,7 +151,7 @@ var app = function(){
 	}
 
 	function unhide() {
-		showPlayer();
+		setStartView();
 		hidden = false;
 	}
 
@@ -190,6 +185,7 @@ var app = function(){
 		$updateState: $updateState,
 		showPlayer: showPlayer,
 		showRadios: showRadios,
+		hide: hide,
 		clickPs: clickPs,
 		clickVol: clickVol,
 		clickRandom: clickRandom,
@@ -200,6 +196,9 @@ var app = function(){
 
 // Document
 $(document).ready(function() {
+
+	app.hide(lang.loading);
+
 	// Set static strings
 	app.setStaticStr();
 
