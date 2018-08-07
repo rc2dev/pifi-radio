@@ -18,8 +18,23 @@ var app = function(){
 	function $updateState() {
 		return $.get("/api", function(data) {
 			state = data;
+			updateViews();
 
-			// Update info on screen
+			// Hide data if backend is disconnected from MPD
+			if (state.con_mpd) {
+				if (hidden) {
+					unhide();
+				}
+			} else {
+				hide(lang.disconnectedMpd);
+			}
+		})
+			.fail(function() {
+				hide(lang.disconnectedNet);
+			});
+	};
+
+	function updateViews() {
 			if (state.playing) {
 				$("#status").html(lang.playing);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
@@ -37,27 +52,6 @@ var app = function(){
 			} else {
 				$("#progress").hide();
 			}
-
-			// Hide data if backend is disconnected from MPD
-			if (state.con_mpd) {
-				if (hidden) {
-					unhide();
-				}
-			} else {
-				hide(lang.disconnectedMpd);
-			}
-		})
-			.fail(function() {
-				hide(lang.disconnectedNet);
-			});
-	};
-
-	function setStaticStr() {
-		$("#btn-random").append(lang.sBtnRandom);
-		$("#btn-radios").append(lang.sBtnRadios);
-		$("#btn-player").append(lang.sBtnPlayer);
-		$("#title strong").text(lang.sTitle);
-		$("#insert h4").text(lang.sInsert);
 	}
 
 	function setStartView() {
@@ -68,6 +62,15 @@ var app = function(){
 		}
 		started = true;
 	}
+
+	function setStaticStr() {
+		$("#btn-random").append(lang.sBtnRandom);
+		$("#btn-radios").append(lang.sBtnRadios);
+		$("#btn-player").append(lang.sBtnPlayer);
+		$("#title strong").text(lang.sTitle);
+		$("#insert h4").text(lang.sInsert);
+	}
+
 
 	function clickRandom() {
 		var text;
