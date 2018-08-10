@@ -3,6 +3,7 @@
 *.lock
 *.pid
 .directory
+.fuse_hidden*
 tags
 /admin
 /log
