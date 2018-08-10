@@ -1,9 +1,9 @@
 require 'sinatra'
 require 'ruby-mpd'
-require_relative 'methods'
 require_relative 'config_getter'
 require_relative 'player'
 require_relative 'lang_chooser'
+require_relative 'utils'
 
 
 # For cache use
@@ -14,7 +14,7 @@ config_getter = ConfigGetter.new
 config = config_getter.config
 
 # Streams
-streams, streams_all = Methods.get_streams(
+streams, streams_all = Utils.get_streams(
 	config["streams_file"], config["streamsp_file"])
 
 # Create player
@@ -92,9 +92,7 @@ get "/" do
 	cache_control :public, :max_age => config["cache_max_age"]
 	last_modified cache_time
 
-	# Try to get remote IP if behind reverse-proxy
-	ip = env.has_key?("HTTP_X_FORWARDED_FOR") ? env["HTTP_X_FORWARDED_FOR"] : request.ip
-	is_special = config["special_ips"].include?(ip)
+	is_special = Utils.is_special(env, request, config["special_ips"])
 	stream_set = is_special ? streams_all : streams
 
 	erb :main, locals: { title: title, lang: lang, streams: stream_set,

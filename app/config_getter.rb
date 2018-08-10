@@ -1,5 +1,3 @@
-require 'json'
-
 class ConfigGetter
 	attr_reader :config
 
@@ -8,7 +6,7 @@ class ConfigGetter
 					 "streamsp_file", "special_ips", "play_local"]
 
 	def initialize
-		@config = Methods.file_to_hash(@@PATH)
+		@config = Utils.file_to_hash(@@PATH)
 		check_error
 	end
 
