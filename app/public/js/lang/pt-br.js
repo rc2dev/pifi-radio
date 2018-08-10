@@ -8,6 +8,7 @@ var lang = {
 	randomFirst: "Conectando ao armazenamento...",
 	disconnectedMpd: "Desconectado do MPD",
 	disconnectedNet: "Sem conexão",
+	loading: "Carregando...",
 
 	// Static
 	sBtnRandom: "Aleatório",

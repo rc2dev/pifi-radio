@@ -2,9 +2,10 @@
 
 var app = function(){
 
+	var started = false;
+	var hidden = true;
 	var timeout = null;
 	var state = null;
-	var hidden = null;
 	var time = {
 		playStream: 2000,
 		randomNext: 1500,
@@ -53,10 +54,13 @@ var app = function(){
 			}
 	}
 
-	function startView() {
-		$updateState().then(function (response) {
+	function setStartView() {
+		if (state.playing) {
 			showPlayer();
-		});
+		} else {
+			showRadios();
+		}
+		started = true;
 	}
 
 	function setStaticStr() {
@@ -150,7 +154,7 @@ var app = function(){
 	}
 
 	function unhide() {
-		showPlayer();
+		setStartView();
 		hidden = false;
 	}
 
@@ -179,28 +183,33 @@ var app = function(){
 
 
 	return {
-		startView: startView,
+		time: time,
 		setStaticStr: setStaticStr,
 		$updateState: $updateState,
 		showPlayer: showPlayer,
 		showRadios: showRadios,
+		hide: hide,
 		clickPs: clickPs,
 		clickVol: clickVol,
 		clickRandom: clickRandom,
 		clickRadio: clickRadio,
-		clickInsert: clickInsert,
-		time: time
+		clickInsert: clickInsert
 	}
 }();
 
 // Document
 $(document).ready(function() {
-	app.startView();
+
+	// Set initial "loading" screen
+	app.hide(lang.loading);
 
 	// Set static strings
 	app.setStaticStr();
 
-	// Update player periodically
+	// Initial update. Don't rely on setInterval, because it can delay
+	app.$updateState();
+
+	// Get API data and update player periodically
 	setInterval(function() {
 		app.$updateState();
 	}, app.time.update);
