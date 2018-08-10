@@ -4,8 +4,8 @@ class ConfigGetter
 	attr_reader :config
 
 	@@PATH = "/etc/pifiradio.conf"
-	@@KEYS = ["cache_max_age", "host", "port", "streams_file", "streamsp_file",
-						 "special_ips", "play_local"]
+	@@KEYS = ["cache_max_age", "serve_static", "host", "port", "streams_file",
+					 "streamsp_file", "special_ips", "play_local"]
 
 	def initialize
 		@config = Methods.file_to_hash(@@PATH)

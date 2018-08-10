@@ -6,14 +6,6 @@ require_relative 'player'
 require_relative 'lang_chooser'
 
 
-# Sinatra configuration
-configure :development do
-	set :bind, '0.0.0.0'
-end
-configure :production do
-	set :static, false
-end
-
 # For cache use
 cache_time = Time.now
 
@@ -27,6 +19,14 @@ streams, streams_all = Methods.get_streams(
 
 # Create player
 player = Player.new(config["host"], config["port"], streams_all)
+
+# Sinatra configuration
+configure :development do
+	set :bind, '0.0.0.0'
+end
+configure :production do
+	set :static, config["serve_static"]
+end
 
 
 # Routes
