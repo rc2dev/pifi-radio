@@ -1,0 +1,9 @@
+{
+	"cache_max_age": 120,
+	"host": "127.0.0.1",
+	"port": 6600,
+	"streams_file": "",
+	"streamsp_file": "",
+	"special_ips": "",
+	"play_local": false
+}
