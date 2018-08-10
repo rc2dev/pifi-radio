@@ -38,9 +38,11 @@ var app = function(){
 			if (state.playing) {
 				$("#status").html(lang.playing);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
+				$("#btn-ps").attr('class', 'btn btn-danger btn-lg');
 			} else {
 				$("#status").html(lang.notPlaying);
 				$("#span-ps").attr('class', 'glyphicon glyphicon-play');
+				$("#btn-ps").attr('class', 'btn btn-default btn-lg');
 			}
 			$("#song").html(state.song);
 
