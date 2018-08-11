@@ -57,11 +57,11 @@ class Player
 	end
 
 	def play_random
-		# Se está tocando arquivo local, tocar o próximo
+		# If playing local music, play next
 		if @playing && @local
 			@mpd.next
-		# Se não está tocando arquivo local, carregar toda a
-		# biblioteca e começa a tocar em modo aleatório
+		# If not playing local music, load all the library
+		# and start to play in shuffle mode
 		else
 			@mpd.clear
 			@mpd.add("/")
@@ -108,7 +108,7 @@ class Player
 
 	def local_name(song)
 		if song.artist.nil? || song.title.nil?
-			"Música local"
+			"Music"
 		else
 			name = song.artist + " - " + song.title
 			# If larger than 45, make it 45! 45 - 3 (reticences) = 42. 0-41 is 42.
