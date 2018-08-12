@@ -21,9 +21,6 @@ streams, streams_all = Utils.get_streams(
 player = Player.new(config["host"], config["port"], streams_all)
 
 # Sinatra configuration
-configure :development do
-	set :bind, '0.0.0.0'
-end
 configure :production do
 	set :static, config["serve_static"]
 end
@@ -84,7 +81,7 @@ post "/api" do
 	end
 end
 
-title = production? ? "PiFi Radio" : "#{settings.environment.capitalize} - PiFi Radio"
+title = production? ? "PiFi Radio" : "[#{settings.environment.capitalize}] PiFi Radio"
 get "/" do
 	lang_chooser = LangChooser.new(env)
 	lang = lang_chooser.lang
