@@ -2,7 +2,6 @@
 
 var app = function(){
 
-	var started = false;
 	var hidden = true;
 	var timeout = null;
 	var state = null;
@@ -62,7 +61,6 @@ var app = function(){
 		} else {
 			showRadios();
 		}
-		started = true;
 	}
 
 	function setStaticStr() {
