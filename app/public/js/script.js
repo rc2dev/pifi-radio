@@ -13,9 +13,9 @@ var app = function(){
 		update: 1000,
 	}
 
-	// Async, returns promise
-	function $updateState() {
-		return $.get("/api", function(data) {
+	// Async
+	function updatingState() {
+		$.get("/api", function(data) {
 			state = data;
 			updateViews();
 
@@ -103,7 +103,7 @@ var app = function(){
 	function clickPs() {
 		var cmd = state.playing ? "stop" : "play";
 		$.post( "/api", { cmd: cmd }, function(data) {
-			$updateState();
+			updatingState();
 		});
 	}
 
@@ -185,7 +185,7 @@ var app = function(){
 	return {
 		time: time,
 		setStaticStr: setStaticStr,
-		$updateState: $updateState,
+		updatingState: updatingState,
 		showPlayer: showPlayer,
 		showRadios: showRadios,
 		hide: hide,
@@ -207,11 +207,11 @@ $(document).ready(function() {
 	app.setStaticStr();
 
 	// Initial update. Don't rely on setInterval, because it can delay
-	app.$updateState();
+	app.updatingState();
 
 	// Get API data and update player periodically
 	setInterval(function() {
-		app.$updateState();
+		app.updatingState();
 	}, app.time.update);
 
 	// "Unclick" buttons after clicked
