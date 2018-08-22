@@ -108,7 +108,7 @@ var app = function(){
 	}
 
 	function clickRadio(name) {
-		if (name == state.song && ! state.local && state.playing) {
+		if (name === state.song && ! state.local && state.playing) {
 			showPlayer();
 		} else {
 			playStream("name", name);
@@ -116,7 +116,7 @@ var app = function(){
 	}
 
 	function clickInsert(url) {
-		if (url != null) {
+		if (url !== null && url !== "") {
 			playStream("url", url);
 		}
 	}
