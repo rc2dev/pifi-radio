@@ -4,7 +4,6 @@ var state = null;
 
 var view = {
 	init: function() {
-		this.hidden = true;
 		this.timeout = null;
 
 		// Set initial "loading" screen
@@ -143,7 +142,7 @@ var view = {
 var controller = {
 	init: function() {
 		view.init();
-		
+
 		// Initial update. Don't rely on setInterval, because it can delay
 		this.updatingState();
 
