@@ -1,171 +1,83 @@
 "use strict";
 
-var app = function(){
+var state = null;
 
-	var hidden = true;
-	var timeout = null;
-	var state = null;
-	var time = {
-		playStream: 2000,
-		randomNext: 1500,
-		randomFirst: 5000,
-		volOsd: 1300,
-		update: 1000,
-	}
+var view = {
+	init: function() {
+		this.hidden = true;
+		this.timeout = null;
 
-	// Async
-	function updatingState() {
-		$.get("/api", function(data) {
-			state = data;
-			updateViews();
+		// Set initial "loading" screen
+		this.hide(lang.loading);
 
-			// Hide data if backend is disconnected from MPD
-			if (state.con_mpd) {
-				if (hidden) {
-					unhide();
-				}
-			} else {
-				hide(lang.disconnectedMpd);
-			}
-		})
-			.fail(function() {
-				hide(lang.disconnectedNet);
-			});
-	};
+		this.setStaticStr();
+		this.addListeners();
+	},
 
-	function updateViews() {
-			if (state.playing) {
-				$("#status").html(lang.playing);
-				$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
-				$("#btn-ps").attr('class', 'btn btn-danger btn-lg');
-			} else {
-				$("#status").html(lang.notPlaying);
-				$("#span-ps").attr('class', 'glyphicon glyphicon-play');
-				$("#btn-ps").attr('class', 'btn btn-default btn-lg');
-			}
-			$("#song").html(state.song);
-
-			// Update additional info if playing local music
-			if (state.local && state.playing) {
-				$("#elapsed").html(toMinSec(state.elapsed));
-				$("#length").html(toMinSec(state.length));
-				$("#progress").show();
-			} else {
-				$("#progress").hide();
-			}
-	}
-
-	function setStartView() {
+	render: function(state) {
 		if (state.playing) {
-			showPlayer();
+			$("#status").html(lang.playing);
+			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
+			$("#btn-ps").attr('class', 'btn btn-danger btn-lg');
 		} else {
-			showRadios();
+			$("#status").html(lang.notPlaying);
+			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
+			$("#btn-ps").attr('class', 'btn btn-default btn-lg');
 		}
-	}
+		$("#song").html(state.song);
 
-	function setStaticStr() {
+		// Update additional info if playing local music
+		if (state.local && state.playing) {
+			$("#elapsed").html(this.toMinSec(state.elapsed));
+			$("#length").html(this.toMinSec(state.length));
+			$("#progress").show();
+		} else {
+			$("#progress").hide();
+		}
+	},
+
+	setStaticStr: function() {
 		$("#btn-random").append(lang.sBtnRandom);
 		$("#btn-radios").append(lang.sBtnRadios);
 		$("#btn-player").append(lang.sBtnPlayer);
 		$("#title strong").text(lang.sTitle);
 		$("#insert h4").text(lang.sInsert);
-	}
+	},
 
-
-	function clickRandom() {
-		var text;
-		var waitTime;
-
-		// Define which alert to show based on player state
-		if (state.playing && state.local) {
-			text = lang.randomNext;
-			waitTime = time.randomNext;
-		} else {
-			text = lang.randomFirst;
-			waitTime = time.randomFirst;
-		}
-		osdAlert(text);
-
-		$.post("/api", { cmd: "play_random" })
-			.always(function(data) {
-				setTimeout(function() {
-					showPlayer();
-				}, waitTime);
-			});
-	}
-
-	function clickVol(inc) {
-		$.post( "/api", { cmd: "vol_ch", inc: inc }, function(data) {
-			osdVol(data);
-		});
-	}
-
-	function clickPs() {
-		var cmd = state.playing ? "stop" : "play";
-		$.post( "/api", { cmd: cmd }, function(data) {
-			updatingState();
-		});
-	}
-
-	function clickRadio(name) {
-		if (name === state.song && ! state.local && state.playing) {
-			showPlayer();
-		} else {
-			playStream("name", name);
-		}
-	}
-
-	function clickInsert(url) {
-		if (url !== null && url !== "") {
-			playStream("url", url);
-		}
-	}
-
-	function playStream(type, value) {
-		osdAlert(lang.streamTrying);
-
-		$.post("/api", { cmd: "play_stream", type: type, value: value })
-		.done(function() {
-			setTimeout(function() {
-				showPlayer();
-			}, time.playStream);
-		})
-		.fail(function() {
-			showRadios();
-			alert(lang.streamError);
-		});
-	}
-
-	function showPlayer() {
+	showPlayer: function() {
 		$("#alert").hide();
 		$("#radios").hide();
 		$("#player").show();
-	}
+	},
 
-	function showRadios() {
+	showRadios: function() {
 		$("#alert").hide();
 		$("#player").hide();
 		$("#radios").show();
-	}
+	},
 
-	function hide(text) {
-		osdAlert(text);
-		hidden = true;
-	}
+	hide: function(text) {
+		this.osdAlert(text);
+		this.hidden = true;
+	},
 
-	function unhide() {
-		setStartView();
-		hidden = false;
-	}
+	unhide: function(playing) {
+		if (playing) {
+			view.showPlayer();
+		} else {
+			view.showRadios();
+		}
+		this.hidden = false;
+	},
 
-	function osdAlert(text) {
+	osdAlert: function(text) {
 		$("#alert-text").text(text);
 		$("#player").hide();
 		$("#radios").hide();
 		$("#alert").show();
-	}
+	},
 
-	function osdVol(vol) {
+	osdVol: function(vol) {
 		$("#osd-text").html(vol);
 		$("#player-bottom").hide();
 		$("#osd").show();
@@ -174,87 +86,167 @@ var app = function(){
 		timeout = setTimeout(function() {
 			$("#osd").hide();
 			$("#player-bottom").show();
-		}, time.volOsd);
-	}
+		}, timeConst.volOsd);
+	},
 
-	function toMinSec(sec) {
+	addListeners: function() {
+		// "Unclick" buttons after clicked
+		$("button").click(function(event) {
+			$(this).blur();
+		});
+
+		// Prevent href="#" to be executed
+		$('a[href="#"]').click(function(event) {
+			return false;
+		});
+
+		$("#btn-vup").click(function(event) {
+			controller.clickVol("+5");
+		});
+
+		$("#btn-vdown").click(function(event) {
+			controller.clickVol("-5");
+		});
+
+		$("#btn-ps").click(function( event ) {
+			controller.clickPs();
+		});
+
+		$("#btn-random").click(function( event ) {
+			controller.clickRandom();
+		});
+
+		$("#btn-radios").click(function(event) {
+			view.showRadios();
+		});
+
+		$("#btn-player").click(function(event) {
+			view.showPlayer();
+		});
+
+		$(".radio-name").click(function(event) {
+			var name = $(this).text();
+			controller.clickRadio(name);
+		});
+
+		$("#insert").click(function(event) {
+			var url = prompt(lang.urlInsert);
+			controller.clickInsert(url);
+		});
+	},
+
+	toMinSec: function(sec) {
 		return new Date(sec * 1000).toISOString().substr(14, 5);
 	}
+};
 
+var controller = {
+	init: function() {
+		view.init();
+		
+		// Initial update. Don't rely on setInterval, because it can delay
+		this.updatingState();
 
-	return {
-		time: time,
-		setStaticStr: setStaticStr,
-		updatingState: updatingState,
-		showPlayer: showPlayer,
-		showRadios: showRadios,
-		hide: hide,
-		clickPs: clickPs,
-		clickVol: clickVol,
-		clickRandom: clickRandom,
-		clickRadio: clickRadio,
-		clickInsert: clickInsert
+		// Get API data and update player periodically
+		setInterval(function() {
+			controller.updatingState();
+		}, timeConst.update);
+	},
+
+	// Async
+	updatingState: function() {
+		$.get("/api", function(response) {
+			state = response;
+			view.render(state);
+
+			// Hide data if backend is disconnected from MPD
+			if (state.con_mpd) {
+				if (view.hidden) {
+					view.unhide(state.playing);
+				}
+			} else {
+				view.hide(lang.disconnectedMpd);
+			}
+		})
+			.fail(function() {
+				view.hide(lang.disconnectedNet);
+			});
+	},
+
+	clickRandom: function() {
+		var text;
+		var waitTime;
+
+		// Define which alert to show based on player state
+		if (state.playing && state.local) {
+			text = lang.randomNext;
+			waitTime = timeConst.randomNext;
+		} else {
+			text = lang.randomFirst;
+			waitTime = timeConst.randomFirst;
+		}
+		view.osdAlert(text);
+
+		$.post("/api", { cmd: "play_random" })
+			.always(function(data) {
+				setTimeout(function() {
+					view.showPlayer();
+				}, waitTime);
+			});
+	},
+
+	clickVol: function(inc) {
+		$.post( "/api", { cmd: "vol_ch", inc: inc }, function(response) {
+			view.osdVol(response);
+		});
+	},
+
+	clickPs: function() {
+		var cmd = state.playing ? "stop" : "play";
+		$.post( "/api", { cmd: cmd }, function(response) {
+			controller.updatingState();
+		});
+	},
+
+	clickRadio: function(name) {
+		if (name === state.song && ! state.local && state.playing) {
+			view.showPlayer();
+		} else {
+			this.playStream("name", name);
+		}
+	},
+
+	clickInsert: function(url) {
+		if (url !== null && url !== "") {
+			this.playStream("url", url);
+		}
+	},
+
+	playStream: function(type, value) {
+		view.osdAlert(lang.streamTrying);
+
+		$.post("/api", { cmd: "play_stream", type: type, value: value },
+			function() {
+				setTimeout(function() {
+					view.showPlayer();
+				}, timeConst.playStream);
+			})
+			.fail(function() {
+				view.showRadios();
+				alert(lang.streamError);
+			});
 	}
-}();
+};
 
-// Document
+var timeConst = {
+	playStream: 2000,
+	randomNext: 1500,
+	randomFirst: 5000,
+	volOsd: 1300,
+	update: 1000,
+};
+
+
 $(document).ready(function() {
-
-	// Set initial "loading" screen
-	app.hide(lang.loading);
-
-	// Set static strings
-	app.setStaticStr();
-
-	// Initial update. Don't rely on setInterval, because it can delay
-	app.updatingState();
-
-	// Get API data and update player periodically
-	setInterval(function() {
-		app.updatingState();
-	}, app.time.update);
-
-	// "Unclick" buttons after clicked
-	$("button").click(function(event) {
-		$(this).blur();
-	});
-
-	// Prevent href="#" to be executed
-	$('a[href="#"]').click(function(event) {
-		return false;
-	});
-
-	$("#btn-vup").click(function(event) {
-		app.clickVol("+5");
-	});
-
-	$("#btn-vdown").click(function(event) {
-		app.clickVol("-5");
-	});
-
-	$("#btn-ps").click(function( event ) {
-		app.clickPs();
-	});
-
-	$("#btn-random").click(function( event ) {
-		app.clickRandom();
-	});
-
-	$("#btn-radios").click(function(event) {
-		app.showRadios();
-	});
-
-	$("#btn-player").click(function(event) {
-		app.showPlayer();
-	});
-
-	$(".radio-name").click(function(event) {
-		var name = $(this).text();
-		app.clickRadio(name);
-	});
-
-	$("#insert").click(function(event) {
-		var url = prompt(lang.urlInsert);
-		app.clickInsert(url);
-	});
+	controller.init();
 });
