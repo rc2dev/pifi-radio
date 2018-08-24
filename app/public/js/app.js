@@ -4,7 +4,7 @@ var state = null;
 
 var view = {
 	init: function() {
-		this.timeout = null;
+		this.volTimeout = null;
 
 		// Set initial "loading" screen
 		this.hide(lang.loading);
@@ -81,8 +81,8 @@ var view = {
 		$("#player-bottom").hide();
 		$("#osd").show();
 
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
+		clearTimeout(this.volTimeout);
+		this.volTimeout = setTimeout(function() {
 			$("#osd").hide();
 			$("#player-bottom").show();
 		}, timeConst.volOsd);
