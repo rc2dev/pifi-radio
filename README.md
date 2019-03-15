@@ -92,10 +92,10 @@ Beyond radio, the "Random" button:
 
 While PiFi was created thinking about the Pi, it should run on any computer meeting the dependencies:
 
-- Ruby. Tested with Ruby 2.4. If you try another version, please edit `.ruby-version`.
-- Some Ruby gems.
-- MPD.
-- A web server to serve the static resources (optional).
+- Ruby
+- A few Ruby gems
+- MPD
+- A web server to serve the static resources (optional)
 
 
 ### How-to
