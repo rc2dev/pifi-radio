@@ -5,7 +5,6 @@ There are many ways to deploy PiFi. This guide describes one of them.
 This document targets Linux, but PiFi Radio should work on any system running Ruby and MPD.
 
 
-
 ## Quick install
 
 1. Clone this repo.
@@ -20,7 +19,7 @@ $ git clone https://github.com/rccavalcanti/pifi-radio.git
 $ sudo apt install ruby-full
 ```
 
-3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD. 
+3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD.
 
 Installing on Raspbian:
 ```
@@ -59,7 +58,6 @@ $ bundle exec rackup
 ```
 
 If everything went well, you should be able to reach it at http://localhost:9292/.
-
 
 
 ## Improving the deployment
