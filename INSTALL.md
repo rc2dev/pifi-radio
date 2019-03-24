@@ -1,9 +1,8 @@
 # Installation guide
 
-This app should work on any system running Ruby and MPD, but this guide is designed for Linux.
+There are many ways to deploy PiFi Radio. This guide has the goal to help you get PiFi up and running as quick and easy as possible. Then, we'll list some suggestions for a more robust installation.
 
-There are many ways in which you could deploy PiFi Radio. I'll guide you through a quick and simple way of get it running and then give you some suggestions for a more robust deployment.
-
+This document targets Linux, but the app should work on any system running Ruby and MPD.
 
 
 ## Quick basic guide
@@ -15,20 +14,19 @@ $ cd
 $ git clone https://github.com/rccavalcanti/pifi-radio.git
 ```
 
-2. Install Ruby. For Raspbian:
-
+2. Install Ruby. On Raspbian:
 ```
 $ sudo apt install ruby-full
 ```
 
-3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD. On Raspbian:
+3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD. 
 
+Installing on Raspbian:
 ```
 $ sudo apt install mpd
 ```
 
-After configuring it, start and enable it:
-
+After configuring, start and enable MPD with:
 ```
 $ sudo systemctl start mpd && sudo systemctl enable mpd
 ```
@@ -37,7 +35,7 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 
 ```
 $ cd ~/pifi-radio
-$ gem install bundle
+$ gem install bundler
 $ bundle install
 ```
 
@@ -61,7 +59,7 @@ $ rackup
 
 If everything went well, you should be able to reach it at http://localhost:9292/.
 
-Note this, as previously stated, is a very basic installation, with the aim to have PiFi Radio up as quick and easy as possible. Right now, your app server is running with the same privileges as your user, which may or may not be wise in your particular case.
+Note this, as previously stated, is a very basic installation. Right now, your app server is running with the same privileges as your user, which may or may not be wise in your particular case.
 
 I encourage you to take a look at the suggestions below for a better, more robust installation.
 
@@ -69,7 +67,6 @@ I encourage you to take a look at the suggestions below for a better, more robus
 ## Suggestions for more advanced deployment
 
 * Set up a systemd service for Thin and run it as a different user
-* Configure Thin to your particular needs
 * Use RVM instead of the distro package manager to install Ruby
 * On RVM, make use of the separate gemset for PiFi Radio
 * Set up your webserver to serve PiFi static resources
