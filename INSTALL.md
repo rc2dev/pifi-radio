@@ -69,6 +69,14 @@ $ sudo mv ~/pifi-radio /srv/
 $ sudo chgrp -R www-data /srv/pifi-radio
 ```
 
-2. Create a systemd unit to start PiFi Radio as `www-data`.
+2. Install the systemd service and adapt it to your needs.
+
+```
+$ sudo cp /path/to/pifi-radio/pifi-radio.service.sample /etc/systemd/system/pifi-radio.service
+$ sudo -e pifi-radio.service
+$ sudo systemctl start pifi-radio.service && sudo systemctl enable pifi-radio.service
+```
 
 3. *(Optional)* Set up your webserver to serve PiFi static resources.
+
+Configure your webserver accordingly and set `serve_static` on PiFi configuration to `false`.
