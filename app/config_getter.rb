@@ -1,7 +1,7 @@
 class ConfigGetter
 	attr_reader :config
 
-	@@PATH = "/etc/pifiradio.conf"
+	@@PATH = "/etc/pifi-radio.conf"
 	@@KEYS = ["cache_max_age", "serve_static", "host", "port", "streams_file",
 					 "streamsp_file", "special_ips", "play_local"]
 

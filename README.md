@@ -107,7 +107,7 @@ Coming soon.
 
 ### PiFi configuration
 
-Configuration is read from the JSON file at `/etc/pifiradio.conf`. These are the options:
+Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are the options:
 
 | Key             | Value
 | --------------- | -------------------------------------------------------------------------
