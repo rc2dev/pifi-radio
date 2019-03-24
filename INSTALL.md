@@ -19,7 +19,7 @@ $ git clone https://github.com/rccavalcanti/pifi-radio.git
 $ sudo apt install ruby-full
 ```
 
-3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD. 
+3. As PiFi Radio is a MPD client, you'll have to install, configure and start MPD.
 
 Installing on Raspbian:
 ```
@@ -36,7 +36,7 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 ```
 $ cd ~/pifi-radio
 $ gem install bundler
-$ bundle install
+$ bundle install --deployment
 ```
 
 5. Write a JSON file with your list of streams, [as described here](README.md#list-of-streams).
@@ -54,7 +54,7 @@ $ sudo cp $HOME/pifi-radio/pifi-radio.conf.sample /etc/pifi-radio.conf
 
 ```
 $ cd ~/pifi-radio
-$ rackup
+$ bundle exec rackup
 ```
 
 If everything went well, you should be able to reach it at http://localhost:9292/.
@@ -67,6 +67,4 @@ I encourage you to take a look at the suggestions below for a better, more robus
 ## Suggestions for more advanced deployment
 
 * Set up a systemd service for Thin and run it as a different user
-* Use RVM instead of the distro package manager to install Ruby
-* On RVM, make use of the separate gemset for PiFi Radio
 * Set up your webserver to serve PiFi static resources
