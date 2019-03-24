@@ -1,0 +1,18 @@
+# Author: Rafael Cavalcanti
+
+[Unit]
+Description=A MPD web client to listen to radio
+After=syslog.target network.target
+Requires=mpd.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/http/pifi-radio
+RuntimeDirectory=pifi-radio
+ExecStart=/usr/bin/env bash -lc 'bundle exec thin -e production --port 3000 start'
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
