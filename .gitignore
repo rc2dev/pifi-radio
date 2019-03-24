@@ -1,11 +1,12 @@
 *.swp
 *.kate-swp
-*.lock
 *.pid
+.bundle
 .directory
 .fuse_hidden*
 tags
 /admin
 /log
 /config.json
+/vendor
 TODO
