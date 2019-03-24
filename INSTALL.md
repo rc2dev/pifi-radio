@@ -2,11 +2,11 @@
 
 This app should work on any system running Ruby and MPD, but this guide is designed for Linux.
 
-There are many ways in which you could deploy PiFi Radio. I'll guide you through a quick and simple way of running it and then give you some suggestions for a  more robust deployment.
+There are many ways in which you could deploy PiFi Radio. I'll guide you through a quick and simple way of get it running and then give you some suggestions for a more robust deployment.
 
 
 
-## Quick and simple guide
+## Quick basic guide
 
 1. Clone this repo.
 
@@ -59,13 +59,17 @@ $ cd ~/pifi-radio
 $ rackup
 ```
 
-If everything went well, you should be able to reach it at http://localhost:??
+If everything went well, you should be able to reach it at http://localhost:9292/.
+
+Note this, as previously stated, is a very basic installation, with the aim to have PiFi Radio up as quick and easy as possible. Right now, your app server is running with the same privileges as your user, which may or may not be wise in your particular case.
+
+I encourage you to take a look at the suggestions below for a better, more robust installation.
 
 
 ## Suggestions for more advanced deployment
 
-* Use RVM instead of the package manager to install Ruby
+* Set up a systemd service for Thin and run it as a different user
+* Configure Thin to your particular needs
+* Use RVM instead of the distro package manager to install Ruby
 * On RVM, make use of the separate gemset for PiFi Radio
-* Use a production app server, like Thin. 
-* Set up a systemd service for running Thin.
-* Set up your webserver to serve PiFi static resources.
+* Set up your webserver to serve PiFi static resources
