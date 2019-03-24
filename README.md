@@ -100,9 +100,7 @@ While PiFi was created thinking about the Pi, it should run on any computer meet
 
 ### How-to
 
-PiFi Radio is written in Ruby. If you are familiar with this language, running the app should be fairly easy.
-
-For more info, check [this installation guide](INSTALL.md).
+[Check the installation guide](INSTALL.md).
 
 
 ## Configuration
