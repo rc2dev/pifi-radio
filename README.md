@@ -146,5 +146,5 @@ Icon made by [Webalys](https://www.flaticon.com/authors/webalys) from [www.flati
 
 Released under [GNU GPL v3](LICENSE).
 
-Copyright 2017, 2018 Rafael Cavalcanti <hi@rafaelc.org>
+Copyright 2017-2019 Rafael Cavalcanti <hi@rafaelc.org>
 

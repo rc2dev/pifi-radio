@@ -49,7 +49,7 @@ $ bundle install --deployment
 6. Copy the PiFi configuration file to `/etc` and edit the settings to your needs.
 
 ```
-$ sudo cp $HOME/pifi-radio/pifi-radio.conf.sample /etc/pifi-radio.conf
+$ sudo cp ~/pifi-radio/pifi-radio.conf.sample /etc/pifi-radio.conf
 $ sudo -e /etc/pifi-radio.conf
 ```
 
