@@ -7,7 +7,7 @@ module Utils
 
 	def self.get_streams(path, path_p)
 		streams = file_to_hash(path)
-		streams_p = file_to_hash(path_p)
+		streams_p = path_p.empty? ? {} : file_to_hash(path_p)
 		streams_all = streams.merge(streams_p)
 
 		[streams, streams_all]
