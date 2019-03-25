@@ -72,7 +72,7 @@ Besides radio, there is the "Random" button:
 
 - By request, I added a button to play random music from the MPD library. That's the "Random" button. Tapping it plays all your music in shuffle mode. To skip the current song, just press it again.
 
-- That's the only library function available on this app. Think of that as a bonus. Library support is an after-thought on PiFi, and not its main purpose. [You can disable this button on the configuration.](#pifi-configuration)
+- That's the only library function available on this app. Think of that as a bonus. Library support is an after-thought on PiFi, and not its main purpose. [You can disable this button in the configuration.](#pifi-configuration)
 
 
 ## Demo
@@ -110,7 +110,7 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 | `streams_file`  | Path to file containing the streams list [(see next section)](#list-of-streams).
 | `streamsp_file` | Path to other file containing streams list. The stations here will be merged with the other list and presented only to devices which IPs are listed on `special_ips`. A use case for this is if you have tons of stations that only you listen and you don’t want to pollute everyone else's list. *(If you don’t need this, just leave it empty.)*
 | `special_ips`   | The IPs for which the additional streams will be shown. *(If you don’t need this, just leave it empty.)*
-| `play_local`    | If you don’t want PiFi to play songs from your local library, set it as `false`. This will remove the “Random” button.
+| `play_local`    | If you don’t want PiFi to play songs from your local library, set it as `false`. This will remove the "Random" button.
 
 
 ### List of streams
@@ -118,23 +118,23 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 To keep it simple, the list of streams is just a JSON file with key-value pairs, where the key is the station name, and the value is the streaming URL. For example:
 
     {
-         “Radio 1”: “https://example.com/radio1”,
-         “Radio 2”: “https://example.com/radio2”
+         "Radio 1": "https://example.com/radio1",
+         "Radio 2": "https://example.com/radio""
     }
 
 If you want to arrange the stations in categories, add a pair with the category name, and empty value, as in:
 
     {
-         “Talk radio”: “”,
-         “Radio 1”: “https://example.com/radio1”,
-         “Radio 2”: “https://example.com/radio2”
+         "Talk radio": "",
+         "Radio 1": "https://example.com/radio1",
+         "Radio 2": "https://example.com/radio2"
 
          "Classical": "",
-         “Radio 3”: “https://example.com/radio3”,
-         “Radio 4”: “https://example.com/radio4”
+         "Radio 3": "https://example.com/radio3",
+         "Radio 4": "https://example.com/radio4"
     }
 
-This will add the headers “Talk radio” and "Classical" above each block of stations, [identical to "Spain" in the demo](#demo).
+This will add the headers "Talk radio" and "Classical" above each block of stations, [identical to "Spain" in the demo](#demo).
 
 
 ## Credits
