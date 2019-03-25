@@ -9,9 +9,6 @@ PiFi Radio: A MPD web client to listen to radio
    * [Some features](#some-features)
    * [Demo](#demo)
 * [Installation](#installation)
-   * [Dependencies](#dependencies)
-   * [How-to](#how-to)
-   * [Optional](#optional)
 * [Configuration](#configuration)
    * [PiFi configuration](#pifi-configuration)
    * [List of streams](#list-of-streams)
@@ -32,21 +29,21 @@ PiFi Radio is a minimalist MPD web client to listen to radio. In other words, it
 
 As PiFi is just an interface for MPD, it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. For example, the radio playback is completely independent from your phone. You can take calls, play videos, go to an area with poor WiFi signal, or even turn your phone off. Your Pi will still continue to play the radio you picked.
 
-[I started this project for my parents, in early 2017. At that time, I wanted to configure Raspbian so they could listen to radio with ease, but couldn't find any good solution for it.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
+[I started this project in early 2017. At that time, I wanted to configure Raspbian so my parents could listen to radio with ease, but couldn't find any good solution to it.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
 
 Some of the goals of PiFi Radio were the following:
 
-- It should be easy for my parents to use.
+- Easy for my parents to use.
 
 - Simple, straight-forward interface. Do the few things they need and in a clear way.
 
-- As fool-proof as possible. Don't show unnecessary options, minimize user interaction and try to predict what he wants.
+- As fool-proof as possible. Don't show unnecessary options, minimize user interaction and try to predict what they want.
 
 - Display both available and current stations clearly. No URLs or weird names.
 
 - Multi-platform, targeting primarily mobile phones.
 
-- In their language. I also translated it to English, and it's open to more.
+- In local language.
 
 
 
@@ -58,7 +55,7 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - Select some radios to be shown only to certain IPs.
 
-- Paste a streaming URL for PiFi directly from your web browser. Useful if you want to listen to a radio that was not added to the list yet.
+- Paste a streaming URL to PiFi directly from your web browser. Useful if you want to listen to a radio that was not previously added to the list.
 
 - Add it to your Android home screen.
 
@@ -66,14 +63,16 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - PiFi has two views [(the List of Radios and Playback Controls)](#demo). It tries to show one or another smartly so you tap less. For example, when you open PiFi and MPD is idle, the list of radios is shown, because you probably want to pick a station.
 
-- If you choose by mistake the same station that is currently playing, no request is sent to MPD, and the playback continues normally.
+- If by mistake you choose the same station that is currently playing, the playback continues as if nothing happened.
+
+- PiFi is currently available in English and Brazilian Portuguese, but it's easy to translate to other languages.
 
 
-Beyond radio, the "Random" button:
+Besides radio, there is the "Random" button:
 
-- By request, I added a button to play random music from the library. That's the "Random" button. Tapping it plays all your music in shuffle mode. To skip the current song, just press it again.
+- By request, I added a button to play random music from the MPD library. That's the "Random" button. Tapping it plays all your music in shuffle mode. To skip the current song, just press it again.
 
-- That's the only library related button. Library support is an after-thought on this app, not its main purpose. [You can disable this button on the configuration.](#pifi-configuration)
+- That's the only library function available on this app. Think of that as a bonus. Library support is an after-thought on PiFi, and not its main purpose. [You can disable this button on the configuration.](#pifi-configuration)
 
 
 ## Demo
@@ -88,17 +87,10 @@ Beyond radio, the "Random" button:
 
 ## Installation
 
-### Dependencies
+While PiFi was imagined for the Pi, it should run on any computer with:
 
-While PiFi was created thinking about the Pi, it should run on any computer meeting the dependencies:
-
-- Ruby
-- A few Ruby gems
+- Ruby and a few gems
 - MPD
-- A web server to serve the static resources (optional)
-
-
-### How-to
 
 [Check the installation guide](INSTALL.md).
 
@@ -116,7 +108,7 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 | `host`					| MPD host.
 | `port`					| MPD port.
 | `streams_file`  | Path to file containing the streams list [(see next section)](#list-of-streams).
-| `streamsp_file` | Path to other file containing streams list. The stations here will be merged with the other list and presented only to devices with IPs listed on `special_ips`. A use case for this is if you have tons of stations that only you listen and you don’t want to saturate everyone’s list. *(If you don’t need this, just leave it empty.)*
+| `streamsp_file` | Path to other file containing streams list. The stations here will be merged with the other list and presented only to devices which IPs are listed on `special_ips`. A use case for this is if you have tons of stations that only you listen and you don’t want to pollute everyone else's list. *(If you don’t need this, just leave it empty.)*
 | `special_ips`   | The IPs for which the additional streams will be shown. *(If you don’t need this, just leave it empty.)*
 | `play_local`    | If you don’t want PiFi to play songs from your local library, set it as `false`. This will remove the “Random” button.
 

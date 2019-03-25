@@ -1,16 +1,16 @@
 # Installation guide
 
-There are many ways to deploy PiFi Radio. This guide describes one of them, targeting Linux systems.
+This guide describes one way of deploying PiFi Radio targeting Linux systems.
 
 
-## Quick install
+## Quick start
 
 1. Clone this repo.
 
 ```
-$ cd
-$ git clone https://github.com/rccavalcanti/pifi-radio.git
+$ git clone https://github.com/rccavalcanti/pifi-radio.git ~/pifi-radio
 ```
+
 
 2. Install Ruby.
 
@@ -18,18 +18,18 @@ On Raspbian:
 ```
 $ sudo apt install ruby-full
 ```
-Or use RVM, if you wish.
 
 
-3. As PiFi Radio is a MPD client, you'll need MPD up and running.
+3. You also (obviously) need MPD up and running, if you haven't it yet.
 
 Installing on Raspbian:
 ```
 $ sudo apt install mpd
 ```
 
-After configuring, start and enable it with:
+Configure, start and enable it:
 ```
+$ sudo -e /etc/mpd.conf
 $ sudo systemctl start mpd && sudo systemctl enable mpd
 ```
 
@@ -46,29 +46,30 @@ $ bundle install --deployment
 5. Write a JSON file with your list of streams, [as described here](README.md#list-of-streams).
 
 
-6. Copy PiFi configuration file to `/etc` and edit the settings according to your needs.
+6. Copy the PiFi configuration file to `/etc` and edit the settings to your needs.
 
 ```
 $ sudo cp $HOME/pifi-radio/pifi-radio.conf.sample /etc/pifi-radio.conf
+$ sudo -e /etc/pifi-radio.conf
 ```
 
-[Info about that file is on README.](README.md#pifi-configuration)
+[Documentation about that file is on README.](README.md#pifi-configuration)
 
 
 7. Run PiFi Radio.
 
 ```
 $ cd ~/pifi-radio
-$ bundle exec rackup
+$ bundle exec rackup --host 0.0.0.0
 ```
 
-If everything went well, you should be able to reach it at http://localhost:9292/.
+If everything went well, you should be able to reach it at http://DEVICE_IP:9292.
 
 
 
 ## Improving the deployment
 
-1. Move PiFi Radio to whatever path you find convenient, and deal with the permissions. For example:
+1. Move PiFi Radio to your path of choice, and deal with the permissions. For example:
 
 ```
 $ sudo mv ~/pifi-radio /srv/
@@ -76,8 +77,7 @@ $ sudo chgrp -R www-data /srv/pifi-radio
 ```
 
 
-2. Install the systemd service and adapt it to your needs.
-
+2. Install the systemd service and edit it to your needs.
 ```
 $ sudo cp /path/to/pifi-radio/pifi-radio.service.sample /etc/systemd/system/pifi-radio.service
 $ sudo -e pifi-radio.service
@@ -85,8 +85,11 @@ $ sudo systemctl start pifi-radio.service && sudo systemctl enable pifi-radio.se
 ```
 
 Now PiFi runs beautifully on your system boot.
+Note this service starts on port 3000 by default.
+
 
 
 3. *(Optional)* Set up your webserver to serve PiFi static resources.
 
-Configure your webserver accordingly and set `serve_static` on PiFi configuration to `false`.
+Configure your webserver accordingly and set `serve_static` on [PiFi configuration](README.md#pifi-configuration) to `false`.
+
