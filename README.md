@@ -139,7 +139,8 @@ This will add the headers "Talk radio" and "Classical" above each block of stati
 
 ## Credits
 
-Icon made by [Webalys](https://www.flaticon.com/authors/webalys) from [www.flaticon.com](https://www.flaticon.com/)
+* French translation: Francis Chavanon "rimeno"
+* Icon made by [Webalys](https://www.flaticon.com/authors/webalys) from [www.flaticon.com](https://www.flaticon.com/)
 
 
 ## License
