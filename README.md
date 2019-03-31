@@ -65,7 +65,7 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - If by mistake you choose the same station that is currently playing, the playback continues as if nothing happened.
 
-- PiFi is currently available in English and Brazilian Portuguese, but it's easy to translate to other languages.
+- PiFi is currently available in a few languages, and it's easy to translate to more.
 
 
 Besides radio, there is the "Random" button:
