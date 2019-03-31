@@ -119,7 +119,7 @@ To keep it simple, the list of streams is just a JSON file with key-value pairs,
 
     {
          "Radio 1": "https://example.com/radio1",
-         "Radio 2": "https://example.com/radio""
+         "Radio 2": "https://example.com/radio"
     }
 
 If you want to arrange the stations in categories, add a pair with the category name, and empty value, as in:
