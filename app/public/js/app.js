@@ -33,6 +33,15 @@ var view = {
 		} else {
 			$("#progress").hide();
 		}
+
+		// Only show buttons if volume is available
+		if (state.vol < 0) {
+			$("#btn-vdown").attr("disabled", true);
+			$("#btn-vup").attr("disabled", true);
+		} else {
+			$("#btn-vdown").attr("disabled", false);
+			$("#btn-vup").attr("disabled", false);
+		}
 	},
 
 	setStaticStr: function() {
