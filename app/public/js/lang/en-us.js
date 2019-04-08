@@ -5,7 +5,7 @@ var lang = {
 	streamTrying: "Tunning...",
 	urlInsert: "Type the URL",
 	randomNext: "Next song",
-	randomFirst: "Connecting to NAS...",
+	randomFirst: "Starting library playback...",
 	disconnectedMpd: "Disconnected from MPD",
 	disconnectedNet: "No connection",
 	loading: "Loading...",
