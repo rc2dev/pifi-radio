@@ -61,7 +61,7 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - Multiple people can use it at the same time.
 
-- PiFi has two views [(the List of Radios and Playback Controls)](#demo). It tries to show one or another smartly so you tap less. For example, when you open PiFi and MPD is idle, the list of radios is shown, because you probably want to pick a station.
+- PiFi has two views [(the List of Radios and Playback Controls)](#demo). It tries to show each one smartly so you tap less. For example, when you open PiFi and MPD is idle, the list of radios is shown, because you probably want to pick a station.
 
 - If by mistake you choose the same station that is currently playing, the playback continues as if nothing happened.
 

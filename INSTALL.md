@@ -60,10 +60,10 @@ $ sudo -e /etc/pifi-radio.conf
 
 ```
 $ cd ~/pifi-radio
-$ bundle exec rackup --host 0.0.0.0
+$ bundle exec thin start
 ```
 
-If everything went well, you should be able to reach it at http://DEVICE_IP:9292.
+If everything went well, you should be able to reach it at http://DEVICE_IP:3000.
 
 
 
