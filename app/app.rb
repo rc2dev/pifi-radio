@@ -54,9 +54,13 @@ post "/api" do
 		content_type :text
 		halt 400 unless params.include?(:inc)
 
-		inc = params[:inc].to_i
-		vol = player.vol_ch(inc)
-		vol.to_s + "%"
+		begin
+			inc = params[:inc].to_i
+			vol = player.vol_ch(inc)
+			vol.to_s + "%"
+		rescue RuntimeError
+			halt 400
+		end
 
 	when "play_stream"
 		status 204

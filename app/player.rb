@@ -27,6 +27,9 @@ class Player
 	end
 
 	def vol_ch(inc)
+		# We get @vol=-1 when PulseAudio sink is closed
+		raise RunTimeError, "Volume is not available." if @vol < 0
+
 		new_vol = @vol + inc
 		new_vol =
 			if new_vol < 0 then 0
