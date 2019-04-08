@@ -1,5 +1,5 @@
 class Player
-	attr_reader :playing, :song, :local, :elapsed, :length, :con_mpd
+	attr_reader :playing, :song, :local, :elapsed, :length, :vol, :con_mpd
 
 	def initialize(host, port, streams)
 		@streams = streams

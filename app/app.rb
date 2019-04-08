@@ -35,6 +35,7 @@ get "/api" do
 		local: player.local,
 		elapsed: player.elapsed,
 		length: player.length,
+		vol: player.vol,
 		con_mpd: player.con_mpd }.to_json
 end
 
