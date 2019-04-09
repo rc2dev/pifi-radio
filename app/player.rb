@@ -1,6 +1,9 @@
 class Player
 	attr_reader :playing, :song, :local, :elapsed, :length, :vol, :con_mpd
 
+	VOL_LOW = 0
+	VOL_UP = 100
+
 	def initialize(host, port, streams)
 		@streams = streams
 		@mpd = MPD.new host, port, { callbacks: true }
@@ -17,12 +20,12 @@ class Player
 
 
 	def play
-		# Quicker than callback, good for following API call
+		# Quicker than callback
 		@playing = true if @mpd.play
 	end
 
 	def stop
-		# Quicker than callback, good for following API call
+		# Quicker than callback
 		@playing = false if @mpd.stop
 	end
 
@@ -32,12 +35,13 @@ class Player
 
 		new_vol = @vol + inc
 		new_vol =
-			if new_vol < 0 then 0
-			elsif new_vol > 100 then 100
+			if new_vol < VOL_LOW then VOL_LOW
+			elsif new_vol > VOL_UP then VOL_UP
 			else new_vol
 			end
 
-		@vol = @mpd.volume=(new_vol)  # Writing to @vol avoids race conditions
+		# Quicker than callback, minimizes race conditions
+		@vol = @mpd.volume=(new_vol)
 	end
 
 	def play_stream(type, value, queue)
