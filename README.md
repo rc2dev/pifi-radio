@@ -77,12 +77,7 @@ Besides radio, there is the "Random" button:
 
 ## Demo
 
-[Watch a video demo.](https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/resources/demo.mp4)
-
-
-<img src="https://github.com/rccavalcanti/pifi-radio/blob/master/resources/radios_view.png" alt="Radios list view" width="200px">
-<img src="https://github.com/rccavalcanti/pifi-radio/blob/master/resources/controls_view.png" alt="Controls view" width="200px">
-
+![Video demo](resources/demo.gif)
 
 
 ## Installation
