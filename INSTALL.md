@@ -66,6 +66,8 @@ $ bundle exec thin start
 If everything went well, you should be able to reach it at http://DEVICE_IP:3000.
 
 
+*Suggestion:* On your mobile browser, tap to add PiFi Radio to your home screen, for easier access.
+
 
 ## Improving the deployment
 
