@@ -57,7 +57,7 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - Paste a streaming URL to PiFi directly from your web browser. Useful if you want to listen to a radio that was not previously added to the list.
 
-- Add it to your Android home screen.
+- Add it to your phone home screen.
 
 - Multiple people can use it at the same time.
 
