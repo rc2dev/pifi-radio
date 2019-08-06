@@ -3,8 +3,11 @@
 	margin-bottom: 30px;
 	margin-right: auto;
 	margin-left: auto;
-	max-width: 320px;
-	padding-top: 12%;
+	max-width: 350px;
+}
+
+/* Hide everything */
+#player, #radios, #alert, #silence, #osd {
 	display: none;
 }
 
@@ -15,7 +18,7 @@
 
 #state {
 	height: 93px;
-	margin-bottom: 35px;
+	margin-bottom: 10px;
 	overflow: hidden;
 }
 
