@@ -11,6 +11,7 @@
 	display: none;
 }
 
+
 /* player */
 #player, #alert {
 	max-width: 320px;
@@ -37,7 +38,6 @@
 
 #player-bottom {
 	margin-top: 120px;
-	max-width: 250px;
 }
 
 #osd {
@@ -46,7 +46,7 @@
 
 #btn-random {
 	float: left;
-	width: 100px;
+	width: 120px;
 }
 
 /* Only float right if btn-random is present */
@@ -55,8 +55,9 @@
 }
 
 #btn-radios {
-	width: 100px;
+	width: 120px;*/
 }
+
 
 /* radios list */
 .list-group-item {
