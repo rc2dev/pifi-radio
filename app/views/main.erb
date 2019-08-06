@@ -48,12 +48,12 @@
 	<!-- Radios list -->
 	<div id="radios">
 
-		<h4 class="title text-center" id="title"><strong></strong></h4>
+		<h4 class="text-center text-muted" id="title"></h4>
 
 		<ul class="list-group" id="radios-list">
 			<% streams.each do |key, value| %>
 				<% if value.empty? %>
-					<h4 class="text-muted text-center radios-group-title"><%= key %></h4>
+					<h4 class="radios-group-title"><%= key %></h4>
 				<% else %>
 					<a href="#">
 						<li class="list-group-item radio-name"><h4><%= key %></h4></li>

@@ -56,21 +56,26 @@
 
 
 /* radios list */
+#title {
+	margin-bottom: 40px;
+}
+
+#radios-list {
+	box-shadow: none;
+}
+
 .list-group-item {
 	border-style: none;
+	padding-bottom: 7px;
 }
 
 .radios-group-title {
 	margin-top: 40px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-left: 15px;
 	border-width: 0px 0px 1px 0px;	/* just bottom border */
 	border-style: solid;
-}
-
-#radios-list {
-	box-shadow: none;
-	margin-top: 40px;
 }
 
 #insert {

@@ -48,7 +48,7 @@ var view = {
 		$("#btn-random").append(lang.sBtnRandom);
 		$("#btn-radios").append(lang.sBtnRadios);
 		$("#btn-player").append(lang.sBtnPlayer);
-		$("#title strong").text(lang.sTitle);
+		$("#title").text(lang.sTitle);
 		$("#insert h4").text(lang.sInsert);
 	},
 
