@@ -14,6 +14,6 @@ var lang = {
 	sBtnRandom: "Aleatório",
 	sBtnRadios: "Rádios",
 	sBtnPlayer: "Controles",
-	sTitle: "Escolha uma rádio",
+	sTitle: "Escolha uma emissora",
 	sInsert: "Tocar URL..."
 }
