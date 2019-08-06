@@ -1,10 +1,16 @@
-/* player */
-#player, #alert {
+.container {
+	margin-top: 25px;
+	margin-bottom: 30px;
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 320px;
 	padding-top: 12%;
 	display: none;
+}
+
+/* player */
+#player, #alert {
+	max-width: 320px;
 }
 
 #state {
@@ -28,14 +34,11 @@
 
 #player-bottom {
 	margin-top: 120px;
-	margin-right: auto;
-	margin-left: auto;
 	max-width: 250px;
 }
 
 #osd {
 	margin-top: 90px;
-	display: none;
 }
 
 #btn-random {
@@ -53,19 +56,6 @@
 }
 
 /* radios list */
-#radios {
-	margin-right: auto;
-	margin-left: auto;
-	max-width: 350px;
-	margin-top: 25px;
-	margin-bottom: 30px;
-	display: none;
-}
-
-#silence {
-	display: none;
-}
-
 .list-group-item {
 	border-style: none;
 }
@@ -104,11 +94,7 @@
 }
 
 
-/* Common */
-#alert {
-	display: none;
-}
-
+/* Alerts */
 #alert-text {
 	padding-top: 40%;
 }
