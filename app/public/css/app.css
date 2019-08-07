@@ -26,7 +26,7 @@
 	float: right;
 }
 
-#state h5 {
+#state-top-line {
 	margin-bottom: 0px;	/* we want the progress bar to be close */
 }
 
@@ -36,9 +36,9 @@
 	width: 50%;
 }
 
-#song {
+#title {
 	margin-top: 6px;		/* 10px - 2px (progress bar) - 2px (progress bar top margin) */
-	margin-bottom: 0px;	
+	margin-bottom: 0px;
 }
 
 #artist {
@@ -46,7 +46,7 @@
 }
 
 /* Trim string and add suspension points if needed */
-#song, #artist {
+#title, #artist {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -80,7 +80,7 @@
 
 
 /* radios list */
-#title {
+#radios-welcome {
 	margin-bottom: 40px;
 }
 

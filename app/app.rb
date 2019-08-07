@@ -31,7 +31,7 @@ get "/api" do
 	content_type :json
 	cache_control :no_cache
 	{ playing: player.playing,
-		song: player.song,
+		title: player.title,
 		artist: player.artist,
 		local: player.local,
 		elapsed: player.elapsed,

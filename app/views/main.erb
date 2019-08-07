@@ -4,15 +4,15 @@
 	<div id="player">
 
 		<div id="state">
-			<h5>
-				<span id="status" class="text-uppercase">&nbsp;</span>
+			<h5 id="state-top-line">
+				<span id="playing" class="text-uppercase">&nbsp;</span>
 				<span id="progress">
 					<span id="elapsed"></span>/<span id="length"></span>
 				</span>
 			</h5>
 			<div class="bg-info" id="progress-bar"></div>
 
-			<h3 id="song">&nsbp;</h3>
+			<h3 id="title">&nbsp;</h3>
 			<h4 id="artist">&nbsp;</h4>
 		</div>
 
@@ -51,7 +51,7 @@
 	<!-- Radios list -->
 	<div id="radios">
 
-		<h4 class="text-center text-muted" id="title"></h4>
+		<h4 class="text-center text-muted" id="radios-welcome"></h4>
 
 		<ul class="list-group" id="radios-list">
 			<% streams.each do |key, value| %>

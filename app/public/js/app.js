@@ -15,21 +15,21 @@ var view = {
 
 	render: function(state) {
 		if (state.playing) {
-			$("#status").html(lang.playing);
-			$("#span-ps").attr('class', 'glyphicon glyphicon-stop');
-			$("#btn-ps").attr('class', 'btn btn-danger btn-lg');
+			$("#playing").html(lang.playing);
+			$("#span-ps").attr("class", "glyphicon glyphicon-stop");
+			$("#btn-ps").attr("class", "btn btn-danger btn-lg");
 		} else {
-			$("#status").html(lang.notPlaying);
-			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
-			$("#btn-ps").attr('class', 'btn btn-default btn-lg');
+			$("#playing").html(lang.notPlaying);
+			$("#span-ps").attr("class", "glyphicon glyphicon-play");
+			$("#btn-ps").attr("class", "btn btn-default btn-lg");
 		}
 
-		$("#song").html(state.song);
+		$("#title").html(state.title);
 		$("#artist").html(state.artist);
 		if (state.local) {
-			$("#song").attr('class', 'text-uppercase');
+			$("#title").attr("class", "text-uppercase");
 		} else {
-			$("#song").attr('class', '');
+			$("#title").attr("class", "");
 		}
 
 		// Playing local music: Update additional info
@@ -39,11 +39,10 @@ var view = {
 			$("#progress").show();
 		} else {
 			$("#progress").hide();
-			$("#progress-bar").css("width", "0%");
 		}
 
 		// Local music: Update progress bar
-		if (state.local) {
+		if (state.local && state.playing) {
 			var progress = state.elapsed / state.length
 			$("#progress-bar").css("width", progress * 100 + "%");
 		} else {
@@ -64,7 +63,7 @@ var view = {
 		$("#btn-random").append(lang.sBtnRandom);
 		$("#btn-radios").append(lang.sBtnRadios);
 		$("#btn-player").append(lang.sBtnPlayer);
-		$("#title").text(lang.sTitle);
+		$("#radios-welcome").text(lang.sRadiosWelcome);
 		$("#insert h4").text(lang.sInsert);
 	},
 
