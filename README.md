@@ -3,7 +3,6 @@
 PiFi Radio: A MPD web client to listen to radio
 
 ## Table of contents
-* [Motivation](#motivation)
 * [Meet PiFi Radio](#meet-pifi-radio)
    * [What is PiFi Radio](#what-is-pifi-radio)
    * [Some features](#some-features)
@@ -16,18 +15,13 @@ PiFi Radio: A MPD web client to listen to radio
 * [License](#license)
 
 
-## Motivation
-
-[Read this blog post.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
-
-
 ## Meet PiFi Radio
 
 ### What is PiFi Radio
 
 PiFi Radio is a minimalist MPD web client to listen to radio. In other words, it makes your Raspberry Pi play Internet radio, while you control from any device, such as your phone.
 
-As PiFi is just an interface for MPD, it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. For example, the radio playback is completely independent from your phone. You can take calls, play videos, go to an area with poor WiFi signal, or even turn your phone off. Your Pi will still continue to play the radio you picked.
+As PiFi is just an interface for MPD, it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. For example, the radio playback is completely independent from your phone. You can take calls, play videos, go to an area with poor WiFi signal, or even turn off your phone. Your Pi will still continue to play the radio you picked.
 
 [I started this project in early 2017. At that time, I wanted to configure Raspbian so my parents could listen to radio with ease, but couldn't find any good solution to it.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
 
@@ -100,8 +94,8 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 | --------------- | -------------------------------------------------------------------------
 | `cache_max_age` | Cache value used by Rack.
 | `serve_static`  | If Rack should serve static resources. Set to `false` if your web server is already doing it.
-| `host`					| MPD host.
-| `port`					| MPD port.
+| `host`		  | MPD host.
+| `port`		  | MPD port.
 | `streams_file`  | Path to file containing the streams list [(see next section)](#list-of-streams).
 | `streamsp_file` | Path to other file containing streams list. The stations here will be merged with the other list and presented only to devices which IPs are listed on `special_ips`. A use case for this is if you have tons of stations that only you listen and you don’t want to pollute everyone else's list. *(If you don’t need this, just leave it empty.)*
 | `special_ips`   | The IPs for which the additional streams will be shown. *(If you don’t need this, just leave it empty.)*
