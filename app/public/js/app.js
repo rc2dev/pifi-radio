@@ -23,7 +23,14 @@ var view = {
 			$("#span-ps").attr('class', 'glyphicon glyphicon-play');
 			$("#btn-ps").attr('class', 'btn btn-default btn-lg');
 		}
+
 		$("#song").html(state.song);
+		$("#artist").html(state.artist);
+		if (state.local) {
+			$("#song").attr('class', 'text-nowrap text-uppercase');
+		} else {
+			$("#song").attr('class', 'text-nowrap');
+		}
 
 		// Update additional info if playing local music
 		if (state.local && state.playing) {

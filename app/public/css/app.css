@@ -20,12 +20,19 @@
 #state {
 	height: 93px;
 	margin-bottom: 10px;
-	overflow: hidden;
 }
 
 #song {
 	margin-top: 10px;
 	margin-bottom: 0px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#artist {
+	margin-top: 0px;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 #btn-ps {

@@ -32,6 +32,7 @@ get "/api" do
 	cache_control :no_cache
 	{ playing: player.playing,
 		song: player.song,
+		artist: player.artist,
 		local: player.local,
 		elapsed: player.elapsed,
 		length: player.length,

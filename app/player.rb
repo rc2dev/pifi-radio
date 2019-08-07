@@ -1,5 +1,5 @@
 class Player
-	attr_reader :playing, :song, :local, :elapsed, :length, :vol, :con_mpd
+	attr_reader :playing, :song, :artist, :local, :elapsed, :length, :vol, :con_mpd
 
 	VOL_LOW = 0
 	VOL_UP = 100
@@ -90,17 +90,24 @@ class Player
 
 	def set_song(*args)
 		if args.length == 0     # Sometimes it passes no arguments, instead of
-			@song = ""            # MPD::Song object
-			@local = false
+			@local = false        # MPD::Song object
+			@song = ""            
+			@artist = ""
 		else
 			song = args[0]
-			file = song.file
-			if file.include?("://")
-				@song = @streams.key(file) || "Streaming"
+			if song.file.include?("://")
 				@local = false
+				@song = @streams.key(song.file) || "Streaming"
+				@artist = ""
 			else
-				@song = local_name(song)
 				@local = true
+				if song.artist.nil? || song.title.nil?
+					@song = "Music"
+					@artist = ""
+				else
+					@song = song.title
+					@artist = song.artist
+				end
 			end
 		end
 	end
@@ -111,15 +118,5 @@ class Player
 
 	def set_con_mpd(con_mpd)
 		@con_mpd = con_mpd
-	end
-
-	def local_name(song)
-		if song.artist.nil? || song.title.nil?
-			"Music"
-		else
-			name = song.artist + " - " + song.title
-			# If larger than 45, make it 45! 45 - 3 (reticences) = 42. 0-41 is 42.
-			name.length > 45 ? name[0..41] + "..." : name
-		end
 	end
 end
