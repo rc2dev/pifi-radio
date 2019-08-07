@@ -32,13 +32,22 @@ var view = {
 			$("#song").attr('class', 'text-nowrap');
 		}
 
-		// Update additional info if playing local music
+		// Playing local music: Update additional info
 		if (state.local && state.playing) {
 			$("#elapsed").html(this.toMinSec(state.elapsed));
 			$("#length").html(this.toMinSec(state.length));
 			$("#progress").show();
 		} else {
 			$("#progress").hide();
+			$("#progress-bar").css("width", "0%");
+		}
+
+		// Local music: Update progress bar
+		if (state.local) {
+			var progress = state.elapsed / state.length
+			$("#progress-bar").css("width", progress * 100 + "%");
+		} else {
+			$("#progress-bar").css("width", "0%");
 		}
 
 		// Only show buttons if volume is available
