@@ -39,14 +39,17 @@
 #song {
 	margin-top: 6px;		/* 10px - 2px (progress bar) - 2px (progress bar top margin) */
 	margin-bottom: 0px;	
-	text-overflow: ellipsis;
-	overflow: hidden;
 }
 
 #artist {
 	margin-top: 0px;
-	text-overflow: ellipsis;
+}
+
+/* Trim string and add suspension points if needed */
+#song, #artist {
+	white-space: nowrap;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #btn-ps {

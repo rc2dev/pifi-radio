@@ -27,9 +27,9 @@ var view = {
 		$("#song").html(state.song);
 		$("#artist").html(state.artist);
 		if (state.local) {
-			$("#song").attr('class', 'text-nowrap text-uppercase');
+			$("#song").attr('class', 'text-uppercase');
 		} else {
-			$("#song").attr('class', 'text-nowrap');
+			$("#song").attr('class', '');
 		}
 
 		// Playing local music: Update additional info
