@@ -22,6 +22,10 @@
 	margin-bottom: 10px;
 }
 
+#progress {
+	float: right;
+}
+
 #song {
 	margin-top: 10px;
 	margin-bottom: 0px;
