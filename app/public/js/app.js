@@ -19,6 +19,7 @@ var view = {
 		this.renderProgress();
 		this.renderProgressBar();
 		this.renderVolButtons();
+		this.setView();
 	},
 
 	renderPlaying: function() {
@@ -70,6 +71,14 @@ var view = {
 		} else {
 			$("#btn-vdown").attr("disabled", false);
 			$("#btn-vup").attr("disabled", false);
+		}
+	},
+
+	setView() {
+		if (state.con_mpd && this.hidden) {
+			this.unhide(state.playing);
+		} else if (! state.con_mpd) {
+			this.hide(lang.disconnectedMpd);
 		}
 	},
 
@@ -195,15 +204,6 @@ var controller = {
 		$.get("/api", function(response) {
 			state = response;
 			view.render();
-
-			// Hide data if backend is disconnected from MPD
-			if (state.con_mpd) {
-				if (view.hidden) {
-					view.unhide(state.playing);
-				}
-			} else {
-				view.hide(lang.disconnectedMpd);
-			}
 		})
 			.fail(function() {
 				view.hide(lang.disconnectedNet);
