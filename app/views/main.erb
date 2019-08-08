@@ -33,10 +33,12 @@
 			<% if play_local %>
 				<button type="button" id="btn-random" class="btn btn-info">
 					<span class="glyphicon glyphicon-music"></span>
+					<span id="lbl-random"></span>
 				</button>
 			<% end %>
 			<button type="button" id="btn-radios" class="btn btn-primary" >
 				<span class="glyphicon glyphicon-list"></span>
+				<span id="lbl-radios"></span>
 			</button>
 		</div>
 
@@ -59,21 +61,21 @@
 					<h4 class="radios-group-title"><%= key %></h4>
 				<% else %>
 					<a href="#">
-						<li class="list-group-item radio-name"><h4><%= key %></h4></li>
+						<li class="radio-name list-group-item"><h4><%= key %></h4></li>
 					</a>
 				<% end %>
 			<% end %>
-			<a href="#">
-				<li id="insert" class="list-group-item">
-					<h4 class="text-muted"></h4>
-				</li>
-			</a>
 		</ul>
+		
+		<a href="#">
+			<h4 id="insert" class="text-muted"></h4>
+		</a>
 
 		<div id="radios-bottom" class="text-center">
 			<a href="#">
 				<button type="button" id="btn-player" class="btn btn-primary">
 					<span class="glyphicon glyphicon-th"></span>
+					<span id="lbl-player"></span>
 				</button>
 			</a>
 		</div>

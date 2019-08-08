@@ -23,19 +23,19 @@ var view = {
 
 	renderPlaying: function() {
 		if (state.playing) {
-			$("#playing").html(lang.playing);
+			$("#playing").text(lang.playing);
 			$("#span-ps").attr("class", "glyphicon glyphicon-stop");
 			$("#btn-ps").attr("class", "btn btn-danger btn-lg");
 		} else {
-			$("#playing").html(lang.notPlaying);
+			$("#playing").text(lang.notPlaying);
 			$("#span-ps").attr("class", "glyphicon glyphicon-play");
 			$("#btn-ps").attr("class", "btn btn-default btn-lg");
 		}
 	},
 	
 	renderTitle: function() {
-		$("#title").html(state.title);
-		$("#artist").html(state.artist);
+		$("#title").text(state.title);
+		$("#artist").text(state.artist);
 		if (state.local) {
 			$("#title").attr("class", "text-uppercase");
 		} else {
@@ -45,8 +45,8 @@ var view = {
 
 	renderProgress: function() {
 		if (state.local && state.playing) {
-			$("#elapsed").html(this.toMinSec(state.elapsed));
-			$("#length").html(this.toMinSec(state.length));
+			$("#elapsed").text(this.toMinSec(state.elapsed));
+			$("#length").text(this.toMinSec(state.length));
 			$("#progress").show();
 		} else {
 			$("#progress").hide();
@@ -71,14 +71,14 @@ var view = {
 			$("#btn-vdown").attr("disabled", false);
 			$("#btn-vup").attr("disabled", false);
 		}
-	}
+	},
 
 	setStaticStr: function() {
-		$("#btn-random").append(lang.sBtnRandom);
-		$("#btn-radios").append(lang.sBtnRadios);
-		$("#btn-player").append(lang.sBtnPlayer);
+		$("#lbl-random").text(lang.sBtnRandom);
+		$("#lbl-radios").text(lang.sBtnRadios);
+		$("#lbl-player").text(lang.sBtnPlayer);
 		$("#radios-welcome").text(lang.sRadiosWelcome);
-		$("#insert h4").text(lang.sInsert);
+		$("#insert").text(lang.sInsert);
 	},
 
 	showPlayer: function() {
@@ -115,7 +115,7 @@ var view = {
 	},
 
 	osdVol: function(vol) {
-		$("#osd-text").html(vol);
+		$("#osd-text").text(vol);
 		$("#player-bottom").hide();
 		$("#osd").show();
 
@@ -246,7 +246,7 @@ var controller = {
 	},
 
 	clickRadio: function(name) {
-		if (name === state.song && ! state.local && state.playing) {
+		if (name === state.title && ! state.local && state.playing) {
 			view.showPlayer();
 		} else {
 			this.playStream("name", name);
