@@ -7,10 +7,10 @@
 			<h5 id="state-top-line">
 				<span id="playing" class="text-uppercase">&nbsp;</span>
 				<span id="progress">
-					<span id="elapsed"></span>/<span id="length"></span>
+					<span id="elapsed">&nbsp;</span>/<span id="length">&nbsp;</span>
 				</span>
 			</h5>
-			<div class="bg-info" id="progress-bar"></div>
+			<div id="progress-bar" class="bg-info"></div>
 
 			<h3 id="title">&nbsp;</h3>
 			<h4 id="artist">&nbsp;</h4>
@@ -31,18 +31,18 @@
 
 		<div id="player-bottom">
 			<% if play_local %>
-				<button type="button" class="btn btn-info" id="btn-random">
+				<button type="button" id="btn-random" class="btn btn-info">
 					<span class="glyphicon glyphicon-music"></span>
 				</button>
 			<% end %>
-			<button type="button" class="btn btn-primary" id="btn-radios">
+			<button type="button" id="btn-radios" class="btn btn-primary" >
 				<span class="glyphicon glyphicon-list"></span>
 			</button>
 		</div>
 
 		<!-- Volume OSD -->
 		<div id="osd">
-			<h2 class="text-info" id="osd-text"></h2>
+			<h2 id="osd-text" class="text-info"></h2>
 		</div>
 
 	</div>
@@ -51,9 +51,9 @@
 	<!-- Radios list -->
 	<div id="radios">
 
-		<h4 class="text-center text-muted" id="radios-welcome"></h4>
+		<h4 id="radios-welcome" class="text-center text-muted"></h4>
 
-		<ul class="list-group" id="radios-list">
+		<ul id="radios-list" class="list-group">
 			<% streams.each do |key, value| %>
 				<% if value.empty? %>
 					<h4 class="radios-group-title"><%= key %></h4>
@@ -64,7 +64,7 @@
 				<% end %>
 			<% end %>
 			<a href="#">
-				<li class="list-group-item" id="insert">
+				<li id="insert" class="list-group-item">
 					<h4 class="text-muted"></h4>
 				</li>
 			</a>
@@ -72,7 +72,7 @@
 
 		<div id="radios-bottom" class="text-center">
 			<a href="#">
-				<button type="button" class="btn btn-primary" id="btn-player">
+				<button type="button" id="btn-player" class="btn btn-primary">
 					<span class="glyphicon glyphicon-th"></span>
 				</button>
 			</a>
@@ -82,7 +82,7 @@
 
 	<!-- To show alerts -->
 	<div id="alert">
-		<h3 class="text-center text-info" id="alert-text"></h3>
+		<h3 id="alert-text" class="text-center text-info"></h3>
 	</div>
 
 </div>

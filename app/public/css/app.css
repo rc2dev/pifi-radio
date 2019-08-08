@@ -7,7 +7,7 @@
 }
 
 /* Hide everything */
-#player, #radios, #alert, #silence, #osd {
+#player, #radios, #alert, #osd {
 	display: none;
 }
 
@@ -75,7 +75,7 @@
 }
 
 #btn-radios {
-	width: 120px;*/
+	width: 120px;
 }
 
 
