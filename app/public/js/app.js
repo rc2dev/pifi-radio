@@ -13,7 +13,15 @@ var view = {
 		this.addListeners();
 	},
 
-	render: function(state) {
+	render: function() {
+		this.renderPlaying();
+		this.renderTitle();
+		this.renderProgress();
+		this.renderProgressBar();
+		this.renderVolButtons();
+	},
+
+	renderPlaying: function() {
 		if (state.playing) {
 			$("#playing").html(lang.playing);
 			$("#span-ps").attr("class", "glyphicon glyphicon-stop");
@@ -23,7 +31,9 @@ var view = {
 			$("#span-ps").attr("class", "glyphicon glyphicon-play");
 			$("#btn-ps").attr("class", "btn btn-default btn-lg");
 		}
-
+	},
+	
+	renderTitle: function() {
 		$("#title").html(state.title);
 		$("#artist").html(state.artist);
 		if (state.local) {
@@ -31,8 +41,9 @@ var view = {
 		} else {
 			$("#title").attr("class", "");
 		}
+	},
 
-		// Playing local music: Update additional info
+	renderProgress: function() {
 		if (state.local && state.playing) {
 			$("#elapsed").html(this.toMinSec(state.elapsed));
 			$("#length").html(this.toMinSec(state.length));
@@ -40,15 +51,18 @@ var view = {
 		} else {
 			$("#progress").hide();
 		}
+	},
 
-		// Local music: Update progress bar
+	renderProgressBar: function() {
 		if (state.local && state.playing) {
 			var progress = state.elapsed / state.length
 			$("#progress-bar").css("width", progress * 100 + "%");
 		} else {
 			$("#progress-bar").css("width", "0%");
 		}
+	},
 
+	renderVolButtons: function() {
 		// Only show buttons if volume is available
 		if (state.vol < 0) {
 			$("#btn-vdown").attr("disabled", true);
@@ -57,7 +71,7 @@ var view = {
 			$("#btn-vdown").attr("disabled", false);
 			$("#btn-vup").attr("disabled", false);
 		}
-	},
+	}
 
 	setStaticStr: function() {
 		$("#btn-random").append(lang.sBtnRandom);
@@ -180,7 +194,7 @@ var controller = {
 	updatingState: function() {
 		$.get("/api", function(response) {
 			state = response;
-			view.render(state);
+			view.render();
 
 			// Hide data if backend is disconnected from MPD
 			if (state.con_mpd) {
