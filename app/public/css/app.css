@@ -125,7 +125,13 @@
 
 
 /* Alerts */
-#alert-text {
+#alert {
 	padding-top: 40%;
 }
 
+/* Trim string and add suspension points if needed */
+#alert-text-more {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

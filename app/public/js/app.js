@@ -116,8 +116,14 @@ var view = {
 		this.hidden = false;
 	},
 
-	osdAlert: function(text) {
-		$("#alert-text").text(text);
+	osdAlert: function(text, textMore) {
+		if (textMore === undefined) {
+			textMore = "";
+		}
+
+		$("#alert-text-main").text(text);
+		$("#alert-text-more").text(textMore);
+
 		$("#player").hide();
 		$("#radios").hide();
 		$("#alert").show();
@@ -260,7 +266,7 @@ var controller = {
 	},
 
 	playStream: function(type, value) {
-		view.osdAlert(lang.streamTrying);
+		view.osdAlert(lang.streamTrying, value);
 
 		$.post("/api", { cmd: "play_stream", type: type, value: value },
 			function() {
