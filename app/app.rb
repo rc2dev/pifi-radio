@@ -61,12 +61,13 @@ post "/api" do
 		content_type :text
 		halt 400, API_ERROR_PARAMS unless params.include?(:inc)
 
+		inc = params[:inc].to_i
 		begin
-			inc = params[:inc].to_i
 			vol = player.vol_ch(inc)
-			vol.to_s + "%"
 		rescue VolNaError
 			halt 503, API_ERROR_VOLNA
+		else
+			vol.to_s + "%"
 		end
 
 	when "play_stream"
@@ -74,10 +75,11 @@ post "/api" do
 		halt 400, API_ERROR_PARAMS unless \
 			params.include?(:type) && params.include?(:value)
 
-		begin
-			type = params[:type]
-			value = params[:value].strip
-			queue = params.include?(:queue) ? params[:queue].strip : nil
+		type = params[:type]
+		value = params[:value].strip
+		queue = params.include?(:queue) ? params[:queue].strip : nil
+
+		begin			
 			player.play_stream(type, value, queue)
 		rescue ArgumentError => e
 			halt 400, e.message

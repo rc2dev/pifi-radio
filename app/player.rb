@@ -6,16 +6,16 @@ class Player
 
 	def initialize(host, port, streams)
 		@streams = streams
-		@mpd = MPD.new host, port, { callbacks: true }
+		@mpd = MPD.new(host, port, { callbacks: true })
 
 		@mpd.connect
 
 		# Callbacks
-		@mpd.on :state, &method(:set_state)
-		@mpd.on :time, &method(:set_time)
-		@mpd.on :song, &method(:set_song)
-		@mpd.on :volume, &method(:set_vol)
-		@mpd.on :connection, &method(:set_con_mpd)
+		@mpd.on(:state, &method(:set_state))
+		@mpd.on(:time, &method(:set_time))
+		@mpd.on(:song, &method(:set_song))
+		@mpd.on(:volume, &method(:set_vol))
+		@mpd.on(:connection, &method(:set_con_mpd))
 	end
 
 
