@@ -31,7 +31,7 @@ class Player
 
 	def vol_ch(inc)
 		# We get @vol=-1 when PulseAudio sink is closed
-		raise RunTimeError, "Volume is not available." if @vol < 0
+		raise VolNaError if @vol < 0
 
 		new_vol = @vol + inc
 		new_vol =
@@ -51,9 +51,11 @@ class Player
 			url_queue = queue unless queue.nil?
 		when "name"
 			url = @streams[value]
+			raise ArgumentError, "Invalid 'value'" if url.nil?
+
 			url_queue = @streams[queue] unless queue.nil?
 		else
-			raise ArgumentError, "Invalid 'type' value."
+			raise ArgumentError, "Invalid 'type' value"
 		end
 
 		@mpd.clear
@@ -119,4 +121,9 @@ class Player
 	def set_con_mpd(con_mpd)
 		@con_mpd = con_mpd
 	end
+end
+
+
+class VolNaError < StandardError
+
 end

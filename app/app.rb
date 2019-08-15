@@ -6,6 +6,12 @@ require_relative 'lang_chooser'
 require_relative 'utils'
 
 
+# HTTP error messages
+API_ERROR_PARAMS = "Wrong parameters"
+API_ERROR_LOCAL = "Local playback is disabled"
+API_ERROR_VOLNA = "Volume is not available"
+API_ERROR_MPD = "MPD says not found"
+
 # For cache use
 cache_time = Time.now
 
@@ -53,39 +59,43 @@ post "/api" do
 	when "vol_ch"
 		status 200
 		content_type :text
-		halt 400 unless params.include?(:inc)
+		halt 400, API_ERROR_PARAMS unless params.include?(:inc)
 
 		begin
 			inc = params[:inc].to_i
 			vol = player.vol_ch(inc)
 			vol.to_s + "%"
-		rescue RuntimeError
-			halt 400
+		rescue VolNaError
+			halt 503, API_ERROR_VOLNA
 		end
 
 	when "play_stream"
 		status 204
-		halt 400 unless params.include?(:type) && params.include?(:value)
+		halt 400, API_ERROR_PARAMS unless \
+			params.include?(:type) && params.include?(:value)
 
 		begin
 			type = params[:type]
 			value = params[:value].strip
 			queue = params.include?(:queue) ? params[:queue].strip : nil
 			player.play_stream(type, value, queue)
-		rescue ArgumentError, MPD::NotFound
-			halt 400
+		rescue ArgumentError => e
+			halt 400, e.message
+		rescue MPD::NotFound
+			halt 400, API_ERROR_MPD
 		end
 
 	when "play_random"
 		status 204
-		halt 503 unless config["play_local"]
+		halt 400, API_ERROR_LOCAL unless config["play_local"]
 
 		player.play_random
 
 	else
-		halt 400
+		halt 400, API_ERROR_PARAMS
 	end
 end
+
 
 title = production? ? "PiFi Radio" : "[#{settings.environment.capitalize}] PiFi Radio"
 get "/" do
