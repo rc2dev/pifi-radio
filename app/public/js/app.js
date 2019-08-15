@@ -250,20 +250,26 @@ var controller = {
 		if (name === state.title && ! state.local && state.playing) {
 			view.showPlayer();
 		} else {
-			this.playStream("name", name);
+			this.playStream(true, name);
 		}
 	},
 
 	clickInsert: function(url) {
 		if (url !== null && url !== "") {
-			this.playStream("url", url);
+			this.playStream(false, url.trim());
 		}
 	},
 
-	playStream: function(type, value) {
+	playStream: function(isName, value) {
 		view.osdAlert(lang.streamTrying, value);
 
-		$.post("/api", { cmd: "play_stream", type: type, value: value },
+		if (isName) {
+			var data = { cmd: "play_radios", names: [value] };
+		} else {
+			var data = { cmd: "play_urls", urls: [value] };
+		}
+
+		$.post("/api", data,
 			function() {
 				setTimeout(function() {
 					view.showPlayer();

@@ -44,23 +44,35 @@ class Player
 		@vol = @mpd.volume=(new_vol)
 	end
 
-	def play_stream(type, value, queue)
-		case type
-		when "url"
-			url = value
-			url_queue = queue unless queue.nil?
-		when "name"
-			url = @streams[value]
-			raise ArgumentError, "Invalid 'value'" if url.nil?
+	def play_radios(names)
+		raise ArgumentError, "Expected an array" unless names.kind_of?(Array)
+		raise ArgumentError, "Received an empty array" if names.empty?
 
-			url_queue = @streams[queue] unless queue.nil?
-		else
-			raise ArgumentError, "Invalid 'type' value"
+		urls = []
+		names.each do |name|
+			url = @streams[name]
+			# nil: key not found; empty: it's a radio category
+			raise ArgumentError, "Invalid radio name: #{name}" if url.nil? or url.empty?
+
+			urls << url
 		end
 
+		play_urls(urls)
+	end
+
+	def play_urls(urls)
+		raise ArgumentError, "'urls' should be an array" unless urls.kind_of?(Array)
+		raise ArgumentError, "'urls' can't be an empty array" if urls.empty?
+
+		# Perform simple check on urls array
+		urls.each do |url|
+			raise ArgumentError, "Non-String element in 'urls'" unless url.kind_of?(String)
+			raise ArgumentError, "Empty element in 'urls'" if url.empty?
+		end
+
+		# Send the URLs to MPD and start playback
 		@mpd.clear
-		@mpd.add(url)
-		@mpd.add(url_queue) unless queue.nil?
+		urls.each { |url| @mpd.add(url) }
 		@mpd.random=(false)
 		@mpd.play
 	end

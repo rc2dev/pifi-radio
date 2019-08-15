@@ -70,17 +70,24 @@ post "/api" do
 			vol.to_s + "%"
 		end
 
-	when "play_stream"
+	when "play_radios"
 		status 204
-		halt 400, API_ERROR_PARAMS unless \
-			params.include?(:type) && params.include?(:value)
+		halt 400, API_ERROR_PARAMS unless params.include?(:names)
 
-		type = params[:type]
-		value = params[:value].strip
-		queue = params.include?(:queue) ? params[:queue].strip : nil
+		begin
+			player.play_radios(params[:names])
+		rescue ArgumentError => e
+			halt 400, e.message
+		rescue MPD::NotFound
+			halt 400, API_ERROR_MPD
+		end
 
-		begin			
-			player.play_stream(type, value, queue)
+	when "play_urls"
+		status 204
+		halt 400, API_ERROR_PARAMS unless params.include?(:urls)
+
+		begin
+			player.play_urls(params[:urls])
 		rescue ArgumentError => e
 			halt 400, e.message
 		rescue MPD::NotFound
