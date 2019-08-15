@@ -33,7 +33,7 @@ var view = {
 			$("#btn-ps").attr("class", "btn btn-default btn-lg");
 		}
 	},
-	
+
 	renderTitle: function() {
 		$("#title").text(state.title);
 		$("#artist").text(state.artist);
@@ -142,11 +142,6 @@ var view = {
 	},
 
 	addListeners: function() {
-		// "Unclick" buttons after clicked
-		$("button").click(function(event) {
-			$(this).blur();
-		});
-
 		// Prevent href="#" to be executed
 		$('a[href="#"]').click(function(event) {
 			return false;
@@ -160,11 +155,11 @@ var view = {
 			controller.clickVol("-5");
 		});
 
-		$("#btn-ps").click(function( event ) {
+		$("#btn-ps").click(function(event) {
 			controller.clickPs();
 		});
 
-		$("#btn-random").click(function( event ) {
+		$("#btn-random").click(function(event) {
 			controller.clickRandom();
 		});
 

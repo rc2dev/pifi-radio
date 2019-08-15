@@ -11,6 +11,12 @@
 	display: none;
 }
 
+/* Don't change buttons styles after clicked. */
+.btn:focus {
+	background-position: 0;
+	border-color: #ccc;
+	outline: none;
+}
 
 /* player */
 #player, #alert {
