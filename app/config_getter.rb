@@ -22,4 +22,3 @@ class ConfigGetter
 		end
 	end
 end
-

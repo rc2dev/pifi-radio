@@ -233,8 +233,8 @@ var controller = {
 			});
 	},
 
-	clickVol: function(inc) {
-		$.post( "/api", { cmd: "vol_ch", inc: inc }, function(response) {
+	clickVol: function(delta) {
+		$.post( "/api", { cmd: "change_vol", delta: delta }, function(response) {
 			view.osdVol(response);
 		});
 	},

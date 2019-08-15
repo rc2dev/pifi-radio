@@ -3,6 +3,10 @@ class Player
 
 	VOL_LOW = 0
 	VOL_UP = 100
+	CROSSFADE = 5
+	DEFAULT_TITLE_LOCAL = "Music"
+	DEFAULT_TITLE_STREAM = "Streaming"
+
 
 	def initialize(host, port, streams)
 		@streams = streams
@@ -18,7 +22,6 @@ class Player
 		@mpd.on(:connection, &method(:set_con_mpd))
 	end
 
-
 	def play
 		# Quicker than callback
 		@playing = true if @mpd.play
@@ -29,11 +32,11 @@ class Player
 		@playing = false if @mpd.stop
 	end
 
-	def vol_ch(inc)
+	def change_vol(delta)
 		# We get @vol=-1 when PulseAudio sink is closed
 		raise VolNaError if @vol < 0
 
-		new_vol = @vol + inc
+		new_vol = @vol + delta
 		new_vol =
 			if new_vol < VOL_LOW then VOL_LOW
 			elsif new_vol > VOL_UP then VOL_UP
@@ -81,13 +84,13 @@ class Player
 		# If playing local music, play next
 		if @playing && @local
 			@mpd.next
-		# If not playing local music, load all the library
-		# and start to play in shuffle mode
+		# If not playing local music, load all the
+		# music and start playing in shuffle mode
 		else
 			@mpd.clear
 			@mpd.add("/")
 			@mpd.random=(true)
-			@mpd.crossfade=(5)
+			@mpd.crossfade=(CROSSFADE)
 			@mpd.play
 		end
 	end
@@ -103,27 +106,36 @@ class Player
 	end
 
 	def set_song(*args)
-		if args.length == 0     # Sometimes it passes no arguments, instead of
-			@local = false        # MPD::Song object
+		# Sometimes it passes no arguments, instead of MPD::Song object
+		if args.length == 0
+			@local = false
 			@title = ""            
 			@artist = ""
 		else
 			song = args[0]
 			if song.file.include?("://")
-				@local = false
-				@title = @streams.key(song.file) || "Streaming"
-				@artist = ""
+				set_song_stream(song)
 			else
-				@local = true
-				if song.artist.nil? || song.title.nil?
-					@title = "Music"
-					@artist = ""
-				else
-					@title = song.title
-					@artist = song.artist
-				end
+				set_song_local(song)
 			end
 		end
+	end
+
+	def set_song_local(song)
+		@local = true
+		if song.artist.nil? || song.title.nil?
+			@title = DEFAULT_TITLE_LOCAL
+			@artist = ""
+		else
+			@title = song.title
+			@artist = song.artist
+		end
+	end
+
+	def set_song_stream(song)
+		@local = false
+		@title = @streams.key(song.file) || DEFAULT_TITLE_STREAM
+		@artist = ""
 	end
 
 	def set_vol(vol)

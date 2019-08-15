@@ -56,14 +56,14 @@ post "/api" do
 		status 204
 		player.stop
 
-	when "vol_ch"
+	when "change_vol"
 		status 200
 		content_type :text
-		halt 400, API_ERROR_PARAMS unless params.include?(:inc)
+		halt 400, API_ERROR_PARAMS unless params.include?(:delta)
 
-		inc = params[:inc].to_i
+		delta = params[:delta].to_i
 		begin
-			vol = player.vol_ch(inc)
+			vol = player.change_vol(delta)
 		rescue VolNaError
 			halt 503, API_ERROR_VOLNA
 		else
@@ -120,4 +120,3 @@ get "/" do
 	erb :main, locals: { title: title, lang: lang, streams: stream_set,
 		play_local: config["play_local"] }
 end
-
