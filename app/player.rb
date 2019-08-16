@@ -21,24 +21,24 @@ class Player
 	end
 
 	def play
-		# Quicker than callback
+		# Assigning is quicker than callback
 		@playing = true if @mpd.play
 	end
 
 	def stop
-		# Quicker than callback
+		# Assigning is quicker than callback
 		@playing = false if @mpd.stop
 	end
 
 	def change_vol(delta)
+		# Check delta
+		raise ArgumentError, "'delta' should be a string" unless delta.kind_of?(String)
+		raise ArgumentError, "Invalid 'delta'" unless delta =~ /^[+-]\d{1,2}$/
 		# We get @vol=-1 when PulseAudio sink is closed
 		raise VolNaError if @vol < 0
-		# Check delta
-		raise ArgumentError, "Invalid 'delta'" unless delta =~ /^[+-]\d{1,2}$/
 
 		@mpd.send_command("volume", delta);
-
-		# More up-to-date than @vol
+		# This is more up-to-date than @vol
 		@mpd.volume
 	end
 
