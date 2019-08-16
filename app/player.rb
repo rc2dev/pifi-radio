@@ -1,8 +1,6 @@
 class Player
 	attr_reader :playing, :title, :artist, :local, :elapsed, :length, :vol, :con_mpd
 
-	VOL_LOW = 0
-	VOL_UP = 100
 	CROSSFADE = 5
 	DEFAULT_TITLE_LOCAL = "Music"
 	DEFAULT_TITLE_STREAM = "Streaming"
@@ -35,16 +33,13 @@ class Player
 	def change_vol(delta)
 		# We get @vol=-1 when PulseAudio sink is closed
 		raise VolNaError if @vol < 0
+		# Check delta
+		raise ArgumentError, "Invalid 'delta'" unless delta =~ /^[+-]\d{1,2}$/
 
-		new_vol = @vol + delta
-		new_vol =
-			if new_vol < VOL_LOW then VOL_LOW
-			elsif new_vol > VOL_UP then VOL_UP
-			else new_vol
-			end
+		@mpd.send_command("volume", delta);
 
-		# Quicker than callback, minimizes race conditions
-		@vol = @mpd.volume=(new_vol)
+		# More up-to-date than @vol
+		@mpd.volume
 	end
 
 	def play_radios(names)

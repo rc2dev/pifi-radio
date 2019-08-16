@@ -61,11 +61,12 @@ post "/api" do
 		content_type :text
 		halt 400, API_ERROR_PARAMS unless params.include?(:delta)
 
-		delta = params[:delta].to_i
 		begin
-			vol = player.change_vol(delta)
+			vol = player.change_vol(params[:delta])
 		rescue VolNaError
 			halt 503, API_ERROR_VOLNA
+		rescue ArgumentError => e
+			halt 400, e.message
 		else
 			vol.to_s + "%"
 		end
