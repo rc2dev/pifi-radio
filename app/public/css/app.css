@@ -7,7 +7,7 @@
 }
 
 /* Hide everything */
-#player, #radios, #alert, #osd {
+.view, #osd {
 	display: none;
 }
 
