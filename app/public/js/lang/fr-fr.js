@@ -1,7 +1,7 @@
 var lang = {
 	playing: "Lecture",
 	notPlaying: "Arrêté",
-	streamError: "Échec à l'ajout du flux.",
+	streamError: "Échec à l'ajout du flux",
 	streamTrying: "Mise en tampon…",
 	urlInsert: "Entrez l'URL",
 	randomNext: "Titre suivant",

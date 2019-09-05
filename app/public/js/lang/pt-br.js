@@ -1,7 +1,7 @@
 var lang = {
 	playing: "Tocando",
 	notPlaying: "Parado",
-	streamError: "Não foi possível tocar essa rádio.",
+	streamError: "Não foi possível tocar essa rádio",
 	streamTrying: "Sintonizando...",
 	urlInsert: "Insira a URL",
 	randomNext: "Próxima música",

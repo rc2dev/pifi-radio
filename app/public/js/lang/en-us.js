@@ -1,7 +1,7 @@
 var lang = {
 	playing: "Playing",
 	notPlaying: "Stopped",
-	streamError: "Failed to play this stream.",
+	streamError: "Failed to play this stream",
 	streamTrying: "Tunning...",
 	urlInsert: "Type the URL",
 	randomNext: "Next song",

@@ -268,14 +268,15 @@ var controller = {
 				setTimeout(view.showPlayer, timeConst.playStream);
 			})
 			.fail(function() {
-				view.showRadios();
-				alert(lang.streamError);
+				view.showAlert(lang.streamError, value);
+				setTimeout(view.showRadios, timeConst.error);
 			});
 	}
 };
 
 var timeConst = {
 	playStream: 2000,
+	error: 3000,
 	randomNext: 1500,
 	randomFirst: 5000,
 	volOsd: 1300,
