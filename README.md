@@ -120,7 +120,7 @@ If you want to arrange the stations in categories, add a pair with the category 
          "Radio 4": "https://example.com/radio4"
     }
 
-This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "Spain" in the demo](#demo).
+This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
 
 
 ## Credits
