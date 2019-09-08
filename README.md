@@ -89,15 +89,15 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 
 | Key             | Value
 | --------------- | -------------------------------------------------------------------------
-| `cache_max_age` | Cache value used by Rack.
-| `serve_static`  | If Rack should serve static resources. Set to `false` if your web server is already doing it.
-| `mpd_host`      | MPD host.
-| `mpd_port`      | MPD port.
-| `mpd_password`  | MPD password. Leave empty if none.
-| `streams_file`  | Path to the JSON file containing the streams [(see next section)](#list-of-streams).
-| `streamsp_file` | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. *(If you don’t need this, just leave it empty.)*
-| `special_ips`   | The IPs for the devices to show additional streams. *(If you don’t need this, just leave it empty.)*
-| `play_local`    | If you don’t want PiFi to play songs from your local library, set it as `false`. This will remove the "Random" button.
+| `streams_file`  | Required. Path to the JSON file containing the streams [(see next section)](#list-of-streams).
+| `mpd_host`      | Required. MPD host.
+| `mpd_port`      | Required. MPD port.
+| `mpd_password`  | Optional. MPD password.
+| `streamsp_file` | Optional. Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`.
+| `special_ips`   | Optional. The IPs of the devices to show additional streams.
+| `play_local`    | Optional. Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.
+| `cache_max_age` | Optional. Cache value used by Rack.
+| `serve_static`  | Optional. If Rack should serve static resources. Set it to `false` if your web server is already doing it.
 
 
 ### List of streams
