@@ -24,7 +24,8 @@ streams, streams_all = Utils.get_streams(
 	config["streams_file"], config["streamsp_file"])
 
 # Create player
-player = Player.new(config["host"], config["port"], streams_all)
+player = Player.new(config["mpd_host"], config["mpd_port"], config["mpd_password"],
+	streams_all)
 
 # Sinatra configuration
 configure :production do

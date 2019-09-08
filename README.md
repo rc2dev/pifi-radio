@@ -91,8 +91,9 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are th
 | --------------- | -------------------------------------------------------------------------
 | `cache_max_age` | Cache value used by Rack.
 | `serve_static`  | If Rack should serve static resources. Set to `false` if your web server is already doing it.
-| `host`          | MPD host.
-| `port`          | MPD port.
+| `mpd_host`      | MPD host.
+| `mpd_port`      | MPD port.
+| `mpd_password`  | MPD password. Leave empty if none.
 | `streams_file`  | Path to the JSON file containing the streams [(see next section)](#list-of-streams).
 | `streamsp_file` | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. *(If you don’t need this, just leave it empty.)*
 | `special_ips`   | The IPs for the devices to show additional streams. *(If you don’t need this, just leave it empty.)*

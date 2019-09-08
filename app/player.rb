@@ -6,11 +6,12 @@ class Player
 	DEFAULT_TITLE_STREAM = "Streaming"
 
 
-	def initialize(host, port, streams)
+	def initialize(host, port, password, streams)
 		@streams = streams
 		@mpd = MPD.new(host, port, { callbacks: true })
 
 		@mpd.connect
+		@mpd.password(password) unless password.empty?
 
 		# Callbacks
 		@mpd.on(:state, &method(:set_state))

@@ -1,8 +1,9 @@
 {
 	"cache_max_age": 120,
 	"serve_static": true,
-	"host": "127.0.0.1",
-	"port": 6600,
+	"mpd_host": "127.0.0.1",
+	"mpd_port": 6600,
+	"mpd_password": "",
 	"streams_file": "",
 	"streamsp_file": "",
 	"special_ips": "",
