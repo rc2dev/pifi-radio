@@ -68,7 +68,7 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 ## Demo
 
-![Video demo](resources/demo.gif)
+![Video demo](samples/demo.gif)
 
 
 ## Installation
@@ -85,7 +85,7 @@ While PiFi was imagined for the Pi, it should run on any computer with:
 
 ### PiFi configuration
 
-Configuration is read from the JSON file at `/etc/pifi-radio.conf`. These are the options:
+Configuration is read from the JSON file at `/etc/pifi-radio.conf`. You can find a sample [here](samples/pifi-radio.conf.sample). These are the options:
 
 | Key             | Value
 | --------------- | -------------------------------------------------------------------------
@@ -127,7 +127,7 @@ This will add the headers "Talk radio" and "Classical" above each group of stati
 ## Credits
 
 * French translation: Francis Chavanon "rimeno"
-* Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](app/icon/license.pdf).
+* Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](icon/license.pdf).
 
 
 ## License

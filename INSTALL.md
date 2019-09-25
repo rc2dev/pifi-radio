@@ -49,7 +49,7 @@ $ bundle install --deployment
 6. Copy the PiFi configuration file to `/etc` and edit it to your needs.
 
 ```
-$ sudo cp ~/pifi-radio/pifi-radio.conf.sample /etc/pifi-radio.conf
+$ sudo cp ~/pifi-radio/samples/pifi-radio.conf.sample /etc/pifi-radio.conf
 $ sudo -e /etc/pifi-radio.conf
 ```
 
@@ -82,7 +82,7 @@ $ sudo chgrp -R www-data /srv/pifi-radio
 2. Install the systemd service and edit it to your needs.
 
 ```
-$ sudo cp /path/to/pifi-radio/pifi-radio.service.sample /etc/systemd/system/pifi-radio.service
+$ sudo cp /path/to/pifi-radio/samples/pifi-radio.service.sample /etc/systemd/system/pifi-radio.service
 $ sudo -e pifi-radio.service
 ```
 
