@@ -96,7 +96,6 @@ Configuration is read from the JSON file at `/etc/pifi-radio.conf`. You can find
 | `streamsp_file` | Optional. Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`.
 | `special_ips`   | Optional. The IPs of the devices to show additional streams.
 | `play_local`    | Optional. Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.
-| `cache_max_age` | Optional. Cache value used by Rack.
 | `serve_static`  | Optional. If Rack should serve static resources. Set it to `false` if your web server is already doing it.
 
 

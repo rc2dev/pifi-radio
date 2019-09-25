@@ -1,3 +1,5 @@
+require "ruby-mpd"
+
 class Player
 	attr_reader :playing, :title, :artist, :local, :elapsed, :length, :vol, :con_mpd
 

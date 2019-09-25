@@ -1,13 +1,17 @@
+require_relative "utils"
+
 class ConfigGetter
+	include Utils
+
 	attr_reader :config
 
 	PATH = "/etc/pifi-radio.conf"
 	REQ_KEYS = ["mpd_host", "mpd_port", "streams_file"]
-	OPT_KEYS = {"cache_max_age" => 120, "serve_static" => true, "mpd_password" => "",
-	          	"streamsp_file" => "", "special_ips" => "", "play_local" => false}
+	OPT_KEYS = {"serve_static" => true, "mpd_password" => "", "streamsp_file" => "",
+	            "special_ips" => "", "play_local" => false}
 
 	def initialize
-		@config = Utils.file_to_hash(PATH)
+		@config = file_to_hash(PATH)
 		check_errors
 	end
 

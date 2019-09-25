@@ -6,6 +6,5 @@
 	"streamsp_file": "",
 	"special_ips": "",
 	"play_local": false,
-	"cache_max_age": 120,
 	"serve_static": true
 }

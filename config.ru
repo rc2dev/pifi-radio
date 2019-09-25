@@ -1,3 +1,5 @@
-require './app/app.rb'
+require "sinatra/base"
+Dir.glob("./{app/helpers,app/controllers}/*.rb").each { |file| require file }
 
-run Sinatra::Application
+map("/") { run IndexController }
+map("/api") { run APIController }

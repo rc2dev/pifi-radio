@@ -30,7 +30,7 @@
 
 
 		<div id="player-bottom">
-			<% if play_local %>
+			<% if play_local? %>
 				<button type="button" id="btn-random" class="btn btn-info">
 					<span class="glyphicon glyphicon-music"></span>
 					<span id="lbl-random"></span>
@@ -56,7 +56,7 @@
 		<h4 id="radios-welcome" class="text-center text-muted"></h4>
 
 		<ul id="radios-list" class="list-group">
-			<% streams.each do |key, value| %>
+			<% streams_set.each do |key, value| %>
 				<% if value.empty? %>
 					<h4 class="radios-group-title"><%= key %></h4>
 				<% else %>
