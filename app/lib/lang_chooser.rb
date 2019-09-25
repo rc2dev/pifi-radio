@@ -1,34 +1,25 @@
 class LangChooser
+	DEFAULT = "en-us"
+	LANG_DIR = "app/public/js/lang/*.js"
 
-	attr_reader :lang
-
-
-	def self.set_avail
-		avail = Dir.glob("app/public/js/lang/*")
-		avail.map! { |x| File.basename(x, ".*") }
-		@@avail = avail
+	def initialize(http_accept_language)
+		@http_accept = http_accept_language
 	end
 
-	def initialize(env)
-		set_accepted(env)
-		choose_lang
+	def lang
+		lang = accept.find { |e| avail.include?(e) }
+		lang || DEFAULT
 	end
 
-	def set_accepted(env)
-		request = env["HTTP_ACCEPT_LANGUAGE"]
-		@accepted = request.split(";")[0].split(",")
+
+	private
+
+	def avail
+		@@avail ||= Dir.glob(LANG_DIR).map { |file| File.basename(file, ".*") }
 	end
 
-	def choose_lang
-		@accepted.each do |acc|
-			acc = acc.downcase
-			if @@avail.include?(acc)
-				@lang = acc
-				return
-			end
-		end
-		@lang = "en-us"
+	def accept
+		return [] if @http_accept.nil?
+		@http_accept.split(";")[0].split(",").map(&:downcase)
 	end
-
-	self.set_avail
 end

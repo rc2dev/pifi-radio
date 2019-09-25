@@ -18,7 +18,7 @@ class IndexController < ApplicationController
 	end
 
 	def lang
-		LangChooser.new(env).lang
+		LangChooser.new(env["HTTP_ACCEPT_LANGUAGE"]).lang
 	end
 
 	def play_local?

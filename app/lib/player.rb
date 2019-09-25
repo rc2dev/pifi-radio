@@ -1,26 +1,32 @@
 require "ruby-mpd"
 
 class Player
-	attr_reader :playing, :title, :artist, :local, :elapsed, :length, :vol, :con_mpd
+	class VolNaError < StandardError;	end
 
 	CROSSFADE = 5
 	DEFAULT_TITLE_LOCAL = "Music"
 	DEFAULT_TITLE_STREAM = "Streaming"
+	DEFAULT_HOST = "localhost"
+	DEFAULT_PORT = "6600"
 
-
-	def initialize(host, port, password, streams)
+	def initialize(streams, host=DEFAULT_HOST, port=DEFAULT_PORT, password=nil)
 		@streams = streams
 		@mpd = MPD.new(host, port, { callbacks: true })
-
 		@mpd.connect
-		@mpd.password(password) unless password.empty?
+		@mpd.password(password) unless password.to_s.empty?
 
-		# Callbacks
-		@mpd.on(:state, &method(:set_state))
-		@mpd.on(:time, &method(:set_time))
-		@mpd.on(:song, &method(:set_song))
-		@mpd.on(:volume, &method(:set_vol))
-		@mpd.on(:connection, &method(:set_con_mpd))
+		define_callbacks
+	end
+
+	def state
+		{ playing: @playing,
+		  title: @title,
+		  artist: @artist,
+		  local: @local,
+		  elapsed: @elapsed,
+		  length: @length,
+		  vol: @vol,
+		  con_mpd: @con_mpd }
 	end
 
 	def play
@@ -34,8 +40,6 @@ class Player
 	end
 
 	def change_vol(delta)
-		# Check delta
-		raise ArgumentError, "'delta' should be a string" unless delta.kind_of?(String)
 		raise ArgumentError, "Invalid 'delta'" unless delta =~ /^[+-]\d{1,2}$/
 		# We get @vol=-1 when PulseAudio sink is closed
 		raise VolNaError if @vol < 0
@@ -46,14 +50,13 @@ class Player
 	end
 
 	def play_radios(names)
-		raise ArgumentError, "Expected an array" unless names.kind_of?(Array)
-		raise ArgumentError, "Received an empty array" if names.empty?
+		raise ArgumentError, "Argument can't be empty" if names.empty?
 
 		urls = []
 		names.each do |name|
 			url = @streams[name]
 			# nil: key not found; empty: it's a radio category
-			raise ArgumentError, "Invalid radio name: #{name}" if url.nil? or url.empty?
+			raise ArgumentError, "Invalid radio name: #{name}" if url.nil? || url.empty?
 
 			urls << url
 		end
@@ -62,16 +65,9 @@ class Player
 	end
 
 	def play_urls(urls)
-		raise ArgumentError, "'urls' should be an array" unless urls.kind_of?(Array)
-		raise ArgumentError, "'urls' can't be an empty array" if urls.empty?
+		raise ArgumentError, "Argument can't be empty" if urls.empty?
+		raise ArgumentError, "Empty element in 'urls'" if urls.any?(&:empty?)
 
-		# Perform simple check on urls array
-		urls.each do |url|
-			raise ArgumentError, "Non-String element in 'urls'" unless url.kind_of?(String)
-			raise ArgumentError, "Empty element in 'urls'" if url.empty?
-		end
-
-		# Send the URLs to MPD and start playback
 		@mpd.clear
 		urls.each { |url| @mpd.add(url) }
 		@mpd.random=(false)
@@ -79,11 +75,8 @@ class Player
 	end
 
 	def play_random
-		# If playing local music, play next
 		if @playing && @local
 			@mpd.next
-		# If not playing local music, load all the
-		# music and start playing in shuffle mode
 		else
 			@mpd.clear
 			@mpd.add("/")
@@ -93,7 +86,17 @@ class Player
 		end
 	end
 
+
 	private
+
+	def define_callbacks
+		@mpd.on(:state, &method(:set_state))
+		@mpd.on(:time, &method(:set_time))
+		@mpd.on(:song, &method(:set_song))
+		@mpd.on(:volume, &method(:set_vol))
+		@mpd.on(:connection, &method(:set_con_mpd))
+	end
+
 	def set_state(state)
 		@playing = (state == :play)
 	end
@@ -104,18 +107,19 @@ class Player
 	end
 
 	def set_song(*args)
-		# Sometimes it passes no arguments, instead of MPD::Song object
+		# Sometimes we receive no arguments, instead of MPD::Song object
 		if args.length == 0
 			@local = false
-			@title = ""            
+			@title = ""
 			@artist = ""
+			return
+		end
+
+		song = args[0]
+		if song.file.include?("://")
+			set_song_stream(song)
 		else
-			song = args[0]
-			if song.file.include?("://")
-				set_song_stream(song)
-			else
-				set_song_local(song)
-			end
+			set_song_local(song)
 		end
 	end
 
@@ -143,9 +147,4 @@ class Player
 	def set_con_mpd(con_mpd)
 		@con_mpd = con_mpd
 	end
-end
-
-
-class VolNaError < StandardError
-
 end

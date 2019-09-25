@@ -7,24 +7,19 @@ class APIController < ApplicationController
 	         VOLNA: "Volume is not available",
 	         MPD: "MPD says not found"}
 
-  @@player = Player.new(settings.mpd_host, settings.mpd_port,
-    settings.mpd_password, settings.streams[:all])
+	@@player = Player.new(settings.streams[:all],
+	                      host = settings.mpd_host,
+	                      port = settings.mpd_port,
+	                      password = settings.mpd_password)
 
-  def player
-    @@player
+	def player
+		@@player
 	end
 
 	get "/" do
 		content_type :json
 		cache_control :no_cache
-		{ playing: player.playing,
-		  title: player.title,
-		  artist: player.artist,
-		  local: player.local,
-		  elapsed: player.elapsed,
-		  length: player.length,
-		  vol: player.vol,
-		  con_mpd: player.con_mpd }.to_json
+		player.state.to_json
 	end
 
 	post "/" do
@@ -54,7 +49,7 @@ class APIController < ApplicationController
 
 		when "play_radios"
 			status 204
-			halt 400, ERROR[:PARAMS] unless params.key?(:names)
+			halt 400, ERROR[:PARAMS] unless params.key?(:names) && params[:names].kind_of?(Array)
 
 			begin
 				player.play_radios(params[:names])
@@ -66,7 +61,7 @@ class APIController < ApplicationController
 
 		when "play_urls"
 			status 204
-			halt 400, ERROR[:PARAMS] unless params.key?(:urls)
+			halt 400, ERROR[:PARAMS] unless params.key?(:urls) && params[:urls].kind_of?(Array)
 
 			begin
 				player.play_urls(params[:urls])
