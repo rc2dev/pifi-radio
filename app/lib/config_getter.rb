@@ -5,10 +5,11 @@ class ConfigGetter
 
 	PATH = "/etc/pifi-radio.conf"
 	REQ_KEYS = ["mpd_host", "mpd_port", "streams_file"]
-	OPT_KEYS = {"serve_static" => true, "mpd_password" => "", "streamsp_file" => "",
-	            "special_ips" => "", "play_local" => false}
-
-	attr_reader :config
+	OPT_KEYS = {"mpd_password" => "",
+	            "streamsp_file" => "",
+	            "special_ips" => "",
+	            "play_local" => false,
+	            "serve_static" => true}
 
 	def config
 		@config ||= parse_config

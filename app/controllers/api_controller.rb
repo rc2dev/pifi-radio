@@ -7,14 +7,14 @@ class APIController < ApplicationController
 	         VOLNA: "Volume is not available",
 	         MPD: "MPD says not found"}
 
+	def player
+		@@player
+	end
+
 	@@player = Player.new(settings.streams[:all],
 	                      host = settings.mpd_host,
 	                      port = settings.mpd_port,
 	                      password = settings.mpd_password)
-
-	def player
-		@@player
-	end
 
 	get "/" do
 		content_type :json
