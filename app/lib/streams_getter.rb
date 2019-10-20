@@ -17,7 +17,7 @@ class StreamsGetter
 
 	def parse_streams
 		pub = file_to_hash(@path_pub)
-		priv = @path_priv.empty? || file_to_hash(@path_priv)
+		priv = @path_priv.empty? ? {} : file_to_hash(@path_priv)
 		all = pub.merge(priv)
 
 		{pub: pub, all: all}
