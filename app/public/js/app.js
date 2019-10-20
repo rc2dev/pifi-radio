@@ -25,12 +25,20 @@ var view = {
   renderPlaying: function() {
     if (state.playing) {
       $("#playing").text(lang.playing);
-      $("#span-ps").addClass("glyphicon-stop").removeClass("glyphicon-play");
-      $("#btn-ps").addClass("btn-danger").removeClass("btn-default");
+      $("#span-ps")
+        .addClass("glyphicon-stop")
+        .removeClass("glyphicon-play");
+      $("#btn-ps")
+        .addClass("btn-danger")
+        .removeClass("btn-default");
     } else {
       $("#playing").text(lang.notPlaying);
-      $("#span-ps").addClass("glyphicon-play").removeClass("glyphicon-stop");
-      $("#btn-ps").addClass("btn-default").removeClass("btn-danger");
+      $("#span-ps")
+        .addClass("glyphicon-play")
+        .removeClass("glyphicon-stop");
+      $("#btn-ps")
+        .addClass("btn-default")
+        .removeClass("btn-danger");
     }
   },
 
@@ -56,7 +64,7 @@ var view = {
 
   renderProgressBar: function() {
     if (state.local && state.playing) {
-      var progress = state.elapsed / state.length
+      var progress = state.elapsed / state.length;
       $("#progress-bar").css("width", progress * 100 + "%");
     } else {
       $("#progress-bar").css("width", "0%");
@@ -75,7 +83,7 @@ var view = {
   setView() {
     if (state.con_mpd && this.hidden) {
       this.unhide(state.playing);
-    } else if (! state.con_mpd) {
+    } else if (!state.con_mpd) {
       this.hide(lang.disconnectedMpd);
     }
   },
@@ -202,7 +210,7 @@ var controller = {
       fetchState.always(function() {
         setTimeout(controller.updateState, timeConst.update, true);
       });
-    };
+    }
   },
 
   clickRandom: function() {
@@ -219,29 +227,28 @@ var controller = {
     }
     view.showAlert(text);
 
-    $.post("/api", { cmd: "play_random" })
-      .always(function() {
-        setTimeout(view.showPlayer, waitTime);
-      });
+    $.post("/api", { cmd: "play_random" }).always(function() {
+      setTimeout(view.showPlayer, waitTime);
+    });
   },
 
   clickVol: function(delta) {
-    $.post("/api", { cmd: "change_vol", delta: delta })
-      .done(function(response) {
-        view.osdVol(response);
-      });
+    $.post("/api", { cmd: "change_vol", delta: delta }).done(function(
+      response
+    ) {
+      view.osdVol(response);
+    });
   },
 
   clickPs: function() {
     var cmd = state.playing ? "stop" : "play";
-    $.post("/api", { cmd: cmd })
-      .done(function() {
-        controller.updateState(false);
-      });
+    $.post("/api", { cmd: cmd }).done(function() {
+      controller.updateState(false);
+    });
   },
 
   clickRadio: function(name) {
-    if (name === state.title && ! state.local && state.playing) {
+    if (name === state.title && !state.local && state.playing) {
       view.showPlayer();
     } else {
       this.playStream(true, name);
@@ -280,9 +287,8 @@ var timeConst = {
   randomNext: 1500,
   randomFirst: 5000,
   volOsd: 1300,
-  update: 1000,
+  update: 1000
 };
-
 
 $(document).ready(function() {
   controller.init();

@@ -16,4 +16,4 @@ var lang = {
   sBtnPlayer: "Controles",
   sRadiosWelcome: "Escolha uma emissora",
   sInsert: "Tocar URL..."
-}
+};
