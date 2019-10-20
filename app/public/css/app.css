@@ -1,143 +1,143 @@
 .container {
-	margin-top: 25px;
-	margin-bottom: 30px;
-	margin-right: auto;
-	margin-left: auto;
-	max-width: 350px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 350px;
 }
 
 /* Hide everything */
 .view, #osd {
-	display: none;
+  display: none;
 }
 
 /* Don't change buttons styles after clicked. */
 .btn:focus {
-	background-position: 0;
-	border-color: #ccc;
-	outline: none;
+  background-position: 0;
+  border-color: #ccc;
+  outline: none;
 }
 
 /* player */
 #player, #alert {
-	max-width: 320px;
+  max-width: 320px;
 }
 
 #state {
-	height: 93px;
-	margin-bottom: 10px;
+  height: 93px;
+  margin-bottom: 10px;
 }
 
 #progress {
-	float: right;
+  float: right;
 }
 
 #state-top-line {
-	margin-bottom: 0px;	/* we want the progress bar to be close */
+  margin-bottom: 0px;	/* we want the progress bar to be close */
 }
 
 #progress-bar {
-	margin-top: 2px;
-	height: 2px;
-	width: 50%;
+  margin-top: 2px;
+  height: 2px;
+  width: 50%;
 }
 
 #title {
-	margin-top: 6px;		/* 10px - 2px (progress bar) - 2px (progress bar top margin) */
-	margin-bottom: 0px;
+  margin-top: 6px;		/* 10px - 2px (progress bar) - 2px (progress bar top margin) */
+  margin-bottom: 0px;
 }
 
 #artist {
-	margin-top: 0px;
+  margin-top: 0px;
 }
 
 /* Trim string and add suspension points if needed */
 #title, #artist {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #btn-ps {
-	margin-right: 30px;
+  margin-right: 30px;
 }
 
 #player-bottom {
-	margin-top: 120px;
+  margin-top: 120px;
 }
 
 #osd {
-	margin-top: 90px;
+  margin-top: 90px;
 }
 
 #btn-random {
-	float: left;
-	width: 120px;
+  float: left;
+  width: 120px;
 }
 
 /* Only float right if btn-random is present */
 #btn-random ~ #btn-radios {
-	float: right;
+  float: right;
 }
 
 #btn-radios {
-	width: 120px;
+  width: 120px;
 }
 
 
 /* radios list */
 #radios-welcome {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 #radios-list {
-	box-shadow: none;
+  box-shadow: none;
 }
 
 .list-group-item {
-	border-style: none;
-	padding-bottom: 7px;
+  border-style: none;
+  padding-bottom: 7px;
 }
 
 .radios-group-title {
-	margin-top: 40px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 15px;
-	border-width: 0px 0px 1px 0px;	/* just bottom border */
-	border-style: solid;
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  border-width: 0px 0px 1px 0px;	/* just bottom border */
+  border-style: solid;
 }
 
 #insert {
-	margin-top: 45px;
-	margin-bottom: 130px;
-	padding-left: 15px;
+  margin-top: 45px;
+  margin-bottom: 130px;
+  padding-left: 15px;
 }
 
 #radios-bottom {
-	position: fixed;
-	bottom: 0px;
-	background-color: white;
-	width: 350px;
-	left: 50%;
-	transform: translate(-50%, 0%);
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  width: 350px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 #btn-player {
-	width: 150px;
-	margin-bottom: 20px;
-	margin-top: 30px;
+  width: 150px;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 
 /* Alerts */
 #alert {
-	padding-top: 40%;
+  padding-top: 40%;
 }
 
 /* Trim string and add suspension points if needed */
 #alert-text-more {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

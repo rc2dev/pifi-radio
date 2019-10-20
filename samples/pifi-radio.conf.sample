@@ -1,10 +1,10 @@
 {
-	"mpd_host": "127.0.0.1",
-	"mpd_port": 6600,
-	"mpd_password": "",
-	"streams_file": "",
-	"streamsp_file": "",
-	"special_ips": "",
-	"play_local": false,
-	"serve_static": true
+  "mpd_host": "127.0.0.1",
+  "mpd_port": 6600,
+  "mpd_password": "",
+  "streams_file": "",
+  "streamsp_file": "",
+  "special_ips": "",
+  "play_local": false,
+  "serve_static": true
 }
