@@ -1,7 +1,7 @@
 require_relative "application_controller"
 require_relative "../lib/player"
 
-class APIController < ApplicationController
+class PlayerController < ApplicationController
   ERROR = {PARAMS: "Wrong parameters",
            LOCAL: "Local playback is disabled",
            VOLNA: "Volume is not available",

@@ -191,13 +191,16 @@ var view = {
 };
 
 var controller = {
+  PLAYER_API: "/api/player",
+
   init: function() {
     view.init();
     this.updateState(true);
   },
 
   updateState: function(repeat) {
-    var fetchState = $.get("/api")
+    var self = controller;
+    var fetchState = $.get(self.PLAYER_API)
       .done(function(response) {
         state = response;
         view.render();
@@ -227,13 +230,13 @@ var controller = {
     }
     view.showAlert(text);
 
-    $.post("/api", { cmd: "play_random" }).always(function() {
+    $.post(this.PLAYER_API, { cmd: "play_random" }).always(function() {
       setTimeout(view.showPlayer, waitTime);
     });
   },
 
   clickVol: function(delta) {
-    $.post("/api", { cmd: "change_vol", delta: delta }).done(function(
+    $.post(this.PLAYER_API, { cmd: "change_vol", delta: delta }).done(function(
       response
     ) {
       view.osdVol(response);
@@ -242,7 +245,7 @@ var controller = {
 
   clickPs: function() {
     var cmd = state.playing ? "stop" : "play";
-    $.post("/api", { cmd: cmd }).done(function() {
+    $.post(this.PLAYER_API, { cmd: cmd }).done(function() {
       controller.updateState(false);
     });
   },
@@ -270,7 +273,7 @@ var controller = {
       var data = { cmd: "play_urls", urls: [value] };
     }
 
-    $.post("/api", data)
+    $.post(this.PLAYER_API, data)
       .done(function() {
         setTimeout(view.showPlayer, timeConst.playStream);
       })
