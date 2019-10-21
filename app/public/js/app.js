@@ -230,22 +230,22 @@ var controller = {
     }
     view.showAlert(text);
 
-    $.post(this.PLAYER_API, { cmd: "play_random" }).always(function() {
+    $.post(this.PLAYER_API, { method: "play_random" }).always(function() {
       setTimeout(view.showPlayer, waitTime);
     });
   },
 
   clickVol: function(delta) {
-    $.post(this.PLAYER_API, { cmd: "change_vol", delta: delta }).done(function(
-      response
-    ) {
-      view.osdVol(response);
-    });
+    $.post(this.PLAYER_API, { method: "change_vol", params: delta }).done(
+      function(response) {
+        view.osdVol(response + "%");
+      }
+    );
   },
 
   clickPs: function() {
-    var cmd = state.playing ? "stop" : "play";
-    $.post(this.PLAYER_API, { cmd: cmd }).done(function() {
+    var method = state.playing ? "stop" : "play";
+    $.post(this.PLAYER_API, { method: method }).done(function() {
       controller.updateState(false);
     });
   },
@@ -268,17 +268,17 @@ var controller = {
     view.showAlert(lang.streamTrying, value);
 
     if (isName) {
-      var data = { cmd: "play_radios", names: [value] };
+      var data = { method: "play_radios", params: value };
     } else {
-      var data = { cmd: "play_urls", urls: [value] };
+      var data = { method: "play_urls", params: value };
     }
 
     $.post(this.PLAYER_API, data)
       .done(function() {
         setTimeout(view.showPlayer, timeConst.playStream);
       })
-      .fail(function() {
-        view.showAlert(lang.streamError, value);
+      .fail(function(response) {
+        view.showAlert(lang.streamError, response.responseText);
         setTimeout(view.showRadios, timeConst.error);
       });
   }

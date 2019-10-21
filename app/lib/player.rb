@@ -1,7 +1,11 @@
 require "ruby-mpd"
 
 class Player
-  class VolNaError < StandardError;	end
+  class VolNaError < StandardError
+    def message
+      "Volume is not available"
+    end
+  end
 
   CROSSFADE = 5
   DEFAULT_TITLE_LOCAL = "Music"
@@ -40,7 +44,7 @@ class Player
   end
 
   def change_vol(delta)
-    raise ArgumentError, "Invalid 'delta'" unless delta =~ /^[+-]\d{1,2}$/
+    raise ArgumentError, "Invalid argument" unless delta =~ /^[+-]\d{1,2}$/
     # We get @vol=-1 when PulseAudio sink is closed
     raise VolNaError if @vol < 0
 
@@ -49,8 +53,8 @@ class Player
     @mpd.volume
   end
 
-  def play_radios(names)
-    raise ArgumentError, "Argument can't be empty" if names.empty?
+  def play_radios(*names)
+    raise ArgumentError, "Argument required" if names.empty?
 
     urls = []
     names.each do |name|
@@ -61,12 +65,12 @@ class Player
       urls << url
     end
 
-    play_urls(urls)
+    play_urls(*urls)
   end
 
-  def play_urls(urls)
-    raise ArgumentError, "Argument can't be empty" if urls.empty?
-    raise ArgumentError, "Empty element in 'urls'" if urls.any?(&:empty?)
+  def play_urls(*urls)
+    raise ArgumentError, "Argument required" if urls.empty?
+    raise ArgumentError, "Empty url given" if urls.any?(&:empty?)
 
     @mpd.clear
     urls.each { |url| @mpd.add(url) }

@@ -2,10 +2,7 @@ require_relative "application_controller"
 require_relative "../lib/player"
 
 class PlayerController < ApplicationController
-  ERROR = {PARAMS: "Wrong parameters",
-           LOCAL: "Local playback is disabled",
-           VOLNA: "Volume is not available",
-           MPD: "MPD says not found"}
+  ALLOWED_METHODS=["play", "stop", "change_vol", "play_radios", "play_urls", "play_random"]
 
   def player
     @@player
@@ -23,62 +20,19 @@ class PlayerController < ApplicationController
   end
 
   post "/" do
-    case params[:cmd]
-    when "play"
-      status 204
-      player.play
+    content_type :text
 
-    when "stop"
-      status 204
-      player.stop
+    method = params[:method]
+    args = params[:params]
+    halt 400, "Invalid method" unless ALLOWED_METHODS.include?(method)
 
-    when "change_vol"
-      status 200
-      content_type :text
-      halt 400, ERROR[:PARAMS] unless params.key?(:delta)
-
-      begin
-        vol = player.change_vol(params[:delta])
-      rescue Player::VolNaError
-        halt 503, ERROR[:VOLNA]
-      rescue ArgumentError => e
-        halt 400, e.message
-      else
-        vol.to_s + "%"
-      end
-
-    when "play_radios"
-      status 204
-      halt 400, ERROR[:PARAMS] unless params.key?(:names) && params[:names].kind_of?(Array)
-
-      begin
-        player.play_radios(params[:names])
-      rescue ArgumentError => e
-        halt 400, e.message
-      rescue MPD::NotFound
-        halt 400, ERROR[:MPD]
-      end
-
-    when "play_urls"
-      status 204
-      halt 400, ERROR[:PARAMS] unless params.key?(:urls) && params[:urls].kind_of?(Array)
-
-      begin
-        player.play_urls(params[:urls])
-      rescue ArgumentError => e
-        halt 400, e.message
-      rescue MPD::NotFound => e
-        halt 400, ERROR[:MPD]
-      end
-
-    when "play_random"
-      status 204
-      halt 400, ERROR[:LOCAL] unless config["play_local"]
-  
-      player.play_random
-  
-    else
-      halt 400, ERROR[:PARAMS]
+    begin
+      result = player.public_send(method, *args)
+    rescue ArgumentError, MPD::NotFound => e
+      halt 400, e.message.delete_prefix("[] ")
+    rescue MPD::PermissionError, MPD::IncorrectPassword => e
+      halt 403, e.message.delete_prefix("[] ")
     end
+    result.to_s
   end
 end
