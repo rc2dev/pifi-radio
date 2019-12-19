@@ -125,7 +125,8 @@ This will add the headers "Talk radio" and "Classical" above each group of stati
 
 ## Credits
 
-* French translation: Francis Chavanon "rimeno"
+* Translation fr-fr: Francis Chavanon "rimeno"
+* Translation nl-nl: Heimen Stoffels "Vistaus"
 * Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](icon/license.pdf).
 
 
