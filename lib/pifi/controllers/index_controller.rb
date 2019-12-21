@@ -1,5 +1,5 @@
-require_relative "application_controller"
-require_relative "../lib/lang_chooser"
+require "pifi/controllers/application_controller"
+require "pifi/lib/lang_chooser"
 
 module PiFi
   class IndexController < ApplicationController

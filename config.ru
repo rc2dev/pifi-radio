@@ -1,5 +1,4 @@
-require "sinatra/base"
-Dir.glob("./{app/helpers,app/controllers}/*.rb").each { |file| require file }
+require "pifi"
 
-map("/") { run IndexController }
-map("/api/player") { run PlayerController }
+map("/") { run PiFi::IndexController }
+map("/api/player") { run PiFi::PlayerController }

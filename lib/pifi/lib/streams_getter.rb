@@ -1,4 +1,4 @@
-require_relative "utils"
+require "pifi/lib/utils"
 
 module PiFi
   class StreamsGetter

@@ -1,5 +1,5 @@
-require_relative "application_controller"
-require_relative "../lib/player"
+require "pifi/controllers/application_controller"
+require "pifi/lib/player"
 
 module PiFi
   class PlayerController < ApplicationController
