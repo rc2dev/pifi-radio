@@ -24,7 +24,7 @@ module PiFi
 
     def parse_config
       if File.exists?(PATH)
-        warn "Config found at ${PATH}."
+        warn "Config found at #{PATH}."
         config = file_to_hash(PATH)
       else
         warn "Config not found. Using defaults."
