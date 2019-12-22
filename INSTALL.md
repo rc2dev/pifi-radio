@@ -59,3 +59,7 @@ $ sudo -e /etc/systemd/system/pifi.service
 ```
 
 **Done!** Now you can start PiFi with `sudo systemctl start pifi`. For running at boot, enter `sudo systemctl enable pifi`.
+
+## Advanced deployments
+
+If you need something different from this, [check this document](docs/install_tips.md).

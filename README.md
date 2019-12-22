@@ -67,12 +67,28 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 ## Installation
 
-While PiFi was imagined for the Pi, it should run on any computer with:
+While PiFi was imagined for the Pi, it should run on any computer with Ruby and MPD.
 
-- Ruby and a few gems
-- MPD
+Install it with:
 
-[Check the installation guide](INSTALL.md).
+```
+$ sudo gem install pifi --no-ri --no-rdoc
+```
+
+Place a list of streams at `/etc/pifi_streams.json`:
+
+```
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi_streams.json.sample -O /etc/pifi_streams.json
+```
+
+Make sure MPD is running and start PiFi:
+
+```
+$ sudo systemctl start mpd
+$ pifi
+```
+
+For more detailed steps, [check the installation guide](INSTALL.md).
 
 ## Configuration
 
