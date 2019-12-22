@@ -9,9 +9,8 @@ Requires=mpd.service
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/srv/pifi-radio
 RuntimeDirectory=pifi-radio
-ExecStart=/usr/bin/env bash -lc 'bundle exec thin -e production --port 3000 start'
+ExecStart=/usr/local/bin/pifi --port 3000
 TimeoutSec=300
 
 [Install]
