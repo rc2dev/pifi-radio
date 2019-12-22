@@ -9,7 +9,7 @@ Requires=mpd.service
 Type=simple
 User=www-data
 Group=www-data
-RuntimeDirectory=pifi-radio
+RuntimeDirectory=pifi
 ExecStart=/usr/local/bin/pifi --port 3000
 TimeoutSec=300
 
