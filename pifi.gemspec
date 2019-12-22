@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description  = "Minimalist MPD web client for listening to radio"
   s.authors      = ["Rafael Cavalcanti"]
   s.email        = 'code@rafaelc.org'
-  s.files        = Dir.glob("{bin,lib}/**/*") + %w(README.md LICENSE config.ru)
+  s.files        = Dir.glob("{bin,lib}/**/*") + %w(README.md INSTALL.md LICENSE docs/icon/license.pdf config.ru)
   s.executables  = ['pifi']
   s.add_dependency 'sinatra', '~> 2.0'
   s.add_dependency 'thin', '~> 1.7'
