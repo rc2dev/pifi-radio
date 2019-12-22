@@ -3,17 +3,17 @@
 PiFi Radio: A MPD web client to listen to radio
 
 ## Table of contents
-* [Meet PiFi Radio](#meet-pifi-radio)
-   * [What is PiFi Radio](#what-is-pifi-radio)
-   * [Some features](#some-features)
-   * [Demo](#demo)
-* [Installation](#installation)
-* [Configuration](#configuration)
-   * [PiFi configuration](#pifi-configuration)
-   * [List of streams](#list-of-streams)
-* [Credits](#credits)
-* [License](#license)
 
+- [Meet PiFi Radio](#meet-pifi-radio)
+  - [What is PiFi Radio](#what-is-pifi-radio)
+  - [Some features](#some-features)
+  - [Demo](#demo)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [PiFi configuration](#pifi-configuration)
+  - [List of streams](#list-of-streams)
+- [Credits](#credits)
+- [License](#license)
 
 ## Meet PiFi Radio
 
@@ -39,8 +39,6 @@ Some of the goals of PiFi Radio were the following:
 
 - In local language.
 
-
-
 ### Some features
 
 Although PiFi tries to be minimal, there are some neat features, such as:
@@ -63,13 +61,9 @@ Although PiFi tries to be minimal, there are some neat features, such as:
 
 - PiFi is currently available in a few languages, and it's easy to translate to more.
 
-
-
-
 ## Demo
 
-![Video demo](samples/demo.gif)
-
+![Video demo](docs/demo.gif)
 
 ## Installation
 
@@ -80,24 +74,22 @@ While PiFi was imagined for the Pi, it should run on any computer with:
 
 [Check the installation guide](INSTALL.md).
 
-
 ## Configuration
 
 ### PiFi configuration
 
-Configuration is read from the JSON file at `/etc/pifi-radio.conf`. You can find a sample [here](samples/pifi-radio.conf.sample). These are the options:
+Configuration is read from the JSON file at `/etc/pifi.json`. You can find a sample [here](docs/pifi.json.sample). These are the options:
 
-| Key             | Value
-| --------------- | -------------------------------------------------------------------------
-| `streams_file`  | Required. Path to the JSON file containing the streams [(see next section)](#list-of-streams).
-| `mpd_host`      | Required. MPD host.
-| `mpd_port`      | Required. MPD port.
-| `mpd_password`  | Optional. MPD password.
-| `streamsp_file` | Optional. Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`.
-| `special_ips`   | Optional. The IPs of the devices to show additional streams.
-| `play_local`    | Optional. Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.
-| `serve_static`  | Optional. If we should serve static resources. Set it to `false` if your web server is already doing it.
-
+| Key             | Value                                                                                                                       |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `streams_file`  | Required. Path to the JSON file containing the streams [(see next section)](#list-of-streams).                              |
+| `mpd_host`      | Required. MPD host.                                                                                                         |
+| `mpd_port`      | Required. MPD port.                                                                                                         |
+| `mpd_password`  | Optional. MPD password.                                                                                                     |
+| `streamsp_file` | Optional. Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
+| `special_ips`   | Optional. The IPs of the devices to show additional streams.                                                                |
+| `play_local`    | Optional. Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
+| `serve_static`  | Optional. If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
 
 ### List of streams
 
@@ -122,17 +114,14 @@ If you want to arrange the stations in categories, add a pair with the category 
 
 This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
 
-
 ## Credits
 
-* Translation fr-fr: Francis Chavanon "rimeno"
-* Translation nl-nl: Heimen Stoffels "Vistaus"
-* Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](icon/license.pdf).
-
+- Translation fr-fr: Francis Chavanon "rimeno"
+- Translation nl-nl: Heimen Stoffels "Vistaus"
+- Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](docs/icon/license.pdf).
 
 ## License
 
 Released under [GNU GPL v3](LICENSE).
 
 Copyright 2017-2019 Rafael Cavalcanti <hi@rafaelc.org>
-
