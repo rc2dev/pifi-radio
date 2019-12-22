@@ -21,12 +21,10 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 $ sudo gem install pifi --no-ri --no-rdoc
 ```
 
-4. To run PiFi, you'll need a list of the radios you want to listen.
-
-Paste this for now:
+4. To run PiFi, you'll need a list of radios at `/etc/pifi_streams.json`. Paste this for now:
 
 ```
-sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi_streams.json -O /etc/pifi_streams.json
+sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi_streams.json.sample -O /etc/pifi_streams.json
 ```
 
 Later, you can edit that JSON file [as described here](README.md#list-of-streams).
@@ -42,22 +40,22 @@ $ sudo -e /etc/pifi.json
 
 **Done!** You can now run PiFi with `pifi` and reach it at `http://DEVICE_IP:3000`. Type `pifi -h` to check the options available.
 
-**Suggestion:** On your mobile browser, tap to add PiFi Radio to your home screen, for easier access.
-
 ## Running at system boot and as other user
 
-It makes sense to run PiFi as a less-privileged user (such as `www-data`). You may also want it to autostart on boot. If that's the case, follow these two steps.
+It makes sense to run PiFi as a less-privileged user (such as `www-data`). You may also want it to autostart on boot. For that:
 
-1. Download the systemd service and edit it to your needs.
+1. Download the systemd service.
 
 ```
 $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.service.sample -O /etc/systemd/system/pifi.service
+```
+
+2. Make any changes relevant to your system.
+
+For example, if you leave `User` and `Group` as they are (`www-data`), make sure that both exist in your system.
+
+```
 $ sudo -e /etc/systemd/system/pifi.service
 ```
 
-2. Start and enable it:
-
-```
-$ sudo systemctl start pifi
-$ sudo systemctl enable pifi
-```
+**Done!** Now you can start PiFi with `sudo systemctl start pifi`. For running at boot, enter `sudo systemctl enable pifi`.

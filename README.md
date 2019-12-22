@@ -10,8 +10,8 @@ PiFi Radio: A MPD web client to listen to radio
   - [Demo](#demo)
 - [Installation](#installation)
 - [Configuration](#configuration)
-  - [PiFi configuration](#pifi-configuration)
   - [List of streams](#list-of-streams)
+  - [PiFi configuration](#pifi-configuration)
 - [Credits](#credits)
 - [License](#license)
 
@@ -78,7 +78,7 @@ While PiFi was imagined for the Pi, it should run on any computer with:
 
 ### List of streams
 
-PiFi needs a list of the radios you want to listen. [A example is available here](docs/pifi_streams.json).
+PiFi needs a list of the radios you want to listen. [A example is available here](docs/pifi_streams.json.sample).
 
 The list is read by default from `/etc/pifi_streams.json`. You can change this path [creating a configuration file](#pifi-configuration).
 
@@ -89,7 +89,7 @@ To keep it simple, the list of streams is just a JSON file with key-value pairs,
          "Radio 2": "https://example.com/radio"
     }
 
-If you want to arrange the stations in categories, add a pair with the category name as the key and empty value, as in:
+If you want to arrange the stations in categories, add a pair with the category name as the key and empty value, as shown below. This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
 
     {
          "Talk radio": "",
@@ -101,31 +101,39 @@ If you want to arrange the stations in categories, add a pair with the category 
          "Radio 4": "https://example.com/radio4"
     }
 
-This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
-
 ### PiFi configuration
 
 It's now completely optional to have a configuration file for PiFi. You only need one if you want something different from the defaults.
 
 The path is `/etc/pifi.json` and these are the options:
 
-| Key             | Value                                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `streams_file`  | Path to the JSON file containing the streams.                                                                     |
-| `mpd_host`      | MPD host.                                                                                                         |
-| `mpd_port`      | MPD port.                                                                                                         |
-| `mpd_password`  | MPD password.                                                                                                     |
-| `streamsp_file` | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
-| `special_ips`   | The IPs of the devices to show additional streams.                                                                |
-| `play_local`    | Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
-| `serve_static`  | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
+| Key             | Default                  | Description                                                                                                       |
+| --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| `mpd_host`      | `127.0.0.1`              | MPD host.                                                                                                         |
+| `mpd_port`      | `6600`                   | MPD port.                                                                                                         |
+| `mpd_password`  | `""` (none)              | MPD password.                                                                                                     |
+| `streams_file`  | `/etc/pifi_streams.json` | Path to the JSON file containing the streams.                                                                     |
+| `streamsp_file` | `""` (none)              | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
+| `special_ips`   | `""` (none)              | The IPs of the devices to show additional streams.                                                                |
+| `play_local`    | `false`                  | Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
+| `serve_static`  | `true`                   | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
 
-[You can find a sample here](docs/pifi.json.sample). I suggest you download it and edit it to your needs:
+If you want to change any of these options, download the sample file and edit it to your needs:
 
 ```
 $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.json.sample -O /etc/pifi.json
 $ sudo -e /etc/pifi.json
 ```
+
+## Usage
+
+PiFi can be run:
+
+- With the `pifi` command. Check `pifi -h` for the options available.
+- [If you installed the systemd service](INSTALL.md#running-at-system-boot-and-as-other-user), with `sudo systemctl start pifi`.
+- At boot enabling the systemd service with `sudo systemctl enable pifi`.
+
+On your mobile browser, I suggest you add PiFi Radio to your home screen, for easier access.
 
 ## Credits
 
