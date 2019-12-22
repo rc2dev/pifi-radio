@@ -76,24 +76,13 @@ While PiFi was imagined for the Pi, it should run on any computer with:
 
 ## Configuration
 
-### PiFi configuration
-
-Configuration is read from the JSON file at `/etc/pifi.json`. You can find a sample [here](docs/pifi.json.sample). These are the options:
-
-| Key             | Value                                                                                                                       |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `streams_file`  | Required. Path to the JSON file containing the streams [(see next section)](#list-of-streams).                              |
-| `mpd_host`      | Required. MPD host.                                                                                                         |
-| `mpd_port`      | Required. MPD port.                                                                                                         |
-| `mpd_password`  | Optional. MPD password.                                                                                                     |
-| `streamsp_file` | Optional. Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
-| `special_ips`   | Optional. The IPs of the devices to show additional streams.                                                                |
-| `play_local`    | Optional. Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
-| `serve_static`  | Optional. If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
-
 ### List of streams
 
-To keep it simple, a list of streams is just a JSON file with key-value pairs, where the key is the station name, and the value is the streaming URL. For example:
+PiFi needs a list of the radios you want to listen. [A example is available here](docs/pifi_streams.json).
+
+The list is read by default from `/etc/pifi_streams.json`. You can change this path [creating a configuration file](#pifi-configuration).
+
+To keep it simple, the list of streams is just a JSON file with key-value pairs, where the key is the station name, and the value is the streaming URL. For example:
 
     {
          "Radio 1": "https://example.com/radio1",
@@ -113,6 +102,30 @@ If you want to arrange the stations in categories, add a pair with the category 
     }
 
 This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
+
+### PiFi configuration
+
+It's now completely optional to have a configuration file for PiFi. You only need one if you want something different from the defaults.
+
+The path is `/etc/pifi.json` and these are the options:
+
+| Key             | Value                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `streams_file`  | Path to the JSON file containing the streams.                                                                     |
+| `mpd_host`      | MPD host.                                                                                                         |
+| `mpd_port`      | MPD port.                                                                                                         |
+| `mpd_password`  | MPD password.                                                                                                     |
+| `streamsp_file` | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
+| `special_ips`   | The IPs of the devices to show additional streams.                                                                |
+| `play_local`    | Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
+| `serve_static`  | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
+
+[You can find a sample here](docs/pifi.json.sample). I suggest you download it and edit it to your needs:
+
+```
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.json.sample -O /etc/pifi.json
+$ sudo -e /etc/pifi.json
+```
 
 ## Credits
 
