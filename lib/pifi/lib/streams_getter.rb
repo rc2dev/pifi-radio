@@ -4,9 +4,10 @@ module PiFi
   class StreamsGetter
     include Utils
 
-    def initialize(path_pub, path_priv)
+    def initialize(path_pub, path_priv="")
       @path_pub = path_pub
       @path_priv = path_priv
+      check_paths
     end
 
     def streams
@@ -22,6 +23,14 @@ module PiFi
       all = pub.merge(priv)
 
       {pub: pub, all: all}
+    end
+
+    def check_paths
+      raise ArgumentError, "Streams file not found at '#{@path_pub}'" unless File.file?(@path_pub)
+      if ! @path_priv.empty? && ! File.file?(@path_priv)
+        warn "Additional streams file not found at '#{@path_priv}'"
+        @path_priv = ""
+      end
     end
   end
 end
