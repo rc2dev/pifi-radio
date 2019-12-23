@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = 'pifi'
-  s.version      = '0.1.2'
+  s.version      = '0.2.0'
   s.licenses     = ['GPL-3.0-only']
   s.summary      = 'MPD client for listening to radio'
   s.description  = "Minimalist MPD web client for listening to radio"
