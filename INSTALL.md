@@ -21,10 +21,11 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 $ sudo gem install pifi --no-ri --no-rdoc
 ```
 
-4. To run PiFi, you'll need a list of radios at `/etc/pifi_streams.json`. Paste this for now:
+4. To run PiFi, you'll need a list of radios at `/etc/pifi/streams.json`. Paste this for now:
 
 ```
-sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi_streams.json.sample -O /etc/pifi_streams.json
+$ sudo mkdir -p /etc/pifi
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
 ```
 
 Later, you can edit that JSON file [as described here](README.md#list-of-streams).
@@ -34,8 +35,8 @@ Later, you can edit that JSON file [as described here](README.md#list-of-streams
 Download a sample and edit [following the documentation](README.md#pifi-configuration):
 
 ```
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.json.sample -O /etc/pifi.json
-$ sudo -e /etc/pifi.json
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
+$ sudo -e /etc/pifi/config.json
 ```
 
 **Done!** You can now run PiFi with `pifi` and reach it at `http://DEVICE_IP:3000`. Type `pifi -h` to check the options available.

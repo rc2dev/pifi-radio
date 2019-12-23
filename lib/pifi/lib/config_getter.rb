@@ -4,13 +4,13 @@ module PiFi
   class ConfigGetter
     include Utils
 
-    PATH = "/etc/pifi.json"
+    PATH = "/etc/pifi/config.json"
     DEFAULT_KEYS = {
       "mpd_host" => "127.0.0.1",
       "mpd_port" => "6600",
       "mpd_password" => "",
-      "streams_file" => "/etc/pifi_streams.json",
-      "streamsp_file" => "",
+      "streams_path" => "/etc/pifi/streams.json",
+      "streams_path_priv" => "",
       "special_ips" => "",
       "play_local" => false,
       "serve_static" => true

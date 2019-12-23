@@ -28,7 +28,7 @@ module PiFi
     def check_paths
       raise ArgumentError, "Streams file not found at '#{@path_pub}'" unless File.file?(@path_pub)
       if ! @path_priv.empty? && ! File.file?(@path_priv)
-        warn "Additional streams file not found at '#{@path_priv}'"
+        warn "Private streams file not found at '#{@path_priv}'"
         @path_priv = ""
       end
     end

@@ -75,10 +75,11 @@ Install it with:
 $ sudo gem install pifi --no-ri --no-rdoc
 ```
 
-Place a list of streams at `/etc/pifi_streams.json`:
+Place a list of streams at `/etc/pifi/streams.json`:
 
 ```
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi_streams.json.sample -O /etc/pifi_streams.json
+$ sudo mkdir -p /etc/pifi
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
 ```
 
 Make sure MPD is running and start PiFi:
@@ -94,9 +95,9 @@ For more detailed steps, [check the installation guide](INSTALL.md).
 
 ### List of streams
 
-PiFi needs a list of the radios you want to listen. [A example is available here](docs/pifi_streams.json.sample).
+PiFi needs a list of the radios you want to listen. [A example is available here](docs/streams.json.sample).
 
-The list is read by default from `/etc/pifi_streams.json`. You can change this path [creating a configuration file](#pifi-configuration).
+The list is read by default from `/etc/pifi/streams.json`. You can change this path [creating a configuration file](#pifi-configuration).
 
 To keep it simple, the list of streams is just a JSON file with key-value pairs, where the key is the station name, and the value is the streaming URL. For example:
 
@@ -121,15 +122,15 @@ If you want to arrange the stations in categories, add a pair with the category 
 
 It's now completely optional to have a configuration file for PiFi. You only need one if you want something different from the defaults.
 
-The path is `/etc/pifi.json` and these are the options:
+The path is `/etc/pifi/config.json` and these are the options:
 
 | Key             | Default                  | Description                                                                                                       |
 | --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | `mpd_host`      | `127.0.0.1`              | MPD host.                                                                                                         |
 | `mpd_port`      | `6600`                   | MPD port.                                                                                                         |
 | `mpd_password`  | `""` (none)              | MPD password.                                                                                                     |
-| `streams_file`  | `/etc/pifi_streams.json` | Path to the JSON file containing the streams.                                                                     |
-| `streamsp_file` | `""` (none)              | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
+| `streams_path`  | `/etc/pifi/streams.json` | Path to the JSON file containing the streams.                                                                     |
+| `streams_path_priv` | `""` (none)              | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
 | `special_ips`   | `""` (none)              | The IPs of the devices to show additional streams.                                                                |
 | `play_local`    | `false`                  | Set it to `true` if you want PiFi to play songs from your local library. This shows the "Random" button.          |
 | `serve_static`  | `true`                   | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
@@ -137,8 +138,9 @@ The path is `/etc/pifi.json` and these are the options:
 If you want to change any of these options, download the sample file and edit it to your needs:
 
 ```
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.json.sample -O /etc/pifi.json
-$ sudo -e /etc/pifi.json
+$ sudo mkdir -p /etc/pifi
+$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
+$ sudo -e /etc/pifi/config.json
 ```
 
 ## Usage

@@ -5,7 +5,7 @@ require "sinatra/base"
 module PiFi
   class ApplicationController < Sinatra::Base
     set ConfigGetter.new.config
-    set :streams, StreamsGetter.new(settings.streams_file, settings.streamsp_file).streams
+    set :streams, StreamsGetter.new(settings.streams_path, settings.streams_path_priv).streams
 
     set :root, File.expand_path("../../", __FILE__)
 
