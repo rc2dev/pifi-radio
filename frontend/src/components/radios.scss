@@ -1,0 +1,28 @@
+.radios {
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 8rem;
+}
+
+.radios__item {
+  list-style: none;
+  border: 0;
+  cursor: pointer;
+
+  &.active {
+    cursor: default;
+  }
+
+  &:hover:not(.active) {
+    background: #cccfd1;
+  }
+}
+
+.radios__header {
+  list-style: none;
+  border-bottom: 1px solid #000;
+  font-size: 1.5rem;
+  margin-top: 1em;
+  padding: 0.5rem;
+}

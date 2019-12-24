@@ -1,0 +1,5 @@
+{
+  "apiUrl": "/api",
+  "updateInterval": 1000,
+  "alertTimeout": 2500
+}

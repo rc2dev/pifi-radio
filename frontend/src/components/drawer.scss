@@ -1,0 +1,10 @@
+.drawer {
+  z-index: 5 !important;
+  height: 4rem;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+
+  &--open {
+    height: 100%;
+  }
+}
