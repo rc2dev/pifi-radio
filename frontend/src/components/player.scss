@@ -1,9 +1,9 @@
 .player {
   position: relative;
-  height: 100vh;
-  max-width: 500px;
+  height: calc(100vh - 1.5rem * 2); /* rest margins */
   min-height: 500px;
-  margin: auto;
+  width: 400px;
+  min-width: 300px;
 
   background: url('../radio-smaller.png') center no-repeat;
   background-size: 180px;

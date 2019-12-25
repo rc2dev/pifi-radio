@@ -54,7 +54,7 @@ class Radios extends Component {
     );
   }
   render() {
-    return <div className="radios">{this.renderList()}</div>;
+    return <div className="radios p-4">{this.renderList()}</div>;
   }
 }
 

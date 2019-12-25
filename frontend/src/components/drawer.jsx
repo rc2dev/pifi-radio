@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MiniPlayer from './miniPlayer';
 import Player from './player';
 import './drawer.scss';
+import DownArrow from './common/downArrow';
 
 class Drawer extends Component {
   state = { open: false };
@@ -24,7 +25,10 @@ class Drawer extends Component {
     return (
       <div className={this.getClassNames()} onClick={this.handleToggle}>
         {this.state.open ? (
-          <Player playerStatus={playerStatus} />
+          <React.Fragment>
+            <DownArrow />
+            <Player playerStatus={playerStatus} />
+          </React.Fragment>
         ) : (
           <MiniPlayer playerStatus={playerStatus} />
         )}

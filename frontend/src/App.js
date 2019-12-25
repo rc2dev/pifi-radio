@@ -13,6 +13,8 @@ class App extends Component {
   state = { playerStatus: {}, loading: true, alert: {} };
 
   componentDidMount() {
+    // Runs earlier than the one by setInterval
+    this.updatePlayerStatus();
     setInterval(() => this.updatePlayerStatus(), updateInterval);
   }
 
@@ -28,18 +30,20 @@ class App extends Component {
 
   render() {
     const { loading, playerStatus, alert } = this.state;
+
     if (loading) return <Loader />;
     if (!playerStatus.con_mpd) return <Alert title="Disconnected from MPD" />;
 
     return (
-      <React.Fragment>
+      <div className="app">
         <Alert title={alert.title} body={alert.body} />
 
-        <main className="container">
+        <main className="app-main">
+          <Player playerStatus={playerStatus} />
           <Radios onAlert={this.handleAlert} playerStatus={playerStatus} />
         </main>
         <Drawer playerStatus={playerStatus} />
-      </React.Fragment>
+      </div>
     );
   }
 }
