@@ -6,7 +6,7 @@ class PlayerStatus extends Component {
     return (
       <div className="text-center">
         <h5 className="small">{playing ? 'PLAYING' : 'STOPPED'}</h5>
-        <h4>{title}</h4>
+        <h4 className="ellipsis">{title}</h4>
       </div>
     );
   }

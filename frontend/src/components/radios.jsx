@@ -24,7 +24,7 @@ class Radios extends Component {
   };
 
   getItemClasses = name => {
-    const classes = 'radios__item list-group-item';
+    const classes = 'radios__item ellipsis list-group-item';
     return this.isPlaying(name) ? classes + ' active' : classes;
   };
 
@@ -37,7 +37,7 @@ class Radios extends Component {
       <ul className="list-group list-group-flush list-group-striped">
         {Object.keys(streams).map(name =>
           streams[name] === '' ? (
-            <li className="radios__header" key={name}>
+            <li className="radios__header ellipsis" key={name}>
               {name}
             </li>
           ) : (

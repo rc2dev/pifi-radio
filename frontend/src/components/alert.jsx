@@ -8,7 +8,7 @@ const Alert = ({ title, body }) => {
   return (
     <div className={classes}>
       <div className="alert__content">
-        <h3 className="alert__title">{title}</h3>
+        <h3 className="alert__title ellipsis">{title}</h3>
         <h5 className="alert__text">{body}</h5>
       </div>
     </div>
