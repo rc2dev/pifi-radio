@@ -1,0 +1,7 @@
+{
+  "networkError": "Pas de connexion",
+  "disconnectedMPD": "Déconnecté de MPD",
+  "playing": "Lecture",
+  "stopped": "Arrêté",
+  "tunning": "Mise en tampon…"
+}

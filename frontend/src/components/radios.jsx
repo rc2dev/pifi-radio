@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
+import { withTranslation } from 'react-i18next';
 import './radios.scss';
 
 class Radios extends Component {
@@ -19,7 +20,7 @@ class Radios extends Component {
 
   handleItemClick = name => {
     if (this.isPlaying(name)) return;
-    this.props.onAlert('Tunning...', name);
+    this.props.onAlert(this.props.t('tunning'), name);
     playRadio(name);
   };
 
@@ -31,7 +32,8 @@ class Radios extends Component {
   renderList() {
     const { streams } = this.state;
 
-    if (!streams) return <h3>No streams available.</h3>;
+    if (Object.keys(streams).length === 0)
+      return <h4 className="p-4">{this.props.t('noStreams')}</h4>;
 
     return (
       <ul className="list-group list-group-flush list-group-striped">
@@ -58,4 +60,4 @@ class Radios extends Component {
   }
 }
 
-export default Radios;
+export default withTranslation()(Radios);

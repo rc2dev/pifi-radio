@@ -1,0 +1,8 @@
+{
+  "networkError": "Not connected to PiFi server",
+  "disconnectedMPD": "Not connected to MPD",
+  "playing": "Playing",
+  "stopped": "Stopped",
+  "tunning": "Tunning...",
+  "noStreams": "No stations available."
+}

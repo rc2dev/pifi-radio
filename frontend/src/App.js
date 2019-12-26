@@ -5,6 +5,7 @@ import Drawer from './components/drawer';
 import Loader from './components/loader';
 import Alert from './components/alert';
 import { getStatus } from './services/playerService';
+import { withTranslation } from 'react-i18next';
 import { updateInterval, alertTimeout } from './config.json';
 import './App.css';
 
@@ -34,15 +35,15 @@ class App extends Component {
 
   render() {
     const { loading, networkError, alert, playerStatus } = this.state;
+    const { t } = this.props;
 
-    if (networkError) return <Alert title="No connection to PiFi server" />;
+    if (networkError) return <Alert title={t('networkError')} />;
     if (loading) return <Loader />;
-    if (!playerStatus.con_mpd) return <Alert title="Disconnected from MPD" />;
+    if (!playerStatus.con_mpd) return <Alert title={t('disconnectedMPD')} />;
 
     return (
       <div className="app">
         <Alert title={alert.title} body={alert.body} />
-
         <main className="app-main">
           <Player playerStatus={playerStatus} />
           <Radios onAlert={this.handleAlert} playerStatus={playerStatus} />
@@ -53,4 +54,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTranslation()(App);
