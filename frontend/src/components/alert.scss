@@ -1,30 +1,21 @@
 .alert2 {
-  position: fixed;
   z-index: 10;
-  left: 0;
-  top: 0;
+  position: fixed;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-color: #fff;
-  cursor: default;
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   &--visible {
-    opacity: 0.95;
+    opacity: 0.94;
     visibility: visible;
   }
-}
-
-.alert__content {
-  position: absolute;
-  top: 40%;
-  width: 100%;
-}
-
-.alert__title,
-.alert__text {
-  text-align: center;
 }
