@@ -1,7 +1,6 @@
 import http from './httpService.js';
-import { apiUrl } from '../config.json';
 
-const apiEndpoint = `${apiUrl}/player`;
+const apiEndpoint = `${process.env.REACT_APP_API_URL}/player`;
 
 function body(method, params = null) {
   const body = new FormData();

@@ -1,6 +1,7 @@
 import http from './httpService';
-import { apiUrl } from '../config.json';
+
+const apiEndpoint = `${process.env.REACT_APP_API_URL}/streams`;
 
 export function getStreams() {
-  return http.get(`${apiUrl}/streams`);
+  return http.get(apiEndpoint);
 }
