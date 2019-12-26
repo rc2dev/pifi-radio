@@ -3,9 +3,10 @@ import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
 import { withTranslation } from 'react-i18next';
 import './streams.scss';
+import SearchBox from './common/searchBox';
 
 class Streams extends Component {
-  state = { streams: {} };
+  state = { streams: {}, query: '' };
 
   async componentDidMount() {
     const { data: streams } = await getStreams();
@@ -29,8 +30,26 @@ class Streams extends Component {
     return this.isPlaying(name) ? classes + ' active' : classes;
   };
 
+  handleSearch = query => {
+    this.setState({ query });
+  };
+
+  filteredStreams() {
+    const { streams, query } = this.state;
+
+    if (query === '') return streams;
+
+    let filtered = {};
+    for (let k in streams) {
+      if (k.toLowerCase().includes(query.toLowerCase()) && streams[k] !== '') {
+        filtered[k] = streams[k];
+      }
+    }
+    return filtered;
+  }
+
   renderList() {
-    const { streams } = this.state;
+    const streams = this.filteredStreams();
 
     if (Object.keys(streams).length === 0)
       return <h4 className="p-4">{this.props.t('noStreams')}</h4>;
@@ -55,8 +74,14 @@ class Streams extends Component {
       </ul>
     );
   }
+
   render() {
-    return <div className="streams p-4">{this.renderList()}</div>;
+    return (
+      <div className="streams p-4">
+        <SearchBox value={this.state.query} onChange={this.handleSearch} />
+        {this.renderList()}
+      </div>
+    );
   }
 }
 

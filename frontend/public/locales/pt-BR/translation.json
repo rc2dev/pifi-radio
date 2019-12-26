@@ -1,6 +1,7 @@
 {
   "networkError": "Sem conexão ao servidor PiFi",
   "disconnectedMPD": "Sem conexão ao MPD",
+  "search": "Buscar...",
   "playing": "Tocando",
   "stopped": "Parado",
   "tunning": "Sintonizando...",
