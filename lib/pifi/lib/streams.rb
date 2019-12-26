@@ -1,7 +1,7 @@
 require "pifi/lib/utils"
 
 module PiFi
-  class StreamsGetter
+  class Streams
     include Utils
 
     def initialize(path_pub, path_priv="")
@@ -10,19 +10,18 @@ module PiFi
       check_paths
     end
 
-    def streams
-      @streams ||= parse_streams
+    def all
+      @all ||= pub.merge(priv)
     end
 
+    def pub
+      @pub ||= file_to_hash(@path_pub)
+    end
 
     private
 
-    def parse_streams
-      pub = file_to_hash(@path_pub)
-      priv = @path_priv.empty? ? {} : file_to_hash(@path_priv)
-      all = pub.merge(priv)
-
-      {pub: pub, all: all}
+    def priv
+      @priv ||= @path_priv.empty? ? {} : file_to_hash(@path_priv)
     end
 
     def check_paths

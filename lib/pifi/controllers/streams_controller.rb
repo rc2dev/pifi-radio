@@ -14,7 +14,7 @@ module PiFi
     end
 
     def streams_set
-      special_ip? ? settings.streams[:all] : settings.streams[:pub]
+      special_ip? ? settings.streams.all : settings.streams.pub
     end
   end
 end

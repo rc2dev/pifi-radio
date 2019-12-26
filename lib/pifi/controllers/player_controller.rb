@@ -9,7 +9,7 @@ module PiFi
       @@player
     end
 
-    @@player = Player.new(settings.streams[:all],
+    @@player = Player.new(settings.streams.all,
                           host = settings.mpd_host,
                           port = settings.mpd_port,
                           password = settings.mpd_password)

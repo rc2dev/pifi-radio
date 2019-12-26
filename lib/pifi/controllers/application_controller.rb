@@ -1,11 +1,11 @@
 require "pifi/lib/config_getter"
-require "pifi/lib/streams_getter"
+require "pifi/lib/streams"
 require "sinatra/base"
 
 module PiFi
   class ApplicationController < Sinatra::Base
     set ConfigGetter.new.config
-    set :streams, StreamsGetter.new(settings.streams_path, settings.streams_path_priv).streams
+    set :streams, Streams.new(settings.streams_path, settings.streams_path_priv)
     set :root, File.expand_path("../../", __FILE__)
 
     configure :production do
