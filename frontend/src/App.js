@@ -14,9 +14,7 @@ class App extends Component {
   state = { playerStatus: {}, loading: true, networkError: false, alert: {} };
 
   componentDidMount() {
-    // Runs earlier than the one by setInterval
     this.updatePlayerStatus();
-    setInterval(() => this.updatePlayerStatus(), updateInterval);
   }
 
   async updatePlayerStatus() {
@@ -24,8 +22,10 @@ class App extends Component {
       const { data: playerStatus } = await getStatus();
       this.setState({ playerStatus, loading: false, networkError: false });
     } catch (ex) {
-      this.setState({ networkError: true });
+      this.setState({ loading: false, networkError: true });
     }
+
+    setTimeout(() => this.updatePlayerStatus(), updateInterval);
   }
 
   handleAlert = (title, body = '') => {
