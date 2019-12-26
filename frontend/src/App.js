@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Player from './components/player';
-import Radios from './components/radios';
+import Streams from './components/streams';
 import Drawer from './components/drawer';
 import Loader from './components/loader';
 import Alert from './components/alert';
@@ -46,7 +46,7 @@ class App extends Component {
         <Alert title={alert.title} body={alert.body} />
         <main className="app-main">
           <Player playerStatus={playerStatus} />
-          <Radios onAlert={this.handleAlert} playerStatus={playerStatus} />
+          <Streams onAlert={this.handleAlert} playerStatus={playerStatus} />
         </main>
         <Drawer playerStatus={playerStatus} />
       </div>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
 import { withTranslation } from 'react-i18next';
-import './radios.scss';
+import './streams.scss';
 
-class Radios extends Component {
+class Streams extends Component {
   state = { streams: {} };
 
   async componentDidMount() {
@@ -25,7 +25,7 @@ class Radios extends Component {
   };
 
   getItemClasses = name => {
-    const classes = 'radios__item ellipsis list-group-item';
+    const classes = 'streams__item ellipsis list-group-item';
     return this.isPlaying(name) ? classes + ' active' : classes;
   };
 
@@ -39,7 +39,7 @@ class Radios extends Component {
       <ul className="list-group list-group-flush list-group-striped">
         {Object.keys(streams).map(name =>
           streams[name] === '' ? (
-            <li className="radios__header ellipsis" key={name}>
+            <li className="streams__header ellipsis" key={name}>
               {name}
             </li>
           ) : (
@@ -56,8 +56,8 @@ class Radios extends Component {
     );
   }
   render() {
-    return <div className="radios p-4">{this.renderList()}</div>;
+    return <div className="streams p-4">{this.renderList()}</div>;
   }
 }
 
-export default withTranslation()(Radios);
+export default withTranslation()(Streams);
