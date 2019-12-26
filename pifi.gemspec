@@ -1,6 +1,9 @@
+$:.push File.expand_path("../lib", __FILE__)
+require "pifi/version"
+
 Gem::Specification.new do |s|
   s.name         = 'pifi'
-  s.version      = '0.2.0'
+  s.version      = PiFi::VERSION
   s.licenses     = ['GPL-3.0-only']
   s.summary      = 'MPD client for listening to radio'
   s.description  = "Minimalist MPD web client for listening to radio"
