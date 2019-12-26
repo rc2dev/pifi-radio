@@ -9,7 +9,7 @@ const PlayerControls = ({ playerStatus }) => {
 
   return (
     <div className="player-controls">
-      <div className="btn-group">
+      <div className="btn-group w-100">
         <Control
           icon="fas fa-volume-down"
           disabled={volDisabled}
