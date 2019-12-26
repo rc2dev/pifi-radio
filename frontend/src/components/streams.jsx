@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import SearchBox from './common/searchBox';
+import Loader from './loader';
+import { withTranslation } from 'react-i18next';
 import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
-import { withTranslation } from 'react-i18next';
 import './streams.scss';
-import SearchBox from './common/searchBox';
 
 class Streams extends Component {
-  state = { streams: {}, query: '' };
+  state = { streams: {}, loading: true, query: '' };
 
   async componentDidMount() {
     const { data: streams } = await getStreams();
-    this.setState({ streams });
+    this.setState({ streams, loading: false });
   }
 
   isPlaying = name => {
@@ -76,6 +77,8 @@ class Streams extends Component {
   }
 
   render() {
+    if (this.state.loading) return <Loader />;
+
     return (
       <div className="streams p-4">
         <SearchBox value={this.state.query} onChange={this.handleSearch} />
