@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 axios.interceptors.response.use(null, error => {
-  console.log(error);
-  // alert
+  // log
+  // alert -- We do that on App.js
   return Promise.reject(error);
 });
 

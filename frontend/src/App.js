@@ -10,7 +10,7 @@ import './App.css';
 
 // d-none d-md-block
 class App extends Component {
-  state = { playerStatus: {}, loading: true, alert: {} };
+  state = { playerStatus: {}, loading: true, networkError: false, alert: {} };
 
   componentDidMount() {
     // Runs earlier than the one by setInterval
@@ -19,8 +19,12 @@ class App extends Component {
   }
 
   async updatePlayerStatus() {
-    const { data: playerStatus } = await getStatus();
-    this.setState({ playerStatus, loading: false });
+    try {
+      const { data: playerStatus } = await getStatus();
+      this.setState({ playerStatus, loading: false, networkError: false });
+    } catch (ex) {
+      this.setState({ networkError: true });
+    }
   }
 
   handleAlert = (title, body = '') => {
@@ -29,8 +33,9 @@ class App extends Component {
   };
 
   render() {
-    const { loading, playerStatus, alert } = this.state;
+    const { loading, networkError, alert, playerStatus } = this.state;
 
+    if (networkError) return <Alert title="No connection to PiFi server" />;
     if (loading) return <Loader />;
     if (!playerStatus.con_mpd) return <Alert title="Disconnected from MPD" />;
 
