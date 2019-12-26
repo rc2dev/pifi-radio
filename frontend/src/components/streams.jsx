@@ -20,10 +20,19 @@ class Streams extends Component {
     );
   };
 
-  handleItemClick = name => {
+  handleItemClick = async name => {
+    const { t } = this.props;
+
     if (this.isPlaying(name)) return;
-    this.props.onAlert(this.props.t('tunning'), name);
-    playRadio(name);
+
+    this.props.onAlert(t('tunning'), name);
+    try {
+      await playRadio(name);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) alert(t('errorNotFound'));
+      else if (ex.response && ex.response.status === 403)
+        alert(t('errorForbidden'));
+    }
   };
 
   getItemClasses = name => {

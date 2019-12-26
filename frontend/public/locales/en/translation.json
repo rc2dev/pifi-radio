@@ -1,5 +1,7 @@
 {
-  "networkError": "Not connected to PiFi server",
+  "errorNetwork": "Not connected to PiFi server",
+  "errorNotFound": "The stream was not found.",
+  "errorForbidden": "Error. Check your MPD password.",
   "disconnectedMPD": "Not connected to MPD",
   "search": "Search...",
   "playing": "Playing",

@@ -37,7 +37,7 @@ class App extends Component {
     const { loading, networkError, alert, playerStatus } = this.state;
     const { t } = this.props;
 
-    if (networkError) return <Alert title={t('networkError')} />;
+    if (networkError) return <Alert title={t('errorNetwork')} />;
     if (loading) return <Loader />;
     if (!playerStatus.con_mpd) return <Alert title={t('disconnectedMPD')} />;
 

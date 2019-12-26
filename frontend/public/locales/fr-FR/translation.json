@@ -1,5 +1,5 @@
 {
-  "networkError": "Pas de connexion",
+  "errorNetwork": "Pas de connexion",
   "disconnectedMPD": "Déconnecté de MPD",
   "playing": "Lecture",
   "stopped": "Arrêté",

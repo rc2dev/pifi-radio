@@ -1,5 +1,5 @@
 {
-  "networkError": "Geen verbinding",
+  "errorNetwork": "Geen verbinding",
   "disconnectedMPD": "Niet verbonden met MPD",
   "playing": "Aan het afspelen",
   "stopped": "Gestopt",
