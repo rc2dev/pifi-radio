@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import NavBar from './components/navBar';
 import Player from './components/player';
 import Streams from './components/streams';
 import Drawer from './components/drawer';
-import SettingsDialog from './components/settingsDialog';
-import NavBar from './components/navBar';
+import Settings from './components/settings';
+import URLDialog from './components/urlDialog';
 import Loader from './components/loader';
 import Backdrop from './components/backdrop';
 import { ToastContainer } from 'react-toastify';
@@ -19,7 +20,8 @@ class App extends Component {
     playerStatus: {},
     loading: true,
     networkError: false,
-    backdrop: {}
+    backdrop: {},
+    showURLDialog: false
   };
 
   componentDidMount() {
@@ -42,8 +44,18 @@ class App extends Component {
     setTimeout(() => this.setState({ backdrop: {} }), backdropTimeout);
   };
 
+  handleToggleURLDialog = () => {
+    this.setState({ showURLDialog: !this.state.showURLDialog });
+  };
+
   render() {
-    const { loading, networkError, backdrop, playerStatus } = this.state;
+    const {
+      loading,
+      networkError,
+      backdrop,
+      playerStatus,
+      showURLDialog
+    } = this.state;
     const { t } = this.props;
 
     if (networkError) return <Backdrop title={t('errorNetwork')} />;
@@ -53,17 +65,21 @@ class App extends Component {
     return (
       <div className="app">
         <Backdrop title={backdrop.title} body={backdrop.body} />
-        <Drawer playerStatus={playerStatus} />
-        <NavBar />
+        <ToastContainer />
+        <NavBar onToggleURLDialog={this.handleToggleURLDialog} />
         <main className="app-main">
           <Player playerStatus={playerStatus} />
           <Streams
             onBackdrop={this.handleBackdrop}
             playerStatus={playerStatus}
           />
-          <SettingsDialog />
+          <Settings />
+          <URLDialog
+            isOpen={showURLDialog}
+            toggle={this.handleToggleURLDialog}
+          />
         </main>
-        <ToastContainer />
+        <Drawer playerStatus={playerStatus} />
       </div>
     );
   }

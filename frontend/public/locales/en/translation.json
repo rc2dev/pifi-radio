@@ -9,5 +9,7 @@
   "tunning": "Tunning...",
   "noStreams": "No stations available.",
   "language": "Language",
-  "settings": "Settings"
+  "settings": "Settings",
+  "playURL": "Play URL",
+  "tryingURL": "Trying to play URL..."
 }

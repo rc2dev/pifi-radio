@@ -19,7 +19,8 @@
     "react-dom": "^16.12.0",
     "react-i18next": "^11.2.7",
     "react-scripts": "3.3.0",
-    "react-toastify": "^5.4.1"
+    "react-toastify": "^5.4.1",
+    "reactstrap": "^8.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

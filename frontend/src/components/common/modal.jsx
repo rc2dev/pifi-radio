@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Modal = ({ id, title, children }) => {
+const Modal = ({ id, title, onClick, children }) => {
   return (
     <div
       className="modal fade"
       id={id}
-      data-backdrop="static"
       tabIndex="-1"
       role="dialog"
       aria-labelledby="staticBackdropLabel"
@@ -30,10 +29,11 @@ const Modal = ({ id, title, children }) => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-primary"
               data-dismiss="modal"
+              onClick={onClick}
             >
-              Close
+              OK
             </button>
           </div>
         </div>

@@ -32,3 +32,7 @@ export function vol_down() {
 export function playRadio(name) {
   return http.post(apiEndpoint, body('play_radios', name));
 }
+
+export function playURL(url) {
+  return http.post(apiEndpoint, body('play_urls', url));
+}

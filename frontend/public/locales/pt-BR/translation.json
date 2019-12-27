@@ -9,5 +9,7 @@
   "tunning": "Sintonizando...",
   "noStreams": "Não há rádios disponíveis.",
   "language": "Idioma",
-  "settings": "Ajustes"
+  "settings": "Ajustes",
+  "playURL": "Tocar URL",
+  "tryingURL": "Tentando tocar URL..."
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import './navBar.scss';
 
-const NavBar = ({ t }) => {
+const NavBar = ({ t, onToggleURLDialog }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="#">
@@ -20,6 +20,11 @@ const NavBar = ({ t }) => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav">
+          <a className="nav-item nav-link" href="#" onClick={onToggleURLDialog}>
+            {t('playURL')}
+          </a>
+        </div>
         <div className="navbar-nav">
           <a
             className="nav-item nav-link"

@@ -4,7 +4,7 @@ import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import { languages } from '../config.json';
 
-class SettingsDialog extends Component {
+class Settings extends Component {
   handleLanguageChange = ({ target }) => {
     i18next.changeLanguage(target.value);
   };
@@ -36,4 +36,4 @@ class SettingsDialog extends Component {
   }
 }
 
-export default withTranslation()(SettingsDialog);
+export default withTranslation()(Settings);
