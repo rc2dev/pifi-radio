@@ -36,8 +36,10 @@ class Streams extends Component {
   };
 
   getItemClasses = name => {
-    const classes = 'streams__item ellipsis list-group-item';
-    return this.isPlaying(name) ? classes + ' active' : classes;
+    const classes = 'streams__item ellipsis list-group-item ';
+    return this.isPlaying(name)
+      ? classes + 'active'
+      : classes + 'list-group-item-action';
   };
 
   handleSearch = query => {
@@ -65,7 +67,7 @@ class Streams extends Component {
       return <h4 className="p-4">{this.props.t('noStreams')}</h4>;
 
     return (
-      <ul className="list-group list-group-flush list-group-striped">
+      <ul className="list-group list-group-flush">
         {Object.keys(streams).map(name =>
           streams[name] === '' ? (
             <li className="streams__header ellipsis" key={name}>

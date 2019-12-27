@@ -1,0 +1,20 @@
+@import './variables.scss';
+
+.app-main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.drawer {
+  visibility: hidden;
+
+  @media (max-width: $mobile-width) {
+    visibility: visible;
+  }
+}
+
+.app-main > .player {
+  @media (max-width: $mobile-width) {
+    display: none;
+  }
+}

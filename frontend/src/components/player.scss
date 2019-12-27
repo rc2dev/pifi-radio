@@ -1,6 +1,7 @@
 .player {
-  position: relative;
-  height: calc(100vh - 1.5rem * 2); /* rest margins */
+  position: sticky;
+  top: 6rem;
+  height: calc(100vh - 1.5rem * 2 - 5rem); /* rest margins */
   min-height: 500px;
   width: 400px;
   min-width: 300px;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
+import './navBar.scss';
 
 const NavBar = ({ t }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand" href="#">
         PiFi Radio
       </a>

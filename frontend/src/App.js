@@ -9,7 +9,7 @@ import Alert from './components/alert';
 import { getStatus } from './services/playerService';
 import { withTranslation } from 'react-i18next';
 import { updateInterval, alertTimeout } from './config.json';
-import './App.css';
+import './App.scss';
 
 // d-none d-md-block
 class App extends Component {
