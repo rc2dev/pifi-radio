@@ -7,5 +7,7 @@
   "playing": "Tocando",
   "stopped": "Parado",
   "tunning": "Sintonizando...",
-  "noStreams": "Não há rádios disponíveis."
+  "noStreams": "Não há rádios disponíveis.",
+  "language": "Idioma",
+  "settings": "Ajustes"
 }

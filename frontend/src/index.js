@@ -5,7 +5,11 @@ import * as serviceWorker from './serviceWorker';
 import Loader from './components/loader';
 import './i18n';
 import './index.css';
+
+// Bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.js';
 
 ReactDOM.render(
   // Suspense needed for i18n

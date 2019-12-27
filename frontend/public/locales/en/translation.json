@@ -7,5 +7,7 @@
   "playing": "Playing",
   "stopped": "Stopped",
   "tunning": "Tunning...",
-  "noStreams": "No stations available."
+  "noStreams": "No stations available.",
+  "language": "Language",
+  "settings": "Settings"
 }

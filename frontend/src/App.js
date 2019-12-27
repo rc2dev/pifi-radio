@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Player from './components/player';
 import Streams from './components/streams';
 import Drawer from './components/drawer';
+import SettingsDialog from './components/settingsDialog';
+import NavBar from './components/navBar';
 import Loader from './components/loader';
 import Alert from './components/alert';
 import { getStatus } from './services/playerService';
@@ -44,11 +46,13 @@ class App extends Component {
     return (
       <div className="app">
         <Alert title={alert.title} body={alert.body} />
+        <NavBar />
         <main className="app-main">
           <Player playerStatus={playerStatus} />
           <Streams onAlert={this.handleAlert} playerStatus={playerStatus} />
         </main>
         <Drawer playerStatus={playerStatus} />
+        <SettingsDialog />
       </div>
     );
   }
