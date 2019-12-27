@@ -11,7 +11,12 @@ const PlayerControls = ({ playerStatus, t }) => {
 
   const handleVolChange = async delta => {
     const { data: vol } = await changeVol(delta);
-    toast.info(`${t('volume')}: ${vol}%`, { autoClose: volTimeout });
+
+    const toastId = 'vol';
+    const toastMsg = `${t('volume')}: ${vol}%`;
+    const toastOpts = { toastId, autoClose: volTimeout };
+    if (toast.isActive(toastId)) toast.update(toastId, { render: toastMsg });
+    else toast.info(toastMsg, toastOpts);
   };
 
   const renderVolButton = (delta, icon) => (
