@@ -1,17 +1,15 @@
 import React from 'react';
-import Control from './control';
 import { play, stop } from '../services/playerService';
 
-const PlayStopControl = ({ playing, small }) => {
-  return (
-    <Control
-      icon={playing ? 'fas fa-stop' : 'fas fa-play'}
-      onClick={() => {
-        playing ? stop() : play();
-      }}
-      background={playing ? 'btn-danger' : 'btn-secondary'}
-      small={small}
-    />
+const PlayStopControl = ({ playing }) => {
+  return playing ? (
+    <button className="btn btn-danger" onClick={stop}>
+      <i className="fas fa-stop" />
+    </button>
+  ) : (
+    <button className="btn btn-secondary" onClick={play}>
+      <i className="fas fa-play" />
+    </button>
   );
 };
 

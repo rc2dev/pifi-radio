@@ -7,10 +7,10 @@ const MiniPlayer = ({ playerStatus }) => {
   return (
     <div className="mini-player p-3">
       <div className="mini-player__left ellipsis">
-        <i className="fas fa-chevron-up fa-lg my-2 mr-3" />
+        <i className="drawer__toggler fas fa-chevron-up fa-lg my-2 mr-3" />
         <span className={playing ? '' : 'text-muted font-italic'}>{title}</span>
       </div>
-      <PlayStopControl playing={playing} small="true" />
+      <PlayStopControl playing={playing} />
     </div>
   );
 };
