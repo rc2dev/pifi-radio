@@ -4,6 +4,7 @@
   z-index: 5 !important;
   height: $drawer-height;
   cursor: pointer;
+  touch-action: none; // don't scroll on touch
   transition: all 0.25s ease-out;
 
   &--open {
