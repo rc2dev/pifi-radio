@@ -21,12 +21,8 @@ export function stop() {
   return http.post(apiEndpoint, body('stop'));
 }
 
-export function vol_up() {
-  return http.post(apiEndpoint, body('change_vol', '+5'));
-}
-
-export function vol_down() {
-  return http.post(apiEndpoint, body('change_vol', '-5'));
+export function changeVol(delta) {
+  return http.post(apiEndpoint, body('change_vol', delta));
 }
 
 export function playRadio(name) {

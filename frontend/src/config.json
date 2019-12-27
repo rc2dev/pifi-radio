@@ -2,5 +2,6 @@
   "apiUrl": "http://localhost:9292/api",
   "languages": ["en", "fr-FR", "nl-NL", "pt-BR"],
   "updateInterval": 1000,
-  "backdropTimeout": 2500
+  "backdropTimeout": 2500,
+  "volTimeout": 2000
 }

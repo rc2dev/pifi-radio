@@ -12,5 +12,6 @@
   "language": "Language",
   "settings": "Settings",
   "playURL": "Play URL",
-  "tryingURL": "Trying to play URL..."
+  "tryingURL": "Trying to play URL...",
+  "volume": "Volume"
 }
