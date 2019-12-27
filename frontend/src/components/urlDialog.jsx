@@ -14,18 +14,29 @@ import { withTranslation } from 'react-i18next';
 const URLDialog = ({ isOpen, toggle, t }) => {
   const [url, setURL] = useState('');
 
-  const handleOK = async () => {
+  const handleOK = () => {
     toggle();
+
     if (url === '') return;
 
+    doPlayURL(url);
+    setURL('');
+  };
+
+  const doPlayURL = async url => {
+    const errorToastOpts = {
+      type: toast.TYPE.ERROR,
+      render: t('errorNotFound')
+    };
+
+    const toastId = toast(t('tryingURL'));
+
     try {
-      toast(t('tryingURL'));
       await playURL(url);
     } catch (ex) {
       if (ex.response && ex.response.status === 400)
-        toast.error(t('errorNotFound'));
+        toast.update(toastId, errorToastOpts);
     }
-    setURL('');
   };
 
   const handleCancel = () => {
