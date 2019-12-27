@@ -22,18 +22,16 @@ class Streams extends Component {
   };
 
   handleItemClick = async name => {
-    const { t } = this.props;
+    const { t, onBackdrop } = this.props;
 
     if (this.isPlaying(name)) return;
 
-    this.props.onBackdrop(t('tunning'), name);
+    onBackdrop(t('tunning'), name);
     try {
       await playRadio(name);
     } catch (ex) {
       if (ex.response && ex.response.status === 400)
         toast.error(t('errorNotFound'));
-      else if (ex.response && ex.response.status === 403)
-        toast.error(t('errorForbidden'));
     }
   };
 

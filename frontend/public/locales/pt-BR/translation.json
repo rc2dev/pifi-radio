@@ -1,5 +1,6 @@
 {
   "errorNetwork": "Sem conexão ao servidor PiFi",
+  "errorUnexpected": "Um erro inesperado ocorreu.",
   "errorNotFound": "Não foi possível encontrar o stream.",
   "errorForbidden": "Erro. Verifique sua senha do MPD.",
   "disconnectedMPD": "Sem conexão ao MPD",
