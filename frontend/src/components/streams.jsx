@@ -69,7 +69,7 @@ class Streams extends Component {
     return (
       <ul className="list-group list-group-flush">
         {Object.keys(streams).map(name =>
-          streams[name] === '' ? (
+          streams[name] ? (
             <li className="streams__header ellipsis" key={name}>
               {name}
             </li>

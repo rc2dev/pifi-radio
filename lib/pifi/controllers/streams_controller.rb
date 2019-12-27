@@ -4,7 +4,7 @@ module PiFi
   class StreamsController < ApplicationController
     get "/" do
       content_type :json
-      streams_set.to_json
+      streams_set.transform_values { |v| v.empty? }.to_json
     end
 
     def special_ip?
