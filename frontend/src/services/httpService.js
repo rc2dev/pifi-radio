@@ -9,15 +9,18 @@ axios.interceptors.response.use(null, error => {
     error.response.status >= 400 &&
     error.response.status < 500;
 
+  // We already alert about these with a backdrop on App.js
+  const networkError = !error.response;
+
   // Ugly, but i18n only worked this way
-  if (!expectedError) {
+  if (!expectedError && !networkError) {
     toast.error(
       <Translation>
         {(t, { i18n }) => <p>{t('errorUnexpected')}</p>}
       </Translation>
     );
   }
-  // This error is universal in our app, so I'll place it here
+  // This expected error is universal in our app, so we'll place it here
   if (error.response && error.response.status === 403)
     toast.error(
       <Translation>{(t, { i18n }) => <p>{t('errorForbidden')}</p>}</Translation>
