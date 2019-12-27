@@ -1,6 +1,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
+  overflow-y: scroll; // so elements don't move if scroll is off
 }
 
 button[disabled] {

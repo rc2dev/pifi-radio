@@ -1,11 +1,10 @@
 .player {
   position: sticky;
-  top: 6rem;
+  top: 4.4rem;
   height: calc(100vh - 1.5rem * 2 - 5rem); /* rest margins */
   min-height: 500px;
   width: 400px;
   min-width: 300px;
-
   background: url('../radio-smaller.png') center no-repeat;
   background-size: 180px;
 }
