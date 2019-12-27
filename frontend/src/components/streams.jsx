@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBox from './common/searchBox';
 import Loader from './loader';
 import { withTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
 import './streams.scss';
@@ -25,13 +26,14 @@ class Streams extends Component {
 
     if (this.isPlaying(name)) return;
 
-    this.props.onAlert(t('tunning'), name);
+    this.props.onBackdrop(t('tunning'), name);
     try {
       await playRadio(name);
     } catch (ex) {
-      if (ex.response && ex.response.status === 400) alert(t('errorNotFound'));
+      if (ex.response && ex.response.status === 400)
+        toast.error(t('errorNotFound'));
       else if (ex.response && ex.response.status === 403)
-        alert(t('errorForbidden'));
+        toast.error(t('errorForbidden'));
     }
   };
 

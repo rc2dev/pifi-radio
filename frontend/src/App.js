@@ -5,15 +5,22 @@ import Drawer from './components/drawer';
 import SettingsDialog from './components/settingsDialog';
 import NavBar from './components/navBar';
 import Loader from './components/loader';
-import Alert from './components/alert';
+import Backdrop from './components/backdrop';
+import { ToastContainer } from 'react-toastify';
 import { getStatus } from './services/playerService';
 import { withTranslation } from 'react-i18next';
-import { updateInterval, alertTimeout } from './config.json';
+import { updateInterval, backdropTimeout } from './config.json';
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 // d-none d-md-block
 class App extends Component {
-  state = { playerStatus: {}, loading: true, networkError: false, alert: {} };
+  state = {
+    playerStatus: {},
+    loading: true,
+    networkError: false,
+    backdrop: {}
+  };
 
   componentDidMount() {
     this.updatePlayerStatus();
@@ -30,29 +37,33 @@ class App extends Component {
     setTimeout(() => this.updatePlayerStatus(), updateInterval);
   }
 
-  handleAlert = (title, body = '') => {
-    this.setState({ alert: { title, body } });
-    setTimeout(() => this.setState({ alert: {} }), alertTimeout);
+  handleBackdrop = (title, body = '') => {
+    this.setState({ backdrop: { title, body } });
+    setTimeout(() => this.setState({ backdrop: {} }), backdropTimeout);
   };
 
   render() {
-    const { loading, networkError, alert, playerStatus } = this.state;
+    const { loading, networkError, backdrop, playerStatus } = this.state;
     const { t } = this.props;
 
-    if (networkError) return <Alert title={t('errorNetwork')} />;
+    if (networkError) return <Backdrop title={t('errorNetwork')} />;
     if (loading) return <Loader />;
-    if (!playerStatus.con_mpd) return <Alert title={t('disconnectedMPD')} />;
+    if (!playerStatus.con_mpd) return <Backdrop title={t('disconnectedMPD')} />;
 
     return (
       <div className="app">
-        <Alert title={alert.title} body={alert.body} />
+        <Backdrop title={backdrop.title} body={backdrop.body} />
+        <Drawer playerStatus={playerStatus} />
         <NavBar />
         <main className="app-main">
           <Player playerStatus={playerStatus} />
-          <Streams onAlert={this.handleAlert} playerStatus={playerStatus} />
+          <Streams
+            onBackdrop={this.handleBackdrop}
+            playerStatus={playerStatus}
+          />
+          <SettingsDialog />
         </main>
-        <Drawer playerStatus={playerStatus} />
-        <SettingsDialog />
+        <ToastContainer />
       </div>
     );
   }
