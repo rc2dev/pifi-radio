@@ -14,11 +14,10 @@ import { withTranslation } from 'react-i18next';
 const URLDialog = ({ isOpen, toggle, t }) => {
   const [url, setURL] = useState('');
 
+  const okDisabled = url === '';
+
   const handleOK = () => {
     toggle();
-
-    if (url === '') return;
-
     doPlayURL(url);
     setURL('');
   };
@@ -48,6 +47,10 @@ const URLDialog = ({ isOpen, toggle, t }) => {
     setURL(input.value);
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter' && !okDisabled) handleOK();
+  };
+
   return (
     <Modal isOpen={isOpen} toggle={toggle} id="play-url" autoFocus={false}>
       <ModalHeader toggle={toggle}>{t('playURL')}</ModalHeader>
@@ -58,12 +61,13 @@ const URLDialog = ({ isOpen, toggle, t }) => {
           placeholder="URL"
           value={url}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={handleOK}>
+        <Button color="primary" onClick={handleOK} disabled={okDisabled}>
           OK
-        </Button>{' '}
+        </Button>
         <Button color="secondary" onClick={handleCancel}>
           Cancel
         </Button>
