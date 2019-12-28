@@ -52,7 +52,13 @@ const URLDialog = ({ isOpen, toggle, t }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle} id="play-url" autoFocus={false}>
+    <Modal
+      isOpen={isOpen}
+      toggle={toggle}
+      id="play-url"
+      autoFocus={false}
+      unmountOnClose
+    >
       <ModalHeader toggle={toggle}>{t('playURL')}</ModalHeader>
       <ModalBody>
         <Input
