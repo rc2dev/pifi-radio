@@ -4,13 +4,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Loader from './components/loader';
 import './i18n';
+import { applyTheme } from './theme';
 import './index.scss';
 
 // Bootstrap
 //import 'bootstrap/dist/css/bootstrap.css';
-import 'bootswatch/dist/darkly/bootstrap.min.css'; // This replaces default Bootstrap file
+//import 'bootswatch/dist/flatly/bootstrap.min.css'; // This replaces default Bootstrap file
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.js';
+
+applyTheme();
 
 ReactDOM.render(
   // Suspense needed for i18n

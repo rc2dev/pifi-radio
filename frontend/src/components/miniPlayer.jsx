@@ -8,7 +8,7 @@ const MiniPlayer = ({ playerStatus }) => {
     <div className="mini-player p-3">
       <div className="mini-player__left ellipsis pr-3">
         <i className="drawer__toggler fas fa-chevron-up fa-lg my-2 mr-3" />
-        <span className={playing ? '' : 'text-muted font-italic'}>{title}</span>
+        <span>{title}</span>
       </div>
       <PlayStopControl playing={playing} />
     </div>

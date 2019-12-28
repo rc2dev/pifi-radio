@@ -35,7 +35,8 @@ class Drawer extends Component {
 
   render() {
     const { playerStatus } = this.props;
-    let classes = 'drawer fixed-bottom bg-dark text-white';
+    let classes =
+      'drawer fixed-bottom bg-secondary border-top border-secondary';
 
     if (this.state.open) {
       classes += ' drawer--open';

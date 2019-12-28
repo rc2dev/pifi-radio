@@ -7,7 +7,7 @@ const PlayStopControl = ({ playing }) =>
       <i className="fas fa-stop" />
     </button>
   ) : (
-    <button className="btn btn-secondary" onClick={play}>
+    <button className="btn btn-dark" onClick={play}>
       <i className="fas fa-play" />
     </button>
   );
