@@ -1,8 +1,8 @@
 import React from 'react';
 import { play, stop } from '../services/playerService';
 
-const PlayStopControl = ({ playing }) => {
-  return playing ? (
+const PlayStopControl = ({ playing }) =>
+  playing ? (
     <button className="btn btn-danger" onClick={stop}>
       <i className="fas fa-stop" />
     </button>
@@ -11,6 +11,5 @@ const PlayStopControl = ({ playing }) => {
       <i className="fas fa-play" />
     </button>
   );
-};
 
 export default PlayStopControl;

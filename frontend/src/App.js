@@ -14,7 +14,6 @@ import { updateInterval, backdropTimeout } from './config.json';
 import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
-// d-none d-md-block
 class App extends Component {
   state = {
     playerStatus: {},
@@ -53,16 +52,17 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Backdrop title={backdrop.title} body={backdrop.body} />
         <ToastContainer />
+        <Backdrop title={backdrop.title} body={backdrop.body} />
         <NavBar />
+        <Drawer playerStatus={playerStatus} />
+
         <main className="app-main">
           <Player playerStatus={playerStatus} />
           <Streams
             onBackdrop={this.handleBackdrop}
             playerStatus={playerStatus}
           />
-          <Drawer playerStatus={playerStatus} />
           <Settings />
           <URLDialog />
         </main>
