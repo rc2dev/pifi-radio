@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  Input
-} from 'reactstrap';
+import Modal from './common/modal';
 import { toast } from 'react-toastify';
 import { playURL } from '../services/playerService';
 import { withTranslation } from 'react-i18next';
 
-const URLDialog = ({ isOpen, toggle, t }) => {
+const URLDialog = ({ t }) => {
   const [url, setURL] = useState('');
 
   const okDisabled = url === '';
 
+  const handleCancel = () => {
+    setURL('');
+  };
+
   const handleOK = () => {
-    toggle();
     doPlayURL(url);
     setURL('');
   };
@@ -38,11 +34,6 @@ const URLDialog = ({ isOpen, toggle, t }) => {
     }
   };
 
-  const handleCancel = () => {
-    toggle();
-    setURL('');
-  };
-
   const handleChange = ({ target: input }) => {
     setURL(input.value);
   };
@@ -51,33 +42,33 @@ const URLDialog = ({ isOpen, toggle, t }) => {
     if (e.key === 'Enter' && !okDisabled) handleOK();
   };
 
+  const renderFooter = () => (
+    <React.Fragment>
+      <button
+        className="btn btn-primary"
+        onClick={handleOK}
+        disabled={okDisabled}
+        data-dismiss="modal"
+      >
+        OK
+      </button>
+      <button className="btn btn-secondary" data-dismiss="modal">
+        Cancel
+      </button>
+    </React.Fragment>
+  );
+
   return (
-    <Modal
-      isOpen={isOpen}
-      toggle={toggle}
-      id="play-url"
-      autoFocus={false}
-      unmountOnClose
-    >
-      <ModalHeader toggle={toggle}>{t('playURL')}</ModalHeader>
-      <ModalBody>
-        <Input
-          autoFocus={true}
-          type="text"
-          placeholder="URL"
-          value={url}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={handleOK} disabled={okDisabled}>
-          OK
-        </Button>
-        <Button color="secondary" onClick={handleCancel}>
-          Cancel
-        </Button>
-      </ModalFooter>
+    <Modal id="url-dialog" title={t('playURL')} footer={renderFooter()}>
+      <input
+        className="form-control mb-4"
+        type="text"
+        placeholder="URL"
+        value={url}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleCancel}
+      />
     </Modal>
   );
 };

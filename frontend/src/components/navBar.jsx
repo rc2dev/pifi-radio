@@ -5,7 +5,7 @@ import './navBar.scss';
 const NavBar = ({ t, onToggleURLDialog }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         PiFi Radio
       </a>
       <button
@@ -21,19 +21,23 @@ const NavBar = ({ t, onToggleURLDialog }) => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <a className="nav-item nav-link" href="#" onClick={onToggleURLDialog}>
+          {/* We use buttons and different class names instead of Bootstrap's
+           anchor, so we don't get a warning for href="#". */}
+          <button
+            className="btn btn-link nav-link"
+            data-toggle="modal"
+            data-target="#url-dialog"
+          >
             {t('playURL')}
-          </a>
-        </div>
-        <div className="navbar-nav">
-          <a
-            className="nav-item nav-link"
-            href="#"
+          </button>
+
+          <button
+            className="btn btn-link nav-link"
             data-toggle="modal"
             data-target="#settings"
           >
             {t('settings')}
-          </a>
+          </button>
         </div>
       </div>
     </nav>

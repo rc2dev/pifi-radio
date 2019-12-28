@@ -20,8 +20,7 @@ class App extends Component {
     playerStatus: {},
     loading: true,
     networkError: false,
-    backdrop: {},
-    showURLDialog: false
+    backdrop: {}
   };
 
   componentDidMount() {
@@ -44,18 +43,8 @@ class App extends Component {
     setTimeout(() => this.setState({ backdrop: {} }), backdropTimeout);
   };
 
-  handleToggleURLDialog = () => {
-    this.setState({ showURLDialog: !this.state.showURLDialog });
-  };
-
   render() {
-    const {
-      loading,
-      networkError,
-      backdrop,
-      playerStatus,
-      showURLDialog
-    } = this.state;
+    const { loading, networkError, backdrop, playerStatus } = this.state;
     const { t } = this.props;
 
     if (networkError) return <Backdrop title={t('errorNetwork')} />;
@@ -66,20 +55,17 @@ class App extends Component {
       <div className="app">
         <Backdrop title={backdrop.title} body={backdrop.body} />
         <ToastContainer />
-        <NavBar onToggleURLDialog={this.handleToggleURLDialog} />
+        <NavBar />
         <main className="app-main">
           <Player playerStatus={playerStatus} />
           <Streams
             onBackdrop={this.handleBackdrop}
             playerStatus={playerStatus}
           />
+          <Drawer playerStatus={playerStatus} />
           <Settings />
-          <URLDialog
-            isOpen={showURLDialog}
-            toggle={this.handleToggleURLDialog}
-          />
+          <URLDialog />
         </main>
-        <Drawer playerStatus={playerStatus} />
       </div>
     );
   }
