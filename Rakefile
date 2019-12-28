@@ -8,6 +8,11 @@ task :build do
   sh "rsync -a --delete #{frontend_build}/ #{public_dir}/"
 end
 
+desc "Build gem"
+task :build_gem => [:build] do
+  sh "gem build pifi.gemspec"
+end
+
 desc "Run PiFi"
 task :serve => [:build] do
   sh "rackup -Ilib --host 0.0.0.0"
@@ -18,3 +23,4 @@ task :start do
   sh "rackup -Ilib --host 0.0.0.0 --quiet &"
   sh "cd #{frontend_dir} && npm run start"
 end
+
