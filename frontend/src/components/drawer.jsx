@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MiniPlayer from './miniPlayer';
 import Player from './player';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import './drawer.scss';
 
 class Drawer extends Component {
@@ -52,7 +54,10 @@ class Drawer extends Component {
       >
         {this.state.open ? (
           <React.Fragment>
-            <i className="drawer__toggler fas fa-chevron-down fa-lg p-3" />
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className="drawer__toggler fa-lg mb-3"
+            />
             <Player playerStatus={playerStatus} />{' '}
           </React.Fragment>
         ) : (

@@ -1,10 +1,12 @@
 import React from 'react';
 import PlayStopControl from './playStopControl';
-import { changeVol } from '../services/playerService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { withTranslation } from 'react-i18next';
-import './playerControls.scss';
+import { changeVol } from '../services/playerService';
 import { volTimeout } from '../config.json';
+import './playerControls.scss';
 
 const PlayerControls = ({ playerStatus, t }) => {
   const volDisabled = playerStatus.vol < 0;
@@ -25,14 +27,14 @@ const PlayerControls = ({ playerStatus, t }) => {
       disabled={volDisabled}
       onClick={() => handleVolChange(delta)}
     >
-      <i className={'fas ' + icon} />
+      <FontAwesomeIcon icon={icon} />
     </button>
   );
 
   return (
     <div className="player-controls btn-group w-100">
-      {renderVolButton('-5', 'fa-volume-down')}
-      {renderVolButton('+5', 'fa-volume-up')}
+      {renderVolButton('-5', faVolumeDown)}
+      {renderVolButton('+5', faVolumeUp)}
       <PlayStopControl playing={playerStatus.playing} />
     </div>
   );
