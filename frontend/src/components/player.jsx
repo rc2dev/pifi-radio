@@ -4,7 +4,7 @@ import PlayerControls from './playerControls';
 import './player.scss';
 
 const Player = ({ playerStatus }) => (
-  <div className="player p-4">
+  <div className="player">
     <PlayerStatus playerStatus={playerStatus} />
     <PlayerControls playerStatus={playerStatus} />
   </div>
