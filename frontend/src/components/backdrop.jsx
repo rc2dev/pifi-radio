@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './backdrop.scss';
 
 const Backdrop = ({ title, body }) => {
-  const [bodyStyled, setBodyStyled] = useState(false);
-
   const getScrollbarWidth = () =>
     window.innerWidth - document.documentElement.clientWidth;
 
-  const doBodyStyle = () => {
-    if (title) {
-      // Calculate this BEFORE adding the class.
-      document.body.style.paddingRight = getScrollbarWidth() + 'px';
-      document.body.classList.add('body--backdrop');
-      setBodyStyled(true);
-      // We need this check because Bootstrap modals also style paddingRight
-    } else if (!title && bodyStyled) {
-      document.body.style.paddingRight = 0;
-      document.body.classList.remove('body--backdrop');
-      setBodyStyled(false);
-    }
-  };
+  const bodyStyled = document.body.classList.contains('body--backdrop');
 
-  useEffect(doBodyStyle, [title, body]);
+  if (title && !bodyStyled) {
+    // Calculate this BEFORE adding the class.
+    document.body.style.paddingRight = getScrollbarWidth() + 'px';
+    document.body.classList.add('body--backdrop');
+    // We need this check because Bootstrap modals also style paddingRight
+  } else if (!title && bodyStyled) {
+    document.body.style.paddingRight = 0;
+    document.body.classList.remove('body--backdrop');
+  }
 
   const classes =
     'backdrop p-2 text-white' + (title ? ' backdrop--visible' : '');
