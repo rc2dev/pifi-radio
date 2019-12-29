@@ -13,11 +13,11 @@ class Drawer extends Component {
   };
 
   handleClick = ({ target }) => {
-    const blackList =
-      (target.tagName === 'BUTTON' || target.tagName === 'I') &&
-      !target.className.includes('drawer__toggler');
+    const blackList = target.tagName === 'BUTTON' || target.tagName === 'path';
     if (blackList) return;
 
+    console.log('tag: ', target.tagName);
+    console.log('class: ', target.className);
     this.toggle();
   };
 
