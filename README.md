@@ -1,6 +1,9 @@
 # PiFi Radio
 
-PiFi Radio: A MPD web client to listen to radio
+<p align="center">
+  <img src="https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/icon/radio-original.svg?sanitize=true" width=250>
+</p>
+<p align="center">PiFi Radio: A MPD web client to listen to radio.</p>
 
 ## Table of contents
 
@@ -18,20 +21,18 @@ PiFi Radio: A MPD web client to listen to radio
 
 PiFi Radio is a MPD web client to listen to radio.
 
-If you have no idea what this means... You install it on a device such as the Raspberry Pi or even your computer. Actually anything with a speaker. Then, you open your browser from anywhere (e.g. your phone) and it will play your favorite radio stations.
+If you have no idea what this means... You install it on a device such as the Raspberry Pi or even your computer. Actually anything with a speaker. Then, you open your browser from anywhere (e.g. your phone) to control it and listen to your favorite radio stations.
 
 PiFi is an interface for MPD, so it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. One of them is that the playback is completely independent from your phone. So you can continue to use it normally, play a video, lose connection or even turn it off, and your Pi will still continue to play the radio.
 
 [I started this project in early 2017. At that time, I wanted to configure Raspbian so my parents could listen to radio with ease, but couldn't find any good solution to it.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
 
-
 ## Some features
 
 - Responsive interface for phones, tablets and desktops.
 - Display stations clearly. No URLs or weird names.
+- Themes, dark and light.
 - Easily search your radios.
-- Themes.
-- Straight-forward beautiful interface. Minimalist yet taking advantage of screen space for important information and controls.
 - Centralized list of stations. You get the same radios on every device.
 - Make some radios to be offered only to certain IPs. A use case for this is if there are tons of stations that only you listen and you don't want to pollute everyone else's list.
 - Organize your radios by categories.
@@ -41,7 +42,11 @@ PiFi is an interface for MPD, so it has some advantages compared to other soluti
 
 ## Demo
 
-Coming soon.
+![](docs/demo/mobile-01.png)
+
+![](docs/demo/desktop-01.png)
+
+![](docs/demo/desktop-02.png)
 
 ## Installation
 
