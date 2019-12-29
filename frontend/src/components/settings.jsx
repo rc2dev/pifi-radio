@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './common/modal';
-import { getTheme, changeTheme, themes } from '../theme';
+import { getThemeId, changeTheme, themes } from '../theme';
 import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import { languages } from '../config.json';
@@ -20,7 +20,7 @@ const Settings = ({ t }) => {
         label={t('theme')}
         data={themes}
         row
-        value={getTheme()}
+        value={getThemeId()}
         onChange={e => {
           changeTheme(e.target.value);
         }}
