@@ -89,7 +89,7 @@ To keep it simple, the list of streams is just a JSON file with key-value pairs,
          "Radio 2": "https://example.com/radio"
     }
 
-If you want to arrange the stations in categories, add a pair with the category name as the key and empty value, as shown below. This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "España" in the demo](#demo).
+If you want to arrange the stations in categories, add a pair with the category name as the key and empty value, as shown below. This will add the headers "Talk radio" and "Classical" above each group of stations, [such as "Spain" and "Christmas" in the demo](#demo).
 
     {
          "Talk radio": "",

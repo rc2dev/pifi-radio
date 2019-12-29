@@ -10,11 +10,11 @@ For this, you can install a web server, such as Nginx, Apache or Lighttpd, and s
 
 ## Serving static resources from your web server
 
-If you set your web server to reverse proxy PiFi, you may also use it to serve PiFi static assets. This possibly brings performance gains.
+If your web server is reverse proxying PiFi, you may also use it to serve PiFi static assets. This can bring performance gains.
 
 On PiFi configuration, set `serve_static` to false.
 
-On your web server, the exact steps depend on your configuration. You will probably need to set the root of the virtual server to PiFi's static assets directory. This is `${PIFI_DIR}/lib/pifi/public`. Refer to the next section for tips on how to find your `${PIFI_DIR}` and to the documentation of your web server for details.
+For configuring your web server, please refer to their documentation. In a nutshell, you'll make it look for the requested files in PiFi's public directory. This is `${PIFI_DIR}/lib/pifi/public`. The next section describes how to find `${PIFI_DIR}`.
 
 ## Finding PiFi directory
 
@@ -30,7 +30,7 @@ Note that the path contains both the Ruby version and the PiFi version. Thus, it
 
 The `pifi` command exposes most Rack CLI options, but you may want to access more advanced configurations from Thin (the application server PiFi uses).
 
-To achieve this, instead of invoking `pifi`, run `thin` and pass PiFi's `config.ru` and the `-e production` flag. The former is located at `${PIFI_DIR}/config.ru`.
+To do this, instead of invoking `pifi`, run `thin` and pass PiFi's `config.ru` and the `-e production` flag. The former is located at `${PIFI_DIR}/config.ru`.
 
 For example, if you want to run PiFi on a socket instead of a port:
 
