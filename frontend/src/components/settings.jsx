@@ -35,6 +35,17 @@ const Settings = ({ t }) => {
           i18next.changeLanguage(e.target.value);
         }}
       />
+      <hr className="mt-5" />
+      <p className="small">
+        Copyright &copy; 2017-2019&nbsp;
+        <a
+          href="https://rafaelc.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rafael Cavalcanti
+        </a>
+      </p>
     </Modal>
   );
 };
