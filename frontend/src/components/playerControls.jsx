@@ -3,12 +3,14 @@ import PlayStopControl from './playStopControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeDown, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { changeVol } from '../services/playerService';
 import { volTimeout } from '../config.json';
 import './playerControls.scss';
 
-const PlayerControls = ({ playerStatus, t }) => {
+const PlayerControls = ({ playerStatus }) => {
+  const { t } = useTranslation;
+  
   const volDisabled = playerStatus.vol < 0;
 
   const handleVolChange = async delta => {
@@ -41,4 +43,4 @@ const PlayerControls = ({ playerStatus, t }) => {
   );
 };
 
-export default withTranslation()(PlayerControls);
+export default PlayerControls;

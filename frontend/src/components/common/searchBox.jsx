@@ -1,7 +1,9 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-const SearchBox = ({ value, onChange, t }) => {
+const SearchBox = ({ value, onChange }) => {
+  const { t } = useTranslation();
+
   return (
     <input
       className="form-control mb-4"
@@ -16,4 +18,4 @@ const SearchBox = ({ value, onChange, t }) => {
   );
 };
 
-export default withTranslation()(SearchBox);
+export default SearchBox;

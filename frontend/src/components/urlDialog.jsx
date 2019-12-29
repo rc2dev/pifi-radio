@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Modal from './common/modal';
 import { toast } from 'react-toastify';
 import { playURL } from '../services/playerService';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-const URLDialog = ({ t }) => {
+const URLDialog = () => {
   const [url, setURL] = useState('');
+
+  const { t } = useTranslation();
 
   const handleOK = () => {
     if (url === '') return;
@@ -70,4 +72,4 @@ const URLDialog = ({ t }) => {
   );
 };
 
-export default withTranslation()(URLDialog);
+export default URLDialog;

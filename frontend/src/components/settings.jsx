@@ -2,11 +2,12 @@ import React from 'react';
 import Modal from './common/modal';
 import Select from './common/select';
 import { getThemeId, changeTheme, themes } from '../theme';
-import i18next from 'i18next';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { languages } from '../config.json';
 
-const Settings = ({ t }) => {
+const Settings = () => {
+  const { t, i18n } = useTranslation();
+
   const renderFooter = () => (
     <button className="btn btn-secondary" data-dismiss="modal">
       {t('close')}
@@ -30,9 +31,9 @@ const Settings = ({ t }) => {
         label={t('language')}
         data={languages}
         row
-        value={i18next.language}
+        value={i18n.language}
         onChange={e => {
-          i18next.changeLanguage(e.target.value);
+          i18n.changeLanguage(e.target.value);
         }}
       />
       <hr className="mt-5" />
@@ -52,4 +53,4 @@ const Settings = ({ t }) => {
   );
 };
 
-export default withTranslation()(Settings);
+export default Settings;

@@ -1,8 +1,10 @@
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-const PlayerStatus = ({ playerStatus, t }) => {
+const PlayerStatus = ({ playerStatus }) => {
   const { playing, title } = playerStatus;
+
+  const { t } = useTranslation();
 
   return (
     <div className="text-center">
@@ -14,4 +16,4 @@ const PlayerStatus = ({ playerStatus, t }) => {
   );
 };
 
-export default withTranslation()(PlayerStatus);
+export default PlayerStatus;
