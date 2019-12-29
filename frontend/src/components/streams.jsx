@@ -53,7 +53,7 @@ class Streams extends Component {
 
     let filtered = {};
     for (let k in streams) {
-      if (k.toLowerCase().includes(query.toLowerCase()) && streams[k] !== '') {
+      if (k.toLowerCase().includes(query.toLowerCase()) && !streams[k]) {
         filtered[k] = streams[k];
       }
     }
