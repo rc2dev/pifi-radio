@@ -7,13 +7,8 @@ import { withTranslation } from 'react-i18next';
 const URLDialog = ({ t }) => {
   const [url, setURL] = useState('');
 
-  const okDisabled = url === '';
-
-  const handleCancel = () => {
-    setURL('');
-  };
-
   const handleOK = () => {
+    if (url === '') return;
     doPlayURL(url);
     setURL('');
   };
@@ -39,20 +34,23 @@ const URLDialog = ({ t }) => {
   };
 
   const handleKeyDown = e => {
-    if (e.key === 'Enter' && !okDisabled) handleOK();
+    if (e.key === 'Enter') handleOK();
   };
 
   const renderFooter = () => (
     <React.Fragment>
       <button
         className="btn btn-primary"
-        onClick={handleOK}
-        disabled={okDisabled}
         data-dismiss="modal"
+        onClick={handleOK}
       >
         OK
       </button>
-      <button className="btn btn-secondary" data-dismiss="modal">
+      <button
+        className="btn btn-secondary"
+        onClick={() => setURL('')}
+        data-dismiss="modal"
+      >
         Cancel
       </button>
     </React.Fragment>
@@ -67,7 +65,6 @@ const URLDialog = ({ t }) => {
         value={url}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        onBlur={handleCancel}
       />
     </Modal>
   );

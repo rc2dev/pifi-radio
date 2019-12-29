@@ -4,6 +4,7 @@
   "errorNotFound": "The stream was not found.",
   "errorForbidden": "Error. Check your MPD password.",
   "disconnectedMPD": "Not connected to MPD",
+  "close": "Close",
   "search": "Search...",
   "playing": "Playing",
   "stopped": "Stopped",
