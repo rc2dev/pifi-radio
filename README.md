@@ -21,7 +21,7 @@
 
 PiFi Radio is a MPD web client to listen to radio.
 
-If you have no idea what this means... You install it on a device such as the Raspberry Pi or even your computer. Actually anything with a speaker. Then, you open your browser from anywhere (e.g. your phone) to control it and listen to your favorite radio stations.
+If you have no idea what this means... You install it on a device such as the Raspberry Pi or anything with a speaker. Then, you open your browser from anywhere (e.g. your phone) to control it and listen to your favorite radio stations.
 
 PiFi is an interface for MPD, so it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. One of them is that the playback is completely independent from your phone. So you can continue to use it normally, play a video, lose connection or even turn it off, and your Pi will still continue to play the radio.
 

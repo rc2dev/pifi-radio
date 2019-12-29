@@ -18,7 +18,7 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 3. Install PiFi:
 
 ```
-$ sudo gem install pifi --no-ri --no-rdoc
+$ sudo gem install pifi --no-document
 ```
 
 4. To run PiFi, you'll need a list of radios at `/etc/pifi/streams.json`. Paste this for now:
@@ -30,7 +30,7 @@ $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/doc
 
 Later, you can edit that JSON file [as described here](README.md#list-of-streams).
 
-5. If the MPD server is in other host or a non-default port, you'll need to place a configuration file.
+5. If the MPD server is on another host or a non-default port, you'll need to place a configuration file.
 
 Download a sample and edit [following the documentation](README.md#pifi-configuration):
 
@@ -60,6 +60,8 @@ $ sudo -e /etc/systemd/system/pifi.service
 ```
 
 **Done!** Now you can start PiFi with `sudo systemctl start pifi`. For running at boot, enter `sudo systemctl enable pifi`.
+
+If this doesn't work, `journalctl -u pifi` should tell you what to fix.
 
 ## Advanced deployments
 
