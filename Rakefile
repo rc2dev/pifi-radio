@@ -13,6 +13,12 @@ task :build_gem => [:build] do
   sh "gem build pifi.gemspec"
 end
 
+desc "Clean build files"
+task :clean do
+  sh "rm pifi-*.gem"
+  sh "rm -rf lib/pifi/public/*"
+end
+
 desc "Run PiFi"
 task :serve => [:build] do
   sh "rackup -Ilib --host 0.0.0.0"
