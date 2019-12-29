@@ -1,10 +1,10 @@
 import React from 'react';
 import Modal from './common/modal';
+import Select from './common/select';
 import { getThemeId, changeTheme, themes } from '../theme';
 import i18next from 'i18next';
 import { withTranslation } from 'react-i18next';
 import { languages } from '../config.json';
-import Select from './common/select';
 
 const Settings = ({ t }) => {
   const renderFooter = () => (

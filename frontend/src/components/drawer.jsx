@@ -16,8 +16,6 @@ class Drawer extends Component {
     const blackList = target.tagName === 'BUTTON' || target.tagName === 'path';
     if (blackList) return;
 
-    console.log('tag: ', target.tagName);
-    console.log('class: ', target.className);
     this.toggle();
   };
 

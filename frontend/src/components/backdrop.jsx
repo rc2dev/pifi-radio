@@ -1,10 +1,8 @@
 import React from 'react';
+import { getScrollbarWidth } from '../utils/style';
 import './backdrop.scss';
 
 const Backdrop = ({ title, body }) => {
-  const getScrollbarWidth = () =>
-    window.innerWidth - document.documentElement.clientWidth;
-
   const bodyStyled = document.body.classList.contains('body--backdrop');
 
   if (title && !bodyStyled) {
