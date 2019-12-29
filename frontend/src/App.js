@@ -57,7 +57,7 @@ class App extends Component {
         <NavBar />
         <Drawer playerStatus={playerStatus} />
 
-        <main className="app-main p-2">
+        <main className="app-main p-4">
           <Player playerStatus={playerStatus} />
           <Streams
             onBackdrop={this.handleBackdrop}

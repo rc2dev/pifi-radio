@@ -4,10 +4,10 @@ import PlayerControls from './playerControls';
 import './player.scss';
 
 const Player = ({ playerStatus }) => {
-  useEffect(positionPlayerTop);
+  useEffect(positionPlayerTop, [playerStatus]);
 
   return (
-    <div className="player">
+    <div className="player p-2">
       <PlayerStatus playerStatus={playerStatus} />
       <PlayerControls playerStatus={playerStatus} />
     </div>

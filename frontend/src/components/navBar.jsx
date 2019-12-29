@@ -2,8 +2,8 @@ import React from 'react';
 import { withTranslation } from 'react-i18next';
 import './navBar.scss';
 
-const NavBar = ({ t, onToggleURLDialog }) => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+const NavBar = ({ t }) => (
+  <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
     <a className="navbar-brand" href="/">
       PiFi Radio
     </a>

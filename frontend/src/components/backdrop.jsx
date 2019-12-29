@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './backdrop.scss';
 
 const Backdrop = ({ title, body }) => {
-  let classes = 'backdrop p-2 text-white';
+  const [bodyStyled, setBodyStyled] = useState(false);
 
   const getScrollbarWidth = () =>
     window.innerWidth - document.documentElement.clientWidth;
 
-  if (title) {
-    classes += ' backdrop--visible';
-    document.body.style.paddingRight = getScrollbarWidth() + 'px';
-    document.body.classList.add('body--backdrop');
-  } else {
-    document.body.classList.remove('body--backdrop');
-    document.body.style.paddingRight = 0;
-  }
+  const doBodyStyle = () => {
+    if (title) {
+      // Calculate this BEFORE adding the class.
+      document.body.style.paddingRight = getScrollbarWidth() + 'px';
+      document.body.classList.add('body--backdrop');
+      setBodyStyled(true);
+      // We need this check because Bootstrap modals also style paddingRight
+    } else if (!title && bodyStyled) {
+      document.body.style.paddingRight = 0;
+      document.body.classList.remove('body--backdrop');
+      setBodyStyled(false);
+    }
+  };
 
-  // We need text-white on the h* because some themes override it
+  useEffect(doBodyStyle, [title, body]);
+
+  const classes =
+    'backdrop p-2 text-white' + (title ? ' backdrop--visible' : '');
+
+  // We need text-white on h* tags because some themes override it
   return (
     <div className={classes}>
       <h3 className="text-white">{title}</h3>

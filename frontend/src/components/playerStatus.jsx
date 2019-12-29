@@ -5,7 +5,7 @@ const PlayerStatus = ({ playerStatus, t }) => {
   const { playing, title } = playerStatus;
 
   return (
-    <div className="text-center mt-4">
+    <div className="text-center">
       <h5 className="small text-uppercase">
         {playing ? t('playing') : t('stopped')}
       </h5>
