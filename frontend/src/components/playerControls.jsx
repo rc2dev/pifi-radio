@@ -21,11 +21,12 @@ const PlayerControls = ({ playerStatus, t }) => {
     else toast.info(toastMsg, toastOpts);
   };
 
-  const renderVolButton = (delta, icon) => (
+  const renderVolButton = (delta, icon, label) => (
     <button
       className="btn btn-dark p-3"
       disabled={volDisabled}
       onClick={() => handleVolChange(delta)}
+      aria-label={label}
     >
       <FontAwesomeIcon icon={icon} />
     </button>
@@ -33,8 +34,8 @@ const PlayerControls = ({ playerStatus, t }) => {
 
   return (
     <div className="player-controls btn-group w-100">
-      {renderVolButton('-5', faVolumeDown)}
-      {renderVolButton('+5', faVolumeUp)}
+      {renderVolButton('-5', faVolumeDown, 'Volume down')}
+      {renderVolButton('+5', faVolumeUp, 'Volume up')}
       <PlayStopControl playing={playerStatus.playing} />
     </div>
   );

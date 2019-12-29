@@ -5,11 +5,11 @@ import { play, stop } from '../services/playerService';
 
 const PlayStopControl = ({ playing }) =>
   playing ? (
-    <button className="btn btn-danger" onClick={stop}>
+    <button className="btn btn-danger" onClick={stop} aria-label="Stop">
       <FontAwesomeIcon icon={faStop} />
     </button>
   ) : (
-    <button className="btn btn-dark" onClick={play}>
+    <button className="btn btn-dark" onClick={play} aria-label="Play">
       <FontAwesomeIcon icon={faPlay} />
     </button>
   );
