@@ -38,10 +38,12 @@ const Settings = ({ t }) => {
       <hr className="mt-5" />
       <p className="small">
         Copyright &copy; 2017-2019&nbsp;
+        {/* Use the default color, as some themes give a different color for links. */}
         <a
           href="https://rafaelc.org/"
           target="_blank"
           rel="noopener noreferrer"
+          style={{ color: 'inherit' }}
         >
           Rafael Cavalcanti
         </a>
