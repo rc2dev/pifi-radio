@@ -16,6 +16,10 @@
   }
 }
 
+// The media query is for the edge case of an open drawer and the
+// window resized past the breakpoint. This brings the scrollbar back.
 .body--drawer {
-  overflow: hidden;
+  @media (max-width: $mobile-width) {
+    overflow: hidden;
+  }
 }
