@@ -38,7 +38,7 @@ const Settings = () => {
       />
       <hr className="mt-5" />
       <p className="small">
-        Copyright &copy; 2017-2019&nbsp;
+        Copyright &copy; 2017-2020&nbsp;
         {/* Use the default color, as some themes give a different color for links. */}
         <a
           href="https://rafaelc.org/"

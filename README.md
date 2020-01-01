@@ -145,4 +145,4 @@ On your mobile browser, I suggest you add PiFi Radio to your home screen, for ea
 
 Released under [GNU GPL v3](LICENSE).
 
-Copyright 2017-2019 Rafael Cavalcanti <hi@rafaelc.org>
+Copyright 2017-2020 Rafael Cavalcanti <hi@rafaelc.org>
