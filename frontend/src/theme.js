@@ -7,8 +7,7 @@ const getThemePath = themeId =>
 
 export const themes = [
   { id: 'darkly', name: 'Darkly', themeColor: '#375a7f' },
-  { id: 'lux', name: 'Lux', themeColor: '#1a1a1a' },
-  { id: 'litera', name: 'Litera', themeColor: '#4582ec' }
+  { id: 'lux', name: 'Lux', themeColor: '#1a1a1a' }
 ];
 
 export function changeTheme(themeId) {
