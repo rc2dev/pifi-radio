@@ -10,7 +10,7 @@ import './playerControls.scss';
 
 const PlayerControls = ({ playerStatus }) => {
   const { t } = useTranslation;
-  
+
   const volDisabled = playerStatus.vol < 0;
 
   const handleVolChange = async delta => {
@@ -35,7 +35,10 @@ const PlayerControls = ({ playerStatus }) => {
   );
 
   return (
-    <div className="player-controls btn-group w-100">
+    <div
+      className="player-controls btn-group w-100"
+      onClick={e => e.stopPropagation()}
+    >
       {renderVolButton('-5', faVolumeDown, 'Volume down')}
       {renderVolButton('+5', faVolumeUp, 'Volume up')}
       <PlayStopControl playing={playerStatus.playing} />

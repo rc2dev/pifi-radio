@@ -12,7 +12,9 @@ const MiniPlayer = ({ playerStatus }) => {
         <FontAwesomeIcon icon={faChevronUp} className="drawer__toggler mr-3" />
         <span>{title}</span>
       </div>
-      <PlayStopControl playing={playing} />
+      <div className="mini-player__right" onClick={e => e.stopPropagation()}>
+        <PlayStopControl playing={playing} />
+      </div>
     </div>
   );
 };

@@ -12,10 +12,7 @@ class Drawer extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  handleClick = ({ target }) => {
-    const blackList = target.tagName === 'BUTTON' || target.tagName === 'path';
-    if (blackList) return;
-
+  handleClick = () => {
     this.toggle();
   };
 
