@@ -26,6 +26,10 @@ class App extends Component {
     this.updatePlayerStatus();
   }
 
+  componentDidUpdate() {
+    this.setDesktopPlayerTop();
+  }
+
   async updatePlayerStatus() {
     try {
       const { data: playerStatus } = await getStatus();
@@ -40,6 +44,18 @@ class App extends Component {
   handleBackdrop = (title, body = '') => {
     this.setState({ backdrop: { title, body } });
     setTimeout(() => this.setState({ backdrop: {} }), backdropTimeout);
+  };
+
+  // Calculate and set top for Player on desktop view
+  setDesktopPlayerTop = () => {
+    const nav = document.querySelector('nav');
+    const desktopPlayer = document.querySelector('.app-main > .player');
+    if (!nav || !desktopPlayer) return;
+
+    const navHeight = nav.clientHeight;
+    const topMargin = 24;
+
+    desktopPlayer.style.top = navHeight + topMargin + 'px';
   };
 
   render() {

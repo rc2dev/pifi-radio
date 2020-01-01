@@ -7,7 +7,7 @@ const NavBar = () => {
   const { t } = useTranslation();
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-primary ">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <a className="navbar-brand" href="/">
         <img
           src={logo}
