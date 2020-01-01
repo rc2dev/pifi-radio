@@ -9,7 +9,7 @@ import { volTimeout } from '../config.json';
 import './playerControls.scss';
 
 const PlayerControls = ({ playerStatus }) => {
-  const { t } = useTranslation;
+  const { t } = useTranslation();
 
   const volDisabled = playerStatus.vol < 0;
 
