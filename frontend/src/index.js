@@ -1,15 +1,12 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import Loader from './components/loader';
+import * as serviceWorker from './serviceWorker';
 import './i18n';
 import { applyTheme } from './theme';
 import './index.scss';
-
-// Bootstrap
-//import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootswatch/dist/flatly/bootstrap.min.css'; // This replaces default Bootstrap file
+// Bootstrap dependencies
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.js';
 
