@@ -9,22 +9,24 @@ axios.interceptors.response.use(null, error => {
     error.response.status >= 400 &&
     error.response.status < 500;
 
-  // We already alert about these with a backdrop on App.js
-  const networkError = !error.response;
+  // Some errors cause our app to only render a backdrop warning.
+  // Queuing toasts would be redundant.
+  const hasToastify = document.querySelector('.Toastify');
 
-  // Ugly, but i18n only worked this way
-  if (!expectedError && !networkError) {
-    toast.error(
-      <Translation>
-        {(t, { i18n }) => <p>{t('errorUnexpected')}</p>}
-      </Translation>
-    );
+  // The translation is ugly, but 18n only worked this way
+  if (hasToastify) {
+    if (!expectedError) {
+      toast.error(
+        <Translation>{t => <p>{t('errorUnexpected')}</p>}</Translation>
+      );
+    }
+
+    // Universal expected error
+    if (error.response && error.response.status === 403)
+      toast.error(
+        <Translation>{t => <p>{t('errorForbidden')}</p>}</Translation>
+      );
   }
-  // This expected error is universal in our app, so we'll place it here
-  if (error.response && error.response.status === 403)
-    toast.error(
-      <Translation>{(t, { i18n }) => <p>{t('errorForbidden')}</p>}</Translation>
-    );
 
   return Promise.reject(error);
 });
