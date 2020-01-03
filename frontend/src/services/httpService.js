@@ -13,23 +13,19 @@ axios.interceptors.response.use(null, error => {
   // Queuing toasts would be redundant.
   const hasToastify = document.querySelector('.Toastify');
 
-  // The translation is ugly, but 18n only worked this way
   if (hasToastify) {
-    if (!expectedError) {
-      toast.error(
-        <Translation>{t => <p>{t('errorUnexpected')}</p>}</Translation>
-      );
-    }
+    if (!expectedError) toast.error(message('errorUnexpected'));
 
     // Universal expected error
     if (error.response && error.response.status === 403)
-      toast.error(
-        <Translation>{t => <p>{t('errorForbidden')}</p>}</Translation>
-      );
+      toast.error(message('errorForbidden'));
   }
 
   return Promise.reject(error);
 });
+
+// Ugly, but 18n only worked this way
+const message = key => <Translation>{t => <p>{t(key)}</p>}</Translation>;
 
 export default {
   get: axios.get,
