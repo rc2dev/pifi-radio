@@ -2,7 +2,7 @@
   "errorNetwork": "Not connected to PiFi server",
   "errorUnexpected": "An unexpected error occurred.",
   "errorNotFound": "The stream was not found.",
-  "errorForbidden": "Error. Check your MPD password.",
+  "errorForbidden": "Forbidden request. Check MPD password and permissions.",
   "disconnectedMPD": "Not connected to MPD",
   "close": "Close",
   "search": "Search...",
