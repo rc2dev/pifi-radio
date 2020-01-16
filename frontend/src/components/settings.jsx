@@ -8,14 +8,8 @@ import { languages } from '../config.json';
 const Settings = () => {
   const { t, i18n } = useTranslation();
 
-  const renderFooter = () => (
-    <button className="btn btn-secondary" data-dismiss="modal">
-      {t('close')}
-    </button>
-  );
-
   return (
-    <Modal id="settings" title={t('settings')} footer={renderFooter()}>
+    <Modal id="settings" title={t('settings')}>
       <Select
         id="theme-select"
         label={t('theme')}

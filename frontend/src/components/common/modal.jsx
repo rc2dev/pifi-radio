@@ -1,6 +1,15 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Modal = ({ id, title, footer, children }) => {
+  const { t } = useTranslation();
+
+  const defaultFooter = (
+    <button className="btn btn-secondary" data-dismiss="modal">
+      {t('close')}
+    </button>
+  );
+
   return (
     <div
       className="modal fade"
@@ -26,7 +35,7 @@ const Modal = ({ id, title, footer, children }) => {
             </button>
           </div>
           <div className="modal-body">{children}</div>
-          <div className="modal-footer">{footer}</div>
+          <div className="modal-footer">{footer ? footer : defaultFooter}</div>
         </div>
       </div>
     </div>
