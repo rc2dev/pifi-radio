@@ -4,7 +4,9 @@ require "pifi"
 require "optimist"
 
 cli_opts = Optimist::options do
-  synopsis "PiFi Radio"
+  version "PiFi Radio v#{PiFi::VERSION}"
+  banner "PiFi - MPD web client to listen to radio"
+
   opt :port, "Define port", :default => 3000
   opt :host, "Define host", :default => "0.0.0.0"
   opt :daemonize, "Daemonize", :default => false
