@@ -1,7 +1,7 @@
 require "pifi/controllers/application_controller"
 
 module PiFi
-  class IndexController < ApplicationController
+  class StaticController < ApplicationController
     set :root, File.expand_path("../../", __FILE__)
     set :static, true
     configure :production do
