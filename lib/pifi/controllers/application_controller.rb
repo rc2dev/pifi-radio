@@ -4,15 +4,12 @@ require "sinatra/base"
 
 module PiFi
   class ApplicationController < Sinatra::Base
-    set ConfigGetter.new.config
-    set :streams, Streams.new(settings.streams_path, settings.streams_path_priv)
-    set :root, File.expand_path("../../", __FILE__)
-
-    configure :production do
-      set :static, settings.serve_static
-    end
+    set :static, false
     configure :development do
       before { response.headers["Access-Control-Allow-Origin"] = "*" }
     end
+
+    set ConfigGetter.new.config
+    set :streams, Streams.new(settings.streams_path, settings.streams_path_priv)
   end
 end
