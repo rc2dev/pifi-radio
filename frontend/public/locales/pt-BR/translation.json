@@ -5,6 +5,8 @@
   "errorForbidden": "Requisição não permitida. Verifique a senha do MPD e permissões.",
   "disconnectedMPD": "Sem conexão ao MPD",
   "close": "Fechar",
+  "ok": "OK",
+  "cancel": "Cancelar",
   "search": "Buscar...",
   "playing": "Tocando",
   "stopped": "Parado",

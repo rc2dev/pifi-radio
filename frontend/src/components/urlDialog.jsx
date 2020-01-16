@@ -46,14 +46,14 @@ const URLDialog = () => {
         data-dismiss="modal"
         onClick={handleOK}
       >
-        OK
+        {t('ok')}
       </button>
       <button
         className="btn btn-secondary"
         onClick={() => setURL('')}
         data-dismiss="modal"
       >
-        Cancel
+        {t('cancel')}
       </button>
     </React.Fragment>
   );

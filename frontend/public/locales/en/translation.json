@@ -5,6 +5,8 @@
   "errorForbidden": "Forbidden request. Check MPD password and permissions.",
   "disconnectedMPD": "Not connected to MPD",
   "close": "Close",
+  "ok": "OK",
+  "cancel": "Cancel",
   "search": "Search...",
   "playing": "Playing",
   "stopped": "Stopped",
