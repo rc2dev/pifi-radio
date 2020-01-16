@@ -7,6 +7,7 @@ import Settings from './components/settings';
 import URLDialog from './components/urlDialog';
 import Loader from './components/loader';
 import Backdrop from './components/backdrop';
+import About from './components/about';
 import { ToastContainer } from 'react-toastify';
 import { getStatus } from './services/playerService';
 import { withTranslation } from 'react-i18next';
@@ -79,8 +80,9 @@ class App extends Component {
             onBackdrop={this.handleBackdrop}
             playerStatus={playerStatus}
           />
-          <Settings />
           <URLDialog />
+          <Settings />
+          <About />
         </main>
       </div>
     );

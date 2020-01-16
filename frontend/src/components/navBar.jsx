@@ -48,6 +48,14 @@ const NavBar = () => {
           >
             {t('settings')}
           </button>
+
+          <button
+            className="btn btn-link nav-link"
+            data-toggle="modal"
+            data-target="#about"
+          >
+            {t('about')}
+          </button>
         </div>
       </div>
     </nav>

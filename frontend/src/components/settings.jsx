@@ -36,19 +36,6 @@ const Settings = () => {
           i18n.changeLanguage(e.target.value);
         }}
       />
-      <hr className="mt-5" />
-      <p className="small">
-        Copyright &copy; 2017-2020&nbsp;
-        {/* Use the default color, as some themes give a different color for links. */}
-        <a
-          href="https://rafaelc.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: 'inherit' }}
-        >
-          Rafael Cavalcanti
-        </a>
-      </p>
     </Modal>
   );
 };

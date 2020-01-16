@@ -10,10 +10,15 @@
   "stopped": "Parado",
   "tunning": "Sintonizando...",
   "noStreams": "Não há rádios disponíveis.",
-  "language": "Idioma",
-  "theme": "Tema",
-  "settings": "Ajustes",
   "playURL": "Tocar URL",
   "tryingURL": "Tentando tocar URL...",
+  "settings": "Ajustes",
+  "theme": "Tema",
+  "language": "Idioma",
+  "about": "Sobre",
+  "mpdHost": "Host do MPD",
+  "mpdPort": "Porta do MPD",
+  "environment": "Ambiente",
+  "version": "Versão",
   "volume": "Volume"
 }
