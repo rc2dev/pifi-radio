@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ruby-mpd', '~> 0.3'
   s.add_dependency 'json', '~> 2.2'
   s.add_dependency 'optimist', '~> 3.0'
+  s.required_ruby_version = '>= 2.4'
   s.homepage     = 'https://github.com/rccavalcanti/pifi-radio'
   s.metadata     = {
     "source_code_uri" => "https://github.com/rccavalcanti/pifi-radio",
