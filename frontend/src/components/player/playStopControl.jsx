@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStop, faPlay } from '@fortawesome/free-solid-svg-icons';
-import { play, stop } from '../services/playerService';
+import { play, stop } from '../../services/playerService';
 
 const PlayStopControl = ({ playing }) =>
   playing ? (

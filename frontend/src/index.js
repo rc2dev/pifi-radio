@@ -1,16 +1,16 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Loader from './components/loader';
+import Loader from './components/common/loader';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
-import { applyTheme } from './theme';
+import theme from './theme';
 import './index.scss';
 // Bootstrap dependencies
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.js';
 
-applyTheme();
+theme.apply();
 
 ReactDOM.render(
   // Suspense needed for i18n

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Modal from './common/modal';
 import { toast } from 'react-toastify';
-import { playURL } from '../services/playerService';
 import { useTranslation } from 'react-i18next';
+import Modal from '../common/modal';
+import { playURL } from '../../services/playerService';
 
 const URLDialog = () => {
   const [url, setURL] = useState('');

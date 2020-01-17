@@ -1,5 +1,5 @@
 import React from 'react';
-import { getScrollbarWidth } from '../utils/style';
+import { getScrollbarWidth } from '../../utils/style';
 import './backdrop.scss';
 
 const Backdrop = ({ title, body }) => {

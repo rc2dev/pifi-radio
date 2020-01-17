@@ -1,7 +1,7 @@
 import React from 'react';
-import PlayStopControl from './playStopControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import PlayStopControl from './playStopControl';
 import './miniPlayer.scss';
 
 const MiniPlayer = ({ playerStatus }) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Modal from './common/modal';
-import { getConfig } from '../services/configService';
+import Modal from '../common/modal';
+import { getConfig } from '../../services/configService';
 
 const About = () => {
   const { t } = useTranslation();

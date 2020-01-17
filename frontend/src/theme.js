@@ -1,24 +1,24 @@
-const DEFAULT_THEME = 'darkly';
+const DEFAULT_THEME_ID = 'darkly';
 
 const STORAGE_KEY = 'theme';
 
 const getThemePath = themeId =>
   `https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/${themeId}/bootstrap.min.css`;
 
-export const themes = [
+const availableThemes = [
   { id: 'darkly', name: 'Darkly', themeColor: '#375a7f' },
   { id: 'lux', name: 'Lux', themeColor: '#1a1a1a' }
 ];
 
-export function changeTheme(themeId) {
+function change(themeId) {
   localStorage.setItem(STORAGE_KEY, themeId);
-  applyTheme();
+  apply();
 }
 
-export function applyTheme() {
-  const themeId = getThemeId();
+function apply() {
+  const themeId = getCurrentId();
   const themePath = getThemePath(themeId);
-  const themeColor = themes.find(t => t.id === themeId).themeColor;
+  const themeColor = availableThemes.find(t => t.id === themeId).themeColor;
 
   const linkEl = document.querySelector('link[title="theme"]');
   linkEl.setAttribute('href', themePath);
@@ -27,14 +27,21 @@ export function applyTheme() {
   metaEl.setAttribute('content', themeColor);
 }
 
-export function getThemeId() {
+function getCurrentId() {
   const localId = localStorage.getItem(STORAGE_KEY);
 
-  if (localId === '') return DEFAULT_THEME;
-  if (themes.filter(t => t.id === localId).length === 0) {
+  if (localId === '') return DEFAULT_THEME_ID;
+  if (availableThemes.filter(t => t.id === localId).length === 0) {
     localStorage.removeItem(STORAGE_KEY);
-    return DEFAULT_THEME;
+    return DEFAULT_THEME_ID;
   }
 
   return localId;
 }
+
+export default {
+  availableThemes,
+  getCurrentId,
+  change,
+  apply
+};

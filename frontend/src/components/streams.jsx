@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SearchBox from './common/searchBox';
-import Loader from './loader';
 import { withTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import Loader from './common/loader';
+import SearchBox from './common/searchBox';
 import { playRadio } from '../services/playerService';
 import { getStreams } from '../services/streamsService';
 import './streams.scss';

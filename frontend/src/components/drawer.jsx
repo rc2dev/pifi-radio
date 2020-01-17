@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MiniPlayer from './miniPlayer';
-import Player from './player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import MiniPlayer from './player/miniPlayer';
+import Player from './player/player';
 import './drawer.scss';
 
 class Drawer extends Component {

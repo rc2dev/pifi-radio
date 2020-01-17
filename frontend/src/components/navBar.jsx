@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import './navBar.scss';
-import logo from '../logo.svg';
+import logo from '../assets/logo.svg';
 
 const NavBar = () => {
   const { t } = useTranslation();
