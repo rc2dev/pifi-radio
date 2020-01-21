@@ -21,9 +21,11 @@
     "react-dom": "^16.12.0",
     "react-i18next": "^11.2.7",
     "react-scripts": "3.3.0",
-    "react-toastify": "^5.4.1"
+    "react-toastify": "^5.4.1",
+    "source-map-explorer": "^2.2.2"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
