@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# The supported, safe way
+ENV["APP_ENV"] = "production" if ENV["APP_ENV"].nil?
+
 require "pifi"
 require "optimist"
 
@@ -22,5 +25,4 @@ rack_opts = {
   daemonize: cli_opts.daemonize
 }
 
-PiFi::ApplicationController.set :environment, :production
 Rack::Server.new(rack_opts).start
