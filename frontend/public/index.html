@@ -28,5 +28,17 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <script>
+      var isIE = window.document.documentMode;
+      var unsupportedMsg = '<img src="%PUBLIC_URL%/assets/logo80.png" class="mx-auto d-block my-5">'
+      unsupportedMsg += '<h5 class="text-center my-5">This browser is not supported</h5>';
+
+      if (isIE) {
+        var root = document.getElementById("root")
+        root.innerHTML = unsupportedMsg;
+        root.setAttribute("id", "");
+      }
+    </script>
   </body>
 </html>
