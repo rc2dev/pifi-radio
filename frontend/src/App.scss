@@ -2,7 +2,12 @@
 
 .app-main {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+
+  // Not Edge 18-. It partially supports space-evenly.
+  @supports not (-ms-ime-align: auto) {
+    justify-content: space-evenly;
+  }
 }
 
 .app-main > .player {

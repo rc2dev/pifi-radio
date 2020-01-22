@@ -10,9 +10,14 @@
   &--open {
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+
+    // Not Edge 18-. It partially supports space-evenly.
+    @supports not (-ms-ime-align: auto) {
+      justify-content: space-evenly;
+    }
   }
 }
 
