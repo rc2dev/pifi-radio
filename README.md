@@ -16,6 +16,7 @@
   - [List of streams](#list-of-streams)
   - [PiFi configuration](#pifi-configuration)
 - [Usage](#usage)
+- [Help me translate](#help-me-translate)
 - [Credits](#credits)
 - [License](#license)
 
@@ -145,6 +146,24 @@ PiFi can be run:
 
 On your mobile browser, I suggest you add PiFi Radio to your home screen, for easier access.
 
+## Help me translate
+
+You can help me adding a new language to PiFi or improving an existing translation. [The translation files are placed here.](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales)
+
+### Improving an existing translation
+
+The default language for PiFi is English, so you should use it as a reference.
+
+1. Open [the translation file](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales) and [the English file](https://github.com/rccavalcanti/pifi-radio/blob/master/frontend/public/locales/en/translation.json).
+2. Fill empty strings and fix any bad translations.
+3. Send a pull request.
+
+### Adding a new language
+
+1. Copy the `en` folder, renaming it to the new language code (e.g. `es-ES`).
+2. On `translation.json`, translate the strings. If you aren't sure of some, please make them empty.
+3. Send a pull request.
+
 ## Credits
 
 - Translation fr-fr: Francis Chavanon "rimeno"
@@ -156,3 +175,6 @@ On your mobile browser, I suggest you add PiFi Radio to your home screen, for ea
 Released under [GNU GPL v3](LICENSE).
 
 Copyright 2017-2020 Rafael Cavalcanti <hi@rafaelc.org>
+
+If you find PiFi useful, please consider:
+<a href="https://www.buymeacoffee.com/rafaelc" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200" ></a>
