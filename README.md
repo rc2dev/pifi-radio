@@ -11,9 +11,11 @@
   - [Some features](#some-features)
   - [Demo](#demo)
 - [Installation](#installation)
+- [Updating](#updating)
 - [Configuration](#configuration)
   - [List of streams](#list-of-streams)
   - [PiFi configuration](#pifi-configuration)
+- [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
 
