@@ -74,6 +74,14 @@ $ pifi
 
 For more detailed steps, [check the installation guide](INSTALL.md).
 
+## Updating
+
+Run:
+
+```
+$ sudo gem update pifi --no-document
+```
+
 ## Configuration
 
 ### List of streams
