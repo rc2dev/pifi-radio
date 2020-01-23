@@ -1,7 +1,26 @@
 {
-  "errorNetwork": "Pas de connexion",
+  "about": "",
+  "cancel": "",
+  "close": "",
   "disconnectedMPD": "Déconnecté de MPD",
+  "environment": "",
+  "errorForbidden": "",
+  "errorNetwork": "Pas de connexion",
+  "errorNotFound": "",
+  "errorUnexpected": "",
+  "language": "",
+  "mpdHost": "",
+  "mpdPort": "",
+  "noStreams": "",
+  "ok": "",
   "playing": "Lecture",
+  "playURL": "",
+  "search": "",
+  "settings": "",
   "stopped": "Arrêté",
-  "tunning": "Mise en tampon…"
+  "theme": "",
+  "tryingURL": "",
+  "tunning": "Mise en tampon…",
+  "version": "",
+  "volume": ""
 }

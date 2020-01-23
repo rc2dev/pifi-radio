@@ -1,7 +1,26 @@
 {
-  "errorNetwork": "Geen verbinding",
+  "about": "",
+  "cancel": "",
+  "close": "",
   "disconnectedMPD": "Niet verbonden met MPD",
+  "environment": "",
+  "errorForbidden": "",
+  "errorNetwork": "Geen verbinding",
+  "errorNotFound": "",
+  "errorUnexpected": "",
+  "language": "",
+  "mpdHost": "",
+  "mpdPort": "",
+  "noStreams": "",
+  "ok": "",
   "playing": "Aan het afspelen",
+  "playURL": "",
+  "search": "",
+  "settings": "",
   "stopped": "Gestopt",
-  "tunning": "Bezig met verbinden..."
+  "theme": "",
+  "tryingURL": "",
+  "tunning": "Bezig met verbinden...",
+  "version": "",
+  "volume": ""
 }
