@@ -16,18 +16,16 @@ axios.interceptors.response.use(null, error => {
   const hasToastify = document.querySelector('.Toastify');
 
   if (hasToastify) {
-    if (!expectedError) toast.error(message('errorUnexpected'));
+    if (!expectedError)
+      toast.error(<Translation>{t => t('errorUnexpected')}</Translation>);
 
     // Universal expected error
     if (error.response && error.response.status === 403)
-      toast.error(message('errorForbidden'));
+      toast.error(<Translation>{t => t('errorForbidden')}</Translation>);
   }
 
   return Promise.reject(error);
 });
-
-// Ugly, but 18n only worked this way
-const message = key => <Translation>{t => <p>{t(key)}</p>}</Translation>;
 
 export default {
   get: axios.get,
