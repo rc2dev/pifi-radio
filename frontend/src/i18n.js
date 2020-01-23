@@ -21,6 +21,7 @@ i18n
   .init({
     fallbackLng: 'en',
     debug: process.env.REACT_APP_I18N_DEBUG,
+    load: 'currentOnly',
 
     interpolation: {
       escapeValue: false // not needed for react as it escapes by default
