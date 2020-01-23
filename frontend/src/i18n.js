@@ -28,4 +28,9 @@ i18n
     }
   });
 
+// Set language on html tag
+i18n.on('languageChanged', lang => {
+  document.documentElement.setAttribute('lang', lang);
+});
+
 export default i18n;
