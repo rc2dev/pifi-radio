@@ -29,6 +29,7 @@ class App extends Component {
 
   componentDidUpdate() {
     this.setDesktopPlayerTop();
+    this.setDocumentTitle();
   }
 
   async updatePlayerStatus() {
@@ -57,6 +58,14 @@ class App extends Component {
     const topMargin = 24;
 
     desktopPlayer.style.top = navHeight + topMargin + 'px';
+  };
+
+  setDocumentTitle = () => {
+    const { playerStatus: status, networkError } = this.state;
+
+    if (!networkError && status.playing)
+      document.title = 'PiFi 🔊 ' + status.title;
+    else document.title = 'PiFi Radio';
   };
 
   render() {
