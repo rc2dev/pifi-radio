@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "fr-FR", "nl-NL", "pt-BR"],
+  "languages": ["en", "fr-FR", "nl-NL", "pl-PL", "pt-BR"],
   "updateInterval": 1000,
   "backdropTimeout": 2500,
   "volTimeout": 3000
