@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import MiniPlayer from './player/miniPlayer';
 import Player from './player/player';
 import './drawer.scss';
@@ -30,12 +30,23 @@ class Drawer extends Component {
     else if (touchUp && !open) this.toggle();
   };
 
+  renderToggleButton = () => (
+    <button className="btn btn-primary-outline" aria-label="Toggle player">
+      <FontAwesomeIcon
+        icon={this.state.open ? faChevronDown : faChevronUp}
+        className="drawer__toggler fa-lg"
+      />
+    </button>
+  );
+
   render() {
     const { playerStatus } = this.props;
-    let classes =
-      'drawer fixed-bottom bg-secondary border-top border-secondary';
+    const { open } = this.state;
 
-    if (this.state.open) {
+    let classes =
+      'drawer fixed-bottom bg-secondary border-top border-secondary p-2';
+
+    if (open) {
       classes += ' drawer--open';
       document.body.classList.add('body--drawer');
     } else document.body.classList.remove('body--drawer');
@@ -47,14 +58,9 @@ class Drawer extends Component {
         onTouchStart={this.handleTouchStart}
         onTouchMove={this.handleTouchMove}
       >
-        {this.state.open ? (
-          <React.Fragment>
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              className="drawer__toggler fa-lg mb-3"
-            />
-            <Player playerStatus={playerStatus} />{' '}
-          </React.Fragment>
+        {this.renderToggleButton()}
+        {open ? (
+          <Player playerStatus={playerStatus} />
         ) : (
           <MiniPlayer playerStatus={playerStatus} />
         )}

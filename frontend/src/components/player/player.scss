@@ -1,8 +1,13 @@
 .player {
   height: 70vh;
-  min-height: 500px;
-  width: 400px;
-  min-width: 300px;
-  background: url('../../assets/logo.svg') center no-repeat;
-  background-size: 120px;
+  width: 420px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-logo {
+  width: 130px;
 }

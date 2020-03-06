@@ -5,19 +5,21 @@
   height: $drawer-height;
   cursor: pointer;
   touch-action: none; // don't scroll on touch
-  transition: all 0.25s ease-out;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: height 0.25s ease-out;
 
   &--open {
     height: 100%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+  }
 
-    // Not Edge 18-. It partially supports space-evenly.
-    @supports not (-ms-ime-align: auto) {
-      justify-content: space-evenly;
-    }
+  .player {
+    height: 90vh;
+    width: 100%;
+    margin-top: 20px;
   }
 }
 

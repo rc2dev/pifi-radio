@@ -7,7 +7,7 @@ const PlayerStatus = ({ playerStatus }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="text-center">
+    <div className="text-center w-100">
       <h5 className="small text-uppercase">
         {playing ? t('playing') : t('stopped')}
       </h5>

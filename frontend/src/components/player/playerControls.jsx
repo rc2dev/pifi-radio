@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { changeVol } from '../../services/playerService';
 import { volTimeout } from '../../config.json';
-import './playerControls.scss';
 
 const PlayerControls = ({ playerStatus }) => {
   const { t } = useTranslation();
@@ -36,7 +35,7 @@ const PlayerControls = ({ playerStatus }) => {
 
   return (
     <div
-      className="player-controls btn-group w-100"
+      className="player-controls btn-group w-100 m-2"
       onClick={e => e.stopPropagation()}
     >
       {renderVolButton('-5', faVolumeDown, 'Volume down')}

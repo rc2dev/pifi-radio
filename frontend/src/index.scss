@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   height: 100vh;
   overflow-y: scroll; // so elements don't move if page fits view
