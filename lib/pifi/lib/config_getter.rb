@@ -11,7 +11,7 @@ module PiFi
       "mpd_password" => "",
       "streams_path" => "/etc/pifi/streams.json",
       "streams_path_priv" => "",
-      "special_ips" => "",
+      "special_ips" => [],
       "play_local" => false,
       "serve_static" => true
     }

@@ -120,13 +120,13 @@ The path is `/etc/pifi/config.json` and these are the options:
 
 | Key                 | Default                  | Description                                                                                                       |
 | ------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `mpd_host`          | `127.0.0.1`              | MPD host.                                                                                                         |
-| `mpd_port`          | `6600`                   | MPD port.                                                                                                         |
-| `mpd_password`      | `""` (none)              | MPD password.                                                                                                     |
-| `streams_path`      | `/etc/pifi/streams.json` | Path to the JSON file containing the streams.                                                                     |
-| `streams_path_priv` | `""` (none)              | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
-| `special_ips`       | `""` (none)              | The IPs of the devices to show additional streams.                                                                |
-| `serve_static`      | `true`                   | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
+| `mpd_host`          | `"127.0.0.1"`              | MPD host.                                                                                                         |
+| `mpd_port`          | `6600`                     | MPD port.                                                                                                         |
+| `mpd_password`      | `""` (none)                | MPD password.                                                                                                     |
+| `streams_path`      | `"/etc/pifi/streams.json"` | Path to the JSON file containing the streams.                                                                     |
+| `streams_path_priv` | `""` (none)                | Path to JSON file containing additional streams. These will be shown only to the devices listed on `special_ips`. |
+| `special_ips`       | `[]` (none)                | The IPs of the devices to show additional streams. Example: `["10.0.0.1", "10.0.0.2"]`  |
+| `serve_static`      | `true`                     | If we should serve static resources. Set it to `false` if your web server is already doing it.                    |
 
 If you want to change any of these options, download the sample file and edit it to your needs:
 
