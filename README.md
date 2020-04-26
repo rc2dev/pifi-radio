@@ -174,9 +174,9 @@ The default language for PiFi is English, so you should use it as a reference.
 
 ## License
 
-Released under [GNU GPL v3](LICENSE).
+Licensed under [GPLv3](LICENSE)
 
-Copyright 2017-2020 Rafael Cavalcanti <hi@rafaelc.org>
+Copyright (C) 2017-2020 [Rafael Cavalcanti](https://rafaelc.org/)
 
 If you find PiFi useful, please consider:
 <a href="https://www.buymeacoffee.com/rafaelc" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200" ></a>
