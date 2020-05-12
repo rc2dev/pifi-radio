@@ -1,0 +1,22 @@
+@import '../styles/variables';
+
+.main__primary .player {
+  display: none;
+}
+
+@media (min-width: $mobile-width) {
+  .drawer {
+    display: none;
+  }
+
+  .main__primary .player {
+    display: inherit;
+    position: sticky;
+    top: 4rem; // we set this dynamically
+  }
+
+  .main__primary {
+    display: flex;
+    justify-content: space-between;
+  }
+}

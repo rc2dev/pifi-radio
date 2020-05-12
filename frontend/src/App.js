@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { withTranslation } from 'react-i18next';
 import NavBar from './components/navBar';
-import Player from './components/player/player';
-import Streams from './components/streams';
-import Drawer from './components/drawer';
 import Settings from './components/modals/settings';
 import URLDialog from './components/modals/urlDialog';
 import About from './components/modals/about';
@@ -12,15 +9,15 @@ import Loader from './components/common/loader';
 import Backdrop from './components/common/backdrop';
 import { getStatus } from './services/playerService';
 import { updateInterval, backdropTimeout } from './config.json';
-import './App.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import Main from './components/main';
 
 class App extends Component {
   state = {
     playerStatus: {},
     loading: true,
     networkError: false,
-    backdrop: {}
+    backdrop: {},
   };
 
   componentDidMount() {
@@ -51,7 +48,7 @@ class App extends Component {
   // Calculate and set top for Player on desktop view
   setDesktopPlayerTop = () => {
     const nav = document.querySelector('nav');
-    const desktopPlayer = document.querySelector('.app-main > .player');
+    const desktopPlayer = document.querySelector('.main__primary .player');
     if (!nav || !desktopPlayer) return;
 
     const navHeight = nav.clientHeight;
@@ -81,18 +78,13 @@ class App extends Component {
         <ToastContainer />
         <Backdrop title={backdrop.title} body={backdrop.body} />
         <NavBar />
-        <Drawer playerStatus={playerStatus} />
-
-        <main className="app-main p-4">
-          <Player playerStatus={playerStatus} />
-          <Streams
-            onBackdrop={this.handleBackdrop}
-            playerStatus={playerStatus}
-          />
-          <URLDialog />
-          <Settings />
-          <About />
-        </main>
+        <Main
+          handleBackdrop={this.handleBackdrop}
+          playerStatus={playerStatus}
+        />
+        <URLDialog />
+        <Settings />
+        <About />
       </div>
     );
   }
