@@ -12,7 +12,7 @@
   .main__primary .player {
     display: inherit;
     position: sticky;
-    top: 4rem; // we set this dynamically
+    top: $nav-height + 24px;
   }
 
   .main__primary {

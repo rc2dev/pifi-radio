@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    this.setDesktopPlayerTop();
     this.setDocumentTitle();
   }
 
@@ -43,18 +42,6 @@ class App extends Component {
   handleBackdrop = (title, body = '') => {
     this.setState({ backdrop: { title, body } });
     setTimeout(() => this.setState({ backdrop: {} }), backdropTimeout);
-  };
-
-  // Calculate and set top for Player on desktop view
-  setDesktopPlayerTop = () => {
-    const nav = document.querySelector('nav');
-    const desktopPlayer = document.querySelector('.main__primary .player');
-    if (!nav || !desktopPlayer) return;
-
-    const navHeight = nav.clientHeight;
-    const topMargin = 24;
-
-    desktopPlayer.style.top = navHeight + topMargin + 'px';
   };
 
   setDocumentTitle = () => {
