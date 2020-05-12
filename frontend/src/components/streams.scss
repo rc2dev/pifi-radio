@@ -19,11 +19,3 @@
   margin-top: 1em;
   padding: 0.5rem 1.25rem;
 }
-
-.list-group {
-  margin-bottom: 1rem !important;
-
-  @media (max-width: $for-medium-up) {
-    margin-bottom: 1rem + $drawer-height !important; /* drawer */
-  }
-}

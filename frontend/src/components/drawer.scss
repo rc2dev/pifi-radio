@@ -6,20 +6,21 @@
   cursor: pointer;
   touch-action: none; // don't scroll on touch
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   transition: height 0.25s ease-out;
 
   &--open {
     height: 100%;
     flex-direction: column;
-    justify-content: space-between;
-  }
+    justify-content: flex-end;
 
-  .player {
-    height: 90vh;
-    width: 100%;
-    margin-top: 20px;
+    .player {
+      flex-grow: 1;
+    }
+
+    .drawer__toggler {
+      margin-bottom: 20px;
+    }
   }
 }
 

@@ -4,6 +4,10 @@
   display: none;
 }
 
+.main__primary {
+  margin-bottom: 1rem + $drawer-height !important;
+}
+
 @media (min-width: $for-medium-up) {
   .drawer {
     display: none;
@@ -18,6 +22,7 @@
   .main__primary {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem !important; /* no drawer */
   }
 
   .main__primary > * {

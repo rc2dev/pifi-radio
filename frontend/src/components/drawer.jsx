@@ -16,11 +16,11 @@ class Drawer extends Component {
     this.toggle();
   };
 
-  handleTouchStart = e => {
+  handleTouchStart = (e) => {
     this.setState({ touchStartY: e.touches[0].clientY });
   };
 
-  handleTouchMove = e => {
+  handleTouchMove = (e) => {
     const { open, touchStartY } = this.state;
     const touchEndY = e.changedTouches[0].clientY;
     const touchUp = touchEndY < touchStartY;
@@ -31,10 +31,13 @@ class Drawer extends Component {
   };
 
   renderToggleButton = () => (
-    <button className="btn btn-primary-outline" aria-label="Toggle player">
+    <button
+      className="drawer__toggler btn btn-primary-outline"
+      aria-label="Toggle player"
+    >
       <FontAwesomeIcon
         icon={this.state.open ? faChevronDown : faChevronUp}
-        className="drawer__toggler fa-lg"
+        className="fa-lg"
       />
     </button>
   );
