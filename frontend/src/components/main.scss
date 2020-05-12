@@ -19,4 +19,8 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .main__primary > * {
+    min-width: 0; /* don't get bigger when text overflows */
+  }
 }
