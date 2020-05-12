@@ -4,27 +4,24 @@
   display: flex;
   justify-content: space-around;
 
-  // Not Edge 18-. It partially supports space-evenly.
+  // Not Edge 18-. It only partially supports space-evenly.
   @supports not (-ms-ime-align: auto) {
     justify-content: space-evenly;
   }
 }
 
 .app-main > .player {
-  position: sticky;
-  top: 4rem; // we set this dynamically
+  display: none;
 }
 
-.drawer {
-  visibility: hidden;
-
-  @media (max-width: $mobile-width) {
-    visibility: visible;
-  }
-}
-
-.app-main > .player {
-  @media (max-width: $mobile-width) {
+@media (min-width: $mobile-width) {
+  .drawer {
     display: none;
+  }
+
+  .app-main > .player {
+    display: inherit;
+    position: sticky;
+    top: 4rem; // we set this dynamically
   }
 }
