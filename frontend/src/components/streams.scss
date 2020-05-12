@@ -23,7 +23,7 @@
 .list-group {
   margin-bottom: 1rem !important;
 
-  @media (max-width: $mobile-width) {
+  @media (max-width: $for-medium-up) {
     margin-bottom: 1rem + $drawer-height !important; /* drawer */
   }
 }

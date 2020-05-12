@@ -4,7 +4,7 @@
   display: none;
 }
 
-@media (min-width: $mobile-width) {
+@media (min-width: $for-medium-up) {
   .drawer {
     display: none;
   }
