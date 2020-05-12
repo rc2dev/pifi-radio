@@ -13,7 +13,7 @@ const Player = ({ playerStatus }) => {
   );
 
   return (
-    <div className="player p-2">
+    <div className="player">
       <PlayerStatus playerStatus={playerStatus} />
       {renderLogo()}
       <PlayerControls playerStatus={playerStatus} />

@@ -1,31 +1,41 @@
 @import '../styles/variables';
 
-.main__primary .player {
-  display: none;
-}
-
 .main__primary {
-  margin-bottom: 1rem + $drawer-height !important;
-}
+  margin-bottom: 1rem + $drawer-height;
 
-@media (min-width: $for-medium-up) {
-  .drawer {
+  .player {
     display: none;
   }
 
-  .main__primary .player {
-    display: inherit;
-    position: sticky;
-    top: $nav-height + 24px;
+  .streams {
+    margin: 0 auto;
   }
+}
 
+@media (min-width: $for-medium-up) {
   .main__primary {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem !important; /* no drawer */
+    margin-bottom: 1rem; /* no drawer */
+
+    & > * {
+      min-width: 0; /* don't get bigger when text overflows */
+      width: 100%;
+    }
+
+    .player {
+      display: inherit;
+      position: sticky;
+      top: $nav-height + 24px;
+      margin-right: 2rem;
+    }
+
+    .streams {
+      margin: 0;
+    }
   }
 
-  .main__primary > * {
-    min-width: 0; /* don't get bigger when text overflows */
+  .drawer {
+    display: none;
   }
 }

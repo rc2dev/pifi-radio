@@ -91,7 +91,7 @@ class Streams extends Component {
     if (this.state.loading) return <Loader />;
 
     return (
-      <div className="streams p-2">
+      <div className="streams">
         <SearchBox value={this.state.query} onChange={this.handleSearch} />
         {this.renderList()}
       </div>
