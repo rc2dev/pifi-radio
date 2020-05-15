@@ -18,6 +18,7 @@
 - [Usage](#usage)
 - [Help me translate](#help-me-translate)
 - [Credits](#credits)
+- [Buy me a coffee](#buy-me-a-coffee)
 - [License](#license)
 
 ## Meet PiFi Radio
@@ -34,7 +35,7 @@ PiFi is an interface for MPD, so it has some advantages compared to other soluti
 
 - Responsive interface for phones, tablets and desktops.
 - Display stations clearly. No URLs or weird names.
-- Themes, dark and light.
+- Dark and light themes.
 - Easily search your radios.
 - Centralized list of stations. You get the same radios on every device.
 - Make some radios to be offered only to certain IPs. A use case for this is if there are tons of stations that only you listen and you don't want to pollute everyone else's list.
@@ -55,27 +56,7 @@ PiFi is an interface for MPD, so it has some advantages compared to other soluti
 
 While PiFi was imagined for the Pi, it should run on any computer with Ruby and MPD.
 
-Install it with:
-
-```
-$ sudo gem install pifi --no-document
-```
-
-Place a list of streams at `/etc/pifi/streams.json`:
-
-```
-$ sudo mkdir -p /etc/pifi
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
-```
-
-Make sure MPD is running and start PiFi:
-
-```
-$ sudo systemctl start mpd
-$ pifi
-```
-
-For more detailed steps, [check the installation guide](INSTALL.md).
+[Check the installation guide](INSTALL.md).
 
 ## Updating
 
@@ -172,11 +153,14 @@ The default language for PiFi is English, so you should use it as a reference.
 
 - Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](docs/icon/license.pdf).
 
+## Buy me a coffee
+
+If you find PiFi useful, you can show your support here:
+
+<a href="https://www.buymeacoffee.com/rafaelc" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200" ></a>
+
 ## License
 
 Licensed under [GPLv3](LICENSE)
 
 Copyright (C) 2017-2020 [Rafael Cavalcanti](https://rafaelc.org/)
-
-If you find PiFi useful, please consider:
-<a href="https://www.buymeacoffee.com/rafaelc" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200" ></a>

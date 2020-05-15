@@ -8,12 +8,13 @@ On Raspbian:
 $ sudo apt install ruby-full mpd
 ```
 
-2. _If you haven't yet,_ configure MPD, start and enable it:
+2. Start and enable MPD:
 
 ```
-$ sudo -e /etc/mpd.conf
-$ sudo systemctl start mpd && sudo systemctl enable mpd
+$ sudo systemctl enable --now mpd
 ```
+
+_In the case you need to configure MPD, [check its documentation](https://www.musicpd.org/doc/html/user.html#configuration)._
 
 3. Install PiFi:
 
@@ -21,16 +22,16 @@ $ sudo systemctl start mpd && sudo systemctl enable mpd
 $ sudo gem install pifi --no-document
 ```
 
-4. To run PiFi, you'll need a list of radios at `/etc/pifi/streams.json`. Paste this for now:
+4. You'll need a list of radios at `/etc/pifi/streams.json`. Paste this for now:
 
 ```
 $ sudo mkdir -p /etc/pifi
 $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
 ```
 
-Later, you can edit that JSON file [as described here](README.md#list-of-streams).
+_Later, you can edit that list [as described here](README.md#list-of-streams)._
 
-5. If the MPD server is on another host or a non-default port, you'll need to place a configuration file.
+5. If the MPD server is on another host or a non-default port, you'll need a configuration file.
 
 Download a sample and edit [following the documentation](README.md#pifi-configuration):
 
@@ -39,13 +40,13 @@ $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/doc
 $ sudo -e /etc/pifi/config.json
 ```
 
-**Done!** You can now run PiFi with `pifi` and reach it at `http://DEVICE_IP:3000`. Type `pifi -h` to check the options available.
+**Done!** You can now run PiFi with `pifi` and reach it at `http://DEVICE_IP:3000`.
 
 ## Running at system boot and as other user
 
-It makes sense to run PiFi as a less-privileged user (such as `www-data`). You may also want it to autostart on boot. For that:
+It makes sense to run PiFi as a different user, such as `www-data`. You may also want it to autostart on boot. For that you can use a systemd service.
 
-1. Download the systemd service.
+1. Download the service sample.
 
 ```
 $ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.service.sample -O /etc/systemd/system/pifi.service
