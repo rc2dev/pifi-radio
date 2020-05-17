@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "i18n": "i18next"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "i18next-parser": "^1.0.6",
     "node-sass": "^4.13.1"
   },
   "proxy": "http://localhost:9292/"
