@@ -10,6 +10,7 @@ const SearchBox = ({ value, onChange }) => {
       type="text"
       id="query"
       placeholder={t('search')}
+      aria-label={t('search')}
       autoComplete="off"
       value={value}
       onChange={e => onChange(e.target.value)}
