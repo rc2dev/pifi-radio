@@ -47,7 +47,7 @@ class Drawer extends Component {
     const { open } = this.state;
 
     let classes =
-      'drawer fixed-bottom bg-secondary border-top border-secondary p-2';
+      'drawer fixed-bottom bg-secondary shadow-lg p-2';
 
     if (open) {
       classes += ' drawer--open';
