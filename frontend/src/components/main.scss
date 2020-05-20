@@ -1,7 +1,9 @@
 @import '../styles/variables';
 
+$margin: 2rem;
+
 .main__primary {
-  margin-bottom: 2rem + $drawer-height;
+  margin-bottom: $margin + $drawer-height;
 
   .player {
     display: none;
@@ -14,20 +16,22 @@
 
 @media (min-width: $for-medium-up) {
   .main__primary {
-    margin-bottom: 2rem; /* no drawer */
+    margin-bottom: $margin; /* no drawer */
     display: flex;
     justify-content: space-between;
 
     & > * {
       min-width: 0; /* don't get bigger when text overflows */
-      width: 100%;
+      width: 100%; /* divide space equally */
     }
 
     .player {
       display: inherit;
       position: sticky;
-      top: $nav-height + 2rem;
+      top: $nav-size;
       margin-right: 2rem;
+      height: calc(100vh - #{$nav-size + $margin});
+      max-height: 650px;
     }
 
     .streams {

@@ -1,6 +1,7 @@
+@import '../../styles/variables';
+
 .player {
   max-width: 420px;
-  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,4 +10,10 @@
 
 .player-logo {
   width: 130px;
+}
+
+@media(max-height: $for-short-up) {
+  .player-logo {
+    display: none;
+  }
 }
