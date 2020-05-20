@@ -24,7 +24,7 @@ const About = () => {
     { label: t('mpdHost'), value: config.mpd_host },
     { label: t('mpdPort'), value: config.mpd_port },
     { label: t('environment'), value: config.environment },
-    { label: t('version'), value: config.version }
+    { label: t('version'), value: config.version },
   ];
 
   const renderTable = () => {
@@ -33,7 +33,7 @@ const About = () => {
     return (
       <table className="table">
         <tbody>
-          {tableData.map(item => (
+          {tableData.map((item) => (
             <tr key={item.label}>
               <th scope="row">{item.label}</th>
               <td>{item.value}</td>
@@ -58,10 +58,28 @@ const About = () => {
       </a>
     </p>
   );
-  
+
+  const coffee = (
+    <div className="coffee mt-5">
+      <p>{t('coffee')}</p>
+      <a
+        href="https://www.buymeacoffee.com/rafaelc"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://cdn.buymeacoffee.com/buttons/default-blue.png"
+          alt="Buy Me A Coffee"
+          style={{ height: 51, width: 217 }}
+        />
+      </a>
+    </div>
+  );
+
   return (
     <Modal id="about" title={t('about')}>
       {renderTable()}
+      {coffee}
       {copyright}
     </Modal>
   );

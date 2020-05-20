@@ -2,6 +2,7 @@
   "about": "About",
   "cancel": "Cancel",
   "close": "Close",
+  "coffee": "If you like PiFi Radio, you can show your support buying me a coffee.",
   "disconnectedMPD": "Not connected to MPD",
   "environment": "Environment",
   "errorForbidden": "Forbidden request. Check MPD password and permissions.",

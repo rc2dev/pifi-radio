@@ -2,6 +2,7 @@
   "about": "Sobre",
   "cancel": "Cancelar",
   "close": "Fechar",
+  "coffee": "Se você gosta do PiFi Radio, pode mostrar seu apoio comprando-me um café.",
   "disconnectedMPD": "Sem conexão ao MPD",
   "environment": "Ambiente",
   "errorForbidden": "Requisição não permitida. Verifique a senha do MPD e permissões.",
