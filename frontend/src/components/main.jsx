@@ -6,7 +6,7 @@ import './main.scss';
 
 const Main = ({ playerStatus, handleBackdrop }) => {
   return (
-    <main className="main py-4">
+    <main className="main">
       <Drawer playerStatus={playerStatus} />
       <div className="main__primary container">
         <Player playerStatus={playerStatus} />

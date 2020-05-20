@@ -1,7 +1,7 @@
 @import '../styles/variables';
 
 .main__primary {
-  margin-bottom: 1rem + $drawer-height;
+  margin-bottom: 2rem + $drawer-height;
 
   .player {
     display: none;
@@ -14,9 +14,9 @@
 
 @media (min-width: $for-medium-up) {
   .main__primary {
+    margin-bottom: 2rem; /* no drawer */
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem; /* no drawer */
 
     & > * {
       min-width: 0; /* don't get bigger when text overflows */
@@ -26,7 +26,7 @@
     .player {
       display: inherit;
       position: sticky;
-      top: $nav-height + 24px;
+      top: $nav-height + 2rem;
       margin-right: 2rem;
     }
 
