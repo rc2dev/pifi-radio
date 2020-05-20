@@ -9,8 +9,8 @@ const Main = ({ playerStatus, handleBackdrop }) => {
     <main className="main">
       <Drawer playerStatus={playerStatus} />
       <div className="main__primary container">
-        <Player playerStatus={playerStatus} />
         <Streams onBackdrop={handleBackdrop} playerStatus={playerStatus} />
+        <Player playerStatus={playerStatus} />
       </div>
     </main>
   );
