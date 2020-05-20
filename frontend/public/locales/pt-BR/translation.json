@@ -9,6 +9,7 @@
   "errorNetwork": "Sem conexão ao servidor PiFi",
   "errorNotFound": "Não foi possível encontrar o stream.",
   "errorUnexpected": "Um erro inesperado ocorreu.",
+  "goToDocs": "Ver documentação",
   "language": "Idioma",
   "mpdHost": "Host do MPD",
   "mpdPort": "Porta do MPD",

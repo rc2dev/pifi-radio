@@ -9,6 +9,7 @@
   "errorNetwork": "Nie połączono z serwerem PiFi",
   "errorNotFound": "Strumień nie znaleziony.",
   "errorUnexpected": "Nieoczekiwany błąd.",
+  "goToDocs": "",
   "language": "Język",
   "mpdHost": "MPD host",
   "mpdPort": "MPD port",

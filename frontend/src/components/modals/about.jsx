@@ -45,18 +45,30 @@ const About = () => {
   };
 
   const copyright = (
-    <p className="small mt-5">
-      Copyright &copy; 2017-2020&nbsp;
-      {/* Use the default color, as some themes give a different color for links. */}
-      <a
-        href="https://rafaelc.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: 'inherit' }}
-      >
-        Rafael Cavalcanti
-      </a>
-    </p>
+    <div className="copyright small mt-5">
+      <p>
+        <a
+          href="https://github.com/rccavalcanti/pifi-radio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: 'inherit' }}
+        >
+          {t('goToDocs')}
+        </a>
+      </p>
+      <p>
+        Copyright &copy; 2017-2020&nbsp;
+        {/* Use the default color, as some themes give a different color for links. */}
+        <a
+          href="https://rafaelc.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: 'inherit' }}
+        >
+          Rafael Cavalcanti
+        </a>
+      </p>
+    </div>
   );
 
   const coffee = (
