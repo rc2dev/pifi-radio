@@ -6,12 +6,12 @@ const MiniPlayer = ({ playerStatus }) => {
   const { title, playing } = playerStatus;
 
   return (
-    <div className="mini-player p-2">
-      <div className="mini-player__left mr-2 ellipsis">
-        <span>{title}</span>
+    <div className="mini-player">
+      <div className="mini-player__left ellipsis">
+        {title}
       </div>
       <div
-        className="mini-player__right ml-2"
+        className="mini-player__right"
         onClick={e => e.stopPropagation()}
       >
         <PlayStopControl playing={playing} />

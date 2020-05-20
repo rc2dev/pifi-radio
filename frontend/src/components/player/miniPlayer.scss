@@ -1,5 +1,4 @@
 .mini-player {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,4 +6,10 @@
   button {
     padding: 10px 20px;
   }
+}
+
+.mini-player__left {
+  // Dirty workaround for ellipsis to work
+  max-width: calc(100vw - 160px);
+  margin-right: 1rem;
 }
