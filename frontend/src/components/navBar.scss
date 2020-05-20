@@ -4,6 +4,8 @@
   position: sticky !important;
   top: 0;
   z-index: 5;
-  height: $nav-height;
   margin-bottom: $nav-margin;
+  // Reduce padding and forbid lux theme to set a bigger one.
+  // This is important to keep our navbar height equal on all themes.
+  padding: 0.85rem 1rem;
 }
