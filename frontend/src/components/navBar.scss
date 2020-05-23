@@ -5,7 +5,9 @@
   top: 0;
   z-index: 5;
   margin-bottom: $nav-margin;
-  // Reduce padding and forbid lux theme to set a bigger one.
-  // This is important to keep our navbar height equal on all themes.
-  padding: 0.85rem 1rem;
+  // The following let us have the same height on all themes.
+  // 1. prevent lux to increment padding
+  padding: 0.8rem 1rem;
+  // 2. make darkly as high as lux
+  min-height: $nav-height;
 }
