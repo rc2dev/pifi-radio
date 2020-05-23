@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '../../variables';
 
 .player {
   width: 100%;
@@ -13,7 +13,7 @@
   width: 130px;
 }
 
-@media(max-height: $for-short-up) {
+@media(max-height: $for-short-down) {
   .player-logo {
     display: none;
   }

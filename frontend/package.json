@@ -26,6 +26,10 @@
     "react-toastify": "^6.0.5",
     "source-map-explorer": "^2.4.2"
   },
+  "devDependencies": {
+    "i18next-parser": "^1.0.6",
+    "node-sass": "^4.14.1"
+  },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
@@ -48,10 +52,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "i18next-parser": "^1.0.6",
-    "node-sass": "^4.14.1"
   },
   "proxy": "http://localhost:9292/"
 }

@@ -7,10 +7,10 @@ import URLDialog from './components/modals/urlDialog';
 import About from './components/modals/about';
 import Loader from './components/common/loader';
 import Backdrop from './components/common/backdrop';
+import Main from './components/main';
 import { getStatus } from './services/playerService';
 import { updateInterval, backdropTimeout } from './config.json';
 import 'react-toastify/dist/ReactToastify.css';
-import Main from './components/main';
 
 class App extends Component {
   state = {
