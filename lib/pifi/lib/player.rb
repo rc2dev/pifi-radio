@@ -46,8 +46,7 @@ module PiFi
 
     def change_vol(delta)
       raise ArgumentError, "Invalid argument" unless delta =~ /^[+-]\d{1,2}$/
-      # We get @vol=-1 when PulseAudio sink is closed
-      raise VolNaError if @vol < 0
+      raise VolNaError if @vol.nil?
 
       @mpd.send_command("volume", delta);
       # This is more up-to-date than @vol
@@ -146,7 +145,9 @@ module PiFi
     end
 
     def set_vol(vol)
-      @vol = vol
+      # We get @vol=-1 when PulseAudio sink is closed and @vol=nil when MPD output
+      # is misconfigured. Let's make it all nil.
+      @vol = vol < 0 ? nil : vol
     end
 
     def set_con_mpd(con_mpd)

@@ -10,7 +10,7 @@ import { volTimeout } from '../../config.json';
 const PlayerControls = ({ playerStatus }) => {
   const { t } = useTranslation();
 
-  const volDisabled = playerStatus.vol < 0;
+  const volDisabled = playerStatus.vol == null;
 
   const handleVolChange = async delta => {
     const { data: vol } = await changeVol(delta);
