@@ -147,9 +147,9 @@ The default language for PiFi is English, so you should use it as a reference.
 
 ## Credits
 
-- fr-fr: Francis Chavanon "rimeno"
-- pl-pl: "Struart88"
-- nl-nl: Heimen Stoffels "Vistaus"
+- fr-fr: [Francis Chavanon](https://github.com/rimeno)
+- pl-pl: [Struart88](https://github.com/Struart88)
+- nl-nl: [Heimen Stoffels](https://github.com/Vistaus)
 
 - Icon made by [iconixar](https://www.flaticon.com/authors/iconixar) from [www.flaticon.com](https://www.flaticon.com/), licensed by [Flaticon Basic License](docs/icon/license.pdf).
 
