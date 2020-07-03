@@ -62,7 +62,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <ToastContainer />
+        <ToastContainer pauseOnFocusLoss={false} />
         <Backdrop title={backdrop.title} body={backdrop.body} />
         <NavBar />
         <Main
