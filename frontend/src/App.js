@@ -65,10 +65,7 @@ class App extends Component {
         <ToastContainer pauseOnFocusLoss={false} />
         <Backdrop title={backdrop.title} body={backdrop.body} />
         <NavBar />
-        <Main
-          handleBackdrop={this.handleBackdrop}
-          playerStatus={playerStatus}
-        />
+        <Main onBackdrop={this.handleBackdrop} playerStatus={playerStatus} />
         <URLDialog />
         <Settings />
         <About />

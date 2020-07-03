@@ -4,12 +4,12 @@ import Streams from './streams';
 import Drawer from './drawer';
 import './main.scss';
 
-const Main = ({ playerStatus, handleBackdrop }) => {
+const Main = ({ playerStatus, onBackdrop }) => {
   return (
     <main className="main">
       <Drawer playerStatus={playerStatus} />
       <div className="main__primary container">
-        <Streams onBackdrop={handleBackdrop} playerStatus={playerStatus} />
+        <Streams onBackdrop={onBackdrop} playerStatus={playerStatus} />
         <Player playerStatus={playerStatus} />
       </div>
     </main>
