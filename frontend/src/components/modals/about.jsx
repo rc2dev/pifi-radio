@@ -48,7 +48,7 @@ const About = () => {
     <div className="copyright small mt-5">
       <p>
         <a
-          href="https://github.com/rccavalcanti/pifi-radio/"
+          href="https://rafaelc.org/pifi"
           target="_blank"
           rel="noopener noreferrer"
           style={{ color: 'inherit' }}
