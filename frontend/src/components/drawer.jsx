@@ -17,11 +17,18 @@ class Drawer extends Component {
   };
 
   handleTouchStart = (e) => {
+    // Ignore multitouch
+    if (e.touches.length > 1) return this.setState({ touchStartY: null });
+
     this.setState({ touchStartY: e.touches[0].clientY });
   };
 
   handleTouchMove = (e) => {
     const { open, touchStartY } = this.state;
+
+    // Ignore multitouch
+    if (touchStartY === null || e.touches.length > 1) return;
+
     const touchEndY = e.changedTouches[0].clientY;
     const touchUp = touchEndY < touchStartY;
     const touchDown = touchEndY > touchStartY;
@@ -46,8 +53,7 @@ class Drawer extends Component {
     const { playerStatus } = this.props;
     const { open } = this.state;
 
-    let classes =
-      'drawer fixed-bottom bg-secondary shadow-lg p-2';
+    let classes = 'drawer fixed-bottom bg-secondary shadow-lg p-2';
 
     if (open) {
       classes += ' drawer--open';
