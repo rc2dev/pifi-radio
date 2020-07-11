@@ -147,6 +147,7 @@ The default language for PiFi is English, so you should use it as a reference.
 
 ## Credits
 
+- de-de: [cedege](https://github.com/cedege)
 - fr-fr: [Francis Chavanon](https://github.com/rimeno)
 - pl-pl: [Struart88](https://github.com/Struart88)
 - nl-nl: [Heimen Stoffels](https://github.com/Vistaus)
