@@ -2,7 +2,7 @@
 
 1. Install Ruby and MPD.
 
-On Raspbian:
+On Raspberry Pi OS:
 
 ```
 $ sudo apt install ruby-full mpd

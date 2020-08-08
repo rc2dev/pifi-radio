@@ -66,6 +66,12 @@ Run:
 $ sudo gem update pifi --no-document
 ```
 
+Restart PiFi. If you are using the systemd service, this is done by:
+
+```
+$ sudo systemctl restart pifi
+```
+
 ## Configuration
 
 ### List of streams
