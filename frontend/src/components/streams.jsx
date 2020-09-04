@@ -26,7 +26,7 @@ class Streams extends Component {
 
     if (this.isPlaying(name)) return;
 
-    onBackdrop(t('tunning'), name);
+    onBackdrop(t('tuning'), name);
     try {
       await playRadio(name);
     } catch (ex) {
