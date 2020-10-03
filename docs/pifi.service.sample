@@ -2,7 +2,7 @@
 
 [Unit]
 Description=A MPD web client to listen to radio
-After=syslog.target network.target
+After=syslog.target network.target mpd.service
 Requires=mpd.service
 
 [Service]
