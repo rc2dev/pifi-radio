@@ -75,7 +75,7 @@ const About = () => {
     <div className="coffee mt-5">
       <p>{t('coffee')}</p>
       <a
-        href="https://www.buymeacoffee.com/rafaelc"
+        href="https://rafaelc.org/coffee"
         target="_blank"
         rel="noopener noreferrer"
       >
