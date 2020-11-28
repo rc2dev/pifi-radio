@@ -3,7 +3,9 @@
 $margin: 2rem;
 
 .main__primary {
-  margin-bottom: $margin + $drawer-height;
+  // Use padding instead of margin.
+  // This is as workaround for Chrome 87 ignoring margin-bottom on .main__primary.
+  padding-bottom: $margin + $drawer-height;
 
   .player {
     display: none;
@@ -16,7 +18,7 @@ $margin: 2rem;
 
 @media (min-width: $for-medium-up) {
   .main__primary {
-    margin-bottom: $margin; /* no drawer */
+    padding-bottom: $margin; /* no drawer */
     display: flex;
     justify-content: space-between;
 

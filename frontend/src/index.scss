@@ -16,7 +16,3 @@ button[disabled] {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-.app {
-  overflow: auto; // for some reason this fixes Chrome 87 ignoring margin-bottom on .main__primary
-}
