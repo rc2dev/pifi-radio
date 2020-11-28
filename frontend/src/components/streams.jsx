@@ -36,7 +36,7 @@ class Streams extends Component {
   };
 
   getItemClasses = name => {
-    const classes = 'streams__item ellipsis list-group-item ';
+    const classes = 'streams__item list-group-item ';
     return this.isPlaying(name)
       ? classes + 'active'
       : classes + 'list-group-item-action';
@@ -74,12 +74,14 @@ class Streams extends Component {
               {name}
             </li>
           ) : (
-            <li
-              className={this.getItemClasses(name)}
-              key={name}
-              onClick={() => this.handleItemClick(name)}
-            >
-              {name}
+            <li className={this.getItemClasses(name)} key={name}>
+              <button
+                className="streams__btn btn btn-outline ellipsis"
+                onClick={() => this.handleItemClick(name)}
+                disabled={this.isPlaying(name)}
+              >
+                {name}
+              </button>
             </li>
           )
         )}

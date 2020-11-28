@@ -4,16 +4,18 @@
   max-width: 450px;
 }
 
-.streams__item {
-  cursor: pointer;
-
-  &.active {
-    cursor: default;
-  }
-}
-
 .streams__header {
   font-size: 1.3rem;
   margin-top: 1em;
   padding: 0.5rem 1.25rem;
+}
+
+.streams__item {
+  padding: 0; // transfer .list-group-item padding to .streams__btn
+}
+
+.streams__btn {
+  padding: 0.75rem 1.25rem;
+  width: 100%;
+  text-align: left;
 }
