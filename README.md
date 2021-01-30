@@ -17,6 +17,7 @@
   - [PiFi configuration](#pifi-configuration)
 - [Usage](#usage)
 - [Help me translate](#help-me-translate)
+- [Some projects using PiFi Radio](#some-projects-using-pifi-radio)
 - [Credits](#credits)
 - [Buy me a coffee](#buy-me-a-coffee)
 - [License](#license)
@@ -150,6 +151,10 @@ The default language for PiFi is English, so you should use it as a reference.
 1. Copy the `en` folder, renaming it to the new language code (e.g. `es-ES`).
 2. On `translation.json`, translate the strings. If you aren't sure of some, please make them empty.
 3. Send a pull request.
+
+## Some projects using PiFi Radio
+
+- [Internet Radio from broken Bose Dockstation](https://piamble.wordpress.com/2021/01/30/internet-radio-from-broken-bose-dockstation-part-1/)
 
 ## Credits
 
