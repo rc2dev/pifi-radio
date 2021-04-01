@@ -175,4 +175,4 @@ If you find PiFi useful, you can show your support here:
 
 Licensed under [GPLv3](LICENSE)
 
-Copyright (C) 2017-2020 [Rafael Cavalcanti](https://rafaelc.org/)
+Copyright (C) 2017-2021 [Rafael Cavalcanti](https://rafaelc.org/)

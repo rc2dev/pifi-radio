@@ -57,7 +57,7 @@ const About = () => {
         </a>
       </p>
       <p>
-        Copyright &copy; 2017-2020&nbsp;
+        Copyright &copy; 2017-2021&nbsp;
         {/* Use the default color, as some themes give a different color for links. */}
         <a
           href="https://rafaelc.org/"
