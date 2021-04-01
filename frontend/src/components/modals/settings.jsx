@@ -45,7 +45,11 @@ const Settings = () => {
         label={t('language')}
         data={languagesData}
         row
-        value={i18n.language}
+        value={
+          languages.includes(i18n.language)
+            ? i18n.language
+            : i18n.options.fallbackLng[0]
+        }
         onChange={e => i18n.changeLanguage(e.target.value)}
       />
     </Modal>

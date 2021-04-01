@@ -142,7 +142,7 @@ You can help me adding a new language to PiFi or improving an existing translati
 
 The default language for PiFi is English, so you should use it as a reference.
 
-1. Open [the translation file](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales) and [the English file](https://github.com/rccavalcanti/pifi-radio/blob/master/frontend/public/locales/en/translation.json).
+1. Open [the translation file](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales) and [the English file](https://github.com/rccavalcanti/pifi-radio/blob/master/frontend/public/locales/en-US/translation.json).
 2. Fill empty strings and fix any bad translations.
 3. Send a pull request.
 
