@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { withTranslation } from 'react-i18next';
 import NavBar from './components/navBar';
-import Settings from './components/modals/settings';
-import URLDialog from './components/modals/urlDialog';
-import About from './components/modals/about';
 import Loader from './components/common/loader';
 import Backdrop from './components/common/backdrop';
 import Main from './components/main';
@@ -66,9 +63,6 @@ class App extends Component {
         <Backdrop title={backdrop.title} body={backdrop.body} />
         <NavBar />
         <Main onBackdrop={this.handleBackdrop} playerStatus={playerStatus} />
-        <URLDialog />
-        <Settings />
-        <About />
       </div>
     );
   }

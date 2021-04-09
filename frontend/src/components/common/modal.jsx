@@ -5,34 +5,23 @@ const Modal = ({ id, title, footer, children }) => {
   const { t } = useTranslation();
 
   const defaultFooter = (
-    <button className="btn btn-secondary" data-dismiss="modal">
+    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
       {t('close')}
     </button>
   );
 
   return (
-    <div
-      className="modal fade"
-      id={id}
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog" role="document">
+    <div className="modal fade" id={id} tabindex="-1">
+      <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="staticBackdropLabel">
-              {title}
-            </h5>
+            <h5 className="modal-title">{title}</h5>
             <button
               type="button"
-              className="close"
-              data-dismiss="modal"
+              className="btn-close"
+              data-bs-dismiss="modal"
               aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            ></button>
           </div>
           <div className="modal-body">{children}</div>
           <div className="modal-footer">{footer ? footer : defaultFooter}</div>

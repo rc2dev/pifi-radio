@@ -6,9 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import './i18n';
 import theme from './theme';
 import './index.scss';
-// Bootstrap dependencies
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.js';
 
 theme.apply();
 

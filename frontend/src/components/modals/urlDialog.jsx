@@ -40,22 +40,10 @@ const URLDialog = () => {
   };
 
   const renderFooter = () => (
-    <React.Fragment>
-      <button
-        className="btn btn-primary"
-        data-dismiss="modal"
-        onClick={handleOK}
-      >
-        {t('ok')}
-      </button>
-      <button
-        className="btn btn-secondary"
-        onClick={() => setURL('')}
-        data-dismiss="modal"
-      >
-        {t('cancel')}
-      </button>
-    </React.Fragment>
+    <>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setURL('')}>{t('cancel')}</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={handleOK}>{t('ok')}</button>
+    </>
   );
 
   return (
