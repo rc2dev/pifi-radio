@@ -2,8 +2,7 @@ const DEFAULT_THEME_ID = 'darkly';
 
 const STORAGE_KEY = 'theme';
 
-const getThemePath = themeId =>
-  `https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/${themeId}/bootstrap.min.css`;
+const getThemePath = (themeId) => `/vendor/bootswatch_4.4.1/${themeId}.min.css`;
 
 const availableThemes = [
   { id: 'darkly', name: 'Darkly', themeColor: '#375a7f' },
