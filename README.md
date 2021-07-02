@@ -47,13 +47,15 @@ PiFi is an interface for MPD, so it has some advantages compared to other soluti
 
 ## Demo
 
-![](docs/demo/mobile-01.png)
+On phone:
 
-![](docs/demo/mobile-02.png)
+![Demo on mobile](docs/demo/mobile.gif)
 
-![](docs/demo/desktop-01.png)
+On desktop:
 
-![](docs/demo/desktop-02.png)
+![Demo on desktop](docs/demo/desktop-01.png)
+
+![Demo on desktop](docs/demo/desktop-02.png)
 
 ## Installation
 
