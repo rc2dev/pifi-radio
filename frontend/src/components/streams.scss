@@ -19,3 +19,8 @@
   width: 100%;
   text-align: left;
 }
+
+// Fix for Lux theme.
+.active .streams__btn {
+  color: #fff;
+}
