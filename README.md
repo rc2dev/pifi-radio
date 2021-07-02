@@ -49,6 +49,8 @@ PiFi is an interface for MPD, so it has some advantages compared to other soluti
 
 ![](docs/demo/mobile-01.png)
 
+![](docs/demo/mobile-02.png)
+
 ![](docs/demo/desktop-01.png)
 
 ![](docs/demo/desktop-02.png)
