@@ -5,6 +5,8 @@
 </p>
 <p align="center">PiFi Radio: A MPD web client to listen to radio.</p>
 
+**Notice:** This project was archived in July 2021 and shouldn't receive updates in the foreseeable future.
+
 ## Table of contents
 
 - [Meet PiFi Radio](#meet-pifi-radio)
