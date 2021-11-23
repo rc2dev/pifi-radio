@@ -1,7 +1,7 @@
 # PiFi Radio
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/icon/radio-original.svg?sanitize=true" width=250>
+  <img src="https://raw.githubusercontent.com/rc2dev/pifi-radio/master/docs/icon/radio-original.svg?sanitize=true" width=250>
 </p>
 <p align="center">PiFi Radio: A MPD web client to listen to radio.</p>
 
@@ -32,7 +32,7 @@ If you have no idea what this means... You install it on a device such as the Ra
 
 PiFi is an interface for MPD, so it has some advantages compared to other solutions, e.g. bluetooth or AirPlay. One of them is that the playback is completely independent from your phone. So you can continue to use it normally, play a video, lose connection or even turn it off, and your Pi will still continue to play the radio.
 
-[I started this project in early 2017. At that time, I wanted to configure Raspbian so my parents could listen to radio with ease, but couldn't find any good solution to it.](https://rafaelc.org/blog/the-motivation-for-pifi-radio/)
+[I started this project in early 2017. At that time, I wanted to configure Raspbian so my parents could listen to radio with ease, but couldn't find any good solution to it.](https://rafaelc.org/posts/the-motivation-for-pifi-radio/)
 
 ## Some features
 
@@ -126,7 +126,7 @@ If you want to change any of these options, download the sample file and edit it
 
 ```
 $ sudo mkdir -p /etc/pifi
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
+$ sudo wget https://raw.githubusercontent.com/rc2dev/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
 $ sudo -e /etc/pifi/config.json
 ```
 
@@ -142,13 +142,13 @@ On your mobile browser, I suggest you add PiFi Radio to your home screen, for ea
 
 ## Help me translate
 
-You can help me adding a new language to PiFi or improving an existing translation. [The translation files are placed here.](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales)
+You can help me adding a new language to PiFi or improving an existing translation. [The translation files are placed here.](https://github.com/rc2dev/pifi-radio/tree/master/frontend/public/locales)
 
 ### Improving an existing translation
 
 The default language for PiFi is English, so you should use it as a reference.
 
-1. Open [the translation file](https://github.com/rccavalcanti/pifi-radio/tree/master/frontend/public/locales) and [the English file](https://github.com/rccavalcanti/pifi-radio/blob/master/frontend/public/locales/en-US/translation.json).
+1. Open [the translation file](https://github.com/rc2dev/pifi-radio/tree/master/frontend/public/locales) and [the English file](https://github.com/rc2dev/pifi-radio/blob/master/frontend/public/locales/en-US/translation.json).
 2. Fill empty strings and fix any bad translations.
 3. Send a pull request.
 

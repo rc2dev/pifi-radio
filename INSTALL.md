@@ -26,7 +26,7 @@ $ sudo gem install pifi --no-document
 
 ```
 $ sudo mkdir -p /etc/pifi
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
+$ sudo wget https://raw.githubusercontent.com/rc2dev/pifi-radio/master/docs/streams.json.sample -O /etc/pifi/streams.json
 ```
 
 _Later, you can edit that list [as described here](README.md#list-of-streams)._
@@ -36,7 +36,7 @@ _Later, you can edit that list [as described here](README.md#list-of-streams)._
 Download a sample and edit [following the documentation](README.md#pifi-configuration):
 
 ```
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
+$ sudo wget https://raw.githubusercontent.com/rc2dev/pifi-radio/master/docs/config.json.sample -O /etc/pifi/config.json
 $ sudo -e /etc/pifi/config.json
 ```
 
@@ -49,7 +49,7 @@ It makes sense to run PiFi as a different user, such as `www-data`. You may also
 1. Download the service sample.
 
 ```
-$ sudo wget https://raw.githubusercontent.com/rccavalcanti/pifi-radio/master/docs/pifi.service.sample -O /etc/systemd/system/pifi.service
+$ sudo wget https://raw.githubusercontent.com/rc2dev/pifi-radio/master/docs/pifi.service.sample -O /etc/systemd/system/pifi.service
 ```
 
 2. Make any changes relevant to your system.
